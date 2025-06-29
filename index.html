@@ -18,34 +18,86 @@
             background: var(--main-bg);
             color: #222;
         }
+        /* Barre de menu */
+        .navbar {
+            width: 100%;
+            background: linear-gradient(90deg, #4f8cff 0%, #1976d2 100%);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            padding: 0 24px;
+            min-height: 56px;
+        }
+        .navbar-logo {
+            color: #fff;
+            font-weight: bold;
+            font-size: 1.3em;
+            letter-spacing: 1px;
+            margin-right: 32px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .navbar-menu {
+            display: flex;
+            gap: 18px;
+            flex: 1;
+        }
+        .navbar-link {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.08em;
+            padding: 10px 18px;
+            border-radius: 8px;
+            transition: background 0.2s, color 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .navbar-link:hover, .navbar-link.active {
+            background: rgba(255,255,255,0.13);
+            color: #ffe082;
+        }
+        @media (max-width: 700px) {
+            .navbar { flex-direction: column; align-items: flex-start; padding: 0 8px; }
+            .navbar-menu { flex-direction: column; gap: 0; width: 100%; }
+            .navbar-link { width: 100%; }
+        }
+        /* Bannière */
         .banner {
             position: relative;
-            width: 100%;
-            min-height: 220px;
-            background: url('images/school.jpg') center/cover no-repeat;
+            width: 100vw;
+            min-height: 60vh;
+            background: url('images/ecole.jpg') center/cover no-repeat;
             display: flex;
             align-items: center;
             justify-content: center;
-            border-bottom-left-radius: var(--radius);
-            border-bottom-right-radius: var(--radius);
             box-shadow: var(--shadow);
         }
         .banner-title {
-            background: rgba(0,0,0,0.45);
+            background: rgba(0,0,0,0.55);
             color: #fff;
-            padding: 32px 24px;
+            padding: 40px 30px;
             border-radius: var(--radius);
-            font-size: 2.2em;
+            font-size: 2.5em;
             font-weight: bold;
             text-align: center;
             box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+            letter-spacing: 1px;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.25);
         }
+        /* Navigation cartes */
         .main-nav {
             display: flex;
             justify-content: center;
             gap: 32px;
-            margin: 40px 0 32px 0;
+            margin: -40px 0 40px 0;
             flex-wrap: wrap;
+            z-index: 2;
+            position: relative;
         }
         .nav-card {
             background: var(--card-bg);
@@ -58,21 +110,28 @@
             font-weight: 500;
             color: #222;
             text-decoration: none;
-            transition: transform 0.15s, box-shadow 0.15s;
+            transition: transform 0.15s, box-shadow 0.15s, background 0.15s;
             cursor: pointer;
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 12px;
         }
+        .nav-card .icon {
+            font-size: 2.2em;
+            margin-bottom: 6px;
+        }
         .nav-card:hover {
             transform: translateY(-6px) scale(1.03);
             box-shadow: 0 8px 32px rgba(79,140,255,0.13);
             background: #f0f6ff;
+            color: #1a237e;
         }
-        .nav-card .icon {
-            font-size: 2.2em;
-            margin-bottom: 6px;
+        /* Section Photos */
+        .class-photos {
+            max-width: 1100px;
+            margin: 0 auto 40px auto;
+            padding: 0 16px;
         }
         .section-title {
             display: flex;
@@ -86,14 +145,9 @@
         .section-title .icon {
             font-size: 1.2em;
         }
-        .class-photos {
-            max-width: 1100px;
-            margin: 0 auto 40px auto;
-            padding: 0 16px;
-        }
         .photos-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 28px;
             margin-top: 18px;
         }
@@ -106,6 +160,7 @@
             flex-direction: column;
             align-items: stretch;
             transition: transform 0.15s, box-shadow 0.15s;
+            position: relative;
         }
         .photo-card:hover {
             transform: translateY(-4px) scale(1.025);
@@ -114,13 +169,14 @@
         }
         .photo-img {
             width: 100%;
-            height: 140px;
+            height: 160px;
             object-fit: cover;
             background: #e6e6e6;
             display: block;
+            transition: filter 0.2s;
         }
         .photo-label {
-            padding: 14px 0 12px 0;
+            padding: 14px 0 8px 0;
             text-align: center;
             font-size: 1.08em;
             font-weight: 500;
@@ -128,11 +184,31 @@
             background: #f7fafc;
             border-top: 1px solid #f0f0f0;
         }
+        .edit-btn {
+            margin: 10px auto 14px auto;
+            display: block;
+            background: #e3f2fd;
+            color: #1976d2;
+            border: none;
+            border-radius: 8px;
+            padding: 8px 18px;
+            font-size: 1em;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s;
+        }
+        .edit-btn:hover {
+            background: #1976d2;
+            color: #fff;
+        }
+        .file-input {
+            display: none;
+        }
         @media (max-width: 700px) {
             .main-nav {
                 flex-direction: column;
                 gap: 18px;
-                margin: 28px 0 24px 0;
+                margin: -30px 0 24px 0;
             }
             .banner-title {
                 font-size: 1.3em;
@@ -142,18 +218,29 @@
                 grid-template-columns: 1fr 1fr;
                 gap: 16px;
             }
+            .photo-img { height: 110px; }
         }
         @media (max-width: 480px) {
             .photos-grid {
                 grid-template-columns: 1fr;
             }
-            .banner {
-                min-height: 120px;
-            }
+            .banner { min-height: 120px; }
+            .photo-img { height: 90px; }
         }
     </style>
 </head>
 <body>
+    <!-- Barre de menu -->
+    <nav class="navbar">
+        <div class="navbar-logo">🏫 LSU Génies</div>
+        <div class="navbar-menu">
+            <a class="navbar-link" href="index.html"><span>🏠</span>Accueil</a>
+            <a class="navbar-link" href="lsu_generator.html"><span>🎓</span>Générateur LSU</a>
+            <a class="navbar-link" href="students.html"><span>👩‍🏫</span>Profils élèves</a>
+            <a class="navbar-link" href="dashboard.html"><span>📊</span>Tableau de bord</a>
+        </div>
+    </nav>
+
     <!-- Bannière -->
     <div class="banner">
         <div class="banner-title">
@@ -183,28 +270,62 @@
             <span class="icon">📷</span>
             Photos des classes
         </div>
-        <div class="photos-grid">
-            <div class="photo-card">
-                <img src="images/cp.jpg" alt="Classe de CP" class="photo-img">
-                <div class="photo-label">Classe de CP</div>
-            </div>
-            <div class="photo-card">
-                <img src="images/ce1.jpg" alt="Classe de CE1" class="photo-img">
-                <div class="photo-label">Classe de CE1</div>
-            </div>
-            <div class="photo-card">
-                <img src="images/ce2.jpg" alt="Classe de CE2" class="photo-img">
-                <div class="photo-label">Classe de CE2</div>
-            </div>
-            <div class="photo-card">
-                <img src="images/cm1.jpg" alt="Classe de CM1" class="photo-img">
-                <div class="photo-label">Classe de CM1</div>
-            </div>
-            <div class="photo-card">
-                <img src="images/cm2.jpg" alt="Classe de CM2" class="photo-img">
-                <div class="photo-label">Classe de CM2</div>
-            </div>
+        <div class="photos-grid" id="photosGrid">
+            <!-- Les cartes seront générées par JS -->
         </div>
     </section>
+
+    <script>
+        // Liste des classes et images par défaut
+        const classes = [
+            { key: 'cp', label: 'Classe de CP', img: 'images/cp.jpg' },
+            { key: 'ce1', label: 'Classe de CE1', img: 'images/ce1.jpg' },
+            { key: 'ce2', label: 'Classe de CE2', img: 'images/ce2.jpg' },
+            { key: 'cm1', label: 'Classe de CM1', img: 'images/cm1.jpg' },
+            { key: 'cm2', label: 'Classe de CM2', img: 'images/cm2.jpg' }
+        ];
+
+        // Rendu dynamique des cartes
+        function renderPhotos() {
+            const grid = document.getElementById('photosGrid');
+            grid.innerHTML = '';
+            classes.forEach(classe => {
+                // Vérifie si une image custom existe en localStorage
+                const saved = localStorage.getItem('photo_' + classe.key);
+                const imgSrc = saved ? saved : classe.img;
+                const card = document.createElement('div');
+                card.className = 'photo-card';
+                card.innerHTML = `
+                    <img src="${imgSrc}" alt="${classe.label}" class="photo-img" id="img_${classe.key}">
+                    <div class="photo-label">${classe.label}</div>
+                    <button class="edit-btn" onclick="editPhoto('${classe.key}')">📸 Modifier la photo</button>
+                    <input type="file" accept="image/*" class="file-input" id="file_${classe.key}" onchange="changePhoto(event, '${classe.key}')">
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // Ouvre le sélecteur de fichier
+        function editPhoto(key) {
+            document.getElementById('file_' + key).click();
+        }
+
+        // Gère le changement de photo
+        function changePhoto(event, key) {
+            const file = event.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                // Affiche l'image en direct
+                document.getElementById('img_' + key).src = e.target.result;
+                // Sauvegarde dans localStorage
+                localStorage.setItem('photo_' + key, e.target.result);
+            };
+            reader.readAsDataURL(file);
+        }
+
+        // Initialisation
+        window.onload = renderPhotos;
+    </script>
 </body>
 </html>
