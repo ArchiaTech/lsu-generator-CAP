@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tableau de bord - Les Petits Génies</title>
+    <style>
+        :root {
+            --main-bg: #f7fafc;
+            --card-bg: #fff;
+            --primary: #4f8cff;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --shadow: 0 4px 16px rgba(0,0,0,0.08);
+            --radius: 18px;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', 'Arial', sans-serif;
+            background: var(--main-bg);
+            color: #222;
+            line-height: 1.6;
+        }
+        
+        /* Barre de menu */
+        .navbar {
+            width: 100%;
+            background: linear-gradient(90deg, #4f8cff 0%, #1976d2 100%);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            padding: 0 24px;
+            min-height: 56px;
+        }
+        
+        .navbar-logo {
+            color: #fff;
+            font-weight: bold;
+            font-size: 1.3em;
+            letter-spacing: 1px;
+            margin-right: 32px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .navbar-menu {
+            display: flex;
+            gap: 18px;
+            flex: 1;
+        }
+        
+        .navbar-link {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.08em;
+            padding: 10px 18px;
+            border-radius: 8px;
+            transition: background 0.2s, color 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .navbar-link:hover, .navbar-link.active {
+            background: rgba(255,255,255,0.13);
+            color: #ffe082;
+        }
+        
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 24px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 24px;
+        }
+        
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+        
+        .stat-card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 24px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: transform 0.2s;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-4px);
+        }
+        
+        .stat-icon {
+            font-size: 2.5em;
+            margin-bottom: 12px;
+        }
+        
+        .stat-number {
+            font-size: 2.2em;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        
+        .stat-label {
+            color: #666;
+            font-size: 1.1em;
+        }
+        
+        .stat-trend {
+            margin-top: 8px;
+            font-size: 0.9em;
+            font-weight: 500;
+        }
+        
+        .trend-up { color: var(--success); }
+        .trend-down { color: var(--danger); }
+        
+        /* Charts Section */
+        .charts-section {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+        
+        .chart-card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 24px;
+            box-shadow: var(--shadow);
+        }
+        
+        .chart-title {
+            font-size: 1.3em;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        
+        .chart-container {
+            height: 300px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-size: 1.1em;
+        }
+        
+        /* Recent Activity */
+        .activity-list {
+            list-style: none;
+        }
+        
+        .activity-item {
+            padding: 16px 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .activity-item:last-child {
+            border-bottom: none;
+        }
+        
+        .activity-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2em;
+            color: white;
+        }
+        
+        .activity-content {
+            flex: 1;
+        }
+        
+        .activity-title {
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+        
+        .activity-time {
+            font-size: 0.9em;
+            color: #666;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .charts-section {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+            
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 0 8px;
+            }
+            
+            .navbar-menu {
+                flex-direction: column;
+                gap: 0;
+                width: 100%;
+            }
+            
+            .navbar-link {
+                width: 100%;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Barre de menu -->
+    <nav class="navbar">
+        <div class="navbar-logo">🏫 LSU Génies</div>
+        <div class="navbar-menu">
+            <a class="navbar-link" href="index.html"><span>🏠</span>Accueil</a>
+            <a class="navbar-link" href="lsu_generator.html"><span>🎓</span>Générateur LSU</a>
+            <a class="navbar-link" href="students.html"><span>👩‍🏫</span>Profils élèves</a>
+            <a class="navbar-link active" href="dashboard.html"><span>📊</span>Tableau de bord</a>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="header">
+        <h1>📊 Tableau de bord</h1>
+        <p>Vue d'ensemble de l'école Les Petits Génies</p>
+    </header>
+
+    <!-- Container principal -->
+    <div class="container">
+        <!-- Statistiques -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon">👥</div>
+                <div class="stat-number">127</div>
+                <div class="stat-label">Élèves total</div>
+                <div class="stat-trend trend-up">↗️ +3 ce mois</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-icon">👨‍🏫</div>
+                <div class="stat-number">8</div>
+                <div class="stat-label">Enseignants</div>
+                <div class="stat-trend">→ Stable</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-icon">📚</div>
+                <div class="stat-number">5</div>
+                <div class="stat-label">Classes</div>
+                <div class="stat-trend">→ CP à CM2</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-icon">📈</div>
+                <div class="stat-number">94%</div>
+                <div class="stat-label">Taux de réussite</div>
+                <div class="stat-trend trend-up">↗️ +2%</div>
+            </div>
+        </div>
+
+        <!-- Graphiques et Activités -->
+        <div class="charts-section">
+            <div class="chart-card">
+                <h3 class="chart-title">📊 Évolution des performances</h3>
+                <div class="chart-container">
+                    <div style="text-align: center;">
+                        <div style="font-size: 3em; margin-bottom: 16px;">📈</div>
+                        <div>Graphique d'évolution des performances</div>
+                        <div style="font-size: 0.9em; margin-top: 8px; color: #999;">
+                            Données en temps réel
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="chart-card">
+                <h3 class="chart-title">🕒 Activité récente</h3>
+                <ul class="activity-list">
+                    <li class="activity-item">
+                        <div class="activity-icon" style="background: var(--success);">📝</div>
+                        <div class="activity-content">
+                            <div class="activity-title">LSU mis à jour - CE2</div>
+                            <div class="activity-time">Il y a 2 heures</div>
+                        </div>
+                    </li>
+                    
+                    <li class="activity-item">
+                        <div class="activity-icon" style="background: var(--primary);">👤</div>
+                        <div class="activity-content">
+                            <div class="activity-title">Nouvel élève inscrit</div>
+                            <div class="activity-time">Il y a 4 heures</div>
+                        </div>
+                    </li>
+                    
+                    <li class="activity-item">
+                        <div class="activity-icon" style="background: var(--warning);">📊</div>
+                        <div class="activity-content">
+                            <div class="activity-title">Évaluation CP terminée</div>
+                            <div class="activity-time">Hier</div>
+                        </div>
+                    </li>
+                    
+                    <li class="activity-item">
+                        <div class="activity-icon" style="background: var(--danger);">📸</div>
+                        <div class="activity-content">
+                            <div class="activity-title">Photo de classe CM1</div>
+                            <div class="activity-time">Il y a 2 jours</div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Métriques détaillées -->
+        <div class="chart-card">
+            <h3 class="chart-title">📋 Répartition par classe</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 20px;">
+                <div style="text-align: center; padding: 20px; background: #f0f8ff; border-radius: 12px;">
+                    <div style="font-size: 2em;">🎒</div>
+                    <div style="font-size: 1.5em; font-weight: bold; margin: 8px 0;">CP</div>
+                    <div style="color: #666;">24 élèves</div>
+                </div>
+                
+                <div style="text-align: center; padding: 20px; background: #f0fff0; border-radius: 12px;">
+                    <div style="font-size: 2em;">📖</div>
+                    <div style="font-size: 1.5em; font-weight: bold; margin: 8px 0;">CE1</div>
+                    <div style="color: #666;">26 élèves</div>
+                </div>
+                
+                <div style="text-align: center; padding: 20px; background: #fff8f0; border-radius: 12px;">
+                    <div style="font-size: 2em;">📚</div>
+                    <div style="font-size: 1.5em; font-weight: bold; margin: 8px 0;">CE2</div>
+                    <div style="color: #666;">25 élèves</div>
+                </div>
+                
+                <div style="text-align: center; padding: 20px; background: #f8f0ff; border-radius: 12px;">
+                    <div style="font-size: 2em;">🔬</div>
+                    <div style="font-size: 1.5em; font-weight: bold; margin: 8px 0;">CM1</div>
+                    <div style="color: #666;">26 élèves</div>
+                </div>
+                
+                <div style="text-align: center; padding: 20px; background: #fff0f0; border-radius: 12px;">
+                    <div style="font-size: 2em;">🎓</div>
+                    <div style="font-size: 1.5em; font-weight: bold; margin: 8px 0;">CM2</div>
+                    <div style="color: #666;">26 élèves</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Animation des statistiques
+        function animateNumbers() {
+            const numbers = document.querySelectorAll('.stat-number');
+            numbers.forEach(number => {
+                const finalValue = parseInt(number.textContent);
+                let currentValue = 0;
+                const increment = finalValue / 50;
+                
+                const timer = setInterval(() => {
+                    currentValue += increment;
+                    if (currentValue >= finalValue) {
+                        currentValue = finalValue;
+                        clearInterval(timer);
+                    }
+                    number.textContent = Math.floor(currentValue);
+                }, 30);
+            });
+        }
+        
+        // Animation au chargement
+        window.addEventListener('load', () => {
+            setTimeout(animateNumbers, 500);
+        });
+        
+        // Mise à jour en temps réel (simulation)
+        setInterval(() => {
+            const activityList = document.querySelector('.activity-list');
+            const newActivity = document.createElement('li');
+            newActivity.className = 'activity-item';
+            newActivity.innerHTML = `
+                <div class="activity-icon" style="background: var(--primary);">🔄</div>
+                <div class="activity-content">
+                    <div class="activity-title">Mise à jour automatique</div>
+                    <div class="activity-time">À l'instant</div>
+                </div>
+            `;
+            
+            activityList.insertBefore(newActivity, activityList.firstChild);
+            
+            // Supprimer l'ancienne activité après 10 secondes
+            setTimeout(() => {
+                if (activityList.children.length > 4) {
+                    activityList.removeChild(activityList.lastChild);
+                }
+            }, 10000);
+        }, 30000); // Toutes les 30 secondes
+    </script>
+</body>
+</html> 
