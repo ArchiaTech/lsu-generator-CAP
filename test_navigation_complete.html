@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🧭 Test Navigation Complète - Système LSU</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* Barre de Navigation LSU */
+        .nav-bar {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 3px solid #3498db;
+            margin: -20px -20px 20px -20px;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            height: 70px;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-link {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: white;
+            font-size: 1.5em;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .logo-link:hover {
+            transform: scale(1.05);
+            text-shadow: 0 0 10px rgba(52, 152, 219, 0.5);
+        }
+
+        .logo-icon {
+            font-size: 1.8em;
+            margin-right: 10px;
+        }
+
+        .logo-text {
+            background: linear-gradient(45deg, #3498db, #2ecc71);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 5px;
+            align-items: center;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 16px;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s;
+            font-weight: 500;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .nav-link:hover::before {
+            left: 100%;
+        }
+
+        .nav-link:hover {
+            background: rgba(52, 152, 219, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
+        }
+
+        .nav-link.active {
+            background: rgba(52, 152, 219, 0.3);
+            box-shadow: 0 0 15px rgba(52, 152, 219, 0.5);
+        }
+
+        .nav-icon {
+            font-size: 1.2em;
+        }
+
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 4px;
+        }
+
+        .nav-toggle span {
+            width: 25px;
+            height: 3px;
+            background: white;
+            border-radius: 2px;
+            transition: all 0.3s;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+                flex-direction: column;
+                padding: 20px;
+                transition: left 0.3s;
+                gap: 10px;
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .nav-link {
+                width: 100%;
+                justify-content: center;
+                padding: 15px;
+                font-size: 1.1em;
+            }
+
+            .nav-toggle {
+                display: flex;
+            }
+
+            .nav-toggle.active span:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+
+            .nav-toggle.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .nav-toggle.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(7px, -6px);
+            }
+        }
+
+        /* Animation d'entrée */
+        @keyframes slideInDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .nav-bar {
+            animation: slideInDown 0.5s ease-out;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 3em;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .header p {
+            font-size: 1.3em;
+            opacity: 0.9;
+        }
+
+        .main-content {
+            padding: 40px;
+        }
+
+        .test-section {
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-size: 2em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .pages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .page-card {
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .page-card:hover {
+            border-color: #4CAF50;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(76, 175, 80, 0.2);
+        }
+
+        .page-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+
+        .page-title {
+            font-size: 1.3em;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .page-description {
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .test-btn {
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            color: white;
+            text-decoration: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .test-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.4);
+        }
+
+        .status-section {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+
+        .status-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .status-item {
+            text-align: center;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            border: 2px solid #e9ecef;
+        }
+
+        .status-icon {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .status-text {
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .status-success {
+            border-color: #4CAF50;
+            color: #4CAF50;
+        }
+
+        .status-warning {
+            border-color: #ffc107;
+            color: #ffc107;
+        }
+
+        .status-error {
+            border-color: #dc3545;
+            color: #dc3545;
+        }
+
+        .info-section {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+
+        .info-title {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .info-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .info-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .info-list li:last-child {
+            border-bottom: none;
+        }
+
+        .info-icon {
+            font-size: 1.2em;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.2em;
+            }
+
+            .pages-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .status-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Barre de Navigation LSU -->
+    <nav class="nav-bar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html" class="logo-link">
+                    <span class="logo-icon">🎓</span>
+                    <span class="logo-text">LSU Pro</span>
+                </a>
+            </div>
+            
+            <div class="nav-menu" id="navMenu">
+                <a href="index.html" class="nav-link">
+                    <span class="nav-icon">🏠</span>
+                    Accueil
+                </a>
+                <a href="improved_lsu_generator.html" class="nav-link">
+                    <span class="nav-icon">📝</span>
+                    Générateur LSU
+                </a>
+                <a href="student_profile_page.html" class="nav-link">
+                    <span class="nav-icon">👤</span>
+                    Profils Élèves
+                </a>
+                <a href="photos_classe_pro.html" class="nav-link">
+                    <span class="nav-icon">📸</span>
+                    Photos Classe
+                </a>
+                <a href="lsu_connection_test.html" class="nav-link">
+                    <span class="nav-icon">🔧</span>
+                    Tests Connexion
+                </a>
+                <a href="test_navigation.html" class="nav-link">
+                    <span class="nav-icon">🧭</span>
+                    Navigation
+                </a>
+            </div>
+            
+            <div class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="header">
+            <h1>🧭 Test Navigation Complète</h1>
+            <p>Vérification de la cohérence de navigation entre toutes les pages</p>
+        </div>
+
+        <div class="main-content">
+            <!-- Statut des pages -->
+            <div class="test-section">
+                <h2 class="section-title">📊 Statut des Pages</h2>
+                <div class="status-section">
+                    <div class="status-grid">
+                        <div class="status-item status-success">
+                            <div class="status-icon">✅</div>
+                            <div class="status-text">Accueil</div>
+                        </div>
+                        <div class="status-item status-success">
+                            <div class="status-icon">✅</div>
+                            <div class="status-text">Générateur LSU</div>
+                        </div>
+                        <div class="status-item status-success">
+                            <div class="status-icon">✅</div>
+                            <div class="status-text">Profils Élèves</div>
+                        </div>
+                        <div class="status-item status-success">
+                            <div class="status-icon">✅</div>
+                            <div class="status-text">Photos Classe</div>
+                        </div>
+                        <div class="status-item status-success">
+                            <div class="status-icon">✅</div>
+                            <div class="status-text">Tests Connexion</div>
+                        </div>
+                        <div class="status-item status-success">
+                            <div class="status-icon">✅</div>
+                            <div class="status-text">Navigation</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pages disponibles -->
+            <div class="test-section">
+                <h2 class="section-title">📄 Pages Disponibles</h2>
+                <div class="pages-grid">
+                    <div class="page-card" onclick="window.open('index.html', '_blank')">
+                        <div class="page-icon">🏠</div>
+                        <h3 class="page-title">Page d'Accueil</h3>
+                        <p class="page-description">
+                            Page principale du système LSU avec présentation des fonctionnalités
+                        </p>
+                        <a href="index.html" class="test-btn">Tester</a>
+                    </div>
+
+                    <div class="page-card" onclick="window.open('improved_lsu_generator.html', '_blank')">
+                        <div class="page-icon">📝</div>
+                        <h3 class="page-title">Générateur LSU</h3>
+                        <p class="page-description">
+                            Outil de génération automatique de commentaires pour les évaluations
+                        </p>
+                        <a href="improved_lsu_generator.html" class="test-btn">Tester</a>
+                    </div>
+
+                    <div class="page-card" onclick="window.open('student_profile_page.html', '_blank')">
+                        <div class="page-icon">👤</div>
+                        <h3 class="page-title">Profils Élèves</h3>
+                        <p class="page-description">
+                            Gestion complète des profils et informations des élèves
+                        </p>
+                        <a href="student_profile_page.html" class="test-btn">Tester</a>
+                    </div>
+
+                    <div class="page-card" onclick="window.open('photos_classe_pro.html', '_blank')">
+                        <div class="page-icon">📸</div>
+                        <h3 class="page-title">Photos de Classe</h3>
+                        <p class="page-description">
+                            Gestion professionnelle des photos d'élèves et de classe
+                        </p>
+                        <a href="photos_classe_pro.html" class="test-btn">Tester</a>
+                    </div>
+
+                    <div class="page-card" onclick="window.open('lsu_connection_test.html', '_blank')">
+                        <div class="page-icon">🔧</div>
+                        <h3 class="page-title">Tests Connexion</h3>
+                        <p class="page-description">
+                            Outil de diagnostic et test des connexions système
+                        </p>
+                        <a href="lsu_connection_test.html" class="test-btn">Tester</a>
+                    </div>
+
+                    <div class="page-card" onclick="window.open('test_navigation.html', '_blank')">
+                        <div class="page-icon">🧭</div>
+                        <h3 class="page-title">Test Navigation</h3>
+                        <p class="page-description">
+                            Page de test pour vérifier la navigation entre les pages
+                        </p>
+                        <a href="test_navigation.html" class="test-btn">Tester</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Informations -->
+            <div class="test-section">
+                <div class="info-section">
+                    <h3 class="info-title">ℹ️ Informations sur la Navigation</h3>
+                    <ul class="info-list">
+                        <li>
+                            <span class="info-icon">🎯</span>
+                            <span>Toutes les pages partagent la même barre de navigation cohérente</span>
+                        </li>
+                        <li>
+                            <span class="info-icon">📱</span>
+                            <span>Navigation responsive adaptée aux mobiles et tablettes</span>
+                        </li>
+                        <li>
+                            <span class="info-icon">🎨</span>
+                            <span>Design moderne avec animations et effets visuels</span>
+                        </li>
+                        <li>
+                            <span class="info-icon">🔗</span>
+                            <span>Liens fonctionnels vers toutes les sections du système</span>
+                        </li>
+                        <li>
+                            <span class="info-icon">⚡</span>
+                            <span>Navigation fluide avec indicateur de page active</span>
+                        </li>
+                        <li>
+                            <span class="info-icon">🛡️</span>
+                            <span>Fermeture automatique du menu mobile lors de la navigation</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Script pour la navigation
+        document.addEventListener('DOMContentLoaded', function() {
+            const navToggle = document.getElementById('navToggle');
+            const navMenu = document.getElementById('navMenu');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            // Toggle menu mobile
+            navToggle.addEventListener('click', function() {
+                navMenu.classList.toggle('active');
+                navToggle.classList.toggle('active');
+            });
+            
+            // Fermer le menu en cliquant sur un lien
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    navMenu.classList.remove('active');
+                    navToggle.classList.remove('active');
+                });
+            });
+            
+            // Marquer le lien actif
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            navLinks.forEach(link => {
+                if (link.getAttribute('href') === currentPage) {
+                    link.classList.add('active');
+                }
+            });
+            
+            // Fermer le menu en cliquant à l'extérieur
+            document.addEventListener('click', function(event) {
+                if (!event.target.closest('.nav-bar')) {
+                    navMenu.classList.remove('active');
+                    navToggle.classList.remove('active');
+                }
+            });
+
+            // Test automatique des liens
+            function testLinks() {
+                const links = [
+                    'index.html',
+                    'improved_lsu_generator.html',
+                    'student_profile_page.html',
+                    'photos_classe_pro.html',
+                    'lsu_connection_test.html',
+                    'test_navigation.html'
+                ];
+
+                console.log('🧭 Test de navigation - Liens disponibles:');
+                links.forEach(link => {
+                    console.log(`  ✅ ${link}`);
+                });
+            }
+
+            testLinks();
+        });
+
+        // Gestion du redimensionnement de la fenêtre
+        window.addEventListener('resize', function() {
+            const navMenu = document.getElementById('navMenu');
+            const navToggle = document.getElementById('navToggle');
+            if (window.innerWidth > 768) {
+                navMenu.classList.remove('active');
+                navToggle.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html> 

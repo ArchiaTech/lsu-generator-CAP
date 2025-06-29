@@ -17,72 +17,180 @@
             min-height: 100vh;
         }
 
-        /* Barre de navigation */
-        .navbar {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        /* Barre de Navigation LSU */
+        .nav-bar {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             position: sticky;
             top: 0;
             z-index: 1000;
+            border-bottom: 3px solid #3498db;
         }
 
         .nav-container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 20px;
+            padding: 0 20px;
+            height: 70px;
         }
 
         .nav-logo {
-            font-size: 1.8em;
-            font-weight: bold;
-            color: #4CAF50;
-            text-decoration: none;
             display: flex;
             align-items: center;
-            gap: 10px;
+        }
+
+        .logo-link {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: white;
+            font-size: 1.5em;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .logo-link:hover {
+            transform: scale(1.05);
+            text-shadow: 0 0 10px rgba(52, 152, 219, 0.5);
+        }
+
+        .logo-icon {
+            font-size: 1.8em;
+            margin-right: 10px;
+        }
+
+        .logo-text {
+            background: linear-gradient(45deg, #3498db, #2ecc71);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .nav-menu {
             display: flex;
-            list-style: none;
-            gap: 30px;
-        }
-
-        .nav-item {
-            position: relative;
+            gap: 5px;
+            align-items: center;
         }
 
         .nav-link {
-            text-decoration: none;
-            color: #2c3e50;
-            font-weight: 500;
-            padding: 12px 20px;
-            border-radius: 8px;
-            transition: all 0.3s;
             display: flex;
             align-items: center;
             gap: 8px;
-            font-size: 1.1em;
+            padding: 12px 16px;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s;
+            font-weight: 500;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .nav-link:hover::before {
+            left: 100%;
         }
 
         .nav-link:hover {
-            background: #4CAF50;
-            color: white;
+            background: rgba(52, 152, 219, 0.2);
             transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(76, 175, 80, 0.3);
+            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
         }
 
-        .mobile-menu-btn {
+        .nav-link.active {
+            background: rgba(52, 152, 219, 0.3);
+            box-shadow: 0 0 15px rgba(52, 152, 219, 0.5);
+        }
+
+        .nav-icon {
+            font-size: 1.2em;
+        }
+
+        .nav-toggle {
             display: none;
-            background: none;
-            border: none;
-            font-size: 1.5em;
+            flex-direction: column;
             cursor: pointer;
-            color: #2c3e50;
+            gap: 4px;
+        }
+
+        .nav-toggle span {
+            width: 25px;
+            height: 3px;
+            background: white;
+            border-radius: 2px;
+            transition: all 0.3s;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+                flex-direction: column;
+                padding: 20px;
+                transition: left 0.3s;
+                gap: 10px;
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .nav-link {
+                width: 100%;
+                justify-content: center;
+                padding: 15px;
+                font-size: 1.1em;
+            }
+
+            .nav-toggle {
+                display: flex;
+            }
+
+            .nav-toggle.active span:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+
+            .nav-toggle.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .nav-toggle.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(7px, -6px);
+            }
+        }
+
+        /* Animation d'entrée */
+        @keyframes slideInDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .nav-bar {
+            animation: slideInDown 0.5s ease-out;
         }
 
         /* Contenu principal */
@@ -300,63 +408,6 @@
             line-height: 1.6;
         }
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            .nav-menu {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background: white;
-                flex-direction: column;
-                box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-                padding: 20px;
-            }
-
-            .nav-menu.active {
-                display: flex;
-            }
-
-            .mobile-menu-btn {
-                display: block;
-            }
-
-            .hero-title {
-                font-size: 2.5em;
-            }
-
-            .hero-subtitle {
-                font-size: 1.1em;
-            }
-
-            .features-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-
-            .feature-card {
-                padding: 30px 20px;
-            }
-
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 30px;
-            }
-
-            .stat-number {
-                font-size: 2.5em;
-            }
-
-            .section-title {
-                font-size: 2em;
-            }
-
-            .capabilities-list {
-                grid-template-columns: 1fr;
-            }
-        }
-
         /* Animations */
         @keyframes fadeInUp {
             from {
@@ -376,61 +427,51 @@
         .feature-card:nth-child(1) { animation-delay: 0.1s; }
         .feature-card:nth-child(2) { animation-delay: 0.2s; }
         .feature-card:nth-child(3) { animation-delay: 0.3s; }
-
-        /* Effets de survol pour les liens */
-        .nav-link {
-            position: relative;
-            overflow: hidden;
-        }
-
-        .nav-link::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: left 0.5s;
-        }
-
-        .nav-link:hover::before {
-            left: 100%;
-        }
     </style>
 </head>
 <body>
-    <!-- Barre de navigation -->
-    <nav class="navbar">
+    <!-- Barre de Navigation LSU -->
+    <nav class="nav-bar">
         <div class="nav-container">
-            <a href="#" class="nav-logo">
-                🎓 LSU École Primaire
-            </a>
+            <div class="nav-logo">
+                <a href="index.html" class="logo-link">
+                    <span class="logo-icon">🎓</span>
+                    <span class="logo-text">LSU Pro</span>
+                </a>
+            </div>
             
-            <ul class="nav-menu" id="navMenu">
-                <li class="nav-item">
-                    <a href="improved_lsu_generator.html" class="nav-link">
-                        ✨ Générateur de Commentaires
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="student_profile_page.html" class="nav-link">
-                        👤 Profil Élève
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#fonctionnalites" class="nav-link">
-                        📊 Fonctionnalités
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#aide" class="nav-link">
-                        ❓ Aide
-                    </a>
-                </li>
-            </ul>
-
-            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+            <div class="nav-menu" id="navMenu">
+                <a href="index.html" class="nav-link">
+                    <span class="nav-icon">🏠</span>
+                    Accueil
+                </a>
+                <a href="improved_lsu_generator.html" class="nav-link">
+                    <span class="nav-icon">📝</span>
+                    Générateur LSU
+                </a>
+                <a href="student_profile_page.html" class="nav-link">
+                    <span class="nav-icon">👤</span>
+                    Profils Élèves
+                </a>
+                <a href="photos_classe_pro.html" class="nav-link">
+                    <span class="nav-icon">📸</span>
+                    Photos Classe
+                </a>
+                <a href="lsu_connection_test.html" class="nav-link">
+                    <span class="nav-icon">🔧</span>
+                    Tests Connexion
+                </a>
+                <a href="test_navigation.html" class="nav-link">
+                    <span class="nav-icon">🧭</span>
+                    Navigation
+                </a>
+            </div>
+            
+            <div class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </div>
     </nav>
 
@@ -580,109 +621,130 @@
     </footer>
 
     <script>
-        // Navigation mobile
-        function toggleMobileMenu() {
-            const menu = document.getElementById('navMenu');
-            menu.classList.toggle('active');
-        }
-
-        // Animation des compteurs
-        function animateCounters() {
-            const counters = document.querySelectorAll('.stat-number');
-            
-            counters.forEach(counter => {
-                const target = parseInt(counter.textContent);
-                const duration = 2000;
-                const step = target / (duration / 16);
-                let current = 0;
-                
-                const timer = setInterval(() => {
-                    current += step;
-                    if (current >= target) {
-                        counter.textContent = counter.textContent; // Garde le texte original
-                        clearInterval(timer);
-                    } else {
-                        if (counter.textContent.includes('h')) {
-                            counter.textContent = Math.floor(current) + 'h';
-                        } else if (counter.textContent.includes('%')) {
-                            counter.textContent = Math.floor(current) + '%';
-                        } else if (counter.textContent.includes('+')) {
-                            counter.textContent = Math.floor(current) + '+';
-                        } else {
-                            counter.textContent = Math.floor(current);
-                        }
-                    }
-                }, 16);
-            });
-        }
-
-        // Observer pour détecter quand la section stats est visible
-        const observerOptions = {
-            threshold: 0.5
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    animateCounters();
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
-
-        // Statistiques en temps réel depuis localStorage
-        function updateRealTimeStats() {
-            // Comptage des élèves
-            const students = JSON.parse(localStorage.getItem('students')) || [];
-            const studentCount = students.length;
-            if (studentCount > 0) {
-                document.getElementById('totalStudents').textContent = studentCount;
-            }
-
-            // Estimation des commentaires générés (basé sur l'usage)
-            const lsuData = localStorage.getItem('lsuFormData');
-            const generatedCount = localStorage.getItem('generatedCount') || '150+';
-            document.getElementById('totalComments').textContent = generatedCount;
-
-            // Calcul approximatif du temps économisé
-            const timePerComment = 10; // minutes par commentaire manuel
-            const timeSaved = Math.floor((parseInt(generatedCount) * timePerComment) / 60);
-            if (timeSaved > 0) {
-                document.getElementById('timeSaved').textContent = timeSaved + 'h';
-            }
-        }
-
-        // Navigation fluide
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Fermer le menu mobile en cliquant à l'extérieur
-        document.addEventListener('click', function(event) {
-            const navMenu = document.getElementById('navMenu');
-            const mobileBtn = document.querySelector('.mobile-menu-btn');
-            
-            if (!navMenu.contains(event.target) && !mobileBtn.contains(event.target)) {
-                navMenu.classList.remove('active');
-            }
-        });
-
-        // Initialisation
+        // Script pour la navigation
         document.addEventListener('DOMContentLoaded', function() {
+            const navToggle = document.getElementById('navToggle');
+            const navMenu = document.getElementById('navMenu');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            // Toggle menu mobile
+            navToggle.addEventListener('click', function() {
+                navMenu.classList.toggle('active');
+                navToggle.classList.toggle('active');
+            });
+            
+            // Fermer le menu en cliquant sur un lien
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    navMenu.classList.remove('active');
+                    navToggle.classList.remove('active');
+                });
+            });
+            
+            // Marquer le lien actif
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            navLinks.forEach(link => {
+                if (link.getAttribute('href') === currentPage) {
+                    link.classList.add('active');
+                }
+            });
+            
+            // Fermer le menu en cliquant à l'extérieur
+            document.addEventListener('click', function(event) {
+                if (!event.target.closest('.nav-bar')) {
+                    navMenu.classList.remove('active');
+                    navToggle.classList.remove('active');
+                }
+            });
+
+            // Animation des compteurs
+            function animateCounters() {
+                const counters = document.querySelectorAll('.stat-number');
+                
+                counters.forEach(counter => {
+                    const target = parseInt(counter.textContent);
+                    const duration = 2000;
+                    const step = target / (duration / 16);
+                    let current = 0;
+                    
+                    const timer = setInterval(() => {
+                        current += step;
+                        if (current >= target) {
+                            counter.textContent = counter.textContent; // Garde le texte original
+                            clearInterval(timer);
+                        } else {
+                            if (counter.textContent.includes('h')) {
+                                counter.textContent = Math.floor(current) + 'h';
+                            } else if (counter.textContent.includes('%')) {
+                                counter.textContent = Math.floor(current) + '%';
+                            } else if (counter.textContent.includes('+')) {
+                                counter.textContent = Math.floor(current) + '+';
+                            } else {
+                                counter.textContent = Math.floor(current);
+                            }
+                        }
+                    }, 16);
+                });
+            }
+
+            // Observer pour détecter quand la section stats est visible
+            const observerOptions = {
+                threshold: 0.5
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateCounters();
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            // Statistiques en temps réel depuis localStorage
+            function updateRealTimeStats() {
+                // Comptage des élèves
+                const students = JSON.parse(localStorage.getItem('students')) || [];
+                const studentCount = students.length;
+                if (studentCount > 0) {
+                    document.getElementById('totalStudents').textContent = studentCount;
+                }
+
+                // Estimation des commentaires générés (basé sur l'usage)
+                const lsuData = localStorage.getItem('lsuFormData');
+                const generatedCount = localStorage.getItem('generatedCount') || '150+';
+                document.getElementById('totalComments').textContent = generatedCount;
+
+                // Calcul approximatif du temps économisé
+                const timePerComment = 10; // minutes par commentaire manuel
+                const timeSaved = Math.floor((parseInt(generatedCount) * timePerComment) / 60);
+                if (timeSaved > 0) {
+                    document.getElementById('timeSaved').textContent = timeSaved + 'h';
+                }
+            }
+
+            // Navigation fluide
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            // Initialisation
             updateRealTimeStats();
             
             // Observer la section stats
             const statsSection = document.querySelector('.stats-section');
-            observer.observe(statsSection);
+            if (statsSection) {
+                observer.observe(statsSection);
+            }
             
             // Mise à jour périodique des stats (toutes les 30 secondes)
             setInterval(updateRealTimeStats, 30000);
@@ -691,8 +753,10 @@
         // Gestion du redimensionnement de la fenêtre
         window.addEventListener('resize', function() {
             const navMenu = document.getElementById('navMenu');
+            const navToggle = document.getElementById('navToggle');
             if (window.innerWidth > 768) {
                 navMenu.classList.remove('active');
+                navToggle.classList.remove('active');
             }
         });
     </script>
