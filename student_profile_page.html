@@ -1158,14 +1158,14 @@
 
             <!-- Nouveaux boutons de gestion des élèves -->
             <div class="d-flex gap-2 mb-3" style="display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap;">
-                <button class="btn btn-success" onclick="window.location.href='create_student.html'" style="background: #28a745; color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; font-weight: 500; transition: all 0.3s;"" class="btn-with-icon"><i class="fas fa-plus"></i>Créer un élève
+                <button class="btn btn-success" class="btn-with-icon" onclick="window.location.href='create_student.html'" style="background: #28a745; color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; font-weight: 500; transition: all 0.3s;""><i class="fas fa-plus"></i>Créer un élève
                 </button>
-                <button class="btn btn-primary" onclick="window.location.href='student_list.html'" style="background: #007bff; color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; font-weight: 500; transition: all 0.3s;"" class="btn-with-icon"><i class="fas fa-list"></i>Liste des élèves
+                <button class="btn btn-primary" class="btn-with-icon" onclick="window.location.href='student_list.html'" style="background: #007bff; color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; font-weight: 500; transition: all 0.3s;""><i class="fas fa-list"></i>Liste des élèves
                 </button>
                 <input type="file" id="importFile" accept=".csv, .xlsx" style="display:none" onchange="handleImport(event)">
-                <button class="btn btn-warning" onclick="document.getElementById('importFile').click()" style="background: #ffc107; color: #212529; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; font-weight: 500; transition: all 0.3s;"" class="btn-with-icon"><i class="fas fa-download"></i>Importer une liste
+                <button class="btn btn-warning" class="btn-with-icon" onclick="document.getElementById('importFile').click()" style="background: #ffc107; color: #212529; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; font-weight: 500; transition: all 0.3s;""><i class="fas fa-download"></i>Importer une liste
                 </button>
-                <button class="btn btn-info" onclick="handleExport()" style="background: #17a2b8; color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; font-weight: 500; transition: all 0.3s;"" class="btn-with-icon"><i class="fas fa-upload"></i>Exporter la liste
+                <button class="btn btn-info" class="btn-with-icon" onclick="handleExport()" style="background: #17a2b8; color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; font-weight: 500; transition: all 0.3s;""><i class="fas fa-upload"></i>Exporter la liste
                 </button>
             </div>
 
@@ -1584,7 +1584,7 @@
                 </div>
                 
                 <div class="form-group">
-                    <button class="btn btn-danger" onclick="removePhoto()" style="background: #dc3545; color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer;"" class="btn-with-icon"><i class="fas fa-trash"></i>Supprimer la photo
+                    <button class="btn btn-danger" class="btn-with-icon" onclick="removePhoto()" style="background: #dc3545; color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer;""><i class="fas fa-trash"></i>Supprimer la photo
                     </button>
                 </div>
             </div>
@@ -2064,13 +2064,13 @@
             exportMenu.innerHTML = `
                 <h3 style="margin-bottom: 20px; color: #333;">📤 Exporter la liste des élèves</h3>
                 <div style="display: flex; flex-direction: column; gap: 10px;">
-                    <button onclick="exportStudentList()" style="background: #28a745; color: white; border: none; padding: 12px; border-radius: 6px; cursor: pointer; font-weight: 500;"" class="btn-with-icon"><i class="fas fa-file"></i>Exporter en CSV
+                    <button class="btn-with-icon" onclick="exportStudentList()" style="background: #28a745; color: white; border: none; padding: 12px; border-radius: 6px; cursor: pointer; font-weight: 500;""><i class="fas fa-file"></i>Exporter en CSV
                     </button>
-                    <button onclick="exportToExcel()" style="background: #007bff; color: white; border: none; padding: 12px; border-radius: 6px; cursor: pointer; font-weight: 500;"" class="btn-with-icon"><i class="fas fa-chart-bar"></i>Exporter en Excel
+                    <button class="btn-with-icon" onclick="exportToExcel()" style="background: #007bff; color: white; border: none; padding: 12px; border-radius: 6px; cursor: pointer; font-weight: 500;""><i class="fas fa-chart-bar"></i>Exporter en Excel
                     </button>
-                    <button onclick="exportToPDF()" style="background: #dc3545; color: white; border: none; padding: 12px; border-radius: 6px; cursor: pointer; font-weight: 500;"" class="btn-with-icon"><i class="fas fa-list"></i>Exporter en PDF
+                    <button class="btn-with-icon" onclick="exportToPDF()" style="background: #dc3545; color: white; border: none; padding: 12px; border-radius: 6px; cursor: pointer; font-weight: 500;""><i class="fas fa-list"></i>Exporter en PDF
                     </button>
-                    <button onclick="closeExportMenu()" style="background: #6c757d; color: white; border: none; padding: 12px; border-radius: 6px; cursor: pointer; font-weight: 500;"" class="btn-with-icon"><i class="fas fa-times"></i>Annuler
+                    <button class="btn-with-icon" onclick="closeExportMenu()" style="background: #6c757d; color: white; border: none; padding: 12px; border-radius: 6px; cursor: pointer; font-weight: 500;""><i class="fas fa-times"></i>Annuler
                     </button>
                 </div>
             `;
