@@ -413,56 +413,6 @@
         .btn-with-icon {
             display: inline-flex;
             align-items: center;
-            gap: 5px;
-        }
-
-        .level-buttons {
-    
-        /* Amélioration de la compatibilité des icônes */
-        .icon-fallback {
-            display: inline-block;
-            width: 1em;
-            height: 1em;
-            text-align: center;
-            line-height: 1;
-        }
-
-        /* Fallback pour les emojis qui ne s'affichent pas */
-        .btn .emoji-icon {
-            display: inline-block;
-            margin-right: 5px;
-        }
-
-        /* Styles pour les icônes Font Awesome en fallback */
-        .fa-fallback {
-            display: none;
-        }
-
-        /* Amélioration de l'affichage des boutons avec icônes */
-        .btn-with-icon {
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        /* Amélioration de l'affichage des emojis */
-        .emoji-icon {
-            font-size: 1.1em;
-            vertical-align: middle;
-        }
-
-        /* Styles pour les icônes Font Awesome */
-        .icon-fa {
-            font-size: 1.1em;
-            width: 20px;
-            text-align: center;
-            margin-right: 8px;
-        }
-
-        /* Amélioration des boutons avec icônes */
-        .btn-with-icon {
-            display: inline-flex;
-            align-items: center;
             gap: 8px;
             padding: 12px 20px;
             border-radius: 8px;
@@ -476,6 +426,12 @@
         .btn-with-icon:hover {
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .btn-with-icon i {
+            font-size: 1.1em;
+            width: 20px;
+            text-align: center;
         }
 
         /* Styles spécifiques pour les boutons d'action */
@@ -508,7 +464,65 @@
             background: linear-gradient(135deg, #6c757d, #545b62);
             color: white;
         }
-</style>
+
+        .level-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .level-buttons button {
+            padding: 10px 20px;
+            border-radius: 8px;
+            border: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .level-buttons button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .level-buttons button i {
+            font-size: 1.1em;
+            width: 20px;
+            text-align: center;
+            margin-right: 5px;
+        }
+
+        .level-buttons button.btn-success {
+            background: linear-gradient(135deg, #28a745, #1e7e34);
+            color: white;
+        }
+
+        .level-buttons button.btn-info {
+            background: linear-gradient(135deg, #17a2b8, #117a8b);
+            color: white;
+        }
+
+        .level-buttons button.btn-warning {
+            background: linear-gradient(135deg, #ffc107, #e0a800);
+            color: #212529;
+        }
+
+        .level-buttons button.btn-primary {
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            color: white;
+        }
+
+        .level-buttons button.btn-danger {
+            background: linear-gradient(135deg, #dc3545, #c82333);
+            color: white;
+        }
+
+        .level-buttons button.btn-secondary {
+            background: linear-gradient(135deg, #6c757d, #545b62);
+            color: white;
+        }
+    </style>
 </head>
 <body>
     <!-- Barre de Navigation LSU -->
@@ -563,11 +577,14 @@
                     </select>
                 </div>
                 <div class="toolbar-right">
-                    <button class="btn btn-success" onclick="ajouterEleve()"> class="btn-with-icon"><i class="fas fa-plus icon-fa"></i><i class="fas fa-plus fa-fallback"></i>Ajouter un élève
+                    <button class="btn btn-success btn-with-icon" onclick="ajouterEleve()">
+                        <i class="fas fa-user-plus"></i> Ajouter un élève
                     </button>
-                    <button class="btn btn-info" onclick="importerListeEleves()"> class="btn-with-icon"><i class="fas fa-download icon-fa"></i><i class="fas fa-download fa-fallback"></i>Importer
+                    <button class="btn btn-info btn-with-icon" onclick="importerListeEleves()">
+                        <i class="fas fa-file-import"></i> Importer
                     </button>
-                    <button class="btn btn-warning" onclick="exporterListeEleves()"> class="btn-with-icon"><i class="fas fa-upload icon-fa"></i><i class="fas fa-upload fa-fallback"></i>Exporter
+                    <button class="btn btn-warning btn-with-icon" onclick="exporterListeEleves()">
+                        <i class="fas fa-file-export"></i> Exporter
                     </button>
                 </div>
             </div>
