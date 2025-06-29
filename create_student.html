@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>➕ Créer un élève - Les Petits Génies</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* Barre de navigation */
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            margin: -20px -20px 20px -20px;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+
+        .nav-logo {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #4CAF50;
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: #2c3e50;
+            font-weight: 500;
+            padding: 8px 15px;
+            border-radius: 6px;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            background: #4CAF50;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5em;
+            cursor: pointer;
+        }
+
+        /* Container principal */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.2em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 1.1em;
+        }
+
+        .main-content {
+            padding: 40px;
+        }
+
+        /* Formulaire */
+        .form-section {
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            font-size: 1.3em;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e9ecef;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: all 0.3s;
+            background: #f8f9fa;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #4CAF50;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .required {
+            color: #e74c3c;
+        }
+
+        /* Boutons */
+        .actions-bar {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            min-width: 140px;
+            justify-content: center;
+        }
+
+        .btn-primary {
+            background: #4CAF50;
+            color: white;
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        /* Notification */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 20px;
+            border-radius: 8px;
+            color: white;
+            font-weight: 500;
+            z-index: 10000;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .notification.show {
+            transform: translateX(0);
+        }
+
+        .notification.success {
+            background: #28a745;
+        }
+
+        .notification.error {
+            background: #dc3545;
+        }
+
+        .notification.warning {
+            background: #ffc107;
+            color: #212529;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background: rgba(255, 255, 255, 0.95);
+                flex-direction: column;
+                padding: 20px;
+                transition: left 0.3s;
+                gap: 10px;
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .nav-link {
+                width: 100%;
+                justify-content: center;
+                padding: 15px;
+                font-size: 1.1em;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .actions-bar {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .main-content {
+                padding: 20px;
+            }
+        }
+
+        /* Animation d'entrée */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .container {
+            animation: fadeInUp 0.6s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <!-- Barre de navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">🎓 LSU École Primaire</a>
+            
+            <ul class="nav-menu" id="navMenu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">
+                        🏠 Accueil
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="lsu_generator.html" class="nav-link">
+                        ✨ Générateur
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="student_profile_page.html" class="nav-link active">
+                        👤 Profil Élève
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="dashboard.html" class="nav-link">
+                        📊 Tableau de bord
+                    </a>
+                </li>
+            </ul>
+
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="header">
+            <h1>➕ Créer un nouvel élève</h1>
+            <p>Ajoutez un nouvel élève à la base de données</p>
+        </div>
+
+        <div class="main-content">
+            <form id="createStudentForm" onsubmit="createStudent(event)">
+                <!-- Informations personnelles -->
+                <div class="form-section">
+                    <h2 class="section-title">
+                        👤 Informations personnelles
+                    </h2>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="firstName">Prénom <span class="required">*</span></label>
+                            <input type="text" id="firstName" name="firstName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Nom <span class="required">*</span></label>
+                            <input type="text" id="lastName" name="lastName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="birthDate">Date de naissance <span class="required">*</span></label>
+                            <input type="date" id="birthDate" name="birthDate" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="gender">Genre</label>
+                            <select id="gender" name="gender">
+                                <option value="">Sélectionner</option>
+                                <option value="F">Fille</option>
+                                <option value="M">Garçon</option>
+                                <option value="A">Autre</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Informations scolaires -->
+                <div class="form-section">
+                    <h2 class="section-title">
+                        🎓 Informations scolaires
+                    </h2>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="level">Niveau scolaire <span class="required">*</span></label>
+                            <select id="level" name="level" required>
+                                <option value="">Sélectionner un niveau</option>
+                                <option value="CP">CP - Cours Préparatoire</option>
+                                <option value="CE1">CE1 - Cours Élémentaire 1ère année</option>
+                                <option value="CE2">CE2 - Cours Élémentaire 2ème année</option>
+                                <option value="CM1">CM1 - Cours Moyen 1ère année</option>
+                                <option value="CM2">CM2 - Cours Moyen 2ème année</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="class">Classe</label>
+                            <input type="text" id="class" name="class" placeholder="Ex: CM1-A, CE2-B...">
+                        </div>
+                        <div class="form-group">
+                            <label for="teacher">Enseignant(e) <span class="required">*</span></label>
+                            <input type="text" id="teacher" name="teacher" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="entryDate">Date d'entrée</label>
+                            <input type="date" id="entryDate" name="entryDate">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Informations familiales -->
+                <div class="form-section">
+                    <h2 class="section-title">
+                        👨‍👩‍👧‍👦 Informations familiales
+                    </h2>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="parent1Name">Nom du parent 1 <span class="required">*</span></label>
+                            <input type="text" id="parent1Name" name="parent1Name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="parent1Phone">Téléphone parent 1 <span class="required">*</span></label>
+                            <input type="tel" id="parent1Phone" name="parent1Phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="parent2Name">Nom du parent 2</label>
+                            <input type="text" id="parent2Name" name="parent2Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="parent2Phone">Téléphone parent 2</label>
+                            <input type="tel" id="parent2Phone" name="parent2Phone">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Adresse</label>
+                        <textarea id="address" name="address" placeholder="Adresse complète de l'élève"></textarea>
+                    </div>
+                </div>
+
+                <!-- Informations médicales -->
+                <div class="form-section">
+                    <h2 class="section-title">
+                        🏥 Informations médicales
+                    </h2>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="allergies">Allergies</label>
+                            <input type="text" id="allergies" name="allergies" placeholder="Aucune ou liste des allergies">
+                        </div>
+                        <div class="form-group">
+                            <label for="medicalTreatment">Traitement médical</label>
+                            <input type="text" id="medicalTreatment" name="medicalTreatment" placeholder="Aucun ou traitement en cours">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="medicalNotes">Notes médicales</label>
+                        <textarea id="medicalNotes" name="medicalNotes" placeholder="Informations médicales importantes..."></textarea>
+                    </div>
+                </div>
+
+                <!-- Notes et observations -->
+                <div class="form-section">
+                    <h2 class="section-title">
+                        📝 Notes et observations
+                    </h2>
+                    <div class="form-group">
+                        <label for="notes">Observations générales</label>
+                        <textarea id="notes" name="notes" placeholder="Observations sur l'élève, comportement, difficultés particulières..."></textarea>
+                    </div>
+                </div>
+
+                <!-- Boutons d'action -->
+                <div class="actions-bar">
+                    <button type="submit" class="btn btn-primary">
+                        💾 Créer l'élève
+                    </button>
+                    <button type="button" class="btn btn-secondary" onclick="resetForm()">
+                        🔄 Réinitialiser
+                    </button>
+                    <a href="student_profile_page.html" class="btn btn-secondary">
+                        ← Retour
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="notification" id="notification"></div>
+
+    <script>
+        // Création d'un nouvel élève
+        function createStudent(event) {
+            event.preventDefault();
+            
+            // Récupérer les données du formulaire
+            const formData = new FormData(event.target);
+            const studentData = {};
+            
+            for (let [key, value] of formData.entries()) {
+                studentData[key] = value;
+            }
+            
+            // Validation des champs obligatoires
+            const requiredFields = ['firstName', 'lastName', 'birthDate', 'level', 'teacher', 'parent1Name', 'parent1Phone'];
+            const missingFields = requiredFields.filter(field => !studentData[field]);
+            
+            if (missingFields.length > 0) {
+                showNotification('Veuillez remplir tous les champs obligatoires', 'error');
+                return;
+            }
+            
+            // Générer un ID unique
+            studentData.id = Date.now().toString();
+            studentData.createdAt = new Date().toISOString();
+            
+            // Sauvegarder dans localStorage
+            saveStudent(studentData);
+            
+            // Afficher la confirmation
+            showNotification('Élève créé avec succès !', 'success');
+            
+            // Rediriger vers la page de profil après 2 secondes
+            setTimeout(() => {
+                window.location.href = `student_profile_page.html?id=${studentData.id}`;
+            }, 2000);
+        }
+
+        // Sauvegarder l'élève
+        function saveStudent(studentData) {
+            // Récupérer la liste existante
+            const existingStudents = JSON.parse(localStorage.getItem('students_list') || '[]');
+            
+            // Ajouter le nouvel élève
+            existingStudents.push(studentData);
+            
+            // Sauvegarder la liste mise à jour
+            localStorage.setItem('students_list', JSON.stringify(existingStudents));
+            
+            // Sauvegarder aussi individuellement
+            localStorage.setItem(`student_${studentData.id}`, JSON.stringify(studentData));
+        }
+
+        // Réinitialiser le formulaire
+        function resetForm() {
+            document.getElementById('createStudentForm').reset();
+            showNotification('Formulaire réinitialisé', 'warning');
+        }
+
+        // Afficher une notification
+        function showNotification(message, type = 'success') {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.className = `notification ${type}`;
+            notification.classList.add('show');
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 4000);
+        }
+
+        // Navigation mobile
+        function toggleMobileMenu() {
+            const menu = document.getElementById('navMenu');
+            menu.classList.toggle('active');
+        }
+
+        // Initialisation
+        document.addEventListener('DOMContentLoaded', function() {
+            // Définir la date d'aujourd'hui par défaut pour la date d'entrée
+            document.getElementById('entryDate').value = new Date().toISOString().split('T')[0];
+            
+            // Validation en temps réel
+            const requiredInputs = document.querySelectorAll('input[required], select[required]');
+            requiredInputs.forEach(input => {
+                input.addEventListener('blur', function() {
+                    if (!this.value) {
+                        this.style.borderColor = '#e74c3c';
+                    } else {
+                        this.style.borderColor = '#4CAF50';
+                    }
+                });
+            });
+        });
+
+        // Fermer le menu mobile en cliquant à l'extérieur
+        document.addEventListener('click', function(event) {
+            const menu = document.getElementById('navMenu');
+            const mobileBtn = document.querySelector('.mobile-menu-btn');
+            
+            if (!menu.contains(event.target) && !mobileBtn.contains(event.target)) {
+                menu.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html> 

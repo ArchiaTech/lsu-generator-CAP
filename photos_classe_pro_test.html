@@ -1,0 +1,1394 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📸 Photos de Classe Pro - Test</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* Barre de Navigation LSU */
+        .nav-bar {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 3px solid #3498db;
+            margin: -20px -20px 20px -20px;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            height: 70px;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-link {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: white;
+            font-size: 1.5em;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .logo-link:hover {
+            transform: scale(1.05);
+            text-shadow: 0 0 10px rgba(52, 152, 219, 0.5);
+        }
+
+        .logo-icon {
+            font-size: 1.8em;
+            margin-right: 10px;
+        }
+
+        .logo-text {
+            background: linear-gradient(45deg, #3498db, #2ecc71);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 5px;
+            align-items: center;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 16px;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+
+        .nav-link:hover {
+            background: rgba(52, 152, 219, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .nav-link.active {
+            background: rgba(52, 152, 219, 0.3);
+        }
+
+        /* Container principal */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .main-content {
+            padding: 30px;
+        }
+
+        /* Barre d'outils */
+        .toolbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .toolbar-left {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .toolbar-right {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .search-box {
+            padding: 10px 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+            min-width: 200px;
+        }
+
+        .filter-select {
+            padding: 10px 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        /* Grille des photos */
+        .photos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .photo-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .photo-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            border-color: #4CAF50;
+        }
+
+        .photo-image {
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .photo-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .photo-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4em;
+            background: #f8f9fa;
+            color: #ccc;
+        }
+
+        .photo-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.7);
+            display: flex;
+            align-items: flex-end;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .photo-card:hover .photo-overlay {
+            opacity: 1;
+        }
+
+        .photo-actions {
+            width: 100%;
+            padding: 15px;
+        }
+
+        .photo-info {
+            padding: 20px;
+        }
+
+        .student-name {
+            font-size: 1.2em;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 8px;
+        }
+
+        .student-details {
+            color: #666;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+
+        .photo-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8em;
+        }
+
+        .photo-status {
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-weight: 500;
+        }
+
+        .status-approved {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status-pending {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .status-rejected {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        /* Modals */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 10000;
+        }
+
+        .modal-content {
+            background: white;
+            margin: 50px auto;
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            color: #999;
+        }
+
+        .close:hover {
+            color: #333;
+        }
+
+        /* Notifications */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 20px;
+            border-radius: 8px;
+            color: white;
+            font-weight: 500;
+            transform: translateX(100%);
+            opacity: 0;
+            transition: all 0.3s;
+            z-index: 10001;
+        }
+
+        .notification.show {
+            transform: translateX(0);
+            opacity: 1;
+        }
+
+        .notification.success {
+            background: #28a745;
+        }
+
+        .notification.error {
+            background: #dc3545;
+        }
+
+        .notification.warning {
+            background: #ffc107;
+            color: #212529;
+        }
+
+        .notification.info {
+            background: #17a2b8;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .toolbar {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .toolbar-left, .toolbar-right {
+                justify-content: center;
+            }
+            
+            .photos-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Barre de Navigation LSU -->
+    <nav class="nav-bar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html" class="logo-link">
+                    <span class="logo-icon">🎓</span>
+                    <span class="logo-text">LSU Pro</span>
+                </a>
+            </div>
+            
+            <div class="nav-menu" id="navMenu">
+                <a href="index.html" class="nav-link">
+                    <span class="nav-icon">🏠</span>
+                    Accueil
+                </a>
+                <a href="improved_lsu_generator.html" class="nav-link">
+                    <span class="nav-icon">📝</span>
+                    Générateur LSU
+                </a>
+                <a href="student_profile_page.html" class="nav-link">
+                    <span class="nav-icon">👤</span>
+                    Profils Élèves
+                </a>
+                <a href="photos_classe_pro.html" class="nav-link active">
+                    <span class="nav-icon">📸</span>
+                    Photos Classe
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="header">
+            <h1>📸 Photos de Classe Pro - Test</h1>
+            <p>Gestion professionnelle des photos d'élèves - Version de test</p>
+        </div>
+
+        <div class="main-content">
+            <!-- Barre d'outils -->
+            <div class="toolbar">
+                <div class="toolbar-left">
+                    <input type="text" class="search-box" placeholder="🔍 Rechercher un élève..." id="searchBox">
+                    <select class="filter-select" id="levelFilter">
+                        <option value="">Tous les niveaux</option>
+                        <option value="CP">CP</option>
+                        <option value="CE1">CE1</option>
+                        <option value="CE2">CE2</option>
+                        <option value="CM1">CM1</option>
+                        <option value="CM2">CM2</option>
+                    </select>
+                </div>
+                <div class="toolbar-right">
+                    <button class="btn btn-success" onclick="ajouterEleve()">
+                        ➕ Ajouter un élève
+                    </button>
+                    <button class="btn btn-info" onclick="importerListeEleves()">
+                        📥 Importer
+                    </button>
+                    <button class="btn btn-warning" onclick="exporterListeEleves()">
+                        📤 Exporter
+                    </button>
+                </div>
+            </div>
+
+            <!-- Grille des photos -->
+            <div class="photos-grid" id="photosGrid">
+                <!-- Les cartes de photos seront générées dynamiquement -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Photo View/Edit -->
+    <div id="photoModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="fermerModal()">&times;</span>
+            <h2 id="modalTitle">📸 Photo de l'élève</h2>
+            
+            <div class="text-center mb-4">
+                <img id="modalPhoto" src="" alt="Photo de l'élève" style="max-width: 100%; max-height: 300px; border-radius: 10px; display: none;">
+                <div id="modalPhotoPlaceholder" style="font-size: 8em; padding: 40px;">👤</div>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-6">
+                    <p><strong>Élève :</strong> <span id="modalStudentName"></span></p>
+                    <p><strong>Niveau :</strong> <span id="modalStudentLevel"></span></p>
+                    <p><strong>Date :</strong> <span id="modalPhotoDate"></span></p>
+                </div>
+                <div class="col-md-6">
+                    <p><strong>Statut :</strong> <span id="modalPhotoStatus"></span></p>
+                    <p><strong>Notes :</strong> <span id="modalPhotoNotes"></span></p>
+                </div>
+            </div>
+            
+            <!-- Zone d'upload pour l'édition -->
+            <div id="editZone" style="display: none; margin: 20px 0;">
+                <label for="photoUpload">📁 Choisir une nouvelle photo :</label>
+                <input type="file" id="photoUpload" accept="image/*" class="form-control">
+            </div>
+            
+            <div style="display: flex; gap: 10px; margin-top: 20px;">
+                <button class="btn btn-primary" id="editBtn" onclick="ouvrirModaleEdition()">✏️ Modifier</button>
+                <button class="btn btn-success" id="saveBtn" onclick="sauvegarderPhoto()" style="display: none;">💾 Sauvegarder</button>
+                <button class="btn btn-danger" onclick="supprimerEleve()">🗑️ Supprimer</button>
+                <button class="btn btn-secondary" onclick="fermerModal()">❌ Fermer</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal d'ajout d'élève -->
+    <div id="addModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="fermerModal()">&times;</span>
+            <h2>➕ Ajouter un élève</h2>
+            
+            <form id="addForm">
+                <div class="mb-3">
+                    <label for="newStudentName" class="form-label">Nom de l'élève :</label>
+                    <input type="text" id="newStudentName" class="form-control" required>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="newStudentLevel" class="form-label">Niveau :</label>
+                    <select id="newStudentLevel" class="form-control" required>
+                        <option value="">Sélectionner un niveau</option>
+                        <option value="CP">CP</option>
+                        <option value="CE1">CE1</option>
+                        <option value="CE2">CE2</option>
+                        <option value="CM1">CM1</option>
+                        <option value="CM2">CM2</option>
+                    </select>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="newPhotoFile" class="form-label">Photo :</label>
+                    <input type="file" id="newPhotoFile" accept="image/*" class="form-control">
+                </div>
+                
+                <div class="mb-3">
+                    <label for="newPhotoNotes" class="form-label">Notes :</label>
+                    <textarea id="newPhotoNotes" class="form-control" rows="3"></textarea>
+                </div>
+                
+                <div style="display: flex; gap: 10px;">
+                    <button type="submit" class="btn btn-success">💾 Ajouter</button>
+                    <button type="button" class="btn btn-secondary" onclick="fermerModal()">❌ Annuler</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal d'export -->
+    <div id="exportModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="fermerModal()">&times;</span>
+            <h2>📤 Exporter la liste des élèves</h2>
+            
+            <div class="mb-4">
+                <h5>📋 Format d'export :</h5>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="exportFormat" id="formatJSON" value="json" checked>
+                    <label class="form-check-label" for="formatJSON">
+                        📄 JSON (Complet avec toutes les données)
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="exportFormat" id="formatCSV" value="csv">
+                    <label class="form-check-label" for="formatCSV">
+                        📊 CSV (Tableau pour Excel)
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="exportFormat" id="formatExcel" value="excel">
+                    <label class="form-check-label" for="formatExcel">
+                        📈 Excel (Fichier .xlsx)
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="exportFormat" id="formatPDF" value="pdf">
+                    <label class="form-check-label" for="formatPDF">
+                        📄 PDF (Rapport imprimable)
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="exportFormat" id="formatHTML" value="html">
+                    <label class="form-check-label" for="formatHTML">
+                        🌐 HTML (Page web)
+                    </label>
+                </div>
+            </div>
+            
+            <div class="mb-4">
+                <h5>🎯 Filtres d'export :</h5>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="exportApproved" checked>
+                    <label class="form-check-label" for="exportApproved">
+                        ✅ Approuvés
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="exportPending" checked>
+                    <label class="form-check-label" for="exportPending">
+                        ⏳ En attente
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="exportRejected" checked>
+                    <label class="form-check-label" for="exportRejected">
+                        ❌ Rejetés
+                    </label>
+                </div>
+            </div>
+            
+            <div class="mb-4">
+                <h5>📝 Options :</h5>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="includePhotos" checked>
+                    <label class="form-check-label" for="includePhotos">
+                        📸 Inclure les photos (base64)
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="includeNotes" checked>
+                    <label class="form-check-label" for="includeNotes">
+                        📝 Inclure les notes
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="includeStats" checked>
+                    <label class="form-check-label" for="includeStats">
+                        📊 Inclure les statistiques
+                    </label>
+                </div>
+            </div>
+            
+            <div class="mb-3">
+                <label for="exportFileName" class="form-label">📁 Nom du fichier :</label>
+                <input type="text" id="exportFileName" class="form-control" value="eleves_export" placeholder="Nom du fichier">
+            </div>
+            
+            <div style="display: flex; gap: 10px;">
+                <button class="btn btn-success" onclick="executerExport()">
+                    💾 Exporter
+                </button>
+                <button class="btn btn-info" onclick="previsualiserExport()">
+                    👁️ Prévisualiser
+                </button>
+                <button class="btn btn-secondary" onclick="fermerModal()">
+                    ❌ Annuler
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de prévisualisation -->
+    <div id="previewModal" class="modal">
+        <div class="modal-content" style="max-width: 800px;">
+            <span class="close" onclick="fermerModal()">&times;</span>
+            <h2>👁️ Prévisualisation de l'export</h2>
+            
+            <div id="previewContent" style="max-height: 400px; overflow-y: auto; background: #f8f9fa; padding: 15px; border-radius: 8px; font-family: monospace; font-size: 12px;">
+                <!-- Le contenu de prévisualisation sera inséré ici -->
+            </div>
+            
+            <div style="display: flex; gap: 10px; margin-top: 20px;">
+                <button class="btn btn-success" onclick="executerExport()">
+                    💾 Exporter maintenant
+                </button>
+                <button class="btn btn-secondary" onclick="fermerModal()">
+                    ❌ Fermer
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification -->
+    <div id="notification" class="notification"></div>
+
+    <script>
+        // Données des élèves (simulation)
+        let eleves = [
+            {
+                id: 1,
+                nom: "Léa Martin",
+                niveau: "CE2",
+                date: "2025-01-15",
+                statut: "approved",
+                notes: "Photo de classe officielle",
+                imageUrl: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZGRkIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPkzDqWEgTWFydGluPC90ZXh0Pjwvc3ZnPg=="
+            },
+            {
+                id: 2,
+                nom: "Thomas Dubois",
+                niveau: "CE2",
+                date: "2025-01-15",
+                statut: "pending",
+                notes: "En attente d'approbation",
+                imageUrl: null
+            },
+            {
+                id: 3,
+                nom: "Emma Rousseau",
+                niveau: "CP",
+                date: "2025-01-10",
+                statut: "approved",
+                notes: "Photo individuelle",
+                imageUrl: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjYzNmZGI5Ii8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPkVtbWEgUm91c3NlYXU8L3RleHQ+PC9zdmc+"
+            }
+        ];
+
+        let eleveCourant = null;
+        let modeEdition = false;
+
+        // Initialisation
+        document.addEventListener('DOMContentLoaded', function() {
+            afficherEleves();
+            configurerEvenements();
+        });
+
+        // Configuration des événements
+        function configurerEvenements() {
+            // Recherche
+            document.getElementById('searchBox').addEventListener('input', filtrerEleves);
+            document.getElementById('levelFilter').addEventListener('change', filtrerEleves);
+            
+            // Upload de photo
+            document.getElementById('photoUpload').addEventListener('change', gererUploadPhoto);
+            
+            // Formulaire d'ajout
+            document.getElementById('addForm').addEventListener('submit', gererAjoutEleve);
+        }
+
+        // 1. Fonction pour afficher une photo
+        function afficherPhoto(nom, id) {
+            const eleve = eleves.find(e => e.id === id);
+            if (!eleve) {
+                afficherNotification('Élève non trouvé', 'error');
+                return;
+            }
+
+            eleveCourant = eleve;
+            modeEdition = false;
+
+            // Remplir le modal
+            document.getElementById('modalTitle').textContent = '📸 Voir la photo';
+            document.getElementById('modalStudentName').textContent = eleve.nom;
+            document.getElementById('modalStudentLevel').textContent = eleve.niveau;
+            document.getElementById('modalPhotoDate').textContent = formaterDate(eleve.date);
+            document.getElementById('modalPhotoStatus').textContent = getStatutTexte(eleve.statut);
+            document.getElementById('modalPhotoNotes').textContent = eleve.notes || 'Aucune note';
+
+            // Afficher la photo
+            const modalPhoto = document.getElementById('modalPhoto');
+            const modalPhotoPlaceholder = document.getElementById('modalPhotoPlaceholder');
+            
+            if (eleve.imageUrl) {
+                modalPhoto.src = eleve.imageUrl;
+                modalPhoto.style.display = 'block';
+                modalPhotoPlaceholder.style.display = 'none';
+            } else {
+                modalPhoto.style.display = 'none';
+                modalPhotoPlaceholder.style.display = 'block';
+                modalPhotoPlaceholder.textContent = '👤';
+            }
+
+            // Configurer les boutons
+            document.getElementById('editBtn').style.display = 'inline-block';
+            document.getElementById('saveBtn').style.display = 'none';
+            document.getElementById('editZone').style.display = 'none';
+
+            // Ouvrir le modal
+            document.getElementById('photoModal').style.display = 'block';
+        }
+
+        // 2. Fonction pour ouvrir la modale d'édition
+        function ouvrirModaleEdition() {
+            if (!eleveCourant) return;
+
+            modeEdition = true;
+            document.getElementById('modalTitle').textContent = '✏️ Modifier la photo';
+            document.getElementById('editZone').style.display = 'block';
+            document.getElementById('editBtn').style.display = 'none';
+            document.getElementById('saveBtn').style.display = 'inline-block';
+            
+            afficherNotification('Mode édition activé', 'info');
+        }
+
+        // 3. Fonction pour supprimer un élève
+        function supprimerEleve() {
+            if (!eleveCourant) return;
+
+            if (confirm(`Êtes-vous sûr de vouloir supprimer ${eleveCourant.nom} ?`)) {
+                eleves = eleves.filter(e => e.id !== eleveCourant.id);
+                afficherEleves();
+                fermerModal();
+                afficherNotification(`${eleveCourant.nom} a été supprimé`, 'success');
+                eleveCourant = null;
+            }
+        }
+
+        // 4. Fonction pour ajouter un élève
+        function ajouterEleve() {
+            document.getElementById('addModal').style.display = 'block';
+            document.getElementById('addForm').reset();
+        }
+
+        // 5. Fonction pour importer une liste d'élèves
+        function importerListeEleves() {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = '.json,.csv';
+            input.onchange = function(e) {
+                const file = e.target.files[0];
+                if (!file) return;
+
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    try {
+                        if (file.name.endsWith('.json')) {
+                            const nouveauxEleves = JSON.parse(e.target.result);
+                            eleves = [...eleves, ...nouveauxEleves];
+                        } else if (file.name.endsWith('.csv')) {
+                            const csvData = e.target.result;
+                            const nouveauxEleves = parserCSV(csvData);
+                            eleves = [...eleves, ...nouveauxEleves];
+                        }
+                        
+                        afficherEleves();
+                        afficherNotification(`${file.name} importé avec succès`, 'success');
+                    } catch (error) {
+                        afficherNotification('Erreur lors de l\'import', 'error');
+                    }
+                };
+                reader.readAsText(file);
+            };
+            input.click();
+        }
+
+        // 6. Fonction pour exporter la liste d'élèves
+        function exporterListeEleves() {
+            document.getElementById('exportModal').style.display = 'block';
+        }
+
+        // Nouvelles fonctions d'export avancées
+        function executerExport() {
+            const format = document.querySelector('input[name="exportFormat"]:checked').value;
+            const fileName = document.getElementById('exportFileName').value || 'eleves_export';
+            
+            // Récupérer les filtres
+            const includeApproved = document.getElementById('exportApproved').checked;
+            const includePending = document.getElementById('exportPending').checked;
+            const includeRejected = document.getElementById('exportRejected').checked;
+            
+            // Récupérer les options
+            const includePhotos = document.getElementById('includePhotos').checked;
+            const includeNotes = document.getElementById('includeNotes').checked;
+            const includeStats = document.getElementById('includeStats').checked;
+            
+            // Filtrer les élèves selon les critères
+            let elevesAExporter = eleves.filter(eleve => {
+                if (eleve.statut === 'approved' && !includeApproved) return false;
+                if (eleve.statut === 'pending' && !includePending) return false;
+                if (eleve.statut === 'rejected' && !includeRejected) return false;
+                return true;
+            });
+            
+            // Préparer les données selon les options
+            let donneesAExporter = elevesAExporter.map(eleve => {
+                let eleveExport = {
+                    id: eleve.id,
+                    nom: eleve.nom,
+                    niveau: eleve.niveau,
+                    date: eleve.date,
+                    statut: eleve.statut
+                };
+                
+                if (includeNotes) eleveExport.notes = eleve.notes;
+                if (includePhotos && eleve.imageUrl) eleveExport.imageUrl = eleve.imageUrl;
+                
+                return eleveExport;
+            });
+            
+            // Ajouter les statistiques si demandé
+            if (includeStats) {
+                const stats = {
+                    total: elevesAExporter.length,
+                    approuves: elevesAExporter.filter(e => e.statut === 'approved').length,
+                    enAttente: elevesAExporter.filter(e => e.statut === 'pending').length,
+                    rejetes: elevesAExporter.filter(e => e.statut === 'rejected').length,
+                    dateExport: new Date().toISOString()
+                };
+                donneesAExporter = { eleves: donneesAExporter, statistiques: stats };
+            }
+            
+            // Exporter selon le format
+            switch (format) {
+                case 'json':
+                    exporterJSON(donneesAExporter, fileName);
+                    break;
+                case 'csv':
+                    exporterCSV(donneesAExporter, fileName);
+                    break;
+                case 'excel':
+                    exporterExcel(donneesAExporter, fileName);
+                    break;
+                case 'pdf':
+                    exporterPDF(donneesAExporter, fileName);
+                    break;
+                case 'html':
+                    exporterHTML(donneesAExporter, fileName);
+                    break;
+                default:
+                    afficherNotification('Format non supporté', 'error');
+            }
+            
+            fermerModal();
+        }
+
+        function previsualiserExport() {
+            const format = document.querySelector('input[name="exportFormat"]:checked').value;
+            const fileName = document.getElementById('exportFileName').value || 'eleves_export';
+            
+            // Récupérer les filtres et options (même logique que executerExport)
+            const includeApproved = document.getElementById('exportApproved').checked;
+            const includePending = document.getElementById('exportPending').checked;
+            const includeRejected = document.getElementById('exportRejected').checked;
+            const includePhotos = document.getElementById('includePhotos').checked;
+            const includeNotes = document.getElementById('includeNotes').checked;
+            const includeStats = document.getElementById('includeStats').checked;
+            
+            let elevesAExporter = eleves.filter(eleve => {
+                if (eleve.statut === 'approved' && !includeApproved) return false;
+                if (eleve.statut === 'pending' && !includePending) return false;
+                if (eleve.statut === 'rejected' && !includeRejected) return false;
+                return true;
+            });
+            
+            let donneesAExporter = elevesAExporter.map(eleve => {
+                let eleveExport = {
+                    id: eleve.id,
+                    nom: eleve.nom,
+                    niveau: eleve.niveau,
+                    date: eleve.date,
+                    statut: eleve.statut
+                };
+                
+                if (includeNotes) eleveExport.notes = eleve.notes;
+                if (includePhotos && eleve.imageUrl) eleveExport.imageUrl = eleve.imageUrl;
+                
+                return eleveExport;
+            });
+            
+            if (includeStats) {
+                const stats = {
+                    total: elevesAExporter.length,
+                    approuves: elevesAExporter.filter(e => e.statut === 'approved').length,
+                    enAttente: elevesAExporter.filter(e => e.statut === 'pending').length,
+                    rejetes: elevesAExporter.filter(e => e.statut === 'rejected').length,
+                    dateExport: new Date().toISOString()
+                };
+                donneesAExporter = { eleves: donneesAExporter, statistiques: stats };
+            }
+            
+            // Générer la prévisualisation
+            let previewContent = '';
+            switch (format) {
+                case 'json':
+                    previewContent = JSON.stringify(donneesAExporter, null, 2);
+                    break;
+                case 'csv':
+                    previewContent = genererCSV(donneesAExporter);
+                    break;
+                case 'excel':
+                    previewContent = 'Fichier Excel (.xlsx) - Prévisualisation non disponible';
+                    break;
+                case 'pdf':
+                    previewContent = 'Fichier PDF - Prévisualisation non disponible';
+                    break;
+                case 'html':
+                    previewContent = genererHTML(donneesAExporter);
+                    break;
+            }
+            
+            document.getElementById('previewContent').textContent = previewContent;
+            document.getElementById('exportModal').style.display = 'none';
+            document.getElementById('previewModal').style.display = 'block';
+        }
+
+        function exporterJSON(donnees, fileName) {
+            const dataStr = JSON.stringify(donnees, null, 2);
+            const dataBlob = new Blob([dataStr], {type: 'application/json'});
+            const url = URL.createObjectURL(dataBlob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `${fileName}.json`;
+            link.click();
+            URL.revokeObjectURL(url);
+            afficherNotification('Export JSON réussi', 'success');
+        }
+
+        function exporterCSV(donnees, fileName) {
+            const csvContent = genererCSV(donnees);
+            const dataBlob = new Blob([csvContent], {type: 'text/csv;charset=utf-8;'});
+            const url = URL.createObjectURL(dataBlob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `${fileName}.csv`;
+            link.click();
+            URL.revokeObjectURL(url);
+            afficherNotification('Export CSV réussi', 'success');
+        }
+
+        function genererCSV(donnees) {
+            let eleves = donnees.eleves || donnees;
+            if (!Array.isArray(eleves)) eleves = [eleves];
+            
+            const headers = ['ID', 'Nom', 'Niveau', 'Date', 'Statut', 'Notes'];
+            const csvContent = [
+                headers.join(','),
+                ...eleves.map(eleve => [
+                    eleve.id,
+                    `"${eleve.nom}"`,
+                    eleve.niveau,
+                    eleve.date,
+                    eleve.statut,
+                    `"${eleve.notes || ''}"`
+                ].join(','))
+            ].join('\n');
+            
+            return csvContent;
+        }
+
+        function exporterExcel(donnees, fileName) {
+            // Simulation d'export Excel - génère un CSV avec extension .xlsx
+            const csvContent = genererCSV(donnees);
+            const dataBlob = new Blob([csvContent], {type: 'text/csv;charset=utf-8;'});
+            const url = URL.createObjectURL(dataBlob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `${fileName}.xlsx`;
+            link.click();
+            URL.revokeObjectURL(url);
+            afficherNotification('Export Excel simulé (format CSV)', 'success');
+        }
+
+        function exporterPDF(donnees, fileName) {
+            // Génération d'un PDF simple via impression
+            const printWindow = window.open('', '_blank');
+            const eleves = donnees.eleves || donnees;
+            
+            printWindow.document.write(`
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <title>Liste des élèves</title>
+                    <style>
+                        body { font-family: Arial, sans-serif; margin: 20px; }
+                        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+                        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+                        th { background-color: #f2f2f2; }
+                        h1 { color: #333; }
+                        .stats { margin: 20px 0; padding: 10px; background: #f9f9f9; }
+                    </style>
+                </head>
+                <body>
+                    <h1>📸 Liste des élèves - Photos de Classe</h1>
+                    <p>Date d'export : ${new Date().toLocaleDateString('fr-FR')}</p>
+                    
+                    ${donnees.statistiques ? `
+                    <div class="stats">
+                        <h3>📊 Statistiques</h3>
+                        <p>Total : ${donnees.statistiques.total} élèves</p>
+                        <p>Approuvés : ${donnees.statistiques.approuves}</p>
+                        <p>En attente : ${donnees.statistiques.enAttente}</p>
+                        <p>Rejetés : ${donnees.statistiques.rejetes}</p>
+                    </div>
+                    ` : ''}
+                    
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nom</th>
+                                <th>Niveau</th>
+                                <th>Date</th>
+                                <th>Statut</th>
+                                <th>Notes</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${eleves.map(eleve => `
+                                <tr>
+                                    <td>${eleve.id}</td>
+                                    <td>${eleve.nom}</td>
+                                    <td>${eleve.niveau}</td>
+                                    <td>${formaterDate(eleve.date)}</td>
+                                    <td>${getStatutTexte(eleve.statut)}</td>
+                                    <td>${eleve.notes || ''}</td>
+                                </tr>
+                            `).join('')}
+                        </tbody>
+                    </table>
+                </body>
+                </html>
+            `);
+            
+            printWindow.document.close();
+            printWindow.print();
+            afficherNotification('Export PDF via impression', 'success');
+        }
+
+        function exporterHTML(donnees, fileName) {
+            const eleves = donnees.eleves || donnees;
+            const htmlContent = `
+                <!DOCTYPE html>
+                <html lang="fr">
+                <head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <title>Liste des élèves - ${fileName}</title>
+                    <style>
+                        body { font-family: Arial, sans-serif; margin: 20px; background: #f5f5f5; }
+                        .container { max-width: 1200px; margin: 0 auto; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+                        h1 { color: #333; text-align: center; }
+                        .stats { margin: 20px 0; padding: 15px; background: #e8f5e8; border-radius: 8px; }
+                        .eleve-card { border: 1px solid #ddd; margin: 10px 0; padding: 15px; border-radius: 8px; }
+                        .eleve-photo { width: 100px; height: 100px; object-fit: cover; border-radius: 50%; }
+                        .eleve-info { display: flex; gap: 20px; align-items: center; }
+                        .eleve-details { flex: 1; }
+                        .status-approved { color: #28a745; font-weight: bold; }
+                        .status-pending { color: #ffc107; font-weight: bold; }
+                        .status-rejected { color: #dc3545; font-weight: bold; }
+                    </style>
+                </head>
+                <body>
+                    <div class="container">
+                        <h1>📸 Liste des élèves - Photos de Classe</h1>
+                        <p>Date d'export : ${new Date().toLocaleDateString('fr-FR')}</p>
+                        
+                        ${donnees.statistiques ? `
+                        <div class="stats">
+                            <h3>📊 Statistiques</h3>
+                            <p>Total : ${donnees.statistiques.total} élèves</p>
+                            <p>Approuvés : ${donnees.statistiques.approuves}</p>
+                            <p>En attente : ${donnees.statistiques.enAttente}</p>
+                            <p>Rejetés : ${donnees.statistiques.rejetes}</p>
+                        </div>
+                        ` : ''}
+                        
+                        ${eleves.map(eleve => `
+                            <div class="eleve-card">
+                                <div class="eleve-info">
+                                    ${eleve.imageUrl ? `<img src="${eleve.imageUrl}" alt="Photo de ${eleve.nom}" class="eleve-photo">` : '<div style="width: 100px; height: 100px; background: #f0f0f0; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2em;">👤</div>'}
+                                    <div class="eleve-details">
+                                        <h3>${eleve.nom}</h3>
+                                        <p><strong>ID :</strong> ${eleve.id}</p>
+                                        <p><strong>Niveau :</strong> ${eleve.niveau}</p>
+                                        <p><strong>Date :</strong> ${formaterDate(eleve.date)}</p>
+                                        <p><strong>Statut :</strong> <span class="status-${eleve.statut}">${getStatutTexte(eleve.statut)}</span></p>
+                                        ${eleve.notes ? `<p><strong>Notes :</strong> ${eleve.notes}</p>` : ''}
+                                    </div>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </body>
+                </html>
+            `;
+            
+            const dataBlob = new Blob([htmlContent], {type: 'text/html'});
+            const url = URL.createObjectURL(dataBlob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `${fileName}.html`;
+            link.click();
+            URL.revokeObjectURL(url);
+            afficherNotification('Export HTML réussi', 'success');
+        }
+
+        function genererHTML(donnees) {
+            const eleves = donnees.eleves || donnees;
+            return `
+                <!DOCTYPE html>
+                <html>
+                <head><title>Liste des élèves</title></head>
+                <body>
+                    <h1>Liste des élèves</h1>
+                    ${eleves.map(eleve => `
+                        <div>
+                            <h3>${eleve.nom}</h3>
+                            <p>ID: ${eleve.id}, Niveau: ${eleve.niveau}, Statut: ${eleve.statut}</p>
+                        </div>
+                    `).join('')}
+                </body>
+                </html>
+            `;
+        }
+
+        function afficherEleves() {
+            const grid = document.getElementById('photosGrid');
+            grid.innerHTML = eleves.map(eleve => `
+                <div class="photo-card" data-id="${eleve.id}">
+                    <div class="photo-image">
+                        ${eleve.imageUrl ? 
+                            `<img src="${eleve.imageUrl}" alt="Photo de ${eleve.nom}" class="photo-img">` :
+                            `<div class="photo-placeholder">👤</div>`
+                        }
+                        <div class="photo-overlay">
+                            <div class="photo-actions">
+                                <button class="btn btn-sm btn-outline-success" onclick="afficherPhoto('${eleve.nom}', ${eleve.id})" title="Voir la photo">
+                                    👁️ Voir
+                                </button>
+                                <button class="btn btn-sm btn-outline-warning" onclick="ouvrirModaleEdition('${eleve.nom}', ${eleve.id})" title="Modifier">
+                                    ✏️ Modifier
+                                </button>
+                                <button class="btn btn-sm btn-outline-danger" onclick="supprimerEleve('${eleve.nom}', ${eleve.id})" title="Supprimer">
+                                    🗑️ Supprimer
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="photo-info">
+                        <div class="student-name">${eleve.nom}</div>
+                        <div class="student-details">
+                            Niveau: ${eleve.niveau} | Date: ${formaterDate(eleve.date)}
+                        </div>
+                        <div class="photo-meta">
+                            <span class="photo-status status-${eleve.statut}">
+                                ${getStatutTexte(eleve.statut)}
+                            </span>
+                            <span>ID: ${eleve.id}</span>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function filtrerEleves() {
+            const searchTerm = document.getElementById('searchBox').value.toLowerCase();
+            const levelFilter = document.getElementById('levelFilter').value;
+
+            const elevesFiltres = eleves.filter(eleve => {
+                const matchesSearch = eleve.nom.toLowerCase().includes(searchTerm);
+                const matchesLevel = !levelFilter || eleve.niveau === levelFilter;
+                return matchesSearch && matchesLevel;
+            });
+
+            // Mise à jour temporaire de l'affichage
+            const elevesOriginaux = eleves;
+            eleves = elevesFiltres;
+            afficherEleves();
+            setTimeout(() => {
+                eleves = elevesOriginaux;
+            }, 100);
+        }
+
+        function gererUploadPhoto(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            if (!file.type.startsWith('image/')) {
+                afficherNotification('Veuillez sélectionner une image valide', 'error');
+                return;
+            }
+
+            if (file.size > 5 * 1024 * 1024) {
+                afficherNotification('L\'image est trop volumineuse (max 5MB)', 'error');
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const modalPhoto = document.getElementById('modalPhoto');
+                const modalPhotoPlaceholder = document.getElementById('modalPhotoPlaceholder');
+                
+                modalPhoto.src = e.target.result;
+                modalPhoto.style.display = 'block';
+                modalPhotoPlaceholder.style.display = 'none';
+                
+                if (eleveCourant) {
+                    eleveCourant.imageUrl = e.target.result;
+                }
+                
+                afficherNotification('Photo chargée avec succès', 'success');
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function sauvegarderPhoto() {
+            if (!eleveCourant) return;
+
+            // Mettre à jour les données
+            const index = eleves.findIndex(e => e.id === eleveCourant.id);
+            if (index !== -1) {
+                eleves[index] = { ...eleveCourant };
+                afficherEleves();
+                fermerModal();
+                afficherNotification('Photo sauvegardée avec succès', 'success');
+            }
+        }
+
+        function gererAjoutEleve(event) {
+            event.preventDefault();
+            
+            const nom = document.getElementById('newStudentName').value;
+            const niveau = document.getElementById('newStudentLevel').value;
+            const notes = document.getElementById('newPhotoNotes').value;
+            const file = document.getElementById('newPhotoFile').files[0];
+
+            if (!nom || !niveau) {
+                afficherNotification('Veuillez remplir tous les champs obligatoires', 'error');
+                return;
+            }
+
+            const nouvelEleve = {
+                id: Math.max(...eleves.map(e => e.id)) + 1,
+                nom: nom,
+                niveau: niveau,
+                date: new Date().toISOString().split('T')[0],
+                statut: 'pending',
+                notes: notes,
+                imageUrl: null
+            };
+
+            // Traiter l'image si fournie
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    nouvelEleve.imageUrl = e.target.result;
+                    eleves.unshift(nouvelEleve);
+                    afficherEleves();
+                    fermerModal();
+                    afficherNotification(`${nom} ajouté avec succès`, 'success');
+                };
+                reader.readAsDataURL(file);
+            } else {
+                eleves.unshift(nouvelEleve);
+                afficherEleves();
+                fermerModal();
+                afficherNotification(`${nom} ajouté avec succès`, 'success');
+            }
+        }
+
+        function fermerModal() {
+            document.getElementById('photoModal').style.display = 'none';
+            document.getElementById('addModal').style.display = 'none';
+            document.getElementById('exportModal').style.display = 'none';
+            document.getElementById('previewModal').style.display = 'none';
+            eleveCourant = null;
+            modeEdition = false;
+        }
+
+        function afficherNotification(message, type = 'info') {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.className = `notification ${type}`;
+            notification.classList.add('show');
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+
+        function formaterDate(dateString) {
+            return new Date(dateString).toLocaleDateString('fr-FR');
+        }
+
+        function getStatutTexte(statut) {
+            const statuts = {
+                'approved': 'Approuvée',
+                'pending': 'En attente',
+                'rejected': 'Rejetée'
+            };
+            return statuts[statut] || statut;
+        }
+
+        function parserCSV(csvData) {
+            const lines = csvData.split('\n');
+            const headers = lines[0].split(',').map(h => h.trim().replace(/"/g, ''));
+            const eleves = [];
+            
+            for (let i = 1; i < lines.length; i++) {
+                if (lines[i].trim()) {
+                    const values = lines[i].split(',').map(v => v.trim().replace(/"/g, ''));
+                    const eleve = {};
+                    headers.forEach((header, index) => {
+                        eleve[header.toLowerCase()] = values[index];
+                    });
+                    eleves.push(eleve);
+                }
+            }
+            
+            return eleves;
+        }
+
+        // Fermer les modals en cliquant à l'extérieur
+        window.onclick = function(event) {
+            const modals = document.querySelectorAll('.modal');
+            modals.forEach(modal => {
+                if (event.target === modal) {
+                    fermerModal();
+                }
+            });
+        }
+
+        // Fermer avec Escape
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                fermerModal();
+            }
+        });
+    </script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html> 
