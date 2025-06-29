@@ -7,6 +7,10 @@
     
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome CSS (fallback pour les icônes) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    
+
     
     <style>
         * {
@@ -372,7 +376,40 @@
                 grid-template-columns: 1fr;
             }
         }
-    </style>
+    
+        /* Amélioration de la compatibilité des icônes */
+        .icon-fallback {
+            display: inline-block;
+            width: 1em;
+            height: 1em;
+            text-align: center;
+            line-height: 1;
+        }
+
+        /* Fallback pour les emojis qui ne s'affichent pas */
+        .btn .emoji-icon {
+            display: inline-block;
+            margin-right: 5px;
+        }
+
+        /* Styles pour les icônes Font Awesome en fallback */
+        .fa-fallback {
+            display: none;
+        }
+
+        /* Amélioration de l'affichage des boutons avec icônes */
+        .btn-with-icon {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* Amélioration de l'affichage des emojis */
+        .emoji-icon {
+            font-size: 1.1em;
+            vertical-align: middle;
+        }
+</style>
 </head>
 <body>
     <!-- Barre de Navigation LSU -->
@@ -380,26 +417,26 @@
         <div class="nav-container">
             <div class="nav-logo">
                 <a href="index.html" class="logo-link">
-                    <span class="logo-icon">🎓</span>
+                    <span class="logo-icon"><span class="emoji-icon">🎓</span><i class="fas fa-graduation-cap fa-fallback"></i></span>
                     <span class="logo-text">LSU Pro</span>
                 </a>
             </div>
             
             <div class="nav-menu" id="navMenu">
                 <a href="index.html" class="nav-link">
-                    <span class="nav-icon">🏠</span>
+                    <span class="nav-icon"><span class="emoji-icon">🏠</span><i class="fas fa-home fa-fallback"></i></span>
                     Accueil
                 </a>
                 <a href="improved_lsu_generator.html" class="nav-link">
-                    <span class="nav-icon">📝</span>
+                    <span class="nav-icon"><span class="emoji-icon">📝</span><i class="fas fa-file-alt fa-fallback"></i></span>
                     Générateur LSU
                 </a>
                 <a href="student_profile_page.html" class="nav-link">
-                    <span class="nav-icon">👤</span>
+                    <span class="nav-icon"><span class="emoji-icon">👤</span><i class="fas fa-user fa-fallback"></i></span>
                     Profils Élèves
                 </a>
                 <a href="photos_classe_pro.html" class="nav-link active">
-                    <span class="nav-icon">📸</span>
+                    <span class="nav-icon"><span class="emoji-icon">📸</span><i class="fas fa-camera fa-fallback"></i></span>
                     Photos Classe
                 </a>
             </div>
@@ -427,14 +464,11 @@
                     </select>
                 </div>
                 <div class="toolbar-right">
-                    <button class="btn btn-success" onclick="ajouterEleve()">
-                        ➕ Ajouter un élève
+                    <button class="btn btn-success" onclick="ajouterEleve()"> class="btn-with-icon"><span class="emoji-icon">➕</span><i class="fas fa-plus fa-fallback"></i>Ajouter un élève
                     </button>
-                    <button class="btn btn-info" onclick="importerListeEleves()">
-                        📥 Importer
+                    <button class="btn btn-info" onclick="importerListeEleves()"> class="btn-with-icon"><span class="emoji-icon">📥</span><i class="fas fa-download fa-fallback"></i>Importer
                     </button>
-                    <button class="btn btn-warning" onclick="exporterListeEleves()">
-                        📤 Exporter
+                    <button class="btn btn-warning" onclick="exporterListeEleves()"> class="btn-with-icon"><span class="emoji-icon">📤</span><i class="fas fa-upload fa-fallback"></i>Exporter
                     </button>
                 </div>
             </div>
@@ -476,10 +510,10 @@
             </div>
             
             <div style="display: flex; gap: 10px; margin-top: 20px;">
-                <button class="btn btn-primary" id="editBtn" onclick="ouvrirModaleEdition()">✏️ Modifier</button>
-                <button class="btn btn-success" id="saveBtn" onclick="sauvegarderPhoto()" style="display: none;">💾 Sauvegarder</button>
-                <button class="btn btn-danger" onclick="supprimerEleve()">🗑️ Supprimer</button>
-                <button class="btn btn-secondary" onclick="fermerModal()">❌ Fermer</button>
+                <button class="btn btn-primary" id="editBtn" onclick="ouvrirModaleEdition()"> class="btn-with-icon"><span class="emoji-icon">✏️</span><i class="fas fa-edit fa-fallback"></i>Modifier</button>
+                <button class="btn btn-success" id="saveBtn" onclick="sauvegarderPhoto()" style="display: none;"> class="btn-with-icon"><span class="emoji-icon">💾</span><i class="fas fa-save fa-fallback"></i>Sauvegarder</button>
+                <button class="btn btn-danger" onclick="supprimerEleve()"> class="btn-with-icon"><span class="emoji-icon">🗑️</span><i class="fas fa-trash fa-fallback"></i>Supprimer</button>
+                <button class="btn btn-secondary" onclick="fermerModal()"> class="btn-with-icon"><span class="emoji-icon">❌</span><i class="fas fa-times fa-fallback"></i>Fermer</button>
             </div>
         </div>
     </div>
@@ -519,8 +553,8 @@
                 </div>
                 
                 <div style="display: flex; gap: 10px;">
-                    <button type="submit" class="btn btn-success">💾 Ajouter</button>
-                    <button type="button" class="btn btn-secondary" onclick="fermerModal()">❌ Annuler</button>
+                    <button type="submit" class="btn btn-success"> class="btn-with-icon"><span class="emoji-icon">💾</span><i class="fas fa-save fa-fallback"></i>Ajouter</button>
+                    <button type="button" class="btn btn-secondary" onclick="fermerModal()"> class="btn-with-icon"><span class="emoji-icon">❌</span><i class="fas fa-times fa-fallback"></i>Annuler</button>
                 </div>
             </form>
         </div>
@@ -616,14 +650,11 @@
             </div>
             
             <div style="display: flex; gap: 10px;">
-                <button class="btn btn-success" onclick="executerExport()">
-                    💾 Exporter
+                <button class="btn btn-success" onclick="executerExport()"> class="btn-with-icon"><span class="emoji-icon">💾</span><i class="fas fa-save fa-fallback"></i>Exporter
                 </button>
-                <button class="btn btn-info" onclick="previsualiserExport()">
-                    👁️ Prévisualiser
+                <button class="btn btn-info" onclick="previsualiserExport()"> class="btn-with-icon"><span class="emoji-icon">👁️</span><i class="fas fa-eye fa-fallback"></i>Prévisualiser
                 </button>
-                <button class="btn btn-secondary" onclick="fermerModal()">
-                    ❌ Annuler
+                <button class="btn btn-secondary" onclick="fermerModal()"> class="btn-with-icon"><span class="emoji-icon">❌</span><i class="fas fa-times fa-fallback"></i>Annuler
                 </button>
             </div>
         </div>
@@ -640,11 +671,9 @@
             </div>
             
             <div style="display: flex; gap: 10px; margin-top: 20px;">
-                <button class="btn btn-success" onclick="executerExport()">
-                    💾 Exporter maintenant
+                <button class="btn btn-success" onclick="executerExport()"> class="btn-with-icon"><span class="emoji-icon">💾</span><i class="fas fa-save fa-fallback"></i>Exporter maintenant
                 </button>
-                <button class="btn btn-secondary" onclick="fermerModal()">
-                    ❌ Fermer
+                <button class="btn btn-secondary" onclick="fermerModal()"> class="btn-with-icon"><span class="emoji-icon">❌</span><i class="fas fa-times fa-fallback"></i>Fermer
                 </button>
             </div>
         </div>
@@ -1037,7 +1066,40 @@
                         th { background-color: #f2f2f2; }
                         h1 { color: #333; }
                         .stats { margin: 20px 0; padding: 10px; background: #f9f9f9; }
-                    </style>
+                    
+        /* Amélioration de la compatibilité des icônes */
+        .icon-fallback {
+            display: inline-block;
+            width: 1em;
+            height: 1em;
+            text-align: center;
+            line-height: 1;
+        }
+
+        /* Fallback pour les emojis qui ne s'affichent pas */
+        .btn .emoji-icon {
+            display: inline-block;
+            margin-right: 5px;
+        }
+
+        /* Styles pour les icônes Font Awesome en fallback */
+        .fa-fallback {
+            display: none;
+        }
+
+        /* Amélioration de l'affichage des boutons avec icônes */
+        .btn-with-icon {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* Amélioration de l'affichage des emojis */
+        .emoji-icon {
+            font-size: 1.1em;
+            vertical-align: middle;
+        }
+</style>
                 </head>
                 <body>
                     <h1>📸 Liste des élèves - Photos de Classe</h1>
@@ -1077,7 +1139,45 @@
                             `).join('')}
                         </tbody>
                     </table>
-                </body>
+                
+    <script>
+    // Script de détection et correction des icônes manquantes
+    document.addEventListener('DOMContentLoaded', function() {
+        // Fonction pour détecter si un emoji s'affiche correctement
+        function isEmojiSupported(emoji) {
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            ctx.font = '16px Arial';
+            ctx.fillText(emoji, 0, 16);
+            const data = ctx.getImageData(0, 0, 16, 16).data;
+            return data.some(pixel => pixel !== 0);
+        }
+        
+        // Vérifier et corriger les icônes
+        function fixMissingIcons() {
+            const emojiElements = document.querySelectorAll('.emoji-icon');
+            
+            emojiElements.forEach(element => {
+                const emoji = element.textContent;
+                if (!isEmojiSupported(emoji)) {
+                    // Masquer l'emoji et afficher l'icône Font Awesome
+                    element.style.display = 'none';
+                    const fallbackIcon = element.nextElementSibling;
+                    if (fallbackIcon && fallbackIcon.classList.contains('fa-fallback')) {
+                        fallbackIcon.style.display = 'inline-block';
+                    }
+                }
+            });
+        }
+        
+        // Exécuter après un délai pour laisser le temps au rendu
+        setTimeout(fixMissingIcons, 100);
+        
+        // Réexécuter si nécessaire
+        window.addEventListener('load', fixMissingIcons);
+    });
+    </script>
+</body>
                 </html>
             `);
             
@@ -1107,7 +1207,40 @@
                         .status-approved { color: #28a745; font-weight: bold; }
                         .status-pending { color: #ffc107; font-weight: bold; }
                         .status-rejected { color: #dc3545; font-weight: bold; }
-                    </style>
+                    
+        /* Amélioration de la compatibilité des icônes */
+        .icon-fallback {
+            display: inline-block;
+            width: 1em;
+            height: 1em;
+            text-align: center;
+            line-height: 1;
+        }
+
+        /* Fallback pour les emojis qui ne s'affichent pas */
+        .btn .emoji-icon {
+            display: inline-block;
+            margin-right: 5px;
+        }
+
+        /* Styles pour les icônes Font Awesome en fallback */
+        .fa-fallback {
+            display: none;
+        }
+
+        /* Amélioration de l'affichage des boutons avec icônes */
+        .btn-with-icon {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* Amélioration de l'affichage des emojis */
+        .emoji-icon {
+            font-size: 1.1em;
+            vertical-align: middle;
+        }
+</style>
                 </head>
                 <body>
                     <div class="container">
@@ -1140,7 +1273,45 @@
                             </div>
                         `).join('')}
                     </div>
-                </body>
+                
+    <script>
+    // Script de détection et correction des icônes manquantes
+    document.addEventListener('DOMContentLoaded', function() {
+        // Fonction pour détecter si un emoji s'affiche correctement
+        function isEmojiSupported(emoji) {
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            ctx.font = '16px Arial';
+            ctx.fillText(emoji, 0, 16);
+            const data = ctx.getImageData(0, 0, 16, 16).data;
+            return data.some(pixel => pixel !== 0);
+        }
+        
+        // Vérifier et corriger les icônes
+        function fixMissingIcons() {
+            const emojiElements = document.querySelectorAll('.emoji-icon');
+            
+            emojiElements.forEach(element => {
+                const emoji = element.textContent;
+                if (!isEmojiSupported(emoji)) {
+                    // Masquer l'emoji et afficher l'icône Font Awesome
+                    element.style.display = 'none';
+                    const fallbackIcon = element.nextElementSibling;
+                    if (fallbackIcon && fallbackIcon.classList.contains('fa-fallback')) {
+                        fallbackIcon.style.display = 'inline-block';
+                    }
+                }
+            });
+        }
+        
+        // Exécuter après un délai pour laisser le temps au rendu
+        setTimeout(fixMissingIcons, 100);
+        
+        // Réexécuter si nécessaire
+        window.addEventListener('load', fixMissingIcons);
+    });
+    </script>
+</body>
                 </html>
             `;
             
@@ -1168,7 +1339,45 @@
                             <p>ID: ${eleve.id}, Niveau: ${eleve.niveau}, Statut: ${eleve.statut}</p>
                         </div>
                     `).join('')}
-                </body>
+                
+    <script>
+    // Script de détection et correction des icônes manquantes
+    document.addEventListener('DOMContentLoaded', function() {
+        // Fonction pour détecter si un emoji s'affiche correctement
+        function isEmojiSupported(emoji) {
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            ctx.font = '16px Arial';
+            ctx.fillText(emoji, 0, 16);
+            const data = ctx.getImageData(0, 0, 16, 16).data;
+            return data.some(pixel => pixel !== 0);
+        }
+        
+        // Vérifier et corriger les icônes
+        function fixMissingIcons() {
+            const emojiElements = document.querySelectorAll('.emoji-icon');
+            
+            emojiElements.forEach(element => {
+                const emoji = element.textContent;
+                if (!isEmojiSupported(emoji)) {
+                    // Masquer l'emoji et afficher l'icône Font Awesome
+                    element.style.display = 'none';
+                    const fallbackIcon = element.nextElementSibling;
+                    if (fallbackIcon && fallbackIcon.classList.contains('fa-fallback')) {
+                        fallbackIcon.style.display = 'inline-block';
+                    }
+                }
+            });
+        }
+        
+        // Exécuter après un délai pour laisser le temps au rendu
+        setTimeout(fixMissingIcons, 100);
+        
+        // Réexécuter si nécessaire
+        window.addEventListener('load', fixMissingIcons);
+    });
+    </script>
+</body>
                 </html>
             `;
         }
@@ -1184,14 +1393,11 @@
                         }
                         <div class="photo-overlay">
                             <div class="photo-actions">
-                                <button class="btn btn-sm btn-outline-success" onclick="afficherPhoto('${eleve.nom}', ${eleve.id})" title="Voir la photo">
-                                    👁️ Voir
+                                <button class="btn btn-sm btn-outline-success" onclick="afficherPhoto('${eleve.nom}', ${eleve.id})" title="Voir la photo"> class="btn-with-icon"><span class="emoji-icon">👁️</span><i class="fas fa-eye fa-fallback"></i>Voir
                                 </button>
-                                <button class="btn btn-sm btn-outline-warning" onclick="ouvrirModaleEdition('${eleve.nom}', ${eleve.id})" title="Modifier">
-                                    ✏️ Modifier
+                                <button class="btn btn-sm btn-outline-warning" onclick="ouvrirModaleEdition('${eleve.nom}', ${eleve.id})" title="Modifier"> class="btn-with-icon"><span class="emoji-icon">✏️</span><i class="fas fa-edit fa-fallback"></i>Modifier
                                 </button>
-                                <button class="btn btn-sm btn-outline-danger" onclick="supprimerEleve('${eleve.nom}', ${eleve.id})" title="Supprimer">
-                                    🗑️ Supprimer
+                                <button class="btn btn-sm btn-outline-danger" onclick="supprimerEleve('${eleve.nom}', ${eleve.id})" title="Supprimer"> class="btn-with-icon"><span class="emoji-icon">🗑️</span><i class="fas fa-trash fa-fallback"></i>Supprimer
                                 </button>
                             </div>
                         </div>
@@ -1390,5 +1596,43 @@
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+    // Script de détection et correction des icônes manquantes
+    document.addEventListener('DOMContentLoaded', function() {
+        // Fonction pour détecter si un emoji s'affiche correctement
+        function isEmojiSupported(emoji) {
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            ctx.font = '16px Arial';
+            ctx.fillText(emoji, 0, 16);
+            const data = ctx.getImageData(0, 0, 16, 16).data;
+            return data.some(pixel => pixel !== 0);
+        }
+        
+        // Vérifier et corriger les icônes
+        function fixMissingIcons() {
+            const emojiElements = document.querySelectorAll('.emoji-icon');
+            
+            emojiElements.forEach(element => {
+                const emoji = element.textContent;
+                if (!isEmojiSupported(emoji)) {
+                    // Masquer l'emoji et afficher l'icône Font Awesome
+                    element.style.display = 'none';
+                    const fallbackIcon = element.nextElementSibling;
+                    if (fallbackIcon && fallbackIcon.classList.contains('fa-fallback')) {
+                        fallbackIcon.style.display = 'inline-block';
+                    }
+                }
+            });
+        }
+        
+        // Exécuter après un délai pour laisser le temps au rendu
+        setTimeout(fixMissingIcons, 100);
+        
+        // Réexécuter si nécessaire
+        window.addEventListener('load', fixMissingIcons);
+    });
+    </script>
 </body>
 </html> 

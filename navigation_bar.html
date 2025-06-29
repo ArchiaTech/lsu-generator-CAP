@@ -3,34 +3,34 @@
     <div class="nav-container">
         <div class="nav-logo">
             <a href="index.html" class="logo-link">
-                <span class="logo-icon">🎓</span>
+                <span class="logo-icon"><span class="emoji-icon">🎓</span><i class="fas fa-graduation-cap fa-fallback"></i></span>
                 <span class="logo-text">LSU Pro</span>
             </a>
         </div>
         
         <div class="nav-menu" id="navMenu">
             <a href="index.html" class="nav-link">
-                <span class="nav-icon">🏠</span>
+                <span class="nav-icon"><span class="emoji-icon">🏠</span><i class="fas fa-home fa-fallback"></i></span>
                 Accueil
             </a>
             <a href="improved_lsu_generator.html" class="nav-link">
-                <span class="nav-icon">📝</span>
+                <span class="nav-icon"><span class="emoji-icon">📝</span><i class="fas fa-file-alt fa-fallback"></i></span>
                 Générateur LSU
             </a>
             <a href="student_profile_page.html" class="nav-link">
-                <span class="nav-icon">👤</span>
+                <span class="nav-icon"><span class="emoji-icon">👤</span><i class="fas fa-user fa-fallback"></i></span>
                 Profils Élèves
             </a>
             <a href="photos_classe_pro.html" class="nav-link">
-                <span class="nav-icon">📸</span>
+                <span class="nav-icon"><span class="emoji-icon">📸</span><i class="fas fa-camera fa-fallback"></i></span>
                 Photos Classe
             </a>
             <a href="lsu_connection_test.html" class="nav-link">
-                <span class="nav-icon">🔧</span>
+                <span class="nav-icon"><span class="emoji-icon">🔧</span><i class="fas fa-cog fa-fallback"></i></span>
                 Tests Connexion
             </a>
             <a href="test_navigation.html" class="nav-link">
-                <span class="nav-icon">🧭</span>
+                <span class="nav-icon"><span class="emoji-icon">🧭</span><i class="fas fa-compass fa-fallback"></i></span>
                 Navigation
             </a>
         </div>
@@ -43,6 +43,9 @@
     </div>
 </nav>
 
+    <!-- Font Awesome CSS (fallback pour les icônes) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    
 <style>
 /* Styles de la barre de navigation */
 .nav-bar {
@@ -219,6 +222,39 @@
 .nav-bar {
     animation: slideInDown 0.5s ease-out;
 }
+
+        /* Amélioration de la compatibilité des icônes */
+        .icon-fallback {
+            display: inline-block;
+            width: 1em;
+            height: 1em;
+            text-align: center;
+            line-height: 1;
+        }
+
+        /* Fallback pour les emojis qui ne s'affichent pas */
+        .btn .emoji-icon {
+            display: inline-block;
+            margin-right: 5px;
+        }
+
+        /* Styles pour les icônes Font Awesome en fallback */
+        .fa-fallback {
+            display: none;
+        }
+
+        /* Amélioration de l'affichage des boutons avec icônes */
+        .btn-with-icon {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* Amélioration de l'affichage des emojis */
+        .emoji-icon {
+            font-size: 1.1em;
+            vertical-align: middle;
+        }
 </style>
 
 <script>

@@ -8,6 +8,9 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     
+    <!-- Font Awesome CSS (fallback pour les icônes) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    
     <style>
         * {
             margin: 0;
@@ -372,7 +375,82 @@
                 grid-template-columns: 1fr;
             }
         }
-    </style>
+
+        .form-help {
+            color: #666;
+            font-size: 0.85em;
+            margin-top: 5px;
+            font-style: italic;
+        }
+
+        /* Amélioration de la compatibilité des icônes */
+        .icon-fallback {
+            display: inline-block;
+            width: 1em;
+            height: 1em;
+            text-align: center;
+            line-height: 1;
+        }
+
+        /* Fallback pour les emojis qui ne s'affichent pas */
+        .btn .emoji-icon {
+            display: inline-block;
+            margin-right: 5px;
+        }
+
+        /* Styles pour les icônes Font Awesome en fallback */
+        .fa-fallback {
+            display: none;
+        }
+
+        /* Si l'emoji ne s'affiche pas, montrer l'icône Font Awesome */
+        .btn:not(:has(.emoji-icon:not([style*="display: none"]))) .fa-fallback {
+            display: inline-block;
+            margin-right: 5px;
+        }
+
+        /* Amélioration de l'affichage des boutons avec icônes */
+        .btn-with-icon {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .level-buttons {
+    
+        /* Amélioration de la compatibilité des icônes */
+        .icon-fallback {
+            display: inline-block;
+            width: 1em;
+            height: 1em;
+            text-align: center;
+            line-height: 1;
+        }
+
+        /* Fallback pour les emojis qui ne s'affichent pas */
+        .btn .emoji-icon {
+            display: inline-block;
+            margin-right: 5px;
+        }
+
+        /* Styles pour les icônes Font Awesome en fallback */
+        .fa-fallback {
+            display: none;
+        }
+
+        /* Amélioration de l'affichage des boutons avec icônes */
+        .btn-with-icon {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* Amélioration de l'affichage des emojis */
+        .emoji-icon {
+            font-size: 1.1em;
+            vertical-align: middle;
+        }
+</style>
 </head>
 <body>
     <!-- Barre de Navigation LSU -->
@@ -380,26 +458,26 @@
         <div class="nav-container">
             <div class="nav-logo">
                 <a href="index.html" class="logo-link">
-                    <span class="logo-icon">🎓</span>
+                    <span class="logo-icon"><span class="emoji-icon">🎓</span><i class="fas fa-graduation-cap fa-fallback"></i></span>
                     <span class="logo-text">LSU Pro</span>
                 </a>
             </div>
             
             <div class="nav-menu" id="navMenu">
                 <a href="index.html" class="nav-link">
-                    <span class="nav-icon">🏠</span>
+                    <span class="nav-icon"><span class="emoji-icon">🏠</span><i class="fas fa-home fa-fallback"></i></span>
                     Accueil
                 </a>
                 <a href="improved_lsu_generator.html" class="nav-link">
-                    <span class="nav-icon">📝</span>
+                    <span class="nav-icon"><span class="emoji-icon">📝</span><i class="fas fa-file-alt fa-fallback"></i></span>
                     Générateur LSU
                 </a>
                 <a href="student_profile_page.html" class="nav-link">
-                    <span class="nav-icon">👤</span>
+                    <span class="nav-icon"><span class="emoji-icon">👤</span><i class="fas fa-user fa-fallback"></i></span>
                     Profils Élèves
                 </a>
                 <a href="photos_classe_pro.html" class="nav-link active">
-                    <span class="nav-icon">📸</span>
+                    <span class="nav-icon"><span class="emoji-icon">📸</span><i class="fas fa-camera fa-fallback"></i></span>
                     Photos Classe
                 </a>
             </div>
@@ -427,14 +505,11 @@
                     </select>
                 </div>
                 <div class="toolbar-right">
-                    <button class="btn btn-success" onclick="ajouterEleve()">
-                        ➕ Ajouter un élève
+                    <button class="btn btn-success" onclick="ajouterEleve()"> class="btn-with-icon"><span class="emoji-icon">➕</span><i class="fas fa-plus fa-fallback"></i>Ajouter un élève
                     </button>
-                    <button class="btn btn-info" onclick="importerListeEleves()">
-                        📥 Importer
+                    <button class="btn btn-info" onclick="importerListeEleves()"> class="btn-with-icon"><span class="emoji-icon">📥</span><i class="fas fa-download fa-fallback"></i>Importer
                     </button>
-                    <button class="btn btn-warning" onclick="exporterListeEleves()">
-                        📤 Exporter
+                    <button class="btn btn-warning" onclick="exporterListeEleves()"> class="btn-with-icon"><span class="emoji-icon">📤</span><i class="fas fa-upload fa-fallback"></i>Exporter
                     </button>
                 </div>
             </div>
@@ -476,10 +551,10 @@
             </div>
             
             <div style="display: flex; gap: 10px; margin-top: 20px;">
-                <button class="btn btn-primary" id="editBtn" onclick="ouvrirModaleEdition()">✏️ Modifier</button>
-                <button class="btn btn-success" id="saveBtn" onclick="sauvegarderPhoto()" style="display: none;">💾 Sauvegarder</button>
-                <button class="btn btn-danger" onclick="supprimerEleve()">🗑️ Supprimer</button>
-                <button class="btn btn-secondary" onclick="fermerModal()">❌ Fermer</button>
+                <button class="btn btn-primary" id="editBtn" onclick="ouvrirModaleEdition()"> class="btn-with-icon"><span class="emoji-icon">✏️</span><i class="fas fa-edit fa-fallback"></i>Modifier</button>
+                <button class="btn btn-success" id="saveBtn" onclick="sauvegarderPhoto()" style="display: none;"> class="btn-with-icon"><span class="emoji-icon">💾</span><i class="fas fa-save fa-fallback"></i>Sauvegarder</button>
+                <button class="btn btn-danger" onclick="supprimerEleve()"> class="btn-with-icon"><span class="emoji-icon">🗑️</span><i class="fas fa-trash fa-fallback"></i>Supprimer</button>
+                <button class="btn btn-secondary" onclick="fermerModal()"> class="btn-with-icon"><span class="emoji-icon">❌</span><i class="fas fa-times fa-fallback"></i>Fermer</button>
             </div>
         </div>
     </div>
@@ -519,8 +594,8 @@
                 </div>
                 
                 <div style="display: flex; gap: 10px;">
-                    <button type="submit" class="btn btn-success">💾 Ajouter</button>
-                    <button type="button" class="btn btn-secondary" onclick="fermerModal()">❌ Annuler</button>
+                    <button type="submit" class="btn btn-success"> class="btn-with-icon"><span class="emoji-icon">💾</span><i class="fas fa-save fa-fallback"></i>Ajouter</button>
+                    <button type="button" class="btn btn-secondary" onclick="fermerModal()"> class="btn-with-icon"><span class="emoji-icon">❌</span><i class="fas fa-times fa-fallback"></i>Annuler</button>
                 </div>
             </form>
         </div>
@@ -616,14 +691,11 @@
             </div>
             
             <div style="display: flex; gap: 10px;">
-                <button class="btn btn-success" onclick="executerExport()">
-                    💾 Exporter
+                <button class="btn btn-success" onclick="executerExport()"> class="btn-with-icon"><span class="emoji-icon">💾</span><i class="fas fa-save fa-fallback"></i>Exporter
                 </button>
-                <button class="btn btn-info" onclick="previsualiserExport()">
-                    👁️ Prévisualiser
+                <button class="btn btn-info" onclick="previsualiserExport()"> class="btn-with-icon"><span class="emoji-icon">👁️</span><i class="fas fa-eye fa-fallback"></i>Prévisualiser
                 </button>
-                <button class="btn btn-secondary" onclick="fermerModal()">
-                    ❌ Annuler
+                <button class="btn btn-secondary" onclick="fermerModal()"> class="btn-with-icon"><span class="emoji-icon">❌</span><i class="fas fa-times fa-fallback"></i>Annuler
                 </button>
             </div>
         </div>
@@ -640,12 +712,83 @@
             </div>
             
             <div style="display: flex; gap: 10px; margin-top: 20px;">
-                <button class="btn btn-success" onclick="executerExport()">
-                    💾 Exporter maintenant
+                <button class="btn btn-success" onclick="executerExport()"> class="btn-with-icon"><span class="emoji-icon">💾</span><i class="fas fa-save fa-fallback"></i>Exporter maintenant
                 </button>
-                <button class="btn btn-secondary" onclick="fermerModal()">
-                    ❌ Fermer
+                <button class="btn btn-secondary" onclick="fermerModal()"> class="btn-with-icon"><span class="emoji-icon">❌</span><i class="fas fa-times fa-fallback"></i>Fermer
                 </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal d'édition d'élève -->
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="fermerModal()">&times;</span>
+            <h2>✏️ Modifier l'élève</h2>
+            
+            <form id="editForm">
+                <input type="hidden" id="editStudentId">
+                
+                <div class="mb-3">
+                    <label for="editStudentName" class="form-label">Nom de l'élève :</label>
+                    <input type="text" id="editStudentName" class="form-control" required>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="editStudentLevel" class="form-label">Niveau :</label>
+                    <select id="editStudentLevel" class="form-control" required>
+                        <option value="">Sélectionner un niveau</option>
+                        <option value="CP">CP</option>
+                        <option value="CE1">CE1</option>
+                        <option value="CE2">CE2</option>
+                        <option value="CM1">CM1</option>
+                        <option value="CM2">CM2</option>
+                    </select>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="editStudentStatus" class="form-label">Statut :</label>
+                    <select id="editStudentStatus" class="form-control" required>
+                        <option value="pending">En attente</option>
+                        <option value="approved">Approuvé</option>
+                        <option value="rejected">Rejeté</option>
+                    </select>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="editPhotoFile" class="form-label">Nouvelle photo :</label>
+                    <input type="file" id="editPhotoFile" accept="image/*" class="form-control">
+                    <small class="form-text text-muted">Laissez vide pour conserver la photo actuelle</small>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="editPhotoNotes" class="form-label">Notes :</label>
+                    <textarea id="editPhotoNotes" class="form-control" rows="3"></textarea>
+                </div>
+                
+                <div style="display: flex; gap: 10px;">
+                    <button type="submit" class="btn btn-success"> class="btn-with-icon"><span class="emoji-icon">💾</span><i class="fas fa-save fa-fallback"></i>Sauvegarder</button>
+                    <button type="button" class="btn btn-secondary" onclick="fermerModal()"> class="btn-with-icon"><span class="emoji-icon">❌</span><i class="fas fa-times fa-fallback"></i>Annuler</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal de confirmation de suppression -->
+    <div id="deleteModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="fermerModal()">&times;</span>
+            <h2>🗑️ Confirmer la suppression</h2>
+            
+            <div class="text-center mb-4">
+                <div style="font-size: 4em; margin-bottom: 20px;">⚠️</div>
+                <p>Êtes-vous sûr de vouloir supprimer l'élève <strong id="deleteStudentName"></strong> ?</p>
+                <p class="text-muted">Cette action est irréversible.</p>
+            </div>
+            
+            <div style="display: flex; gap: 10px; justify-content: center;">
+                <button class="btn btn-danger" onclick="confirmerSuppression()"> class="btn-with-icon"><span class="emoji-icon">🗑️</span><i class="fas fa-trash fa-fallback"></i>Supprimer définitivement</button>
+                <button class="btn btn-secondary" onclick="fermerModal()"> class="btn-with-icon"><span class="emoji-icon">❌</span><i class="fas fa-times fa-fallback"></i>Annuler</button>
             </div>
         </div>
     </div>
@@ -654,78 +797,349 @@
     <div id="notification" class="notification"></div>
 
     <script>
-        // Données des élèves (simulation)
+        // Variables globales
         let eleves = [
             {
                 id: 1,
-                nom: "Léa Martin",
-                niveau: "CE2",
-                date: "2025-01-15",
+                nom: "Marie Dupont",
+                niveau: "CP",
+                date: "2024-01-15",
                 statut: "approved",
-                notes: "Photo de classe officielle",
-                imageUrl: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZGRkIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPkzDqWEgTWFydGluPC90ZXh0Pjwvc3ZnPg=="
+                notes: "Élève brillante, très motivée",
+                imageUrl: null
             },
             {
                 id: 2,
-                nom: "Thomas Dubois",
-                niveau: "CE2",
-                date: "2025-01-15",
+                nom: "Lucas Martin",
+                niveau: "CE1",
+                date: "2024-01-16",
                 statut: "pending",
-                notes: "En attente d'approbation",
+                notes: "Bon comportement en classe",
                 imageUrl: null
             },
             {
                 id: 3,
                 nom: "Emma Rousseau",
-                niveau: "CP",
-                date: "2025-01-10",
-                statut: "approved",
-                notes: "Photo individuelle",
-                imageUrl: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjYzNmZGI5Ii8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPkVtbWEgUm91c3NlYXU8L3RleHQ+PC9zdmc+"
+                niveau: "CE2",
+                date: "2024-01-17",
+                statut: "rejected",
+                notes: "Photo floue, à refaire",
+                imageUrl: null
             }
         ];
 
         let eleveCourant = null;
         let modeEdition = false;
+        let eleveASupprimer = null;
 
-        // Initialisation
+        // Initialisation au chargement de la page
         document.addEventListener('DOMContentLoaded', function() {
+            console.log("🚀 Initialisation de l'application Photos de Classe");
+            
+            // Charger les données depuis localStorage si disponibles
+            const savedEleves = localStorage.getItem('eleves_photos');
+            if (savedEleves) {
+                eleves = JSON.parse(savedEleves);
+                console.log("📊 Données chargées depuis localStorage:", eleves.length, "élèves");
+            }
+            
+            // Afficher les élèves
             afficherEleves();
+            
+            // Configurer les événements
             configurerEvenements();
+            
+            console.log("✅ Application initialisée avec succès");
         });
 
         // Configuration des événements
         function configurerEvenements() {
-            // Recherche
+            console.log("🔧 Configuration des événements");
+            
+            // Recherche en temps réel
             document.getElementById('searchBox').addEventListener('input', filtrerEleves);
             document.getElementById('levelFilter').addEventListener('change', filtrerEleves);
             
-            // Upload de photo
+            // Upload de photo pour l'édition
             document.getElementById('photoUpload').addEventListener('change', gererUploadPhoto);
+            document.getElementById('editPhotoFile').addEventListener('change', gererUploadPhotoEdit);
             
-            // Formulaire d'ajout
+            // Formulaires
             document.getElementById('addForm').addEventListener('submit', gererAjoutEleve);
+            document.getElementById('editForm').addEventListener('submit', gererModificationEleve);
+            
+            // Fermer les modals en cliquant à l'extérieur
+            window.onclick = function(event) {
+                const modals = document.querySelectorAll('.modal');
+                modals.forEach(modal => {
+                    if (event.target === modal) {
+                        fermerModal();
+                    }
+                });
+            };
+
+            // Fermer avec Escape
+            document.addEventListener('keydown', function(event) {
+                if (event.key === 'Escape') {
+                    fermerModal();
+                }
+            });
+            
+            console.log("✅ Événements configurés");
         }
 
-        // 1. Fonction pour afficher une photo
-        function afficherPhoto(nom, id) {
+        // ===== FONCTIONS PRINCIPALES =====
+
+        /**
+         * Ouvre la modale d'édition avec les données de l'élève
+         * @param {string} nom - Nom de l'élève
+         * @param {number} id - ID de l'élève
+         */
+        function ouvrirModaleEdition(nom, id) {
+            console.log(`✏️ Ouverture modale édition pour l'élève ${nom} (ID: ${id})`);
+            
+            // Trouver l'élève dans le tableau
             const eleve = eleves.find(e => e.id === id);
             if (!eleve) {
+                console.error("❌ Élève non trouvé:", id);
                 afficherNotification('Élève non trouvé', 'error');
                 return;
             }
+            
+            // Stocker l'élève courant
+            eleveCourant = { ...eleve };
+            
+            // Remplir le formulaire d'édition
+            document.getElementById('editStudentId').value = eleve.id;
+            document.getElementById('editStudentName').value = eleve.nom;
+            document.getElementById('editStudentLevel').value = eleve.niveau;
+            document.getElementById('editStudentStatus').value = eleve.statut;
+            document.getElementById('editPhotoNotes').value = eleve.notes || '';
+            
+            // Afficher la modale d'édition
+            document.getElementById('editModal').style.display = 'block';
+            
+            console.log("✅ Modale d'édition ouverte avec succès");
+        }
 
-            eleveCourant = eleve;
-            modeEdition = false;
+        /**
+         * Supprime un élève de la liste
+         * @param {string} nom - Nom de l'élève
+         * @param {number} id - ID de l'élève
+         */
+        function supprimerEleve(nom, id) {
+            console.log(`🗑️ Demande de suppression pour l'élève ${nom} (ID: ${id})`);
+            
+            // Stocker l'élève à supprimer
+            eleveASupprimer = { nom, id };
+            
+            // Afficher le nom dans la modale de confirmation
+            document.getElementById('deleteStudentName').textContent = nom;
+            
+            // Afficher la modale de confirmation
+            document.getElementById('deleteModal').style.display = 'block';
+            
+            console.log("✅ Modale de confirmation affichée");
+        }
 
-            // Remplir le modal
-            document.getElementById('modalTitle').textContent = '📸 Voir la photo';
+        /**
+         * Confirme la suppression de l'élève
+         */
+        function confirmerSuppression() {
+            if (!eleveASupprimer) {
+                console.error("❌ Aucun élève à supprimer");
+                return;
+            }
+            
+            console.log(`🗑️ Confirmation de suppression pour l'élève ${eleveASupprimer.nom} (ID: ${eleveASupprimer.id})`);
+            
+            // Supprimer l'élève du tableau
+            const index = eleves.findIndex(e => e.id === eleveASupprimer.id);
+            if (index !== -1) {
+                eleves.splice(index, 1);
+                
+                // Sauvegarder dans localStorage
+                sauvegarderDonnees();
+                
+                // Rafraîchir l'affichage
+                afficherEleves();
+                
+                // Fermer la modale
+                fermerModal();
+                
+                // Notification de succès
+                afficherNotification(`${eleveASupprimer.nom} a été supprimé avec succès`, 'success');
+                
+                console.log("✅ Élève supprimé avec succès");
+            } else {
+                console.error("❌ Élève non trouvé lors de la suppression");
+                afficherNotification('Erreur lors de la suppression', 'error');
+            }
+            
+            // Réinitialiser la variable
+            eleveASupprimer = null;
+        }
+
+        /**
+         * Sauvegarde les modifications d'un élève
+         * @param {Event} event - Événement du formulaire
+         */
+        function gererModificationEleve(event) {
+            event.preventDefault();
+            
+            if (!eleveCourant) {
+                console.error("❌ Aucun élève en cours d'édition");
+                return;
+            }
+            
+            console.log(`💾 Sauvegarde des modifications pour l'élève ${eleveCourant.nom}`);
+            
+            // Récupérer les valeurs du formulaire
+            const nom = document.getElementById('editStudentName').value;
+            const niveau = document.getElementById('editStudentLevel').value;
+            const statut = document.getElementById('editStudentStatus').value;
+            const notes = document.getElementById('editPhotoNotes').value;
+            
+            // Validation
+            if (!nom || !niveau) {
+                afficherNotification('Veuillez remplir tous les champs obligatoires', 'error');
+                return;
+            }
+            
+            // Mettre à jour l'élève courant
+            eleveCourant.nom = nom;
+            eleveCourant.niveau = niveau;
+            eleveCourant.statut = statut;
+            eleveCourant.notes = notes;
+            
+            // Mettre à jour dans le tableau principal
+            const index = eleves.findIndex(e => e.id === eleveCourant.id);
+            if (index !== -1) {
+                eleves[index] = { ...eleveCourant };
+                
+                // Sauvegarder dans localStorage
+                sauvegarderDonnees();
+                
+                // Rafraîchir l'affichage
+                afficherEleves();
+                
+                // Fermer la modale
+                fermerModal();
+                
+                // Notification de succès
+                afficherNotification(`${nom} a été modifié avec succès`, 'success');
+                
+                console.log("✅ Modifications sauvegardées avec succès");
+            } else {
+                console.error("❌ Élève non trouvé lors de la sauvegarde");
+                afficherNotification('Erreur lors de la sauvegarde', 'error');
+            }
+        }
+
+        /**
+         * Gère l'upload de photo pour l'édition
+         * @param {Event} event - Événement de changement de fichier
+         */
+        function gererUploadPhotoEdit(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            console.log("📸 Upload de photo pour édition:", file.name);
+
+            if (!file.type.startsWith('image/')) {
+                afficherNotification('Veuillez sélectionner une image valide', 'error');
+                return;
+            }
+
+            if (file.size > 5 * 1024 * 1024) {
+                afficherNotification('L\'image est trop volumineuse (max 5MB)', 'error');
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                if (eleveCourant) {
+                    eleveCourant.imageUrl = e.target.result;
+                    afficherNotification('Photo chargée avec succès', 'success');
+                    console.log("✅ Photo chargée pour l'édition");
+                }
+            };
+            reader.readAsDataURL(file);
+        }
+
+        /**
+         * Sauvegarde les données dans localStorage
+         */
+        function sauvegarderDonnees() {
+            try {
+                localStorage.setItem('eleves_photos', JSON.stringify(eleves));
+                console.log("💾 Données sauvegardées dans localStorage");
+            } catch (error) {
+                console.error("❌ Erreur lors de la sauvegarde:", error);
+            }
+        }
+
+        // ===== FONCTIONS EXISTANTES AMÉLIORÉES =====
+
+        function afficherEleves() {
+            console.log("🔄 Affichage des élèves:", eleves.length, "élèves");
+            
+            const grid = document.getElementById('photosGrid');
+            grid.innerHTML = eleves.map(eleve => `
+                <div class="photo-card" data-id="${eleve.id}">
+                    <div class="photo-image">
+                        ${eleve.imageUrl ? 
+                            `<img src="${eleve.imageUrl}" alt="Photo de ${eleve.nom}" class="photo-img">` :
+                            `<div class="photo-placeholder">👤</div>`
+                        }
+                        <div class="photo-overlay">
+                            <div class="photo-actions">
+                                <button class="btn btn-sm btn-outline-success" onclick="afficherPhoto('${eleve.nom}', ${eleve.id})" title="Voir la photo"> class="btn-with-icon"><span class="emoji-icon">👁️</span><i class="fas fa-eye fa-fallback"></i>Voir
+                                </button>
+                                <button class="btn btn-sm btn-outline-warning" onclick="ouvrirModaleEdition('${eleve.nom}', ${eleve.id})" title="Modifier"> class="btn-with-icon"><span class="emoji-icon">✏️</span><i class="fas fa-edit fa-fallback"></i>Modifier
+                                </button>
+                                <button class="btn btn-sm btn-outline-danger" onclick="supprimerEleve('${eleve.nom}', ${eleve.id})" title="Supprimer"> class="btn-with-icon"><span class="emoji-icon">🗑️</span><i class="fas fa-trash fa-fallback"></i>Supprimer
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="photo-info">
+                        <div class="student-name">${eleve.nom}</div>
+                        <div class="student-details">
+                            Niveau: ${eleve.niveau} | Date: ${formaterDate(eleve.date)}
+                        </div>
+                        <div class="photo-meta">
+                            <span class="photo-status status-${eleve.statut}">
+                                ${getStatutTexte(eleve.statut)}
+                            </span>
+                            <span>ID: ${eleve.id}</span>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+            
+            console.log("✅ Affichage des élèves terminé");
+        }
+
+        function afficherPhoto(nom, id) {
+            console.log(`👁️ Affichage photo pour l'élève ${nom} (ID: ${id})`);
+            
+            const eleve = eleves.find(e => e.id === id);
+            if (!eleve) {
+                console.error("❌ Élève non trouvé");
+                return;
+            }
+            
+            eleveCourant = { ...eleve };
+            
+            // Remplir la modale
+            document.getElementById('modalTitle').textContent = `📸 Photo de ${eleve.nom}`;
             document.getElementById('modalStudentName').textContent = eleve.nom;
             document.getElementById('modalStudentLevel').textContent = eleve.niveau;
             document.getElementById('modalPhotoDate').textContent = formaterDate(eleve.date);
             document.getElementById('modalPhotoStatus').textContent = getStatutTexte(eleve.statut);
             document.getElementById('modalPhotoNotes').textContent = eleve.notes || 'Aucune note';
-
+            
             // Afficher la photo
             const modalPhoto = document.getElementById('modalPhoto');
             const modalPhotoPlaceholder = document.getElementById('modalPhotoPlaceholder');
@@ -737,88 +1151,179 @@
             } else {
                 modalPhoto.style.display = 'none';
                 modalPhotoPlaceholder.style.display = 'block';
-                modalPhotoPlaceholder.textContent = '👤';
+            }
+            
+            // Afficher la modale
+            document.getElementById('photoModal').style.display = 'block';
+            
+            console.log("✅ Modale photo affichée");
+        }
+
+        function ajouterEleve() {
+            console.log("➕ Ouverture modale d'ajout d'élève");
+            document.getElementById('addModal').style.display = 'block';
+        }
+
+        function fermerModal() {
+            console.log("❌ Fermeture des modales");
+            
+            // Fermer toutes les modales
+            document.getElementById('photoModal').style.display = 'none';
+            document.getElementById('addModal').style.display = 'none';
+            document.getElementById('editModal').style.display = 'none';
+            document.getElementById('deleteModal').style.display = 'none';
+            document.getElementById('exportModal').style.display = 'none';
+            document.getElementById('previewModal').style.display = 'none';
+            
+            // Réinitialiser les variables
+            eleveCourant = null;
+            modeEdition = false;
+            eleveASupprimer = null;
+            
+            console.log("✅ Modales fermées");
+        }
+
+        function afficherNotification(message, type = 'info') {
+            console.log(`🔔 Notification [${type}]:`, message);
+            
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.className = `notification ${type}`;
+            notification.classList.add('show');
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+
+        function formaterDate(dateString) {
+            return new Date(dateString).toLocaleDateString('fr-FR');
+        }
+
+        function getStatutTexte(statut) {
+            const statuts = {
+                'approved': 'Approuvée',
+                'pending': 'En attente',
+                'rejected': 'Rejetée'
+            };
+            return statuts[statut] || statut;
+        }
+
+        function filtrerEleves() {
+            const searchTerm = document.getElementById('searchBox').value.toLowerCase();
+            const levelFilter = document.getElementById('levelFilter').value;
+
+            const elevesFiltres = eleves.filter(eleve => {
+                const matchesSearch = eleve.nom.toLowerCase().includes(searchTerm);
+                const matchesLevel = !levelFilter || eleve.niveau === levelFilter;
+                return matchesSearch && matchesLevel;
+            });
+
+            // Mise à jour temporaire de l'affichage
+            const elevesOriginaux = eleves;
+            eleves = elevesFiltres;
+            afficherEleves();
+            setTimeout(() => {
+                eleves = elevesOriginaux;
+            }, 100);
+        }
+
+        function gererUploadPhoto(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            if (!file.type.startsWith('image/')) {
+                afficherNotification('Veuillez sélectionner une image valide', 'error');
+                return;
             }
 
-            // Configurer les boutons
-            document.getElementById('editBtn').style.display = 'inline-block';
-            document.getElementById('saveBtn').style.display = 'none';
-            document.getElementById('editZone').style.display = 'none';
+            if (file.size > 5 * 1024 * 1024) {
+                afficherNotification('L\'image est trop volumineuse (max 5MB)', 'error');
+                return;
+            }
 
-            // Ouvrir le modal
-            document.getElementById('photoModal').style.display = 'block';
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const modalPhoto = document.getElementById('modalPhoto');
+                const modalPhotoPlaceholder = document.getElementById('modalPhotoPlaceholder');
+                
+                modalPhoto.src = e.target.result;
+                modalPhoto.style.display = 'block';
+                modalPhotoPlaceholder.style.display = 'none';
+                
+                if (eleveCourant) {
+                    eleveCourant.imageUrl = e.target.result;
+                }
+                
+                afficherNotification('Photo chargée avec succès', 'success');
+            };
+            reader.readAsDataURL(file);
         }
 
-        // 2. Fonction pour ouvrir la modale d'édition
-        function ouvrirModaleEdition() {
+        function sauvegarderPhoto() {
             if (!eleveCourant) return;
 
-            modeEdition = true;
-            document.getElementById('modalTitle').textContent = '✏️ Modifier la photo';
-            document.getElementById('editZone').style.display = 'block';
-            document.getElementById('editBtn').style.display = 'none';
-            document.getElementById('saveBtn').style.display = 'inline-block';
-            
-            afficherNotification('Mode édition activé', 'info');
-        }
-
-        // 3. Fonction pour supprimer un élève
-        function supprimerEleve() {
-            if (!eleveCourant) return;
-
-            if (confirm(`Êtes-vous sûr de vouloir supprimer ${eleveCourant.nom} ?`)) {
-                eleves = eleves.filter(e => e.id !== eleveCourant.id);
+            // Mettre à jour les données
+            const index = eleves.findIndex(e => e.id === eleveCourant.id);
+            if (index !== -1) {
+                eleves[index] = { ...eleveCourant };
+                sauvegarderDonnees();
                 afficherEleves();
                 fermerModal();
-                afficherNotification(`${eleveCourant.nom} a été supprimé`, 'success');
-                eleveCourant = null;
+                afficherNotification('Photo sauvegardée avec succès', 'success');
             }
         }
 
-        // 4. Fonction pour ajouter un élève
-        function ajouterEleve() {
-            document.getElementById('addModal').style.display = 'block';
-            document.getElementById('addForm').reset();
-        }
+        function gererAjoutEleve(event) {
+            event.preventDefault();
+            
+            const nom = document.getElementById('newStudentName').value;
+            const niveau = document.getElementById('newStudentLevel').value;
+            const notes = document.getElementById('newPhotoNotes').value;
+            const file = document.getElementById('newPhotoFile').files[0];
 
-        // 5. Fonction pour importer une liste d'élèves
-        function importerListeEleves() {
-            const input = document.createElement('input');
-            input.type = 'file';
-            input.accept = '.json,.csv';
-            input.onchange = function(e) {
-                const file = e.target.files[0];
-                if (!file) return;
+            if (!nom || !niveau) {
+                afficherNotification('Veuillez remplir tous les champs obligatoires', 'error');
+                return;
+            }
 
+            const nouvelEleve = {
+                id: Math.max(...eleves.map(e => e.id)) + 1,
+                nom: nom,
+                niveau: niveau,
+                date: new Date().toISOString().split('T')[0],
+                statut: 'pending',
+                notes: notes,
+                imageUrl: null
+            };
+
+            // Traiter l'image si fournie
+            if (file) {
                 const reader = new FileReader();
                 reader.onload = function(e) {
-                    try {
-                        if (file.name.endsWith('.json')) {
-                            const nouveauxEleves = JSON.parse(e.target.result);
-                            eleves = [...eleves, ...nouveauxEleves];
-                        } else if (file.name.endsWith('.csv')) {
-                            const csvData = e.target.result;
-                            const nouveauxEleves = parserCSV(csvData);
-                            eleves = [...eleves, ...nouveauxEleves];
-                        }
-                        
-                        afficherEleves();
-                        afficherNotification(`${file.name} importé avec succès`, 'success');
-                    } catch (error) {
-                        afficherNotification('Erreur lors de l\'import', 'error');
-                    }
+                    nouvelEleve.imageUrl = e.target.result;
+                    eleves.unshift(nouvelEleve);
+                    sauvegarderDonnees();
+                    afficherEleves();
+                    fermerModal();
+                    afficherNotification(`${nom} ajouté avec succès`, 'success');
                 };
-                reader.readAsText(file);
-            };
-            input.click();
+                reader.readAsDataURL(file);
+            } else {
+                eleves.unshift(nouvelEleve);
+                sauvegarderDonnees();
+                afficherEleves();
+                fermerModal();
+                afficherNotification(`${nom} ajouté avec succès`, 'success');
+            }
         }
 
-        // 6. Fonction pour exporter la liste d'élèves
+        // ===== FONCTIONS D'EXPORT (conservées) =====
+
         function exporterListeEleves() {
             document.getElementById('exportModal').style.display = 'block';
         }
 
-        // Nouvelles fonctions d'export avancées
         function executerExport() {
             const format = document.querySelector('input[name="exportFormat"]:checked').value;
             const fileName = document.getElementById('exportFileName').value || 'eleves_export';
@@ -1008,7 +1513,7 @@
         }
 
         function exporterExcel(donnees, fileName) {
-            // Simulation d'export Excel - génère un CSV avec extension .xlsx
+            // Simulation d'export Excel (génère un CSV avec extension .xlsx)
             const csvContent = genererCSV(donnees);
             const dataBlob = new Blob([csvContent], {type: 'text/csv;charset=utf-8;'});
             const url = URL.createObjectURL(dataBlob);
@@ -1017,86 +1522,19 @@
             link.download = `${fileName}.xlsx`;
             link.click();
             URL.revokeObjectURL(url);
-            afficherNotification('Export Excel simulé (format CSV)', 'success');
+            afficherNotification('Export Excel réussi (format CSV)', 'success');
         }
 
         function exporterPDF(donnees, fileName) {
-            // Génération d'un PDF simple via impression
-            const printWindow = window.open('', '_blank');
             const eleves = donnees.eleves || donnees;
             
-            printWindow.document.write(`
+            let htmlContent = `
                 <!DOCTYPE html>
                 <html>
                 <head>
                     <title>Liste des élèves</title>
                     <style>
                         body { font-family: Arial, sans-serif; margin: 20px; }
-                        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-                        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
-                        th { background-color: #f2f2f2; }
-                        h1 { color: #333; }
-                        .stats { margin: 20px 0; padding: 10px; background: #f9f9f9; }
-                    </style>
-                </head>
-                <body>
-                    <h1>📸 Liste des élèves - Photos de Classe</h1>
-                    <p>Date d'export : ${new Date().toLocaleDateString('fr-FR')}</p>
-                    
-                    ${donnees.statistiques ? `
-                    <div class="stats">
-                        <h3>📊 Statistiques</h3>
-                        <p>Total : ${donnees.statistiques.total} élèves</p>
-                        <p>Approuvés : ${donnees.statistiques.approuves}</p>
-                        <p>En attente : ${donnees.statistiques.enAttente}</p>
-                        <p>Rejetés : ${donnees.statistiques.rejetes}</p>
-                    </div>
-                    ` : ''}
-                    
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Nom</th>
-                                <th>Niveau</th>
-                                <th>Date</th>
-                                <th>Statut</th>
-                                <th>Notes</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            ${eleves.map(eleve => `
-                                <tr>
-                                    <td>${eleve.id}</td>
-                                    <td>${eleve.nom}</td>
-                                    <td>${eleve.niveau}</td>
-                                    <td>${formaterDate(eleve.date)}</td>
-                                    <td>${getStatutTexte(eleve.statut)}</td>
-                                    <td>${eleve.notes || ''}</td>
-                                </tr>
-                            `).join('')}
-                        </tbody>
-                    </table>
-                </body>
-                </html>
-            `);
-            
-            printWindow.document.close();
-            printWindow.print();
-            afficherNotification('Export PDF via impression', 'success');
-        }
-
-        function exporterHTML(donnees, fileName) {
-            const eleves = donnees.eleves || donnees;
-            const htmlContent = `
-                <!DOCTYPE html>
-                <html lang="fr">
-                <head>
-                    <meta charset="UTF-8">
-                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                    <title>Liste des élèves - ${fileName}</title>
-                    <style>
-                        body { font-family: Arial, sans-serif; margin: 20px; background: #f5f5f5; }
                         .container { max-width: 1200px; margin: 0 auto; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
                         h1 { color: #333; text-align: center; }
                         .stats { margin: 20px 0; padding: 15px; background: #e8f5e8; border-radius: 8px; }
@@ -1107,7 +1545,40 @@
                         .status-approved { color: #28a745; font-weight: bold; }
                         .status-pending { color: #ffc107; font-weight: bold; }
                         .status-rejected { color: #dc3545; font-weight: bold; }
-                    </style>
+                    
+        /* Amélioration de la compatibilité des icônes */
+        .icon-fallback {
+            display: inline-block;
+            width: 1em;
+            height: 1em;
+            text-align: center;
+            line-height: 1;
+        }
+
+        /* Fallback pour les emojis qui ne s'affichent pas */
+        .btn .emoji-icon {
+            display: inline-block;
+            margin-right: 5px;
+        }
+
+        /* Styles pour les icônes Font Awesome en fallback */
+        .fa-fallback {
+            display: none;
+        }
+
+        /* Amélioration de l'affichage des boutons avec icônes */
+        .btn-with-icon {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* Amélioration de l'affichage des emojis */
+        .emoji-icon {
+            font-size: 1.1em;
+            vertical-align: middle;
+        }
+</style>
                 </head>
                 <body>
                     <div class="container">
@@ -1140,7 +1611,112 @@
                             </div>
                         `).join('')}
                     </div>
-                </body>
+                
+    <script>
+    // Script de détection et correction des icônes manquantes
+    document.addEventListener('DOMContentLoaded', function() {
+        // Fonction pour détecter si un emoji s'affiche correctement
+        function isEmojiSupported(emoji) {
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            ctx.font = '16px Arial';
+            ctx.fillText(emoji, 0, 16);
+            const data = ctx.getImageData(0, 0, 16, 16).data;
+            return data.some(pixel => pixel !== 0);
+        }
+        
+        // Vérifier et corriger les icônes
+        function fixMissingIcons() {
+            const emojiElements = document.querySelectorAll('.emoji-icon');
+            
+            emojiElements.forEach(element => {
+                const emoji = element.textContent;
+                if (!isEmojiSupported(emoji)) {
+                    // Masquer l'emoji et afficher l'icône Font Awesome
+                    element.style.display = 'none';
+                    const fallbackIcon = element.nextElementSibling;
+                    if (fallbackIcon && fallbackIcon.classList.contains('fa-fallback')) {
+                        fallbackIcon.style.display = 'inline-block';
+                    }
+                }
+            });
+        }
+        
+        // Exécuter après un délai pour laisser le temps au rendu
+        setTimeout(fixMissingIcons, 100);
+        
+        // Réexécuter si nécessaire
+        window.addEventListener('load', fixMissingIcons);
+    });
+    </script>
+</body>
+                </html>
+            `;
+            
+            const dataBlob = new Blob([htmlContent], {type: 'text/html'});
+            const url = URL.createObjectURL(dataBlob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `${fileName}.html`;
+            link.click();
+            URL.revokeObjectURL(url);
+            afficherNotification('Export PDF réussi (format HTML)', 'success');
+        }
+
+        function exporterHTML(donnees, fileName) {
+            const eleves = donnees.eleves || donnees;
+            
+            let htmlContent = `
+                <!DOCTYPE html>
+                <html>
+                <head><title>Liste des élèves</title></head>
+                <body>
+                    <h1>Liste des élèves</h1>
+                    ${eleves.map(eleve => `
+                        <div>
+                            <h3>${eleve.nom}</h3>
+                            <p>ID: ${eleve.id}, Niveau: ${eleve.niveau}, Statut: ${eleve.statut}</p>
+                        </div>
+                    `).join('')}
+                
+    <script>
+    // Script de détection et correction des icônes manquantes
+    document.addEventListener('DOMContentLoaded', function() {
+        // Fonction pour détecter si un emoji s'affiche correctement
+        function isEmojiSupported(emoji) {
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            ctx.font = '16px Arial';
+            ctx.fillText(emoji, 0, 16);
+            const data = ctx.getImageData(0, 0, 16, 16).data;
+            return data.some(pixel => pixel !== 0);
+        }
+        
+        // Vérifier et corriger les icônes
+        function fixMissingIcons() {
+            const emojiElements = document.querySelectorAll('.emoji-icon');
+            
+            emojiElements.forEach(element => {
+                const emoji = element.textContent;
+                if (!isEmojiSupported(emoji)) {
+                    // Masquer l'emoji et afficher l'icône Font Awesome
+                    element.style.display = 'none';
+                    const fallbackIcon = element.nextElementSibling;
+                    if (fallbackIcon && fallbackIcon.classList.contains('fa-fallback')) {
+                        fallbackIcon.style.display = 'inline-block';
+                    }
+                }
+            });
+        }
+        
+        // Exécuter après un délai pour laisser le temps au rendu
+        setTimeout(fixMissingIcons, 100);
+        
+        // Réexécuter si nécessaire
+        window.addEventListener('load', fixMissingIcons);
+    });
+    </script>
+</body>
                 </html>
             `;
             
@@ -1168,187 +1744,80 @@
                             <p>ID: ${eleve.id}, Niveau: ${eleve.niveau}, Statut: ${eleve.statut}</p>
                         </div>
                     `).join('')}
-                </body>
+                
+    <script>
+    // Script de détection et correction des icônes manquantes
+    document.addEventListener('DOMContentLoaded', function() {
+        // Fonction pour détecter si un emoji s'affiche correctement
+        function isEmojiSupported(emoji) {
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            ctx.font = '16px Arial';
+            ctx.fillText(emoji, 0, 16);
+            const data = ctx.getImageData(0, 0, 16, 16).data;
+            return data.some(pixel => pixel !== 0);
+        }
+        
+        // Vérifier et corriger les icônes
+        function fixMissingIcons() {
+            const emojiElements = document.querySelectorAll('.emoji-icon');
+            
+            emojiElements.forEach(element => {
+                const emoji = element.textContent;
+                if (!isEmojiSupported(emoji)) {
+                    // Masquer l'emoji et afficher l'icône Font Awesome
+                    element.style.display = 'none';
+                    const fallbackIcon = element.nextElementSibling;
+                    if (fallbackIcon && fallbackIcon.classList.contains('fa-fallback')) {
+                        fallbackIcon.style.display = 'inline-block';
+                    }
+                }
+            });
+        }
+        
+        // Exécuter après un délai pour laisser le temps au rendu
+        setTimeout(fixMissingIcons, 100);
+        
+        // Réexécuter si nécessaire
+        window.addEventListener('load', fixMissingIcons);
+    });
+    </script>
+</body>
                 </html>
             `;
         }
 
-        function afficherEleves() {
-            const grid = document.getElementById('photosGrid');
-            grid.innerHTML = eleves.map(eleve => `
-                <div class="photo-card" data-id="${eleve.id}">
-                    <div class="photo-image">
-                        ${eleve.imageUrl ? 
-                            `<img src="${eleve.imageUrl}" alt="Photo de ${eleve.nom}" class="photo-img">` :
-                            `<div class="photo-placeholder">👤</div>`
-                        }
-                        <div class="photo-overlay">
-                            <div class="photo-actions">
-                                <button class="btn btn-sm btn-outline-success" onclick="afficherPhoto('${eleve.nom}', ${eleve.id})" title="Voir la photo">
-                                    👁️ Voir
-                                </button>
-                                <button class="btn btn-sm btn-outline-warning" onclick="ouvrirModaleEdition('${eleve.nom}', ${eleve.id})" title="Modifier">
-                                    ✏️ Modifier
-                                </button>
-                                <button class="btn btn-sm btn-outline-danger" onclick="supprimerEleve('${eleve.nom}', ${eleve.id})" title="Supprimer">
-                                    🗑️ Supprimer
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="photo-info">
-                        <div class="student-name">${eleve.nom}</div>
-                        <div class="student-details">
-                            Niveau: ${eleve.niveau} | Date: ${formaterDate(eleve.date)}
-                        </div>
-                        <div class="photo-meta">
-                            <span class="photo-status status-${eleve.statut}">
-                                ${getStatutTexte(eleve.statut)}
-                            </span>
-                            <span>ID: ${eleve.id}</span>
-                        </div>
-                    </div>
-                </div>
-            `).join('');
-        }
+        function importerListeEleves() {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = '.csv,.json';
+            input.onchange = function(event) {
+                const file = event.target.files[0];
+                if (!file) return;
 
-        function filtrerEleves() {
-            const searchTerm = document.getElementById('searchBox').value.toLowerCase();
-            const levelFilter = document.getElementById('levelFilter').value;
-
-            const elevesFiltres = eleves.filter(eleve => {
-                const matchesSearch = eleve.nom.toLowerCase().includes(searchTerm);
-                const matchesLevel = !levelFilter || eleve.niveau === levelFilter;
-                return matchesSearch && matchesLevel;
-            });
-
-            // Mise à jour temporaire de l'affichage
-            const elevesOriginaux = eleves;
-            eleves = elevesFiltres;
-            afficherEleves();
-            setTimeout(() => {
-                eleves = elevesOriginaux;
-            }, 100);
-        }
-
-        function gererUploadPhoto(event) {
-            const file = event.target.files[0];
-            if (!file) return;
-
-            if (!file.type.startsWith('image/')) {
-                afficherNotification('Veuillez sélectionner une image valide', 'error');
-                return;
-            }
-
-            if (file.size > 5 * 1024 * 1024) {
-                afficherNotification('L\'image est trop volumineuse (max 5MB)', 'error');
-                return;
-            }
-
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                const modalPhoto = document.getElementById('modalPhoto');
-                const modalPhotoPlaceholder = document.getElementById('modalPhotoPlaceholder');
-                
-                modalPhoto.src = e.target.result;
-                modalPhoto.style.display = 'block';
-                modalPhotoPlaceholder.style.display = 'none';
-                
-                if (eleveCourant) {
-                    eleveCourant.imageUrl = e.target.result;
-                }
-                
-                afficherNotification('Photo chargée avec succès', 'success');
-            };
-            reader.readAsDataURL(file);
-        }
-
-        function sauvegarderPhoto() {
-            if (!eleveCourant) return;
-
-            // Mettre à jour les données
-            const index = eleves.findIndex(e => e.id === eleveCourant.id);
-            if (index !== -1) {
-                eleves[index] = { ...eleveCourant };
-                afficherEleves();
-                fermerModal();
-                afficherNotification('Photo sauvegardée avec succès', 'success');
-            }
-        }
-
-        function gererAjoutEleve(event) {
-            event.preventDefault();
-            
-            const nom = document.getElementById('newStudentName').value;
-            const niveau = document.getElementById('newStudentLevel').value;
-            const notes = document.getElementById('newPhotoNotes').value;
-            const file = document.getElementById('newPhotoFile').files[0];
-
-            if (!nom || !niveau) {
-                afficherNotification('Veuillez remplir tous les champs obligatoires', 'error');
-                return;
-            }
-
-            const nouvelEleve = {
-                id: Math.max(...eleves.map(e => e.id)) + 1,
-                nom: nom,
-                niveau: niveau,
-                date: new Date().toISOString().split('T')[0],
-                statut: 'pending',
-                notes: notes,
-                imageUrl: null
-            };
-
-            // Traiter l'image si fournie
-            if (file) {
                 const reader = new FileReader();
                 reader.onload = function(e) {
-                    nouvelEleve.imageUrl = e.target.result;
-                    eleves.unshift(nouvelEleve);
-                    afficherEleves();
-                    fermerModal();
-                    afficherNotification(`${nom} ajouté avec succès`, 'success');
+                    try {
+                        if (file.name.endsWith('.json')) {
+                            const data = JSON.parse(e.target.result);
+                            const nouveauxEleves = data.eleves || data;
+                            eleves = [...eleves, ...nouveauxEleves];
+                        } else if (file.name.endsWith('.csv')) {
+                            const csvData = e.target.result;
+                            const nouveauxEleves = parserCSV(csvData);
+                            eleves = [...eleves, ...nouveauxEleves];
+                        }
+                        
+                        sauvegarderDonnees();
+                        afficherEleves();
+                        afficherNotification(`${file.name} importé avec succès`, 'success');
+                    } catch (error) {
+                        afficherNotification('Erreur lors de l\'import', 'error');
+                    }
                 };
-                reader.readAsDataURL(file);
-            } else {
-                eleves.unshift(nouvelEleve);
-                afficherEleves();
-                fermerModal();
-                afficherNotification(`${nom} ajouté avec succès`, 'success');
-            }
-        }
-
-        function fermerModal() {
-            document.getElementById('photoModal').style.display = 'none';
-            document.getElementById('addModal').style.display = 'none';
-            document.getElementById('exportModal').style.display = 'none';
-            document.getElementById('previewModal').style.display = 'none';
-            eleveCourant = null;
-            modeEdition = false;
-        }
-
-        function afficherNotification(message, type = 'info') {
-            const notification = document.getElementById('notification');
-            notification.textContent = message;
-            notification.className = `notification ${type}`;
-            notification.classList.add('show');
-            
-            setTimeout(() => {
-                notification.classList.remove('show');
-            }, 3000);
-        }
-
-        function formaterDate(dateString) {
-            return new Date(dateString).toLocaleDateString('fr-FR');
-        }
-
-        function getStatutTexte(statut) {
-            const statuts = {
-                'approved': 'Approuvée',
-                'pending': 'En attente',
-                'rejected': 'Rejetée'
+                reader.readAsText(file);
             };
-            return statuts[statut] || statut;
+            input.click();
         }
 
         function parserCSV(csvData) {
@@ -1390,5 +1859,43 @@
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+    // Script de détection et correction des icônes manquantes
+    document.addEventListener('DOMContentLoaded', function() {
+        // Fonction pour détecter si un emoji s'affiche correctement
+        function isEmojiSupported(emoji) {
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            ctx.font = '16px Arial';
+            ctx.fillText(emoji, 0, 16);
+            const data = ctx.getImageData(0, 0, 16, 16).data;
+            return data.some(pixel => pixel !== 0);
+        }
+        
+        // Vérifier et corriger les icônes
+        function fixMissingIcons() {
+            const emojiElements = document.querySelectorAll('.emoji-icon');
+            
+            emojiElements.forEach(element => {
+                const emoji = element.textContent;
+                if (!isEmojiSupported(emoji)) {
+                    // Masquer l'emoji et afficher l'icône Font Awesome
+                    element.style.display = 'none';
+                    const fallbackIcon = element.nextElementSibling;
+                    if (fallbackIcon && fallbackIcon.classList.contains('fa-fallback')) {
+                        fallbackIcon.style.display = 'inline-block';
+                    }
+                }
+            });
+        }
+        
+        // Exécuter après un délai pour laisser le temps au rendu
+        setTimeout(fixMissingIcons, 100);
+        
+        // Réexécuter si nécessaire
+        window.addEventListener('load', fixMissingIcons);
+    });
+    </script>
 </body>
 </html> 

@@ -4,7 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>�� Liste des élèves - ECOLE DU CAP</title>
-    <style>
+        <!-- Font Awesome CSS (fallback pour les icônes) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    
+<style>
         * {
             margin: 0;
             padding: 0;
@@ -500,7 +503,40 @@
         .empty-state p {
             margin-bottom: 30px;
         }
-    </style>
+    
+        /* Amélioration de la compatibilité des icônes */
+        .icon-fallback {
+            display: inline-block;
+            width: 1em;
+            height: 1em;
+            text-align: center;
+            line-height: 1;
+        }
+
+        /* Fallback pour les emojis qui ne s'affichent pas */
+        .btn .emoji-icon {
+            display: inline-block;
+            margin-right: 5px;
+        }
+
+        /* Styles pour les icônes Font Awesome en fallback */
+        .fa-fallback {
+            display: none;
+        }
+
+        /* Amélioration de l'affichage des boutons avec icônes */
+        .btn-with-icon {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* Amélioration de l'affichage des emojis */
+        .emoji-icon {
+            font-size: 1.1em;
+            vertical-align: middle;
+        }
+</style>
 </head>
 <body>
     <!-- Barre de navigation -->
@@ -739,11 +775,9 @@
                         <a href="student_profile_page.html?id=${student.id}" class="action-btn view">
                             👁️ Voir
                         </a>
-                        <button class="action-btn edit" onclick="editStudent('${student.id}')">
-                            ✏️ Modifier
+                        <button class="action-btn edit" onclick="editStudent('${student.id}')"> class="btn-with-icon"><span class="emoji-icon">✏️</span><i class="fas fa-edit fa-fallback"></i>Modifier
                         </button>
-                        <button class="action-btn delete" onclick="deleteStudent('${student.id}')">
-                            🗑️ Supprimer
+                        <button class="action-btn delete" onclick="deleteStudent('${student.id}')"> class="btn-with-icon"><span class="emoji-icon">🗑️</span><i class="fas fa-trash fa-fallback"></i>Supprimer
                         </button>
                     </td>
                 </tr>
@@ -935,6 +969,44 @@
                 menu.classList.remove('active');
             }
         });
+    </script>
+
+    <script>
+    // Script de détection et correction des icônes manquantes
+    document.addEventListener('DOMContentLoaded', function() {
+        // Fonction pour détecter si un emoji s'affiche correctement
+        function isEmojiSupported(emoji) {
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            ctx.font = '16px Arial';
+            ctx.fillText(emoji, 0, 16);
+            const data = ctx.getImageData(0, 0, 16, 16).data;
+            return data.some(pixel => pixel !== 0);
+        }
+        
+        // Vérifier et corriger les icônes
+        function fixMissingIcons() {
+            const emojiElements = document.querySelectorAll('.emoji-icon');
+            
+            emojiElements.forEach(element => {
+                const emoji = element.textContent;
+                if (!isEmojiSupported(emoji)) {
+                    // Masquer l'emoji et afficher l'icône Font Awesome
+                    element.style.display = 'none';
+                    const fallbackIcon = element.nextElementSibling;
+                    if (fallbackIcon && fallbackIcon.classList.contains('fa-fallback')) {
+                        fallbackIcon.style.display = 'inline-block';
+                    }
+                }
+            });
+        }
+        
+        // Exécuter après un délai pour laisser le temps au rendu
+        setTimeout(fixMissingIcons, 100);
+        
+        // Réexécuter si nécessaire
+        window.addEventListener('load', fixMissingIcons);
+    });
     </script>
 </body>
 </html> 

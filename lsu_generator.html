@@ -4,7 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>🎓 Générateur de Commentaires LSU - École Primaire</title>
-    <style>
+        <!-- Font Awesome CSS (fallback pour les icônes) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    
+<style>
         /* Barre de Navigation LSU */
         .nav-bar {
             background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
@@ -761,7 +764,123 @@
         .notification.error {
             background: #f44336;
         }
-    </style>
+
+        /* Styles pour la recherche d'élève */
+        .search-container {
+            position: relative;
+        }
+
+        .search-results {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            border: 2px solid #ddd;
+            border-top: none;
+            border-radius: 0 0 8px 8px;
+            max-height: 200px;
+            overflow-y: auto;
+            z-index: 1000;
+            display: none;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .search-results.show {
+            display: block;
+        }
+
+        .search-result-item {
+            padding: 12px 15px;
+            cursor: pointer;
+            border-bottom: 1px solid #f0f0f0;
+            transition: background-color 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .search-result-item:last-child {
+            border-bottom: none;
+        }
+
+        .search-result-item:hover {
+            background-color: #f8f9fa;
+        }
+
+        .search-result-item.selected {
+            background-color: #e3f2fd;
+            color: #1565c0;
+        }
+
+        .student-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .student-info {
+            flex: 1;
+        }
+
+        .student-name {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 2px;
+        }
+
+        .student-details {
+            font-size: 0.85em;
+            color: #666;
+        }
+
+        .form-help {
+            color: #666;
+            font-size: 0.85em;
+            margin-top: 5px;
+            font-style: italic;
+        }
+    
+        /* Amélioration de la compatibilité des icônes */
+        .icon-fallback {
+            display: inline-block;
+            width: 1em;
+            height: 1em;
+            text-align: center;
+            line-height: 1;
+        }
+
+        /* Fallback pour les emojis qui ne s'affichent pas */
+        .btn .emoji-icon {
+            display: inline-block;
+            margin-right: 5px;
+        }
+
+        /* Styles pour les icônes Font Awesome en fallback */
+        .fa-fallback {
+            display: none;
+        }
+
+        /* Amélioration de l'affichage des boutons avec icônes */
+        .btn-with-icon {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* Amélioration de l'affichage des emojis */
+        .emoji-icon {
+            font-size: 1.1em;
+            vertical-align: middle;
+        }
+</style>
 </head>
 <body>
     <!-- Barre de Navigation LSU -->
@@ -769,34 +888,34 @@
         <div class="nav-container">
             <div class="nav-logo">
                 <a href="index.html" class="logo-link">
-                    <span class="logo-icon">🎓</span>
+                    <span class="logo-icon"><span class="emoji-icon">🎓</span><i class="fas fa-graduation-cap fa-fallback"></i></span>
                     <span class="logo-text">LSU Pro</span>
                 </a>
             </div>
             
             <div class="nav-menu" id="navMenu">
                 <a href="index.html" class="nav-link">
-                    <span class="nav-icon">🏠</span>
+                    <span class="nav-icon"><span class="emoji-icon">🏠</span><i class="fas fa-home fa-fallback"></i></span>
                     Accueil
                 </a>
                 <a href="improved_lsu_generator.html" class="nav-link">
-                    <span class="nav-icon">📝</span>
+                    <span class="nav-icon"><span class="emoji-icon">📝</span><i class="fas fa-file-alt fa-fallback"></i></span>
                     Générateur LSU
                 </a>
                 <a href="student_profile_page.html" class="nav-link">
-                    <span class="nav-icon">👤</span>
+                    <span class="nav-icon"><span class="emoji-icon">👤</span><i class="fas fa-user fa-fallback"></i></span>
                     Profils Élèves
                 </a>
                 <a href="photos_classe_pro.html" class="nav-link">
-                    <span class="nav-icon">📸</span>
+                    <span class="nav-icon"><span class="emoji-icon">📸</span><i class="fas fa-camera fa-fallback"></i></span>
                     Photos Classe
                 </a>
                 <a href="lsu_connection_test.html" class="nav-link">
-                    <span class="nav-icon">🔧</span>
+                    <span class="nav-icon"><span class="emoji-icon">🔧</span><i class="fas fa-cog fa-fallback"></i></span>
                     Tests Connexion
                 </a>
                 <a href="test_navigation.html" class="nav-link">
-                    <span class="nav-icon">🧭</span>
+                    <span class="nav-icon"><span class="emoji-icon">🧭</span><i class="fas fa-compass fa-fallback"></i></span>
                     Navigation
                 </a>
             </div>
@@ -831,6 +950,16 @@
             <div class="main-content">
                 <div class="form-section">
                     <h2 class="section-title">📝 Informations sur l'élève</h2>
+                    
+                    <!-- Section de recherche d'élève -->
+                    <div class="form-group">
+                        <label for="studentSearch">🔍 Rechercher un élève :</label>
+                        <div class="search-container">
+                            <input type="text" id="studentSearch" placeholder="Tapez le nom d'un élève..." autocomplete="off">
+                            <div id="searchResults" class="search-results"></div>
+                        </div>
+                        <small class="form-help">Sélectionnez un élève pour remplir automatiquement les champs</small>
+                    </div>
                     
                     <div class="form-group">
                         <label for="studentName">Prénom de l'élève :</label>
@@ -915,8 +1044,7 @@
                         <textarea id="specificPoints" rows="3" placeholder="Mentionnez des éléments particuliers à cet élève..."></textarea>
                     </div>
 
-                    <button type="button" class="generate-btn" onclick="generateComment()">
-                        ✨ Générer le commentaire
+                    <button type="button" class="generate-btn" onclick="generateComment()"> class="btn-with-icon"><span class="emoji-icon">✨</span><i class="fas fa-magic fa-fallback"></i>Générer le commentaire
                     </button>
                 </div>
 
@@ -944,8 +1072,7 @@
                         </div>
                     </div>
 
-                    <button type="button" class="copy-btn" onclick="copyComment()" style="display: none;" id="copyBtn">
-                        📋 Copier le commentaire
+                    <button type="button" class="copy-btn" onclick="copyComment()" style="display: none;" id="copyBtn"> class="btn-with-icon"><span class="emoji-icon">📋</span><i class="fas fa-list fa-fallback"></i>Copier le commentaire
                     </button>
                 </div>
             </div>
@@ -978,7 +1105,7 @@
     <div id="studentsPage" class="page">
         <div class="student-list">
             <h1>👥 Gestion des Élèves</h1>
-            <button class="add-student-btn" onclick="openAddStudentModal()">➕ Ajouter un élève</button>
+            <button class="add-student-btn" onclick="openAddStudentModal()"> class="btn-with-icon"><span class="emoji-icon">➕</span><i class="fas fa-plus fa-fallback"></i>Ajouter un élève</button>
             
             <div id="studentsList">
                 <!-- Liste dynamique des élèves -->
@@ -1021,8 +1148,8 @@
                     </select>
                 </div>
 
-                <button class="generate-btn" onclick="testConnections()">🔍 Tester les connexions</button>
-                <button class="generate-btn" onclick="saveSettings()" style="margin-top: 10px;">💾 Sauvegarder</button>
+                <button class="generate-btn" onclick="testConnections()"> class="btn-with-icon"><span class="emoji-icon">🔍</span><i class="fas fa-search fa-fallback"></i>Tester les connexions</button>
+                <button class="generate-btn" onclick="saveSettings()" style="margin-top: 10px;"> class="btn-with-icon"><span class="emoji-icon">💾</span><i class="fas fa-save fa-fallback"></i>Sauvegarder</button>
             </div>
         </div>
     </div>
@@ -1059,7 +1186,7 @@
                 <input type="date" id="newStudentBirthDate">
             </div>
 
-            <button class="generate-btn" onclick="addStudent()">➕ Ajouter l'élève</button>
+            <button class="generate-btn" onclick="addStudent()"> class="btn-with-icon"><span class="emoji-icon">➕</span><i class="fas fa-plus fa-fallback"></i>Ajouter l'élève</button>
         </div>
     </div>
 
@@ -1106,6 +1233,52 @@
         let generatedCount = 0;
         let selectedLevel = '';
         let students = JSON.parse(localStorage.getItem('students')) || [];
+
+        // Données d'élèves pour la recherche (exemple)
+        const eleves = [
+            {
+                prenom: "Léa",
+                niveau: "CE2",
+                periode: "Trimestre 2",
+                niveauGeneral: "Très bonne maîtrise",
+                pointsForts: ["Participation active", "Créativité", "Autonomie"]
+            },
+            {
+                prenom: "Thomas",
+                niveau: "CM1",
+                periode: "Trimestre 1",
+                niveauGeneral: "Maîtrise satisfaisante",
+                pointsForts: ["Bonne écoute", "Esprit d'entraide"]
+            },
+            {
+                prenom: "Emma",
+                niveau: "CP",
+                periode: "Trimestre 3",
+                niveauGeneral: "Maîtrise fragile",
+                pointsForts: ["Progrès constants", "Participation active"]
+            },
+            {
+                prenom: "Lucas",
+                niveau: "CE1",
+                periode: "Trimestre 2",
+                niveauGeneral: "Très bonne maîtrise",
+                pointsForts: ["Autonomie", "Créativité", "Esprit d'entraide"]
+            },
+            {
+                prenom: "Sarah",
+                niveau: "CM2",
+                periode: "Trimestre 1",
+                niveauGeneral: "Maîtrise satisfaisante",
+                pointsForts: ["Bonne écoute", "Progrès constants"]
+            },
+            {
+                prenom: "Hugo",
+                niveau: "CP",
+                periode: "Trimestre 2",
+                niveauGeneral: "Maîtrise insuffisante",
+                pointsForts: ["Participation active"]
+            }
+        ];
 
         // Configuration par défaut
         let config = {
@@ -1682,6 +1855,7 @@
             showPage('generator');
             loadUrlParams();
             updateConnectionStatus();
+            initStudentSearch(); // Initialiser la recherche d'élève
         });
 
         // Fermer le modal en cliquant à l'extérieur
@@ -1691,6 +1865,281 @@
                 closeAddStudentModal();
             }
         }
+
+        // ===== FONCTIONS DE RECHERCHE D'ÉLÈVE =====
+
+        /**
+         * Initialise la recherche d'élève
+         */
+        function initStudentSearch() {
+            const searchInput = document.getElementById('studentSearch');
+            const searchResults = document.getElementById('searchResults');
+            
+            if (!searchInput) return;
+            
+            // Événement de saisie pour la recherche
+            searchInput.addEventListener('input', function() {
+                const query = this.value.trim().toLowerCase();
+                
+                if (query.length < 2) {
+                    hideSearchResults();
+                    return;
+                }
+                
+                const results = searchStudents(query);
+                displaySearchResults(results);
+            });
+            
+            // Événement de focus pour afficher les résultats
+            searchInput.addEventListener('focus', function() {
+                const query = this.value.trim().toLowerCase();
+                if (query.length >= 2) {
+                    const results = searchStudents(query);
+                    displaySearchResults(results);
+                }
+            });
+            
+            // Fermer les résultats en cliquant à l'extérieur
+            document.addEventListener('click', function(event) {
+                if (!searchInput.contains(event.target) && !searchResults.contains(event.target)) {
+                    hideSearchResults();
+                }
+            });
+            
+            // Navigation au clavier
+            searchInput.addEventListener('keydown', function(event) {
+                const results = document.querySelectorAll('.search-result-item');
+                const selected = document.querySelector('.search-result-item.selected');
+                
+                switch(event.key) {
+                    case 'ArrowDown':
+                        event.preventDefault();
+                        navigateSearchResults(results, selected, 1);
+                        break;
+                    case 'ArrowUp':
+                        event.preventDefault();
+                        navigateSearchResults(results, selected, -1);
+                        break;
+                    case 'Enter':
+                        event.preventDefault();
+                        if (selected) {
+                            selectStudentFromSearch(selected.dataset.index);
+                        }
+                        break;
+                    case 'Escape':
+                        hideSearchResults();
+                        break;
+                }
+            });
+        }
+
+        /**
+         * Recherche les élèves selon la requête
+         * @param {string} query - Requête de recherche
+         * @returns {Array} - Résultats filtrés
+         */
+        function searchStudents(query) {
+            return eleves.filter(eleve => 
+                eleve.prenom.toLowerCase().includes(query) ||
+                eleve.niveau.toLowerCase().includes(query) ||
+                eleve.periode.toLowerCase().includes(query)
+            ).slice(0, 5); // Limiter à 5 résultats
+        }
+
+        /**
+         * Affiche les résultats de recherche
+         * @param {Array} results - Résultats à afficher
+         */
+        function displaySearchResults(results) {
+            const searchResults = document.getElementById('searchResults');
+            
+            if (results.length === 0) {
+                searchResults.innerHTML = '<div class="search-result-item">Aucun élève trouvé</div>';
+                searchResults.classList.add('show');
+                return;
+            }
+            
+            searchResults.innerHTML = results.map((eleve, index) => `
+                <div class="search-result-item" data-index="${index}" onclick="selectStudentFromSearch(${index})">
+                    <div class="student-avatar">${eleve.prenom.charAt(0)}</div>
+                    <div class="student-info">
+                        <div class="student-name">${eleve.prenom}</div>
+                        <div class="student-details">${eleve.niveau} • ${eleve.periode}</div>
+                    </div>
+                </div>
+            `).join('');
+            
+            searchResults.classList.add('show');
+        }
+
+        /**
+         * Cache les résultats de recherche
+         */
+        function hideSearchResults() {
+            const searchResults = document.getElementById('searchResults');
+            searchResults.classList.remove('show');
+        }
+
+        /**
+         * Navigation dans les résultats avec les flèches
+         * @param {NodeList} results - Éléments de résultats
+         * @param {Element} selected - Élément actuellement sélectionné
+         * @param {number} direction - Direction (1 = bas, -1 = haut)
+         */
+        function navigateSearchResults(results, selected, direction) {
+            if (results.length === 0) return;
+            
+            let nextIndex = 0;
+            
+            if (selected) {
+                const currentIndex = Array.from(results).indexOf(selected);
+                nextIndex = (currentIndex + direction + results.length) % results.length;
+                selected.classList.remove('selected');
+            }
+            
+            results[nextIndex].classList.add('selected');
+            results[nextIndex].scrollIntoView({ block: 'nearest' });
+        }
+
+        /**
+         * Sélectionne un élève depuis la recherche
+         * @param {number} index - Index de l'élève dans les résultats
+         */
+        function selectStudentFromSearch(index) {
+            const results = searchStudents(document.getElementById('studentSearch').value);
+            const eleve = results[index];
+            
+            if (!eleve) return;
+            
+            // Remplir automatiquement les champs
+            fillStudentData(eleve);
+            
+            // Masquer les résultats
+            hideSearchResults();
+            
+            // Vider le champ de recherche
+            document.getElementById('studentSearch').value = '';
+            
+            // Notification de succès
+            showNotification(`Élève ${eleve.prenom} sélectionné !`, 'success');
+        }
+
+        /**
+         * Remplit automatiquement les champs avec les données de l'élève
+         * @param {Object} eleve - Données de l'élève
+         */
+        function fillStudentData(eleve) {
+            // Remplir les champs de base
+            document.getElementById('studentName').value = eleve.prenom;
+            document.getElementById('studentLevel').value = eleve.niveau;
+            document.getElementById('period').value = eleve.periode;
+            
+            // Définir le niveau général selon les données
+            setLevelFromData(eleve.niveauGeneral);
+            
+            // Cocher les points forts correspondants
+            checkStrengthsFromData(eleve.pointsForts);
+            
+            // Sauvegarder les données
+            saveFormData();
+        }
+
+        /**
+         * Définit le niveau selon les données de l'élève
+         * @param {string} niveauGeneral - Niveau général de l'élève
+         */
+        function setLevelFromData(niveauGeneral) {
+            // Réinitialiser tous les boutons
+            document.querySelectorAll('.level-btn').forEach(btn => btn.classList.remove('active'));
+            
+            // Mapper le niveau général vers les boutons
+            let levelButton = null;
+            
+            if (niveauGeneral.includes('insuffisante')) {
+                levelButton = document.querySelector('[data-level="insufficient"]');
+                selectedLevel = 'insufficient';
+            } else if (niveauGeneral.includes('fragile')) {
+                levelButton = document.querySelector('[data-level="fragile"]');
+                selectedLevel = 'fragile';
+            } else if (niveauGeneral.includes('satisfaisante')) {
+                levelButton = document.querySelector('[data-level="satisfactory"]');
+                selectedLevel = 'satisfactory';
+            } else if (niveauGeneral.includes('Très bonne') || niveauGeneral.includes('excellente')) {
+                levelButton = document.querySelector('[data-level="excellent"]');
+                selectedLevel = 'excellent';
+            }
+            
+            if (levelButton) {
+                levelButton.classList.add('active');
+            }
+        }
+
+        /**
+         * Coche les points forts selon les données de l'élève
+         * @param {Array} pointsForts - Points forts de l'élève
+         */
+        function checkStrengthsFromData(pointsForts) {
+            // Réinitialiser toutes les checkboxes
+            document.querySelectorAll('.checkbox-item input[type="checkbox"]').forEach(cb => cb.checked = false);
+            
+            // Mapper les points forts vers les checkboxes
+            const strengthMapping = {
+                'Participation active': 'participation',
+                'Autonomie': 'autonomie',
+                'Progrès constants': 'progres',
+                'Créativité': 'creativite',
+                'Bonne écoute': 'ecoute',
+                'Esprit d\'entraide': 'entraide'
+            };
+            
+            pointsForts.forEach(pointFort => {
+                const checkboxId = strengthMapping[pointFort];
+                if (checkboxId) {
+                    const checkbox = document.getElementById(checkboxId);
+                    if (checkbox) {
+                        checkbox.checked = true;
+                    }
+                }
+            });
+        }
+    </script>
+
+    <script>
+    // Script de détection et correction des icônes manquantes
+    document.addEventListener('DOMContentLoaded', function() {
+        // Fonction pour détecter si un emoji s'affiche correctement
+        function isEmojiSupported(emoji) {
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            ctx.font = '16px Arial';
+            ctx.fillText(emoji, 0, 16);
+            const data = ctx.getImageData(0, 0, 16, 16).data;
+            return data.some(pixel => pixel !== 0);
+        }
+        
+        // Vérifier et corriger les icônes
+        function fixMissingIcons() {
+            const emojiElements = document.querySelectorAll('.emoji-icon');
+            
+            emojiElements.forEach(element => {
+                const emoji = element.textContent;
+                if (!isEmojiSupported(emoji)) {
+                    // Masquer l'emoji et afficher l'icône Font Awesome
+                    element.style.display = 'none';
+                    const fallbackIcon = element.nextElementSibling;
+                    if (fallbackIcon && fallbackIcon.classList.contains('fa-fallback')) {
+                        fallbackIcon.style.display = 'inline-block';
+                    }
+                }
+            });
+        }
+        
+        // Exécuter après un délai pour laisser le temps au rendu
+        setTimeout(fixMissingIcons, 100);
+        
+        // Réexécuter si nécessaire
+        window.addEventListener('load', fixMissingIcons);
+    });
     </script>
 </body>
 </html>
