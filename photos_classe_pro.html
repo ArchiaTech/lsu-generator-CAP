@@ -91,114 +91,18 @@
             border-radius: 8px;
             transition: all 0.3s;
             font-weight: 500;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .nav-link::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: left 0.5s;
-        }
-
-        .nav-link:hover::before {
-            left: 100%;
         }
 
         .nav-link:hover {
             background: rgba(52, 152, 219, 0.2);
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
         }
 
         .nav-link.active {
             background: rgba(52, 152, 219, 0.3);
-            box-shadow: 0 0 15px rgba(52, 152, 219, 0.5);
         }
 
-        .nav-icon {
-            font-size: 1.2em;
-        }
-
-        .nav-toggle {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            gap: 4px;
-        }
-
-        .nav-toggle span {
-            width: 25px;
-            height: 3px;
-            background: white;
-            border-radius: 2px;
-            transition: all 0.3s;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .nav-menu {
-                position: fixed;
-                top: 70px;
-                left: -100%;
-                width: 100%;
-                height: calc(100vh - 70px);
-                background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
-                flex-direction: column;
-                padding: 20px;
-                transition: left 0.3s;
-                gap: 10px;
-            }
-
-            .nav-menu.active {
-                left: 0;
-            }
-
-            .nav-link {
-                width: 100%;
-                justify-content: center;
-                padding: 15px;
-                font-size: 1.1em;
-            }
-
-            .nav-toggle {
-                display: flex;
-            }
-
-            .nav-toggle.active span:nth-child(1) {
-                transform: rotate(45deg) translate(5px, 5px);
-            }
-
-            .nav-toggle.active span:nth-child(2) {
-                opacity: 0;
-            }
-
-            .nav-toggle.active span:nth-child(3) {
-                transform: rotate(-45deg) translate(7px, -6px);
-            }
-        }
-
-        /* Animation d'entrée */
-        @keyframes slideInDown {
-            from {
-                transform: translateY(-100%);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-
-        .nav-bar {
-            animation: slideInDown 0.5s ease-out;
-        }
-
+        /* Container principal */
         .container {
             max-width: 1400px;
             margin: 0 auto;
@@ -218,18 +122,13 @@
         .header h1 {
             font-size: 2.5em;
             margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-        }
-
-        .header p {
-            font-size: 1.2em;
-            opacity: 0.9;
         }
 
         .main-content {
             padding: 30px;
         }
 
+        /* Barre d'outils */
         .toolbar {
             display: flex;
             justify-content: space-between;
@@ -238,168 +137,81 @@
             padding: 20px;
             background: #f8f9fa;
             border-radius: 15px;
-            border: 2px solid #e9ecef;
+            flex-wrap: wrap;
+            gap: 15px;
         }
 
         .toolbar-left {
             display: flex;
             gap: 15px;
             align-items: center;
+            flex-wrap: wrap;
         }
 
         .toolbar-right {
             display: flex;
-            gap: 15px;
-            align-items: center;
-        }
-
-        .btn {
-            padding: 12px 20px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 1em;
-            font-weight: 500;
-            transition: all 0.3s;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .btn-primary {
-            background: #4CAF50;
-            color: white;
-        }
-
-        .btn-primary:hover {
-            background: #45a049;
-            transform: translateY(-2px);
-        }
-
-        .btn-secondary {
-            background: #6c757d;
-            color: white;
-        }
-
-        .btn-secondary:hover {
-            background: #5a6268;
-        }
-
-        .btn-warning {
-            background: #ffc107;
-            color: #212529;
-        }
-
-        .btn-warning:hover {
-            background: #e0a800;
-        }
-
-        .btn-danger {
-            background: #dc3545;
-            color: white;
-        }
-
-        .btn-danger:hover {
-            background: #c82333;
+            gap: 10px;
+            flex-wrap: wrap;
         }
 
         .search-box {
             padding: 10px 15px;
             border: 2px solid #ddd;
             border-radius: 8px;
-            font-size: 1em;
-            width: 300px;
-            transition: border-color 0.3s;
-        }
-
-        .search-box:focus {
-            outline: none;
-            border-color: #4CAF50;
+            font-size: 14px;
+            min-width: 200px;
         }
 
         .filter-select {
             padding: 10px 15px;
             border: 2px solid #ddd;
             border-radius: 8px;
-            font-size: 1em;
-            background: white;
-            cursor: pointer;
+            font-size: 14px;
         }
 
-        .filter-select:focus {
-            outline: none;
-            border-color: #4CAF50;
-        }
-
-        .stats-bar {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-
-        .stat-card {
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            border: 2px solid #e9ecef;
-            border-radius: 15px;
-            padding: 20px;
-            text-align: center;
-            transition: all 0.3s;
-        }
-
-        .stat-card:hover {
-            border-color: #4CAF50;
-            transform: translateY(-2px);
-        }
-
-        .stat-number {
-            font-size: 2.5em;
-            font-weight: bold;
-            color: #4CAF50;
-            margin-bottom: 10px;
-        }
-
-        .stat-label {
-            color: #666;
-            font-size: 0.9em;
-        }
-
+        /* Grille des photos */
         .photos-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 25px;
             margin-bottom: 30px;
         }
 
         .photo-card {
             background: white;
-            border: 2px solid #e9ecef;
             border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             overflow: hidden;
             transition: all 0.3s;
-            position: relative;
+            border: 2px solid transparent;
         }
 
         .photo-card:hover {
-            border-color: #4CAF50;
-            box-shadow: 0 10px 25px rgba(76, 175, 80, 0.2);
             transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            border-color: #4CAF50;
         }
 
         .photo-image {
-            width: 100%;
-            height: 200px;
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
             position: relative;
+            height: 200px;
             overflow: hidden;
         }
 
+        .photo-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
         .photo-placeholder {
-            font-size: 3em;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4em;
+            background: #f8f9fa;
             color: #ccc;
         }
 
@@ -409,10 +221,9 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0,0,0,0.5);
+            background: rgba(0,0,0,0.7);
             display: flex;
-            align-items: center;
-            justify-content: center;
+            align-items: flex-end;
             opacity: 0;
             transition: opacity 0.3s;
         }
@@ -422,8 +233,8 @@
         }
 
         .photo-actions {
-            display: flex;
-            gap: 10px;
+            width: 100%;
+            padding: 15px;
         }
 
         .photo-info {
@@ -440,7 +251,7 @@
         .student-details {
             color: #666;
             font-size: 0.9em;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
         }
 
         .photo-meta {
@@ -448,13 +259,11 @@
             justify-content: space-between;
             align-items: center;
             font-size: 0.8em;
-            color: #999;
         }
 
         .photo-status {
             padding: 4px 8px;
-            border-radius: 4px;
-            font-size: 0.8em;
+            border-radius: 12px;
             font-weight: 500;
         }
 
@@ -473,106 +282,45 @@
             color: #721c24;
         }
 
+        /* Modals */
         .modal {
             display: none;
             position: fixed;
-            z-index: 1000;
-            left: 0;
             top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0,0,0,0.5);
+            background: rgba(0,0,0,0.5);
+            z-index: 10000;
         }
 
         .modal-content {
-            background-color: white;
-            margin: 5% auto;
+            background: white;
+            margin: 50px auto;
             padding: 30px;
             border-radius: 15px;
-            width: 90%;
             max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
             position: relative;
         }
 
         .close {
             position: absolute;
+            top: 15px;
             right: 20px;
-            top: 20px;
             font-size: 28px;
             font-weight: bold;
             cursor: pointer;
-            color: #aaa;
+            color: #999;
         }
 
         .close:hover {
-            color: #000;
+            color: #333;
         }
 
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            color: #2c3e50;
-        }
-
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 12px;
-            border: 2px solid #ddd;
-            border-radius: 8px;
-            font-size: 1em;
-            transition: border-color 0.3s;
-        }
-
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: #4CAF50;
-        }
-
-        .file-upload {
-            border: 2px dashed #ddd;
-            border-radius: 8px;
-            padding: 40px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .file-upload:hover {
-            border-color: #4CAF50;
-            background: #f8f9fa;
-        }
-
-        .file-upload.dragover {
-            border-color: #4CAF50;
-            background: #e8f5e8;
-        }
-
-        .upload-icon {
-            font-size: 3em;
-            color: #ccc;
-            margin-bottom: 15px;
-        }
-
-        .upload-text {
-            color: #666;
-            font-size: 1.1em;
-        }
-
-        .upload-hint {
-            color: #999;
-            font-size: 0.9em;
-            margin-top: 10px;
-        }
-
+        /* Notifications */
         .notification {
             position: fixed;
             top: 20px;
@@ -581,10 +329,10 @@
             border-radius: 8px;
             color: white;
             font-weight: 500;
-            z-index: 1001;
             transform: translateX(100%);
             opacity: 0;
             transition: all 0.3s;
+            z-index: 10001;
         }
 
         .notification.show {
@@ -593,162 +341,35 @@
         }
 
         .notification.success {
-            background: #4CAF50;
+            background: #28a745;
         }
 
         .notification.error {
-            background: #f44336;
+            background: #dc3545;
         }
 
         .notification.warning {
-            background: #ff9800;
+            background: #ffc107;
+            color: #212529;
         }
 
-        .pagination {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 30px;
+        .notification.info {
+            background: #17a2b8;
         }
 
-        .page-btn {
-            padding: 10px 15px;
-            border: 2px solid #e9ecef;
-            background: white;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .page-btn:hover,
-        .page-btn.active {
-            border-color: #4CAF50;
-            background: #4CAF50;
-            color: white;
-        }
-
+        /* Responsive */
         @media (max-width: 768px) {
             .toolbar {
                 flex-direction: column;
-                gap: 15px;
+                align-items: stretch;
             }
-
-            .toolbar-left,
-            .toolbar-right {
-                width: 100%;
+            
+            .toolbar-left, .toolbar-right {
                 justify-content: center;
             }
-
-            .search-box {
-                width: 100%;
-            }
-
+            
             .photos-grid {
                 grid-template-columns: 1fr;
-            }
-
-            .stats-bar {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        .modal-actions {
-            display: flex;
-            gap: 10px;
-            justify-content: flex-end;
-            margin-top: 20px;
-        }
-
-        /* Styles pour le modal photo view/edit */
-        .photo-view-modal {
-            max-width: 800px;
-            max-height: 90vh;
-            overflow-y: auto;
-        }
-
-        .photo-display-section {
-            display: grid;
-            grid-template-columns: 1fr 300px;
-            gap: 20px;
-            margin: 20px 0;
-        }
-
-        .photo-preview-container {
-            text-align: center;
-            background: #f8f9fa;
-            border-radius: 10px;
-            padding: 20px;
-            min-height: 300px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .photo-info-display {
-            background: white;
-            border-radius: 10px;
-            padding: 20px;
-            border: 1px solid #e9ecef;
-        }
-
-        .photo-info-display .info-item {
-            margin-bottom: 15px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid #f1f3f4;
-        }
-
-        .photo-info-display .info-item:last-child {
-            border-bottom: none;
-            margin-bottom: 0;
-        }
-
-        .photo-edit-section {
-            background: #f8f9fa;
-            border-radius: 10px;
-            padding: 20px;
-            margin: 20px 0;
-            border: 1px solid #e9ecef;
-        }
-
-        .photo-edit-section h3 {
-            margin-bottom: 15px;
-            color: #333;
-        }
-
-        /* Styles pour le modal de confirmation */
-        .delete-confirm-modal {
-            max-width: 500px;
-            text-align: center;
-        }
-
-        .delete-confirm-modal h2 {
-            color: #dc3545;
-            margin-bottom: 15px;
-        }
-
-        .delete-confirm-modal p {
-            margin-bottom: 15px;
-            line-height: 1.6;
-        }
-
-        /* Responsive pour le modal photo */
-        @media (max-width: 768px) {
-            .photo-display-section {
-                grid-template-columns: 1fr;
-                gap: 15px;
-            }
-            
-            .photo-view-modal {
-                max-width: 95vw;
-                margin: 10px;
-            }
-            
-            .modal-actions {
-                flex-direction: column;
-            }
-            
-            .modal-actions .btn {
-                width: 100%;
             }
         }
     </style>
@@ -777,31 +398,17 @@
                     <span class="nav-icon">👤</span>
                     Profils Élèves
                 </a>
-                <a href="photos_classe_pro.html" class="nav-link">
+                <a href="photos_classe_pro.html" class="nav-link active">
                     <span class="nav-icon">📸</span>
                     Photos Classe
                 </a>
-                <a href="lsu_connection_test.html" class="nav-link">
-                    <span class="nav-icon">🔧</span>
-                    Tests Connexion
-                </a>
-                <a href="test_navigation.html" class="nav-link">
-                    <span class="nav-icon">🧭</span>
-                    Navigation
-                </a>
-            </div>
-            
-            <div class="nav-toggle" id="navToggle">
-                <span></span>
-                <span></span>
-                <span></span>
             </div>
         </div>
     </nav>
 
     <div class="container">
         <div class="header">
-            <h1>📸 Photos de Classe Pro</h1>
+            <h1>📸 Photos de Classe Pro - Système LSU</h1>
             <p>Gestion professionnelle des photos d'élèves</p>
         </div>
 
@@ -818,12 +425,6 @@
                         <option value="CM1">CM1</option>
                         <option value="CM2">CM2</option>
                     </select>
-                    <select class="filter-select" id="statusFilter">
-                        <option value="">Tous les statuts</option>
-                        <option value="approved">Approuvées</option>
-                        <option value="pending">En attente</option>
-                        <option value="rejected">Rejetées</option>
-                    </select>
                 </div>
                 <div class="toolbar-right">
                     <button class="btn btn-success" onclick="ajouterEleve()">
@@ -832,38 +433,9 @@
                     <button class="btn btn-info" onclick="importerListeEleves()">
                         📥 Importer
                     </button>
-                    <button class="btn btn-primary" onclick="openUploadModal()">
-                        📤 Ajouter Photo
-                    </button>
                     <button class="btn btn-warning" onclick="exporterListeEleves()">
                         📤 Exporter
                     </button>
-                    <button class="btn btn-secondary" onclick="bulkActions()">
-                        ⚙️ Actions
-                    </button>
-                    <button class="btn btn-info" onclick="addTestStudent()" title="Ajouter un élève de test">
-                        🧪 Test
-                    </button>
-                </div>
-            </div>
-
-            <!-- Statistiques -->
-            <div class="stats-bar">
-                <div class="stat-card">
-                    <div class="stat-number" id="totalPhotos">0</div>
-                    <div class="stat-label">Photos Total</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number" id="approvedPhotos">0</div>
-                    <div class="stat-label">Approuvées</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number" id="pendingPhotos">0</div>
-                    <div class="stat-label">En Attente</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number" id="rejectedPhotos">0</div>
-                    <div class="stat-label">Rejetées</div>
                 </div>
             </div>
 
@@ -871,63 +443,44 @@
             <div class="photos-grid" id="photosGrid">
                 <!-- Les cartes de photos seront générées dynamiquement -->
             </div>
-
-            <!-- Pagination -->
-            <div class="pagination" id="pagination">
-                <!-- La pagination sera générée dynamiquement -->
-            </div>
         </div>
     </div>
 
-    <!-- Modal d'ajout de photo -->
-    <div id="uploadModal" class="modal">
+    <!-- Modal Photo View/Edit -->
+    <div id="photoModal" class="modal">
         <div class="modal-content">
-            <span class="close" onclick="closeUploadModal()">&times;</span>
-            <h2>📤 Ajouter une Photo</h2>
+            <span class="close" onclick="fermerModal()">&times;</span>
+            <h2 id="modalTitle">📸 Photo de l'élève</h2>
             
-            <form id="uploadForm">
-                <div class="form-group">
-                    <label for="studentName">Nom de l'élève :</label>
-                    <input type="text" id="studentName" required>
+            <div class="text-center mb-4">
+                <img id="modalPhoto" src="" alt="Photo de l'élève" style="max-width: 100%; max-height: 300px; border-radius: 10px; display: none;">
+                <div id="modalPhotoPlaceholder" style="font-size: 8em; padding: 40px;">👤</div>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-6">
+                    <p><strong>Élève :</strong> <span id="modalStudentName"></span></p>
+                    <p><strong>Niveau :</strong> <span id="modalStudentLevel"></span></p>
+                    <p><strong>Date :</strong> <span id="modalPhotoDate"></span></p>
                 </div>
-
-                <div class="form-group">
-                    <label for="studentLevel">Niveau :</label>
-                    <select id="studentLevel" required>
-                        <option value="">Sélectionner un niveau</option>
-                        <option value="CP">CP</option>
-                        <option value="CE1">CE1</option>
-                        <option value="CE2">CE2</option>
-                        <option value="CM1">CM1</option>
-                        <option value="CM2">CM2</option>
-                    </select>
+                <div class="col-md-6">
+                    <p><strong>Statut :</strong> <span id="modalPhotoStatus"></span></p>
+                    <p><strong>Notes :</strong> <span id="modalPhotoNotes"></span></p>
                 </div>
-
-                <div class="form-group">
-                    <label for="photoDate">Date de la photo :</label>
-                    <input type="date" id="photoDate" required>
-                </div>
-
-                <div class="form-group">
-                    <label>Photo :</label>
-                    <div class="file-upload" id="fileUpload" onclick="document.getElementById('photoFile').click()">
-                        <div class="upload-icon">📷</div>
-                        <div class="upload-text">Cliquez pour sélectionner une photo</div>
-                        <div class="upload-hint">ou glissez-déposez ici</div>
-                    </div>
-                    <input type="file" id="photoFile" accept="image/*" style="display: none;" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="photoNotes">Notes :</label>
-                    <textarea id="photoNotes" rows="3" placeholder="Commentaires sur la photo..."></textarea>
-                </div>
-
-                <div style="display: flex; gap: 15px; margin-top: 20px;">
-                    <button type="submit" class="btn btn-primary">💾 Enregistrer</button>
-                    <button type="button" class="btn btn-secondary" onclick="closeUploadModal()">❌ Annuler</button>
-                </div>
-            </form>
+            </div>
+            
+            <!-- Zone d'upload pour l'édition -->
+            <div id="editZone" style="display: none; margin: 20px 0;">
+                <label for="photoUpload">📁 Choisir une nouvelle photo :</label>
+                <input type="file" id="photoUpload" accept="image/*" class="form-control">
+            </div>
+            
+            <div style="display: flex; gap: 10px; margin-top: 20px;">
+                <button class="btn btn-primary" id="editBtn" onclick="ouvrirModaleEdition()">✏️ Modifier</button>
+                <button class="btn btn-success" id="saveBtn" onclick="sauvegarderPhoto()" style="display: none;">💾 Sauvegarder</button>
+                <button class="btn btn-danger" onclick="supprimerEleve()">🗑️ Supprimer</button>
+                <button class="btn btn-secondary" onclick="fermerModal()">❌ Fermer</button>
+            </div>
         </div>
     </div>
 
@@ -970,68 +523,6 @@
                     <button type="button" class="btn btn-secondary" onclick="fermerModal()">❌ Annuler</button>
                 </div>
             </form>
-        </div>
-    </div>
-
-    <!-- Modal Photo View/Edit -->
-    <div class="modal fade" id="photoModal" tabindex="-1" aria-labelledby="photoModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 id="photoModalLabel" class="modal-title">📸 Photo de l'élève</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
-                </div>
-                <div class="modal-body text-center">
-                    <img id="modalPhoto" src="" alt="Photo de l'élève" class="img-fluid rounded" style="max-height: 400px;">
-                    <div id="modalPhotoPlaceholder" style="font-size: 8em; padding: 40px; display: none;">👤</div>
-                    <br /><br />
-                    <input type="file" id="photoUpload" class="form-control w-50 mx-auto d-none" accept="image/*" onchange="savePhoto()">
-                    <p id="editMode" class="text-muted mt-2"></p>
-                    
-                    <!-- Informations de la photo -->
-                    <div class="row mt-3">
-                        <div class="col-md-6">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h6 class="card-title">📋 Informations</h6>
-                                    <p class="card-text"><strong>Élève :</strong> <span id="modalStudentName"></span></p>
-                                    <p class="card-text"><strong>Niveau :</strong> <span id="modalStudentLevel"></span></p>
-                                    <p class="card-text"><strong>Date :</strong> <span id="modalPhotoDate"></span></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h6 class="card-title">📊 Statut</h6>
-                                    <p class="card-text"><strong>Statut :</strong> <span id="modalPhotoStatus"></span></p>
-                                    <p class="card-text"><strong>Notes :</strong> <span id="modalPhotoNotes"></span></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" id="editPhotoBtn" onclick="togglePhotoEdit()">✏️ Modifier</button>
-                    <button type="button" class="btn btn-success" id="savePhotoBtn" onclick="savePhotoChanges()" style="display: none;">💾 Sauvegarder</button>
-                    <button type="button" class="btn btn-danger" onclick="confirmDeletePhoto()">🗑️ Supprimer</button>
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">❌ Fermer</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal de confirmation de suppression -->
-    <div id="deleteConfirmModal" class="modal">
-        <div class="modal-content delete-confirm-modal">
-            <h2>⚠️ Confirmer la suppression</h2>
-            <p>Êtes-vous sûr de vouloir supprimer la photo de <strong id="deleteStudentName"></strong> ?</p>
-            <p style="color: #666; font-size: 0.9em;">Cette action est irréversible.</p>
-            
-            <div class="modal-actions">
-                <button class="btn btn-danger" onclick="deletePhotoConfirmed()">🗑️ Oui, supprimer</button>
-                <button class="btn btn-secondary" onclick="closeDeleteConfirmModal()">❌ Annuler</button>
-            </div>
         </div>
     </div>
 
@@ -1163,282 +654,84 @@
     <div id="notification" class="notification"></div>
 
     <script>
-        // Script pour la navigation
-        document.addEventListener('DOMContentLoaded', function() {
-            const navToggle = document.getElementById('navToggle');
-            const navMenu = document.getElementById('navMenu');
-            const navLinks = document.querySelectorAll('.nav-link');
-            
-            // Toggle menu mobile
-            navToggle.addEventListener('click', function() {
-                navMenu.classList.toggle('active');
-                navToggle.classList.toggle('active');
-            });
-            
-            // Fermer le menu en cliquant sur un lien
-            navLinks.forEach(link => {
-                link.addEventListener('click', function() {
-                    navMenu.classList.remove('active');
-                    navToggle.classList.remove('active');
-                });
-            });
-            
-            // Marquer le lien actif
-            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-            navLinks.forEach(link => {
-                if (link.getAttribute('href') === currentPage) {
-                    link.classList.add('active');
-                }
-            });
-            
-            // Fermer le menu en cliquant à l'extérieur
-            document.addEventListener('click', function(event) {
-                if (!event.target.closest('.nav-bar')) {
-                    navMenu.classList.remove('active');
-                    navToggle.classList.remove('active');
-                }
-            });
-        });
-
-        // Données des photos (simulation)
-        let photos = [
+        // Données des élèves (simulation)
+        let eleves = [
             {
                 id: 1,
-                studentName: "Léa Martin",
-                level: "CE2",
+                nom: "Léa Martin",
+                niveau: "CE2",
                 date: "2025-01-15",
-                status: "approved",
+                statut: "approved",
                 notes: "Photo de classe officielle",
                 imageUrl: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZGRkIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPkzDqWEgTWFydGluPC90ZXh0Pjwvc3ZnPg=="
             },
             {
                 id: 2,
-                studentName: "Thomas Dubois",
-                level: "CE2",
+                nom: "Thomas Dubois",
+                niveau: "CE2",
                 date: "2025-01-15",
-                status: "pending",
+                statut: "pending",
                 notes: "En attente d'approbation",
-                imageUrl: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZmZkNzAwIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPlRob21hcyBEdWJvaXM8L3RleHQ+PC9zdmc+"
+                imageUrl: null
             },
             {
                 id: 3,
-                studentName: "Emma Rousseau",
-                level: "CP",
+                nom: "Emma Rousseau",
+                niveau: "CP",
                 date: "2025-01-10",
-                status: "approved",
+                statut: "approved",
                 notes: "Photo individuelle",
                 imageUrl: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjYzNmZGI5Ii8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPkVtbWEgUm91c3NlYXU8L3RleHQ+PC9zdmc+"
-            },
-            {
-                id: 4,
-                studentName: "Lucas Moreau",
-                level: "CM1",
-                date: "2025-01-12",
-                status: "rejected",
-                notes: "Photo floue - à refaire",
-                imageUrl: null
-            },
-            {
-                id: 5,
-                studentName: "Chloé Bernard",
-                level: "CE1",
-                date: "2025-01-08",
-                status: "approved",
-                notes: "Photo de groupe",
-                imageUrl: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZGMzNTQ1Ii8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPkNobG9wIEJlcm5hcmQ8L3RleHQ+PC9zdmc+"
-            },
-            {
-                id: 6,
-                studentName: "Hugo Petit",
-                level: "CM2",
-                date: "2025-01-14",
-                status: "pending",
-                notes: "Photo de fin d'année",
-                imageUrl: null
             }
         ];
 
-        let currentPage = 1;
-        const photosPerPage = 8;
+        let eleveCourant = null;
+        let modeEdition = false;
 
         // Initialisation
         document.addEventListener('DOMContentLoaded', function() {
-            document.getElementById('photoDate').value = new Date().toISOString().split('T')[0];
-            renderPhotos();
-            updateStats();
-            setupEventListeners();
+            afficherEleves();
+            configurerEvenements();
         });
 
         // Configuration des événements
-        function setupEventListeners() {
+        function configurerEvenements() {
             // Recherche
-            document.getElementById('searchBox').addEventListener('input', filterPhotos);
-            document.getElementById('levelFilter').addEventListener('change', filterPhotos);
-            document.getElementById('statusFilter').addEventListener('change', filterPhotos);
-
-            // Upload de fichier
-            document.getElementById('photoFile').addEventListener('change', handleFileSelect);
-            document.getElementById('uploadForm').addEventListener('submit', handleUpload);
-
-            // Drag and drop
-            const fileUpload = document.getElementById('fileUpload');
-            fileUpload.addEventListener('dragover', handleDragOver);
-            fileUpload.addEventListener('drop', handleDrop);
-            fileUpload.addEventListener('dragleave', handleDragLeave);
+            document.getElementById('searchBox').addEventListener('input', filtrerEleves);
+            document.getElementById('levelFilter').addEventListener('change', filtrerEleves);
+            
+            // Upload de photo
+            document.getElementById('photoUpload').addEventListener('change', gererUploadPhoto);
+            
+            // Formulaire d'ajout
+            document.getElementById('addForm').addEventListener('submit', gererAjoutEleve);
         }
 
-        // Rendu des photos
-        function renderPhotos() {
-            const grid = document.getElementById('photosGrid');
-            const startIndex = (currentPage - 1) * photosPerPage;
-            const endIndex = startIndex + photosPerPage;
-            const pagePhotos = photos.slice(startIndex, endIndex);
-
-            grid.innerHTML = pagePhotos.map(photo => `
-                <div class="photo-card" data-id="${photo.id}">
-                    <div class="photo-image">
-                        ${photo.imageUrl ? 
-                            `<img src="${photo.imageUrl}" alt="Photo de ${photo.studentName}" class="photo-img" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">` :
-                            `<div class="photo-placeholder">👤</div>`
-                        }
-                        <div class="photo-overlay">
-                            <div class="photo-actions d-flex justify-content-between px-3 pb-3">
-                                <button class="btn btn-sm btn-outline-success" onclick="viewPhoto('${photo.studentName}', ${photo.id})" title="Voir la photo">
-                                    👁️
-                                </button>
-                                <button class="btn btn-sm btn-outline-warning" onclick="editPhoto('${photo.studentName}', ${photo.id})" title="Modifier la photo">
-                                    ✏️
-                                </button>
-                                <button class="btn btn-sm btn-outline-danger" onclick="deletePhoto('${photo.studentName}', ${photo.id})" title="Supprimer la photo">
-                                    🗑️
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="photo-info">
-                        <div class="student-name">${photo.studentName}</div>
-                        <div class="student-details">
-                            Niveau: ${photo.level} | Date: ${formatDate(photo.date)}
-                        </div>
-                        <div class="photo-meta">
-                            <span class="photo-status status-${photo.status}">
-                                ${getStatusText(photo.status)}
-                            </span>
-                            <span>ID: ${photo.id}</span>
-                        </div>
-                    </div>
-                </div>
-            `).join('');
-
-            renderPagination();
-        }
-
-        // Pagination
-        function renderPagination() {
-            const totalPages = Math.ceil(photos.length / photosPerPage);
-            const pagination = document.getElementById('pagination');
-
-            if (totalPages <= 1) {
-                pagination.innerHTML = '';
+        // 1. Fonction pour afficher une photo
+        function afficherPhoto(nom, id) {
+            const eleve = eleves.find(e => e.id === id);
+            if (!eleve) {
+                afficherNotification('Élève non trouvé', 'error');
                 return;
             }
 
-            let paginationHTML = '';
-            
-            // Bouton précédent
-            if (currentPage > 1) {
-                paginationHTML += `<button class="page-btn" onclick="changePage(${currentPage - 1})">←</button>`;
-            }
+            eleveCourant = eleve;
+            modeEdition = false;
 
-            // Pages
-            for (let i = 1; i <= totalPages; i++) {
-                if (i === currentPage) {
-                    paginationHTML += `<button class="page-btn active">${i}</button>`;
-                } else {
-                    paginationHTML += `<button class="page-btn" onclick="changePage(${i})">${i}</button>`;
-                }
-            }
+            // Remplir le modal
+            document.getElementById('modalTitle').textContent = '📸 Voir la photo';
+            document.getElementById('modalStudentName').textContent = eleve.nom;
+            document.getElementById('modalStudentLevel').textContent = eleve.niveau;
+            document.getElementById('modalPhotoDate').textContent = formaterDate(eleve.date);
+            document.getElementById('modalPhotoStatus').textContent = getStatutTexte(eleve.statut);
+            document.getElementById('modalPhotoNotes').textContent = eleve.notes || 'Aucune note';
 
-            // Bouton suivant
-            if (currentPage < totalPages) {
-                paginationHTML += `<button class="page-btn" onclick="changePage(${currentPage + 1})">→</button>`;
-            }
-
-            pagination.innerHTML = paginationHTML;
-        }
-
-        function changePage(page) {
-            currentPage = page;
-            renderPhotos();
-        }
-
-        // Filtrage
-        function filterPhotos() {
-            const searchTerm = document.getElementById('searchBox').value.toLowerCase();
-            const levelFilter = document.getElementById('levelFilter').value;
-            const statusFilter = document.getElementById('statusFilter').value;
-
-            const filteredPhotos = photos.filter(photo => {
-                const matchesSearch = photo.studentName.toLowerCase().includes(searchTerm);
-                const matchesLevel = !levelFilter || photo.level === levelFilter;
-                const matchesStatus = !statusFilter || photo.status === statusFilter;
-
-                return matchesSearch && matchesLevel && matchesStatus;
-            });
-
-            // Mise à jour temporaire pour l'affichage
-            const originalPhotos = photos;
-            photos = filteredPhotos;
-            currentPage = 1;
-            renderPhotos();
-            updateStats();
-            
-            // Restaurer les données originales
-            setTimeout(() => {
-                photos = originalPhotos;
-            }, 100);
-        }
-
-        // Statistiques
-        function updateStats() {
-            document.getElementById('totalPhotos').textContent = photos.length;
-            document.getElementById('approvedPhotos').textContent = photos.filter(p => p.status === 'approved').length;
-            document.getElementById('pendingPhotos').textContent = photos.filter(p => p.status === 'pending').length;
-            document.getElementById('rejectedPhotos').textContent = photos.filter(p => p.status === 'rejected').length;
-        }
-
-        // Variables globales pour la gestion des modals
-        let currentPhotoId = null;
-        let currentPhotoData = null;
-        let isEditMode = false;
-        let currentStudent = '';
-
-        // Actions sur les photos
-        function viewPhoto(studentName, id) {
-            const photo = photos.find(p => p.id === id);
-            if (!photo) {
-                showNotification('Photo non trouvée', 'error');
-                return;
-            }
-
-            currentPhotoId = id;
-            currentPhotoData = { ...photo };
-            currentStudent = studentName;
-            isEditMode = false;
-
-            // Remplir le modal avec les données
-            document.getElementById('modalStudentName').textContent = photo.studentName;
-            document.getElementById('modalStudentLevel').textContent = photo.level;
-            document.getElementById('modalPhotoDate').textContent = formatDate(photo.date);
-            document.getElementById('modalPhotoStatus').textContent = getStatusText(photo.status);
-            document.getElementById('modalPhotoNotes').textContent = photo.notes || 'Aucune note';
-
-            // Afficher la photo ou le placeholder
+            // Afficher la photo
             const modalPhoto = document.getElementById('modalPhoto');
             const modalPhotoPlaceholder = document.getElementById('modalPhotoPlaceholder');
             
-            if (photo.imageUrl) {
-                modalPhoto.src = photo.imageUrl;
+            if (eleve.imageUrl) {
+                modalPhoto.src = eleve.imageUrl;
                 modalPhoto.style.display = 'block';
                 modalPhotoPlaceholder.style.display = 'none';
             } else {
@@ -1447,324 +740,48 @@
                 modalPhotoPlaceholder.textContent = '👤';
             }
 
-            // Configurer les boutons et le titre
-            document.getElementById('photoModalLabel').textContent = "📸 Voir la photo";
-            document.getElementById('editPhotoBtn').style.display = 'inline-block';
-            document.getElementById('savePhotoBtn').style.display = 'none';
-            document.getElementById('photoUpload').classList.add('d-none');
-            document.getElementById('editMode').textContent = '';
+            // Configurer les boutons
+            document.getElementById('editBtn').style.display = 'inline-block';
+            document.getElementById('saveBtn').style.display = 'none';
+            document.getElementById('editZone').style.display = 'none';
 
-            // Ouvrir le modal Bootstrap
-            const photoModal = new bootstrap.Modal(document.getElementById('photoModal'));
-            photoModal.show();
+            // Ouvrir le modal
+            document.getElementById('photoModal').style.display = 'block';
         }
 
-        function editPhoto(studentName, id) {
-            const photo = photos.find(p => p.id === id);
-            if (!photo) {
-                showNotification('Photo non trouvée', 'error');
-                return;
-            }
+        // 2. Fonction pour ouvrir la modale d'édition
+        function ouvrirModaleEdition() {
+            if (!eleveCourant) return;
 
-            currentPhotoId = id;
-            currentPhotoData = { ...photo };
-            currentStudent = studentName;
-            isEditMode = true;
-
-            // Remplir le modal avec les données
-            document.getElementById('modalStudentName').textContent = photo.studentName;
-            document.getElementById('modalStudentLevel').textContent = photo.level;
-            document.getElementById('modalPhotoDate').textContent = formatDate(photo.date);
-            document.getElementById('modalPhotoStatus').textContent = getStatusText(photo.status);
-            document.getElementById('modalPhotoNotes').textContent = photo.notes || 'Aucune note';
-
-            // Afficher la photo ou le placeholder
-            const modalPhoto = document.getElementById('modalPhoto');
-            const modalPhotoPlaceholder = document.getElementById('modalPhotoPlaceholder');
+            modeEdition = true;
+            document.getElementById('modalTitle').textContent = '✏️ Modifier la photo';
+            document.getElementById('editZone').style.display = 'block';
+            document.getElementById('editBtn').style.display = 'none';
+            document.getElementById('saveBtn').style.display = 'inline-block';
             
-            if (photo.imageUrl) {
-                modalPhoto.src = photo.imageUrl;
-                modalPhoto.style.display = 'block';
-                modalPhotoPlaceholder.style.display = 'none';
-            } else {
-                modalPhoto.style.display = 'none';
-                modalPhotoPlaceholder.style.display = 'block';
-                modalPhotoPlaceholder.textContent = '👤';
-            }
-
-            // Configurer le mode édition
-            document.getElementById('photoModalLabel').textContent = "✏️ Modifier la photo";
-            document.getElementById('photoUpload').classList.remove('d-none');
-            document.getElementById('editMode').textContent = `Édition de la photo de ${studentName}`;
-            document.getElementById('editPhotoBtn').style.display = 'none';
-            document.getElementById('savePhotoBtn').style.display = 'inline-block';
-
-            // Ouvrir le modal Bootstrap
-            const photoModal = new bootstrap.Modal(document.getElementById('photoModal'));
-            photoModal.show();
+            afficherNotification('Mode édition activé', 'info');
         }
 
-        function togglePhotoEdit() {
-            isEditMode = !isEditMode;
-            
-            const photoUpload = document.getElementById('photoUpload');
-            const editBtn = document.getElementById('editPhotoBtn');
-            const saveBtn = document.getElementById('savePhotoBtn');
-            const editMode = document.getElementById('editMode');
-            
-            if (isEditMode) {
-                // Passer en mode édition
-                photoUpload.classList.remove('d-none');
-                editBtn.style.display = 'none';
-                saveBtn.style.display = 'inline-block';
-                editMode.textContent = `Édition de la photo de ${currentStudent}`;
-                document.getElementById('photoModalLabel').textContent = "✏️ Modifier la photo";
-                
-                showNotification('Mode édition activé', 'info');
-            } else {
-                // Sortir du mode édition
-                photoUpload.classList.add('d-none');
-                editBtn.style.display = 'inline-block';
-                saveBtn.style.display = 'none';
-                editMode.textContent = '';
-                document.getElementById('photoModalLabel').textContent = "📸 Voir la photo";
-                
-                showNotification('Mode édition désactivé', 'info');
+        // 3. Fonction pour supprimer un élève
+        function supprimerEleve() {
+            if (!eleveCourant) return;
+
+            if (confirm(`Êtes-vous sûr de vouloir supprimer ${eleveCourant.nom} ?`)) {
+                eleves = eleves.filter(e => e.id !== eleveCourant.id);
+                afficherEleves();
+                fermerModal();
+                afficherNotification(`${eleveCourant.nom} a été supprimé`, 'success');
+                eleveCourant = null;
             }
         }
 
-        function savePhoto() {
-            const fileInput = document.getElementById('photoUpload');
-            const file = fileInput.files[0];
-            if (!file) {
-                showNotification("Sélectionnez un fichier.", 'warning');
-                return;
-            }
-
-            // Vérifier le type de fichier
-            if (!file.type.startsWith('image/')) {
-                showNotification('Veuillez sélectionner une image valide', 'error');
-                return;
-            }
-
-            // Vérifier la taille (max 5MB)
-            if (file.size > 5 * 1024 * 1024) {
-                showNotification('L\'image est trop volumineuse (max 5MB)', 'error');
-                return;
-            }
-
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                const photoUrl = e.target.result;
-                
-                // Afficher la preview dans le modal
-                const modalPhoto = document.getElementById('modalPhoto');
-                const modalPhotoPlaceholder = document.getElementById('modalPhotoPlaceholder');
-                
-                modalPhoto.src = photoUrl;
-                modalPhoto.style.display = 'block';
-                modalPhotoPlaceholder.style.display = 'none';
-                
-                // Sauvegarder dans les données
-                if (currentPhotoData) {
-                    currentPhotoData.imageUrl = photoUrl;
-                }
-                
-                showNotification(`Nouvelle photo pour ${currentStudent} : ${file.name}`, 'success');
-            };
-            
-            reader.readAsDataURL(file);
-        }
-
-        function savePhotoChanges() {
-            if (!currentPhotoId || !currentPhotoData) {
-                showNotification('Erreur : données de photo manquantes', 'error');
-                return;
-            }
-
-            // Mettre à jour les données dans le tableau photos
-            const photoIndex = photos.findIndex(p => p.id === currentPhotoId);
-            if (photoIndex !== -1) {
-                // Mettre à jour avec les nouvelles données
-                photos[photoIndex] = { ...currentPhotoData };
-                
-                // Mettre à jour l'affichage
-                renderPhotos();
-                updateStats();
-                
-                showNotification('Photo mise à jour avec succès !', 'success');
-                
-                // Fermer le modal Bootstrap
-                const photoModal = bootstrap.Modal.getInstance(document.getElementById('photoModal'));
-                if (photoModal) {
-                    photoModal.hide();
-                }
-                
-                // Réinitialiser les variables
-                currentPhotoId = null;
-                currentPhotoData = null;
-                currentStudent = '';
-                isEditMode = false;
-            } else {
-                showNotification('Erreur lors de la mise à jour', 'error');
-            }
-        }
-
-        function confirmDeletePhoto() {
-            if (!currentPhotoData) {
-                showNotification('Erreur : données de photo manquantes', 'error');
-                return;
-            }
-
-            // Remplir le modal de confirmation
-            document.getElementById('deleteStudentName').textContent = currentPhotoData.studentName;
-            
-            // Fermer le modal photo et ouvrir le modal de confirmation
-            const photoModal = bootstrap.Modal.getInstance(document.getElementById('photoModal'));
-            if (photoModal) {
-                photoModal.hide();
-            }
-            document.getElementById('deleteConfirmModal').style.display = 'block';
-        }
-
-        function deletePhotoConfirmed() {
-            if (!currentPhotoId) {
-                showNotification('Erreur : ID de photo manquant', 'error');
-                return;
-            }
-
-            // Supprimer la photo
-            photos = photos.filter(p => p.id !== currentPhotoId);
-            
-            // Mettre à jour l'affichage
-            renderPhotos();
-            updateStats();
-            
-            showNotification('Photo supprimée avec succès !', 'success');
-            
-            // Fermer le modal de confirmation
-            closeDeleteConfirmModal();
-            
-            // Réinitialiser les variables
-            currentPhotoId = null;
-            currentPhotoData = null;
-            currentStudent = '';
-        }
-
-        function deletePhoto(studentName, id) {
-            // Confirmation directe avec Bootstrap
-            if (confirm(`Supprimer la photo de ${studentName} ?`)) {
-                // Supprimer la photo du tableau
-                photos = photos.filter(p => p.id !== id);
-                
-                // Mettre à jour l'affichage
-                renderPhotos();
-                updateStats();
-                
-                showNotification(`Photo de ${studentName} supprimée.`, 'success');
-                
-                // Réinitialiser les variables si c'était la photo courante
-                if (currentPhotoId === id) {
-                    currentPhotoId = null;
-                    currentPhotoData = null;
-                    currentStudent = '';
-                    isEditMode = false;
-                }
-            }
-        }
-
-        // Fonctions de fermeture des modals
-        function closeDeleteConfirmModal() {
-            document.getElementById('deleteConfirmModal').style.display = 'none';
-        }
-
-        // Modal d'upload
-        function openUploadModal() {
-            document.getElementById('uploadModal').style.display = 'block';
-        }
-
-        function closeUploadModal() {
-            document.getElementById('uploadModal').style.display = 'none';
-            document.getElementById('uploadForm').reset();
-            document.getElementById('fileUpload').innerHTML = `
-                <div class="upload-icon">📷</div>
-                <div class="upload-text">Cliquez pour sélectionner une photo</div>
-                <div class="upload-hint">ou glissez-déposez ici</div>
-            `;
-        }
-
-        // Gestion des fichiers
-        function handleFileSelect(event) {
-            const file = event.target.files[0];
-            if (file) {
-                displayFilePreview(file);
-            }
-        }
-
-        function handleDragOver(event) {
-            event.preventDefault();
-            event.currentTarget.classList.add('dragover');
-        }
-
-        function handleDragLeave(event) {
-            event.currentTarget.classList.remove('dragover');
-        }
-
-        function handleDrop(event) {
-            event.preventDefault();
-            event.currentTarget.classList.remove('dragover');
-            
-            const files = event.dataTransfer.files;
-            if (files.length > 0) {
-                document.getElementById('photoFile').files = files;
-                displayFilePreview(files[0]);
-            }
-        }
-
-        function displayFilePreview(file) {
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                document.getElementById('fileUpload').innerHTML = `
-                    <img src="${e.target.result}" style="max-width: 100%; max-height: 200px; border-radius: 8px;">
-                    <div class="upload-text">${file.name}</div>
-                `;
-            };
-            reader.readAsDataURL(file);
-        }
-
-        // Upload
-        function handleUpload(event) {
-            event.preventDefault();
-            
-            const formData = new FormData(event.target);
-            const newPhoto = {
-                id: photos.length + 1,
-                studentName: formData.get('studentName') || document.getElementById('studentName').value,
-                level: formData.get('studentLevel') || document.getElementById('studentLevel').value,
-                date: formData.get('photoDate') || document.getElementById('photoDate').value,
-                status: 'pending',
-                notes: formData.get('photoNotes') || document.getElementById('photoNotes').value,
-                imageUrl: null
-            };
-
-            photos.unshift(newPhoto);
-            renderPhotos();
-            updateStats();
-            closeUploadModal();
-            showNotification('Photo ajoutée avec succès !', 'success');
-        }
-
-        // Actions en lot
-        function bulkActions() {
-            showNotification('Actions en lot - Fonctionnalité à venir', 'warning');
-        }
-
-        // Nouvelles fonctions avancées
+        // 4. Fonction pour ajouter un élève
         function ajouterEleve() {
             document.getElementById('addModal').style.display = 'block';
             document.getElementById('addForm').reset();
         }
 
+        // 5. Fonction pour importer une liste d'élèves
         function importerListeEleves() {
             const input = document.createElement('input');
             input.type = 'file';
@@ -1778,18 +795,17 @@
                     try {
                         if (file.name.endsWith('.json')) {
                             const nouveauxEleves = JSON.parse(e.target.result);
-                            photos = [...photos, ...nouveauxEleves];
+                            eleves = [...eleves, ...nouveauxEleves];
                         } else if (file.name.endsWith('.csv')) {
                             const csvData = e.target.result;
                             const nouveauxEleves = parserCSV(csvData);
-                            photos = [...photos, ...nouveauxEleves];
+                            eleves = [...eleves, ...nouveauxEleves];
                         }
                         
-                        renderPhotos();
-                        updateStats();
-                        showNotification(`${file.name} importé avec succès`, 'success');
+                        afficherEleves();
+                        afficherNotification(`${file.name} importé avec succès`, 'success');
                     } catch (error) {
-                        showNotification('Erreur lors de l\'import', 'error');
+                        afficherNotification('Erreur lors de l\'import', 'error');
                     }
                 };
                 reader.readAsText(file);
@@ -1797,10 +813,12 @@
             input.click();
         }
 
+        // 6. Fonction pour exporter la liste d'élèves
         function exporterListeEleves() {
             document.getElementById('exportModal').style.display = 'block';
         }
 
+        // Nouvelles fonctions d'export avancées
         function executerExport() {
             const format = document.querySelector('input[name="exportFormat"]:checked').value;
             const fileName = document.getElementById('exportFileName').value || 'eleves_export';
@@ -1816,36 +834,36 @@
             const includeStats = document.getElementById('includeStats').checked;
             
             // Filtrer les élèves selon les critères
-            let elevesAExporter = photos.filter(photo => {
-                if (photo.status === 'approved' && !includeApproved) return false;
-                if (photo.status === 'pending' && !includePending) return false;
-                if (photo.status === 'rejected' && !includeRejected) return false;
+            let elevesAExporter = eleves.filter(eleve => {
+                if (eleve.statut === 'approved' && !includeApproved) return false;
+                if (eleve.statut === 'pending' && !includePending) return false;
+                if (eleve.statut === 'rejected' && !includeRejected) return false;
                 return true;
             });
             
             // Préparer les données selon les options
-            let donneesAExporter = elevesAExporter.map(photo => {
-                let photoExport = {
-                    id: photo.id,
-                    nom: photo.studentName,
-                    niveau: photo.level,
-                    date: photo.date,
-                    statut: photo.status
+            let donneesAExporter = elevesAExporter.map(eleve => {
+                let eleveExport = {
+                    id: eleve.id,
+                    nom: eleve.nom,
+                    niveau: eleve.niveau,
+                    date: eleve.date,
+                    statut: eleve.statut
                 };
                 
-                if (includeNotes) photoExport.notes = photo.notes;
-                if (includePhotos && photo.imageUrl) photoExport.imageUrl = photo.imageUrl;
+                if (includeNotes) eleveExport.notes = eleve.notes;
+                if (includePhotos && eleve.imageUrl) eleveExport.imageUrl = eleve.imageUrl;
                 
-                return photoExport;
+                return eleveExport;
             });
             
             // Ajouter les statistiques si demandé
             if (includeStats) {
                 const stats = {
                     total: elevesAExporter.length,
-                    approuves: elevesAExporter.filter(e => e.status === 'approved').length,
-                    enAttente: elevesAExporter.filter(e => e.status === 'pending').length,
-                    rejetes: elevesAExporter.filter(e => e.status === 'rejected').length,
+                    approuves: elevesAExporter.filter(e => e.statut === 'approved').length,
+                    enAttente: elevesAExporter.filter(e => e.statut === 'pending').length,
+                    rejetes: elevesAExporter.filter(e => e.statut === 'rejected').length,
                     dateExport: new Date().toISOString()
                 };
                 donneesAExporter = { eleves: donneesAExporter, statistiques: stats };
@@ -1869,7 +887,7 @@
                     exporterHTML(donneesAExporter, fileName);
                     break;
                 default:
-                    showNotification('Format non supporté', 'error');
+                    afficherNotification('Format non supporté', 'error');
             }
             
             fermerModal();
@@ -1887,34 +905,34 @@
             const includeNotes = document.getElementById('includeNotes').checked;
             const includeStats = document.getElementById('includeStats').checked;
             
-            let elevesAExporter = photos.filter(photo => {
-                if (photo.status === 'approved' && !includeApproved) return false;
-                if (photo.status === 'pending' && !includePending) return false;
-                if (photo.status === 'rejected' && !includeRejected) return false;
+            let elevesAExporter = eleves.filter(eleve => {
+                if (eleve.statut === 'approved' && !includeApproved) return false;
+                if (eleve.statut === 'pending' && !includePending) return false;
+                if (eleve.statut === 'rejected' && !includeRejected) return false;
                 return true;
             });
             
-            let donneesAExporter = elevesAExporter.map(photo => {
-                let photoExport = {
-                    id: photo.id,
-                    nom: photo.studentName,
-                    niveau: photo.level,
-                    date: photo.date,
-                    statut: photo.status
+            let donneesAExporter = elevesAExporter.map(eleve => {
+                let eleveExport = {
+                    id: eleve.id,
+                    nom: eleve.nom,
+                    niveau: eleve.niveau,
+                    date: eleve.date,
+                    statut: eleve.statut
                 };
                 
-                if (includeNotes) photoExport.notes = photo.notes;
-                if (includePhotos && photo.imageUrl) photoExport.imageUrl = photo.imageUrl;
+                if (includeNotes) eleveExport.notes = eleve.notes;
+                if (includePhotos && eleve.imageUrl) eleveExport.imageUrl = eleve.imageUrl;
                 
-                return photoExport;
+                return eleveExport;
             });
             
             if (includeStats) {
                 const stats = {
                     total: elevesAExporter.length,
-                    approuves: elevesAExporter.filter(e => e.status === 'approved').length,
-                    enAttente: elevesAExporter.filter(e => e.status === 'pending').length,
-                    rejetes: elevesAExporter.filter(e => e.status === 'rejected').length,
+                    approuves: elevesAExporter.filter(e => e.statut === 'approved').length,
+                    enAttente: elevesAExporter.filter(e => e.statut === 'pending').length,
+                    rejetes: elevesAExporter.filter(e => e.statut === 'rejected').length,
                     dateExport: new Date().toISOString()
                 };
                 donneesAExporter = { eleves: donneesAExporter, statistiques: stats };
@@ -1954,7 +972,7 @@
             link.download = `${fileName}.json`;
             link.click();
             URL.revokeObjectURL(url);
-            showNotification('Export JSON réussi', 'success');
+            afficherNotification('Export JSON réussi', 'success');
         }
 
         function exporterCSV(donnees, fileName) {
@@ -1966,7 +984,7 @@
             link.download = `${fileName}.csv`;
             link.click();
             URL.revokeObjectURL(url);
-            showNotification('Export CSV réussi', 'success');
+            afficherNotification('Export CSV réussi', 'success');
         }
 
         function genererCSV(donnees) {
@@ -1999,7 +1017,7 @@
             link.download = `${fileName}.xlsx`;
             link.click();
             URL.revokeObjectURL(url);
-            showNotification('Export Excel simulé (format CSV)', 'success');
+            afficherNotification('Export Excel simulé (format CSV)', 'success');
         }
 
         function exporterPDF(donnees, fileName) {
@@ -2052,8 +1070,8 @@
                                     <td>${eleve.id}</td>
                                     <td>${eleve.nom}</td>
                                     <td>${eleve.niveau}</td>
-                                    <td>${formatDate(eleve.date)}</td>
-                                    <td>${getStatusText(eleve.statut)}</td>
+                                    <td>${formaterDate(eleve.date)}</td>
+                                    <td>${getStatutTexte(eleve.statut)}</td>
                                     <td>${eleve.notes || ''}</td>
                                 </tr>
                             `).join('')}
@@ -2065,7 +1083,7 @@
             
             printWindow.document.close();
             printWindow.print();
-            showNotification('Export PDF via impression', 'success');
+            afficherNotification('Export PDF via impression', 'success');
         }
 
         function exporterHTML(donnees, fileName) {
@@ -2114,8 +1132,8 @@
                                         <h3>${eleve.nom}</h3>
                                         <p><strong>ID :</strong> ${eleve.id}</p>
                                         <p><strong>Niveau :</strong> ${eleve.niveau}</p>
-                                        <p><strong>Date :</strong> ${formatDate(eleve.date)}</p>
-                                        <p><strong>Statut :</strong> <span class="status-${eleve.statut}">${getStatusText(eleve.statut)}</span></p>
+                                        <p><strong>Date :</strong> ${formaterDate(eleve.date)}</p>
+                                        <p><strong>Statut :</strong> <span class="status-${eleve.statut}">${getStatutTexte(eleve.statut)}</span></p>
                                         ${eleve.notes ? `<p><strong>Notes :</strong> ${eleve.notes}</p>` : ''}
                                     </div>
                                 </div>
@@ -2133,7 +1151,7 @@
             link.download = `${fileName}.html`;
             link.click();
             URL.revokeObjectURL(url);
-            showNotification('Export HTML réussi', 'success');
+            afficherNotification('Export HTML réussi', 'success');
         }
 
         function genererHTML(donnees) {
@@ -2155,6 +1173,184 @@
             `;
         }
 
+        function afficherEleves() {
+            const grid = document.getElementById('photosGrid');
+            grid.innerHTML = eleves.map(eleve => `
+                <div class="photo-card" data-id="${eleve.id}">
+                    <div class="photo-image">
+                        ${eleve.imageUrl ? 
+                            `<img src="${eleve.imageUrl}" alt="Photo de ${eleve.nom}" class="photo-img">` :
+                            `<div class="photo-placeholder">👤</div>`
+                        }
+                        <div class="photo-overlay">
+                            <div class="photo-actions">
+                                <button class="btn btn-sm btn-outline-success" onclick="afficherPhoto('${eleve.nom}', ${eleve.id})" title="Voir la photo">
+                                    👁️ Voir
+                                </button>
+                                <button class="btn btn-sm btn-outline-warning" onclick="ouvrirModaleEdition('${eleve.nom}', ${eleve.id})" title="Modifier">
+                                    ✏️ Modifier
+                                </button>
+                                <button class="btn btn-sm btn-outline-danger" onclick="supprimerEleve('${eleve.nom}', ${eleve.id})" title="Supprimer">
+                                    🗑️ Supprimer
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="photo-info">
+                        <div class="student-name">${eleve.nom}</div>
+                        <div class="student-details">
+                            Niveau: ${eleve.niveau} | Date: ${formaterDate(eleve.date)}
+                        </div>
+                        <div class="photo-meta">
+                            <span class="photo-status status-${eleve.statut}">
+                                ${getStatutTexte(eleve.statut)}
+                            </span>
+                            <span>ID: ${eleve.id}</span>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function filtrerEleves() {
+            const searchTerm = document.getElementById('searchBox').value.toLowerCase();
+            const levelFilter = document.getElementById('levelFilter').value;
+
+            const elevesFiltres = eleves.filter(eleve => {
+                const matchesSearch = eleve.nom.toLowerCase().includes(searchTerm);
+                const matchesLevel = !levelFilter || eleve.niveau === levelFilter;
+                return matchesSearch && matchesLevel;
+            });
+
+            // Mise à jour temporaire de l'affichage
+            const elevesOriginaux = eleves;
+            eleves = elevesFiltres;
+            afficherEleves();
+            setTimeout(() => {
+                eleves = elevesOriginaux;
+            }, 100);
+        }
+
+        function gererUploadPhoto(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            if (!file.type.startsWith('image/')) {
+                afficherNotification('Veuillez sélectionner une image valide', 'error');
+                return;
+            }
+
+            if (file.size > 5 * 1024 * 1024) {
+                afficherNotification('L\'image est trop volumineuse (max 5MB)', 'error');
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const modalPhoto = document.getElementById('modalPhoto');
+                const modalPhotoPlaceholder = document.getElementById('modalPhotoPlaceholder');
+                
+                modalPhoto.src = e.target.result;
+                modalPhoto.style.display = 'block';
+                modalPhotoPlaceholder.style.display = 'none';
+                
+                if (eleveCourant) {
+                    eleveCourant.imageUrl = e.target.result;
+                }
+                
+                afficherNotification('Photo chargée avec succès', 'success');
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function sauvegarderPhoto() {
+            if (!eleveCourant) return;
+
+            // Mettre à jour les données
+            const index = eleves.findIndex(e => e.id === eleveCourant.id);
+            if (index !== -1) {
+                eleves[index] = { ...eleveCourant };
+                afficherEleves();
+                fermerModal();
+                afficherNotification('Photo sauvegardée avec succès', 'success');
+            }
+        }
+
+        function gererAjoutEleve(event) {
+            event.preventDefault();
+            
+            const nom = document.getElementById('newStudentName').value;
+            const niveau = document.getElementById('newStudentLevel').value;
+            const notes = document.getElementById('newPhotoNotes').value;
+            const file = document.getElementById('newPhotoFile').files[0];
+
+            if (!nom || !niveau) {
+                afficherNotification('Veuillez remplir tous les champs obligatoires', 'error');
+                return;
+            }
+
+            const nouvelEleve = {
+                id: Math.max(...eleves.map(e => e.id)) + 1,
+                nom: nom,
+                niveau: niveau,
+                date: new Date().toISOString().split('T')[0],
+                statut: 'pending',
+                notes: notes,
+                imageUrl: null
+            };
+
+            // Traiter l'image si fournie
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    nouvelEleve.imageUrl = e.target.result;
+                    eleves.unshift(nouvelEleve);
+                    afficherEleves();
+                    fermerModal();
+                    afficherNotification(`${nom} ajouté avec succès`, 'success');
+                };
+                reader.readAsDataURL(file);
+            } else {
+                eleves.unshift(nouvelEleve);
+                afficherEleves();
+                fermerModal();
+                afficherNotification(`${nom} ajouté avec succès`, 'success');
+            }
+        }
+
+        function fermerModal() {
+            document.getElementById('photoModal').style.display = 'none';
+            document.getElementById('addModal').style.display = 'none';
+            document.getElementById('exportModal').style.display = 'none';
+            document.getElementById('previewModal').style.display = 'none';
+            eleveCourant = null;
+            modeEdition = false;
+        }
+
+        function afficherNotification(message, type = 'info') {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.className = `notification ${type}`;
+            notification.classList.add('show');
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+
+        function formaterDate(dateString) {
+            return new Date(dateString).toLocaleDateString('fr-FR');
+        }
+
+        function getStatutTexte(statut) {
+            const statuts = {
+                'approved': 'Approuvée',
+                'pending': 'En attente',
+                'rejected': 'Rejetée'
+            };
+            return statuts[statut] || statut;
+        }
+
         function parserCSV(csvData) {
             const lines = csvData.split('\n');
             const headers = lines[0].split(',').map(h => h.trim().replace(/"/g, ''));
@@ -2174,136 +1370,25 @@
             return eleves;
         }
 
-        function fermerModal() {
-            document.getElementById('uploadModal').style.display = 'none';
-            document.getElementById('addModal').style.display = 'none';
-            document.getElementById('exportModal').style.display = 'none';
-            document.getElementById('previewModal').style.display = 'none';
-            document.getElementById('deleteConfirmModal').style.display = 'none';
-        }
-
-        function gererAjoutEleve(event) {
-            event.preventDefault();
-            
-            const nom = document.getElementById('newStudentName').value;
-            const niveau = document.getElementById('newStudentLevel').value;
-            const notes = document.getElementById('newPhotoNotes').value;
-            const file = document.getElementById('newPhotoFile').files[0];
-
-            if (!nom || !niveau) {
-                showNotification('Veuillez remplir tous les champs obligatoires', 'error');
-                return;
-            }
-
-            const nouvelEleve = {
-                id: Math.max(...photos.map(p => p.id)) + 1,
-                studentName: nom,
-                level: niveau,
-                date: new Date().toISOString().split('T')[0],
-                status: 'pending',
-                notes: notes,
-                imageUrl: null
-            };
-
-            // Traiter l'image si fournie
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    nouvelEleve.imageUrl = e.target.result;
-                    photos.unshift(nouvelEleve);
-                    renderPhotos();
-                    updateStats();
-                    fermerModal();
-                    showNotification(`${nom} ajouté avec succès`, 'success');
-                };
-                reader.readAsDataURL(file);
-            } else {
-                photos.unshift(nouvelEleve);
-                renderPhotos();
-                updateStats();
-                fermerModal();
-                showNotification(`${nom} ajouté avec succès`, 'success');
-            }
-        }
-
-        // Configuration des événements pour les nouveaux formulaires
-        document.addEventListener('DOMContentLoaded', function() {
-            // Événements existants...
-            
-            // Nouveaux événements
-            document.getElementById('addForm').addEventListener('submit', gererAjoutEleve);
-        });
-
-        // Export
-        function exportPhotos() {
-            exporterListeEleves();
-        }
-
-        // Fonctions utilitaires
-        function formatDate(dateString) {
-            return new Date(dateString).toLocaleDateString('fr-FR');
-        }
-
-        function getStatusText(status) {
-            const statusMap = {
-                'approved': 'Approuvée',
-                'pending': 'En attente',
-                'rejected': 'Rejetée'
-            };
-            return statusMap[status] || status;
-        }
-
-        function showNotification(message, type = 'info') {
-            const notification = document.getElementById('notification');
-            notification.textContent = message;
-            notification.className = `notification ${type}`;
-            notification.classList.add('show');
-            
-            setTimeout(() => {
-                notification.classList.remove('show');
-            }, 3000);
-        }
-
         // Fermer les modals en cliquant à l'extérieur
         window.onclick = function(event) {
-            const uploadModal = document.getElementById('uploadModal');
-            const deleteConfirmModal = document.getElementById('deleteConfirmModal');
-            
-            if (event.target === uploadModal) {
-                closeUploadModal();
-            } else if (event.target === deleteConfirmModal) {
-                closeDeleteConfirmModal();
-            }
+            const modals = document.querySelectorAll('.modal');
+            modals.forEach(modal => {
+                if (event.target === modal) {
+                    fermerModal();
+                }
+            });
         }
 
-        // Gestion du clavier pour les modals
+        // Fermer avec Escape
         document.addEventListener('keydown', function(event) {
             if (event.key === 'Escape') {
-                closeUploadModal();
-                closeDeleteConfirmModal();
+                fermerModal();
             }
         });
-
-        // Fonction pour ajouter un élève de test
-        function addTestStudent() {
-            const testStudent = {
-                id: photos.length + 1,
-                studentName: "Test Élève",
-                level: "CP",
-                date: new Date().toISOString().split('T')[0],
-                status: "pending",
-                notes: "Élève de test ajouté",
-                imageUrl: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjMTdhMmI4Ii8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0id2hpdGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj5UZXN0IMOpbMOodmU8L3RleHQ+PC9zdmc+"
-            };
-            
-            photos.unshift(testStudent);
-            renderPhotos();
-            updateStats();
-            showNotification('Élève de test ajouté !', 'success');
-        }
     </script>
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-</html>
+</html> 
