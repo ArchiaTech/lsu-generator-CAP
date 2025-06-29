@@ -1109,6 +1109,41 @@
         }
     }
 </style>
+    <style>
+    /* Styles pour les icônes Font Awesome */
+    .btn-with-icon i {
+        margin-right: 8px;
+        font-size: 14px;
+    }
+    
+    .btn-with-icon:hover i {
+        transform: scale(1.1);
+        transition: transform 0.2s ease;
+    }
+    
+    /* Masquer les icônes de fallback */
+    .fa-fallback {
+        display: none;
+    }
+    
+    /* Icônes spécifiques */
+    .btn-with-icon .fa-edit { color: #007bff; }
+    .btn-with-icon .fa-trash { color: #dc3545; }
+    .btn-with-icon .fa-plus { color: #28a745; }
+    .btn-with-icon .fa-save { color: #17a2b8; }
+    .btn-with-icon .fa-magic { color: #6f42c1; }
+    .btn-with-icon .fa-comments { color: #fd7e14; }
+    .btn-with-icon .fa-chart-bar { color: #20c997; }
+    .btn-with-icon .fa-image { color: #e83e8c; }
+    .btn-with-icon .fa-eye { color: #6c757d; }
+    .btn-with-icon .fa-download { color: #28a745; }
+    .btn-with-icon .fa-upload { color: #ffc107; }
+    .btn-with-icon .fa-times { color: #6c757d; }
+    .btn-with-icon .fa-home { color: #007bff; }
+    .btn-with-icon .fa-bullseye { color: #dc3545; }
+    .btn-with-icon .fa-users { color: #28a745; }
+    .btn-with-icon .fa-tachometer-alt { color: #17a2b8; }
+    </style>
 </head>
 <body class="main-content">
     <!-- Barre de navigation latérale - ÉCOLE DU CAP -->
@@ -1362,7 +1397,7 @@
                         <textarea id="specificPoints" rows="3" placeholder="Mentionnez des éléments particuliers à cet élève..."></textarea>
                     </div>
 
-                    <button type="button" class="generate-btn" onclick="generateComment()"> class="btn-with-icon"><i class="fas fa-magic icon-fa"></i><i class="fas fa-magic fa-fallback"></i>Générer le commentaire
+                    <button type="button" class="generate-btn" onclick="generateComment()"" class="btn-with-icon"><i class="fas fa-magic"></i>Générer le commentaire
                     </button>
                 </div>
 
@@ -1467,7 +1502,7 @@
     <div id="studentsPage" class="page">
         <div class="student-list">
             <h1>👥 Gestion des Élèves</h1>
-            <button class="add-student-btn" onclick="openAddStudentModal()"> class="btn-with-icon"><i class="fas fa-plus icon-fa"></i><i class="fas fa-plus fa-fallback"></i>Ajouter un élève</button>
+            <button class="add-student-btn" onclick="openAddStudentModal()"" class="btn-with-icon"><i class="fas fa-plus"></i>Ajouter un élève</button>
             
             <div id="studentsList">
                 <!-- Liste dynamique des élèves -->
@@ -1510,8 +1545,8 @@
                     </select>
                 </div>
 
-                <button class="generate-btn" onclick="testConnections()"> class="btn-with-icon"><i class="fas fa-search icon-fa"></i><i class="fas fa-search fa-fallback"></i>Tester les connexions</button>
-                <button class="generate-btn" onclick="saveSettings()" style="margin-top: 10px;"> class="btn-with-icon"><i class="fas fa-save icon-fa"></i><i class="fas fa-save fa-fallback"></i>Sauvegarder</button>
+                <button class="generate-btn" onclick="testConnections()"" class="btn-with-icon"><i class="fas fa-search"></i>Tester les connexions</button>
+                <button class="generate-btn" onclick="saveSettings()" style="margin-top: 10px;"" class="btn-with-icon"><i class="fas fa-save"></i>Sauvegarder</button>
             </div>
         </div>
     </div>
@@ -1548,7 +1583,7 @@
                 <input type="date" id="newStudentBirthDate">
             </div>
 
-            <button class="generate-btn" onclick="addStudent()"> class="btn-with-icon"><i class="fas fa-plus icon-fa"></i><i class="fas fa-plus fa-fallback"></i>Ajouter l'élève</button>
+            <button class="generate-btn" onclick="addStudent()"" class="btn-with-icon"><i class="fas fa-plus"></i>Ajouter l'élève</button>
         </div>
     </div>
 
@@ -2040,6 +2075,41 @@
         }
     }
 </style>
+    <style>
+    /* Styles pour les icônes Font Awesome */
+    .btn-with-icon i {
+        margin-right: 8px;
+        font-size: 14px;
+    }
+    
+    .btn-with-icon:hover i {
+        transform: scale(1.1);
+        transition: transform 0.2s ease;
+    }
+    
+    /* Masquer les icônes de fallback */
+    .fa-fallback {
+        display: none;
+    }
+    
+    /* Icônes spécifiques */
+    .btn-with-icon .fa-edit { color: #007bff; }
+    .btn-with-icon .fa-trash { color: #dc3545; }
+    .btn-with-icon .fa-plus { color: #28a745; }
+    .btn-with-icon .fa-save { color: #17a2b8; }
+    .btn-with-icon .fa-magic { color: #6f42c1; }
+    .btn-with-icon .fa-comments { color: #fd7e14; }
+    .btn-with-icon .fa-chart-bar { color: #20c997; }
+    .btn-with-icon .fa-image { color: #e83e8c; }
+    .btn-with-icon .fa-eye { color: #6c757d; }
+    .btn-with-icon .fa-download { color: #28a745; }
+    .btn-with-icon .fa-upload { color: #ffc107; }
+    .btn-with-icon .fa-times { color: #6c757d; }
+    .btn-with-icon .fa-home { color: #007bff; }
+    .btn-with-icon .fa-bullseye { color: #dc3545; }
+    .btn-with-icon .fa-users { color: #28a745; }
+    .btn-with-icon .fa-tachometer-alt { color: #17a2b8; }
+    </style>
 </head>
                 <body class="main-content">
                     <div class="header">

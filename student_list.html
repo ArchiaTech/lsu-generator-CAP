@@ -595,6 +595,41 @@
             color: white;
         }
 </style>
+    <style>
+    /* Styles pour les icônes Font Awesome */
+    .btn-with-icon i {
+        margin-right: 8px;
+        font-size: 14px;
+    }
+    
+    .btn-with-icon:hover i {
+        transform: scale(1.1);
+        transition: transform 0.2s ease;
+    }
+    
+    /* Masquer les icônes de fallback */
+    .fa-fallback {
+        display: none;
+    }
+    
+    /* Icônes spécifiques */
+    .btn-with-icon .fa-edit { color: #007bff; }
+    .btn-with-icon .fa-trash { color: #dc3545; }
+    .btn-with-icon .fa-plus { color: #28a745; }
+    .btn-with-icon .fa-save { color: #17a2b8; }
+    .btn-with-icon .fa-magic { color: #6f42c1; }
+    .btn-with-icon .fa-comments { color: #fd7e14; }
+    .btn-with-icon .fa-chart-bar { color: #20c997; }
+    .btn-with-icon .fa-image { color: #e83e8c; }
+    .btn-with-icon .fa-eye { color: #6c757d; }
+    .btn-with-icon .fa-download { color: #28a745; }
+    .btn-with-icon .fa-upload { color: #ffc107; }
+    .btn-with-icon .fa-times { color: #6c757d; }
+    .btn-with-icon .fa-home { color: #007bff; }
+    .btn-with-icon .fa-bullseye { color: #dc3545; }
+    .btn-with-icon .fa-users { color: #28a745; }
+    .btn-with-icon .fa-tachometer-alt { color: #17a2b8; }
+    </style>
 </head>
 <body>
     <!-- Barre de navigation -->
@@ -833,9 +868,9 @@
                         <a href="student_profile_page.html?id=${student.id}" class="action-btn view">
                             👁️ Voir
                         </a>
-                        <button class="action-btn edit" onclick="editStudent('${student.id}')"> class="btn-with-icon"><i class="fas fa-edit icon-fa"></i><i class="fas fa-edit fa-fallback"></i>Modifier
+                        <button class="action-btn edit" onclick="editStudent('${student.id}')"" class="btn-with-icon"><i class="fas fa-edit"></i>Modifier
                         </button>
-                        <button class="action-btn delete" onclick="deleteStudent('${student.id}')"> class="btn-with-icon"><i class="fas fa-trash icon-fa"></i><i class="fas fa-trash fa-fallback"></i>Supprimer
+                        <button class="action-btn delete" onclick="deleteStudent('${student.id}')"" class="btn-with-icon"><i class="fas fa-trash"></i>Supprimer
                         </button>
                     </td>
                 </tr>

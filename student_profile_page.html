@@ -1016,6 +1016,41 @@
             color: white;
         }
 </style>
+    <style>
+    /* Styles pour les icônes Font Awesome */
+    .btn-with-icon i {
+        margin-right: 8px;
+        font-size: 14px;
+    }
+    
+    .btn-with-icon:hover i {
+        transform: scale(1.1);
+        transition: transform 0.2s ease;
+    }
+    
+    /* Masquer les icônes de fallback */
+    .fa-fallback {
+        display: none;
+    }
+    
+    /* Icônes spécifiques */
+    .btn-with-icon .fa-edit { color: #007bff; }
+    .btn-with-icon .fa-trash { color: #dc3545; }
+    .btn-with-icon .fa-plus { color: #28a745; }
+    .btn-with-icon .fa-save { color: #17a2b8; }
+    .btn-with-icon .fa-magic { color: #6f42c1; }
+    .btn-with-icon .fa-comments { color: #fd7e14; }
+    .btn-with-icon .fa-chart-bar { color: #20c997; }
+    .btn-with-icon .fa-image { color: #e83e8c; }
+    .btn-with-icon .fa-eye { color: #6c757d; }
+    .btn-with-icon .fa-download { color: #28a745; }
+    .btn-with-icon .fa-upload { color: #ffc107; }
+    .btn-with-icon .fa-times { color: #6c757d; }
+    .btn-with-icon .fa-home { color: #007bff; }
+    .btn-with-icon .fa-bullseye { color: #dc3545; }
+    .btn-with-icon .fa-users { color: #28a745; }
+    .btn-with-icon .fa-tachometer-alt { color: #17a2b8; }
+    </style>
 </head>
 <body>
     <!-- Barre de Navigation LSU -->
@@ -1102,19 +1137,19 @@
                     <span id="studentPhotoEmoji">👧</span>
                 </div>
                 <div class="photo-actions">
-                    <button class="photo-btn" onclick="showPhotoModal()" title="Voir la photo"> class="btn-with-icon"><i class="fas fa-eye icon-fa"></i><i class="fas fa-eye fa-fallback"></i></button>
-                    <button class="photo-btn" onclick="editPhoto()" title="Modifier la photo"> class="btn-with-icon"><i class="fas fa-edit icon-fa"></i><i class="fas fa-edit fa-fallback"></i></button>
+                    <button class="photo-btn" onclick="showPhotoModal()" title="Voir la photo" class="btn-with-icon"><i class="fas fa-eye"></i></button>
+                    <button class="photo-btn" onclick="editPhoto()" title="Modifier la photo" class="btn-with-icon"><i class="fas fa-edit"></i></button>
                 </div>
             </div>
         </div>
 
         <div class="main-content">
             <div class="actions-bar">
-                <button class="btn btn-primary" onclick="generateComment()"> class="btn-with-icon"><i class="fas fa-magic icon-fa"></i><i class="fas fa-magic fa-fallback"></i>Générer commentaire
+                <button class="btn btn-primary" onclick="generateComment()"" class="btn-with-icon"><i class="fas fa-magic"></i>Générer commentaire
                 </button>
-                <button class="btn btn-secondary" onclick="openEvaluationModal()"> class="btn-with-icon"><i class="fas fa-file-alt icon-fa"></i><i class="fas fa-file-alt fa-fallback"></i>Nouvelle évaluation
+                <button class="btn btn-secondary" onclick="openEvaluationModal()"" class="btn-with-icon"><i class="fas fa-file-alt"></i>Nouvelle évaluation
                 </button>
-                <button class="btn btn-warning" onclick="editStudent()"> class="btn-with-icon"><i class="fas fa-edit icon-fa"></i><i class="fas fa-edit fa-fallback"></i>Modifier profil
+                <button class="btn btn-warning" onclick="editStudent()"" class="btn-with-icon"><i class="fas fa-edit"></i>Modifier profil
                 </button>
                 <a href="#" class="btn btn-secondary" onclick="goBack()">
                     ← Retour à la liste
@@ -1123,27 +1158,27 @@
 
             <!-- Nouveaux boutons de gestion des élèves -->
             <div class="d-flex gap-2 mb-3" style="display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap;">
-                <button class="btn btn-success" onclick="window.location.href='create_student.html'" style="background: #28a745; color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; font-weight: 500; transition: all 0.3s;"> class="btn-with-icon"><i class="fas fa-plus icon-fa"></i><i class="fas fa-plus fa-fallback"></i>Créer un élève
+                <button class="btn btn-success" onclick="window.location.href='create_student.html'" style="background: #28a745; color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; font-weight: 500; transition: all 0.3s;"" class="btn-with-icon"><i class="fas fa-plus"></i>Créer un élève
                 </button>
-                <button class="btn btn-primary" onclick="window.location.href='student_list.html'" style="background: #007bff; color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; font-weight: 500; transition: all 0.3s;"> class="btn-with-icon"><i class="fas fa-list icon-fa"></i><i class="fas fa-list fa-fallback"></i>Liste des élèves
+                <button class="btn btn-primary" onclick="window.location.href='student_list.html'" style="background: #007bff; color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; font-weight: 500; transition: all 0.3s;"" class="btn-with-icon"><i class="fas fa-list"></i>Liste des élèves
                 </button>
                 <input type="file" id="importFile" accept=".csv, .xlsx" style="display:none" onchange="handleImport(event)">
-                <button class="btn btn-warning" onclick="document.getElementById('importFile').click()" style="background: #ffc107; color: #212529; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; font-weight: 500; transition: all 0.3s;"> class="btn-with-icon"><i class="fas fa-download icon-fa"></i><i class="fas fa-download fa-fallback"></i>Importer une liste
+                <button class="btn btn-warning" onclick="document.getElementById('importFile').click()" style="background: #ffc107; color: #212529; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; font-weight: 500; transition: all 0.3s;"" class="btn-with-icon"><i class="fas fa-download"></i>Importer une liste
                 </button>
-                <button class="btn btn-info" onclick="handleExport()" style="background: #17a2b8; color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; font-weight: 500; transition: all 0.3s;"> class="btn-with-icon"><i class="fas fa-upload icon-fa"></i><i class="fas fa-upload fa-fallback"></i>Exporter la liste
+                <button class="btn btn-info" onclick="handleExport()" style="background: #17a2b8; color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; font-weight: 500; transition: all 0.3s;"" class="btn-with-icon"><i class="fas fa-upload"></i>Exporter la liste
                 </button>
             </div>
 
             <div class="tabs">
-                <button class="tab active" onclick="showTab('overview')"> class="btn-with-icon"><i class="fas fa-home icon-fa"></i><i class="fas fa-home fa-fallback"></i>Vue d'ensemble
+                <button class="tab active" onclick="showTab('overview')"" class="btn-with-icon"><i class="fas fa-home"></i>Vue d'ensemble
                 </button>
-                <button class="tab" onclick="showTab('competences')"> class="btn-with-icon"><i class="fas fa-bullseye icon-fa"></i><i class="fas fa-bullseye fa-fallback"></i>Compétences
+                <button class="tab" onclick="showTab('competences')"" class="btn-with-icon"><i class="fas fa-bullseye"></i>Compétences
                 </button>
-                <button class="tab" onclick="showTab('evaluations')"> class="btn-with-icon"><i class="fas fa-chart-bar icon-fa"></i><i class="fas fa-chart-bar fa-fallback"></i>Évaluations
+                <button class="tab" onclick="showTab('evaluations')"" class="btn-with-icon"><i class="fas fa-chart-bar"></i>Évaluations
                 </button>
-                <button class="tab" onclick="showTab('comments')"> class="btn-with-icon"><i class="fas fa-comments icon-fa"></i><i class="fas fa-comments fa-fallback"></i>Commentaires
+                <button class="tab" onclick="showTab('comments')"" class="btn-with-icon"><i class="fas fa-comments"></i>Commentaires
                 </button>
-                <button class="tab" onclick="showTab('family')"> class="btn-with-icon"><i class="fas fa-users icon-fa"></i><i class="fas fa-users fa-fallback"></i>Famille
+                <button class="tab" onclick="showTab('family')"" class="btn-with-icon"><i class="fas fa-users"></i>Famille
                 </button>
             </div>
 
@@ -1280,7 +1315,7 @@
                 </div>
                 
                 <div style="text-align: center; margin-top: 20px;">
-                    <button class="btn btn-primary" onclick="openEvaluationModal()"> class="btn-with-icon"><i class="fas fa-file-alt icon-fa"></i><i class="fas fa-file-alt fa-fallback"></i>Ajouter une évaluation
+                    <button class="btn btn-primary" onclick="openEvaluationModal()"" class="btn-with-icon"><i class="fas fa-file-alt"></i>Ajouter une évaluation
                     </button>
                 </div>
             </div>
@@ -1311,7 +1346,7 @@
                 </div>
                 
                 <div style="text-align: center; margin-top: 20px;">
-                    <button class="btn btn-primary" onclick="addComment()"> class="btn-with-icon"><i class="fas fa-comments icon-fa"></i><i class="fas fa-comments fa-fallback"></i>Ajouter un commentaire
+                    <button class="btn btn-primary" onclick="addComment()"" class="btn-with-icon"><i class="fas fa-comments"></i>Ajouter un commentaire
                     </button>
                 </div>
             </div>
@@ -1460,8 +1495,8 @@
             </div>
 
             <div style="display: flex; gap: 10px; margin-top: 20px;">
-                <button class="btn btn-primary" onclick="saveEvaluation()"> class="btn-with-icon"><i class="fas fa-save icon-fa"></i><i class="fas fa-save fa-fallback"></i>Enregistrer</button>
-                <button class="btn btn-secondary" onclick="closeEvaluationModal()"> class="btn-with-icon"><i class="fas fa-times icon-fa"></i><i class="fas fa-times fa-fallback"></i>Annuler</button>
+                <button class="btn btn-primary" onclick="saveEvaluation()"" class="btn-with-icon"><i class="fas fa-save"></i>Enregistrer</button>
+                <button class="btn btn-secondary" onclick="closeEvaluationModal()"" class="btn-with-icon"><i class="fas fa-times"></i>Annuler</button>
             </div>
         </div>
     </div>
@@ -1509,8 +1544,8 @@
             </div>
 
             <div style="display: flex; gap: 10px; margin-top: 20px;">
-                <button class="btn btn-primary" onclick="saveStudentProfile()"> class="btn-with-icon"><i class="fas fa-save icon-fa"></i><i class="fas fa-save fa-fallback"></i>Sauvegarder</button>
-                <button class="btn btn-secondary" onclick="closeEditModal()"> class="btn-with-icon"><i class="fas fa-times icon-fa"></i><i class="fas fa-times fa-fallback"></i>Annuler</button>
+                <button class="btn btn-primary" onclick="saveStudentProfile()"" class="btn-with-icon"><i class="fas fa-save"></i>Sauvegarder</button>
+                <button class="btn btn-secondary" onclick="closeEditModal()"" class="btn-with-icon"><i class="fas fa-times"></i>Annuler</button>
             </div>
         </div>
     </div>
@@ -1549,14 +1584,14 @@
                 </div>
                 
                 <div class="form-group">
-                    <button class="btn btn-danger" onclick="removePhoto()" style="background: #dc3545; color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer;"> class="btn-with-icon"><i class="fas fa-trash icon-fa"></i><i class="fas fa-trash fa-fallback"></i>Supprimer la photo
+                    <button class="btn btn-danger" onclick="removePhoto()" style="background: #dc3545; color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer;"" class="btn-with-icon"><i class="fas fa-trash"></i>Supprimer la photo
                     </button>
                 </div>
             </div>
             
             <div style="display: flex; gap: 10px; margin-top: 20px;">
-                <button class="btn btn-primary" onclick="savePhoto()"> class="btn-with-icon"><i class="fas fa-save icon-fa"></i><i class="fas fa-save fa-fallback"></i>Sauvegarder</button>
-                <button class="btn btn-secondary" onclick="closePhotoModal()"> class="btn-with-icon"><i class="fas fa-times icon-fa"></i><i class="fas fa-times fa-fallback"></i>Annuler</button>
+                <button class="btn btn-primary" onclick="savePhoto()"" class="btn-with-icon"><i class="fas fa-save"></i>Sauvegarder</button>
+                <button class="btn btn-secondary" onclick="closePhotoModal()"" class="btn-with-icon"><i class="fas fa-times"></i>Annuler</button>
             </div>
         </div>
     </div>
@@ -2029,13 +2064,13 @@
             exportMenu.innerHTML = `
                 <h3 style="margin-bottom: 20px; color: #333;">📤 Exporter la liste des élèves</h3>
                 <div style="display: flex; flex-direction: column; gap: 10px;">
-                    <button onclick="exportStudentList()" style="background: #28a745; color: white; border: none; padding: 12px; border-radius: 6px; cursor: pointer; font-weight: 500;"> class="btn-with-icon"><i class="fas fa-file icon-fa"></i><i class="fas fa-file fa-fallback"></i>Exporter en CSV
+                    <button onclick="exportStudentList()" style="background: #28a745; color: white; border: none; padding: 12px; border-radius: 6px; cursor: pointer; font-weight: 500;"" class="btn-with-icon"><i class="fas fa-file"></i>Exporter en CSV
                     </button>
-                    <button onclick="exportToExcel()" style="background: #007bff; color: white; border: none; padding: 12px; border-radius: 6px; cursor: pointer; font-weight: 500;"> class="btn-with-icon"><i class="fas fa-chart-bar icon-fa"></i><i class="fas fa-chart-bar fa-fallback"></i>Exporter en Excel
+                    <button onclick="exportToExcel()" style="background: #007bff; color: white; border: none; padding: 12px; border-radius: 6px; cursor: pointer; font-weight: 500;"" class="btn-with-icon"><i class="fas fa-chart-bar"></i>Exporter en Excel
                     </button>
-                    <button onclick="exportToPDF()" style="background: #dc3545; color: white; border: none; padding: 12px; border-radius: 6px; cursor: pointer; font-weight: 500;"> class="btn-with-icon"><i class="fas fa-list icon-fa"></i><i class="fas fa-list fa-fallback"></i>Exporter en PDF
+                    <button onclick="exportToPDF()" style="background: #dc3545; color: white; border: none; padding: 12px; border-radius: 6px; cursor: pointer; font-weight: 500;"" class="btn-with-icon"><i class="fas fa-list"></i>Exporter en PDF
                     </button>
-                    <button onclick="closeExportMenu()" style="background: #6c757d; color: white; border: none; padding: 12px; border-radius: 6px; cursor: pointer; font-weight: 500;"> class="btn-with-icon"><i class="fas fa-times icon-fa"></i><i class="fas fa-times fa-fallback"></i>Annuler
+                    <button onclick="closeExportMenu()" style="background: #6c757d; color: white; border: none; padding: 12px; border-radius: 6px; cursor: pointer; font-weight: 500;"" class="btn-with-icon"><i class="fas fa-times"></i>Annuler
                     </button>
                 </div>
             `;
@@ -2205,7 +2240,42 @@
             color: white;
         }
 </style>
-                </head>
+                    <style>
+    /* Styles pour les icônes Font Awesome */
+    .btn-with-icon i {
+        margin-right: 8px;
+        font-size: 14px;
+    }
+    
+    .btn-with-icon:hover i {
+        transform: scale(1.1);
+        transition: transform 0.2s ease;
+    }
+    
+    /* Masquer les icônes de fallback */
+    .fa-fallback {
+        display: none;
+    }
+    
+    /* Icônes spécifiques */
+    .btn-with-icon .fa-edit { color: #007bff; }
+    .btn-with-icon .fa-trash { color: #dc3545; }
+    .btn-with-icon .fa-plus { color: #28a745; }
+    .btn-with-icon .fa-save { color: #17a2b8; }
+    .btn-with-icon .fa-magic { color: #6f42c1; }
+    .btn-with-icon .fa-comments { color: #fd7e14; }
+    .btn-with-icon .fa-chart-bar { color: #20c997; }
+    .btn-with-icon .fa-image { color: #e83e8c; }
+    .btn-with-icon .fa-eye { color: #6c757d; }
+    .btn-with-icon .fa-download { color: #28a745; }
+    .btn-with-icon .fa-upload { color: #ffc107; }
+    .btn-with-icon .fa-times { color: #6c757d; }
+    .btn-with-icon .fa-home { color: #007bff; }
+    .btn-with-icon .fa-bullseye { color: #dc3545; }
+    .btn-with-icon .fa-users { color: #28a745; }
+    .btn-with-icon .fa-tachometer-alt { color: #17a2b8; }
+    </style>
+</head>
                 <body>
                     <div class="header">
                         <h1>📋 Liste des élèves - École ECOLE DU CAP</h1>

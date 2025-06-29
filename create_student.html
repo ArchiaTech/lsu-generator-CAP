@@ -407,6 +407,41 @@
             color: white;
         }
 </style>
+    <style>
+    /* Styles pour les icônes Font Awesome */
+    .btn-with-icon i {
+        margin-right: 8px;
+        font-size: 14px;
+    }
+    
+    .btn-with-icon:hover i {
+        transform: scale(1.1);
+        transition: transform 0.2s ease;
+    }
+    
+    /* Masquer les icônes de fallback */
+    .fa-fallback {
+        display: none;
+    }
+    
+    /* Icônes spécifiques */
+    .btn-with-icon .fa-edit { color: #007bff; }
+    .btn-with-icon .fa-trash { color: #dc3545; }
+    .btn-with-icon .fa-plus { color: #28a745; }
+    .btn-with-icon .fa-save { color: #17a2b8; }
+    .btn-with-icon .fa-magic { color: #6f42c1; }
+    .btn-with-icon .fa-comments { color: #fd7e14; }
+    .btn-with-icon .fa-chart-bar { color: #20c997; }
+    .btn-with-icon .fa-image { color: #e83e8c; }
+    .btn-with-icon .fa-eye { color: #6c757d; }
+    .btn-with-icon .fa-download { color: #28a745; }
+    .btn-with-icon .fa-upload { color: #ffc107; }
+    .btn-with-icon .fa-times { color: #6c757d; }
+    .btn-with-icon .fa-home { color: #007bff; }
+    .btn-with-icon .fa-bullseye { color: #dc3545; }
+    .btn-with-icon .fa-users { color: #28a745; }
+    .btn-with-icon .fa-tachometer-alt { color: #17a2b8; }
+    </style>
 </head>
 <body>
     <!-- Barre de navigation -->
@@ -574,9 +609,9 @@
 
                 <!-- Boutons d'action -->
                 <div class="actions-bar">
-                    <button type="submit" class="btn btn-primary"> class="btn-with-icon"><i class="fas fa-save icon-fa"></i><i class="fas fa-save fa-fallback"></i>Créer l'élève
+                    <button type="submit" class="btn btn-primary"" class="btn-with-icon"><i class="fas fa-save"></i>Créer l'élève
                     </button>
-                    <button type="button" class="btn btn-secondary" onclick="resetForm()"> class="btn-with-icon"><i class="fas fa-sync icon-fa"></i><i class="fas fa-sync fa-fallback"></i>Réinitialiser
+                    <button type="button" class="btn btn-secondary" onclick="resetForm()"" class="btn-with-icon"><i class="fas fa-sync"></i>Réinitialiser
                     </button>
                     <a href="student_profile_page.html" class="btn btn-secondary">
                         ← Retour
