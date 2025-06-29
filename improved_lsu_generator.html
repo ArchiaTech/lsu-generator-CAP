@@ -797,6 +797,64 @@
             font-size: 1.1em;
             vertical-align: middle;
         }
+
+        /* Styles pour les icônes Font Awesome */
+        .icon-fa {
+            font-size: 1.1em;
+            width: 20px;
+            text-align: center;
+            margin-right: 8px;
+        }
+
+        /* Amélioration des boutons avec icônes */
+        .btn-with-icon {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 20px;
+            border-radius: 8px;
+            border: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .btn-with-icon:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        /* Styles spécifiques pour les boutons d'action */
+        .btn-with-icon.btn-success {
+            background: linear-gradient(135deg, #28a745, #1e7e34);
+            color: white;
+        }
+
+        .btn-with-icon.btn-info {
+            background: linear-gradient(135deg, #17a2b8, #117a8b);
+            color: white;
+        }
+
+        .btn-with-icon.btn-warning {
+            background: linear-gradient(135deg, #ffc107, #e0a800);
+            color: #212529;
+        }
+
+        .btn-with-icon.btn-primary {
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            color: white;
+        }
+
+        .btn-with-icon.btn-danger {
+            background: linear-gradient(135deg, #dc3545, #c82333);
+            color: white;
+        }
+
+        .btn-with-icon.btn-secondary {
+            background: linear-gradient(135deg, #6c757d, #545b62);
+            color: white;
+        }
 </style>
 </head>
 <body>
@@ -805,34 +863,34 @@
         <div class="nav-container">
             <div class="nav-logo">
                 <a href="index.html" class="logo-link">
-                    <span class="logo-icon"><span class="emoji-icon">🎓</span><i class="fas fa-graduation-cap fa-fallback"></i></span>
+                    <span class="logo-icon"><i class="fas fa-graduation-cap icon-fa"></i><i class="fas fa-graduation-cap fa-fallback"></i></span>
                     <span class="logo-text">LSU Pro</span>
                 </a>
             </div>
             
             <div class="nav-menu" id="navMenu">
                 <a href="index.html" class="nav-link">
-                    <span class="nav-icon"><span class="emoji-icon">🏠</span><i class="fas fa-home fa-fallback"></i></span>
+                    <span class="nav-icon"><i class="fas fa-home icon-fa"></i><i class="fas fa-home fa-fallback"></i></span>
                     Accueil
                 </a>
                 <a href="improved_lsu_generator.html" class="nav-link">
-                    <span class="nav-icon"><span class="emoji-icon">📝</span><i class="fas fa-file-alt fa-fallback"></i></span>
+                    <span class="nav-icon"><i class="fas fa-file-alt icon-fa"></i><i class="fas fa-file-alt fa-fallback"></i></span>
                     Générateur LSU
                 </a>
                 <a href="student_profile_page.html" class="nav-link">
-                    <span class="nav-icon"><span class="emoji-icon">👤</span><i class="fas fa-user fa-fallback"></i></span>
+                    <span class="nav-icon"><i class="fas fa-user icon-fa"></i><i class="fas fa-user fa-fallback"></i></span>
                     Profils Élèves
                 </a>
                 <a href="photos_classe_pro.html" class="nav-link">
-                    <span class="nav-icon"><span class="emoji-icon">📸</span><i class="fas fa-camera fa-fallback"></i></span>
+                    <span class="nav-icon"><i class="fas fa-camera icon-fa"></i><i class="fas fa-camera fa-fallback"></i></span>
                     Photos Classe
                 </a>
                 <a href="lsu_connection_test.html" class="nav-link">
-                    <span class="nav-icon"><span class="emoji-icon">🔧</span><i class="fas fa-cog fa-fallback"></i></span>
+                    <span class="nav-icon"><i class="fas fa-cog icon-fa"></i><i class="fas fa-cog fa-fallback"></i></span>
                     Tests Connexion
                 </a>
                 <a href="test_navigation.html" class="nav-link">
-                    <span class="nav-icon"><span class="emoji-icon">🧭</span><i class="fas fa-compass fa-fallback"></i></span>
+                    <span class="nav-icon"><i class="fas fa-compass icon-fa"></i><i class="fas fa-compass fa-fallback"></i></span>
                     Navigation
                 </a>
             </div>
@@ -982,7 +1040,7 @@
                         <textarea id="specificPoints" rows="3" placeholder="Mentionnez des éléments particuliers à cet élève..."></textarea>
                     </div>
 
-                    <button type="button" class="generate-btn" onclick="generateComment()"> class="btn-with-icon"><span class="emoji-icon">✨</span><i class="fas fa-magic fa-fallback"></i>Générer le commentaire
+                    <button type="button" class="generate-btn" onclick="generateComment()"> class="btn-with-icon"><i class="fas fa-magic icon-fa"></i><i class="fas fa-magic fa-fallback"></i>Générer le commentaire
                     </button>
                 </div>
 
@@ -1010,7 +1068,7 @@
                         </div>
                     </div>
 
-                    <button type="button" class="copy-btn" onclick="copyComment()" style="display: none;" id="copyBtn"> class="btn-with-icon"><span class="emoji-icon">📋</span><i class="fas fa-list fa-fallback"></i>Copier le commentaire
+                    <button type="button" class="copy-btn" onclick="copyComment()" style="display: none;" id="copyBtn"> class="btn-with-icon"><i class="fas fa-list icon-fa"></i><i class="fas fa-list fa-fallback"></i>Copier le commentaire
                     </button>
                 </div>
             </div>
@@ -1043,7 +1101,7 @@
     <div id="studentsPage" class="page">
         <div class="student-list">
             <h1>👥 Gestion des Élèves</h1>
-            <button class="add-student-btn" onclick="openAddStudentModal()"> class="btn-with-icon"><span class="emoji-icon">➕</span><i class="fas fa-plus fa-fallback"></i>Ajouter un élève</button>
+            <button class="add-student-btn" onclick="openAddStudentModal()"> class="btn-with-icon"><i class="fas fa-plus icon-fa"></i><i class="fas fa-plus fa-fallback"></i>Ajouter un élève</button>
             
             <div id="studentsList">
                 <!-- Liste dynamique des élèves -->
@@ -1086,8 +1144,8 @@
                     </select>
                 </div>
 
-                <button class="generate-btn" onclick="testConnections()"> class="btn-with-icon"><span class="emoji-icon">🔍</span><i class="fas fa-search fa-fallback"></i>Tester les connexions</button>
-                <button class="generate-btn" onclick="saveSettings()" style="margin-top: 10px;"> class="btn-with-icon"><span class="emoji-icon">💾</span><i class="fas fa-save fa-fallback"></i>Sauvegarder</button>
+                <button class="generate-btn" onclick="testConnections()"> class="btn-with-icon"><i class="fas fa-search icon-fa"></i><i class="fas fa-search fa-fallback"></i>Tester les connexions</button>
+                <button class="generate-btn" onclick="saveSettings()" style="margin-top: 10px;"> class="btn-with-icon"><i class="fas fa-save icon-fa"></i><i class="fas fa-save fa-fallback"></i>Sauvegarder</button>
             </div>
         </div>
     </div>
@@ -1124,7 +1182,7 @@
                 <input type="date" id="newStudentBirthDate">
             </div>
 
-            <button class="generate-btn" onclick="addStudent()"> class="btn-with-icon"><span class="emoji-icon">➕</span><i class="fas fa-plus fa-fallback"></i>Ajouter l'élève</button>
+            <button class="generate-btn" onclick="addStudent()"> class="btn-with-icon"><i class="fas fa-plus icon-fa"></i><i class="fas fa-plus fa-fallback"></i>Ajouter l'élève</button>
         </div>
     </div>
 

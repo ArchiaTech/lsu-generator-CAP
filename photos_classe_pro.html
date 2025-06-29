@@ -450,6 +450,64 @@
             font-size: 1.1em;
             vertical-align: middle;
         }
+
+        /* Styles pour les icônes Font Awesome */
+        .icon-fa {
+            font-size: 1.1em;
+            width: 20px;
+            text-align: center;
+            margin-right: 8px;
+        }
+
+        /* Amélioration des boutons avec icônes */
+        .btn-with-icon {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 20px;
+            border-radius: 8px;
+            border: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .btn-with-icon:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        /* Styles spécifiques pour les boutons d'action */
+        .btn-with-icon.btn-success {
+            background: linear-gradient(135deg, #28a745, #1e7e34);
+            color: white;
+        }
+
+        .btn-with-icon.btn-info {
+            background: linear-gradient(135deg, #17a2b8, #117a8b);
+            color: white;
+        }
+
+        .btn-with-icon.btn-warning {
+            background: linear-gradient(135deg, #ffc107, #e0a800);
+            color: #212529;
+        }
+
+        .btn-with-icon.btn-primary {
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            color: white;
+        }
+
+        .btn-with-icon.btn-danger {
+            background: linear-gradient(135deg, #dc3545, #c82333);
+            color: white;
+        }
+
+        .btn-with-icon.btn-secondary {
+            background: linear-gradient(135deg, #6c757d, #545b62);
+            color: white;
+        }
 </style>
 </head>
 <body>
@@ -458,26 +516,26 @@
         <div class="nav-container">
             <div class="nav-logo">
                 <a href="index.html" class="logo-link">
-                    <span class="logo-icon"><span class="emoji-icon">🎓</span><i class="fas fa-graduation-cap fa-fallback"></i></span>
+                    <span class="logo-icon"><i class="fas fa-graduation-cap icon-fa"></i><i class="fas fa-graduation-cap fa-fallback"></i></span>
                     <span class="logo-text">LSU Pro</span>
                 </a>
             </div>
             
             <div class="nav-menu" id="navMenu">
                 <a href="index.html" class="nav-link">
-                    <span class="nav-icon"><span class="emoji-icon">🏠</span><i class="fas fa-home fa-fallback"></i></span>
+                    <span class="nav-icon"><i class="fas fa-home icon-fa"></i><i class="fas fa-home fa-fallback"></i></span>
                     Accueil
                 </a>
                 <a href="improved_lsu_generator.html" class="nav-link">
-                    <span class="nav-icon"><span class="emoji-icon">📝</span><i class="fas fa-file-alt fa-fallback"></i></span>
+                    <span class="nav-icon"><i class="fas fa-file-alt icon-fa"></i><i class="fas fa-file-alt fa-fallback"></i></span>
                     Générateur LSU
                 </a>
                 <a href="student_profile_page.html" class="nav-link">
-                    <span class="nav-icon"><span class="emoji-icon">👤</span><i class="fas fa-user fa-fallback"></i></span>
+                    <span class="nav-icon"><i class="fas fa-user icon-fa"></i><i class="fas fa-user fa-fallback"></i></span>
                     Profils Élèves
                 </a>
                 <a href="photos_classe_pro.html" class="nav-link active">
-                    <span class="nav-icon"><span class="emoji-icon">📸</span><i class="fas fa-camera fa-fallback"></i></span>
+                    <span class="nav-icon"><i class="fas fa-camera icon-fa"></i><i class="fas fa-camera fa-fallback"></i></span>
                     Photos Classe
                 </a>
             </div>
@@ -505,11 +563,11 @@
                     </select>
                 </div>
                 <div class="toolbar-right">
-                    <button class="btn btn-success" onclick="ajouterEleve()"> class="btn-with-icon"><span class="emoji-icon">➕</span><i class="fas fa-plus fa-fallback"></i>Ajouter un élève
+                    <button class="btn btn-success" onclick="ajouterEleve()"> class="btn-with-icon"><i class="fas fa-plus icon-fa"></i><i class="fas fa-plus fa-fallback"></i>Ajouter un élève
                     </button>
-                    <button class="btn btn-info" onclick="importerListeEleves()"> class="btn-with-icon"><span class="emoji-icon">📥</span><i class="fas fa-download fa-fallback"></i>Importer
+                    <button class="btn btn-info" onclick="importerListeEleves()"> class="btn-with-icon"><i class="fas fa-download icon-fa"></i><i class="fas fa-download fa-fallback"></i>Importer
                     </button>
-                    <button class="btn btn-warning" onclick="exporterListeEleves()"> class="btn-with-icon"><span class="emoji-icon">📤</span><i class="fas fa-upload fa-fallback"></i>Exporter
+                    <button class="btn btn-warning" onclick="exporterListeEleves()"> class="btn-with-icon"><i class="fas fa-upload icon-fa"></i><i class="fas fa-upload fa-fallback"></i>Exporter
                     </button>
                 </div>
             </div>
@@ -551,10 +609,10 @@
             </div>
             
             <div style="display: flex; gap: 10px; margin-top: 20px;">
-                <button class="btn btn-primary" id="editBtn" onclick="ouvrirModaleEdition()"> class="btn-with-icon"><span class="emoji-icon">✏️</span><i class="fas fa-edit fa-fallback"></i>Modifier</button>
-                <button class="btn btn-success" id="saveBtn" onclick="sauvegarderPhoto()" style="display: none;"> class="btn-with-icon"><span class="emoji-icon">💾</span><i class="fas fa-save fa-fallback"></i>Sauvegarder</button>
-                <button class="btn btn-danger" onclick="supprimerEleve()"> class="btn-with-icon"><span class="emoji-icon">🗑️</span><i class="fas fa-trash fa-fallback"></i>Supprimer</button>
-                <button class="btn btn-secondary" onclick="fermerModal()"> class="btn-with-icon"><span class="emoji-icon">❌</span><i class="fas fa-times fa-fallback"></i>Fermer</button>
+                <button class="btn btn-primary" id="editBtn" onclick="ouvrirModaleEdition()"> class="btn-with-icon"><i class="fas fa-edit icon-fa"></i><i class="fas fa-edit fa-fallback"></i>Modifier</button>
+                <button class="btn btn-success" id="saveBtn" onclick="sauvegarderPhoto()" style="display: none;"> class="btn-with-icon"><i class="fas fa-save icon-fa"></i><i class="fas fa-save fa-fallback"></i>Sauvegarder</button>
+                <button class="btn btn-danger" onclick="supprimerEleve()"> class="btn-with-icon"><i class="fas fa-trash icon-fa"></i><i class="fas fa-trash fa-fallback"></i>Supprimer</button>
+                <button class="btn btn-secondary" onclick="fermerModal()"> class="btn-with-icon"><i class="fas fa-times icon-fa"></i><i class="fas fa-times fa-fallback"></i>Fermer</button>
             </div>
         </div>
     </div>
@@ -594,8 +652,8 @@
                 </div>
                 
                 <div style="display: flex; gap: 10px;">
-                    <button type="submit" class="btn btn-success"> class="btn-with-icon"><span class="emoji-icon">💾</span><i class="fas fa-save fa-fallback"></i>Ajouter</button>
-                    <button type="button" class="btn btn-secondary" onclick="fermerModal()"> class="btn-with-icon"><span class="emoji-icon">❌</span><i class="fas fa-times fa-fallback"></i>Annuler</button>
+                    <button type="submit" class="btn btn-success"> class="btn-with-icon"><i class="fas fa-save icon-fa"></i><i class="fas fa-save fa-fallback"></i>Ajouter</button>
+                    <button type="button" class="btn btn-secondary" onclick="fermerModal()"> class="btn-with-icon"><i class="fas fa-times icon-fa"></i><i class="fas fa-times fa-fallback"></i>Annuler</button>
                 </div>
             </form>
         </div>
@@ -691,11 +749,11 @@
             </div>
             
             <div style="display: flex; gap: 10px;">
-                <button class="btn btn-success" onclick="executerExport()"> class="btn-with-icon"><span class="emoji-icon">💾</span><i class="fas fa-save fa-fallback"></i>Exporter
+                <button class="btn btn-success" onclick="executerExport()"> class="btn-with-icon"><i class="fas fa-save icon-fa"></i><i class="fas fa-save fa-fallback"></i>Exporter
                 </button>
-                <button class="btn btn-info" onclick="previsualiserExport()"> class="btn-with-icon"><span class="emoji-icon">👁️</span><i class="fas fa-eye fa-fallback"></i>Prévisualiser
+                <button class="btn btn-info" onclick="previsualiserExport()"> class="btn-with-icon"><i class="fas fa-eye icon-fa"></i><i class="fas fa-eye fa-fallback"></i>Prévisualiser
                 </button>
-                <button class="btn btn-secondary" onclick="fermerModal()"> class="btn-with-icon"><span class="emoji-icon">❌</span><i class="fas fa-times fa-fallback"></i>Annuler
+                <button class="btn btn-secondary" onclick="fermerModal()"> class="btn-with-icon"><i class="fas fa-times icon-fa"></i><i class="fas fa-times fa-fallback"></i>Annuler
                 </button>
             </div>
         </div>
@@ -712,9 +770,9 @@
             </div>
             
             <div style="display: flex; gap: 10px; margin-top: 20px;">
-                <button class="btn btn-success" onclick="executerExport()"> class="btn-with-icon"><span class="emoji-icon">💾</span><i class="fas fa-save fa-fallback"></i>Exporter maintenant
+                <button class="btn btn-success" onclick="executerExport()"> class="btn-with-icon"><i class="fas fa-save icon-fa"></i><i class="fas fa-save fa-fallback"></i>Exporter maintenant
                 </button>
-                <button class="btn btn-secondary" onclick="fermerModal()"> class="btn-with-icon"><span class="emoji-icon">❌</span><i class="fas fa-times fa-fallback"></i>Fermer
+                <button class="btn btn-secondary" onclick="fermerModal()"> class="btn-with-icon"><i class="fas fa-times icon-fa"></i><i class="fas fa-times fa-fallback"></i>Fermer
                 </button>
             </div>
         </div>
@@ -767,8 +825,8 @@
                 </div>
                 
                 <div style="display: flex; gap: 10px;">
-                    <button type="submit" class="btn btn-success"> class="btn-with-icon"><span class="emoji-icon">💾</span><i class="fas fa-save fa-fallback"></i>Sauvegarder</button>
-                    <button type="button" class="btn btn-secondary" onclick="fermerModal()"> class="btn-with-icon"><span class="emoji-icon">❌</span><i class="fas fa-times fa-fallback"></i>Annuler</button>
+                    <button type="submit" class="btn btn-success"> class="btn-with-icon"><i class="fas fa-save icon-fa"></i><i class="fas fa-save fa-fallback"></i>Sauvegarder</button>
+                    <button type="button" class="btn btn-secondary" onclick="fermerModal()"> class="btn-with-icon"><i class="fas fa-times icon-fa"></i><i class="fas fa-times fa-fallback"></i>Annuler</button>
                 </div>
             </form>
         </div>
@@ -787,8 +845,8 @@
             </div>
             
             <div style="display: flex; gap: 10px; justify-content: center;">
-                <button class="btn btn-danger" onclick="confirmerSuppression()"> class="btn-with-icon"><span class="emoji-icon">🗑️</span><i class="fas fa-trash fa-fallback"></i>Supprimer définitivement</button>
-                <button class="btn btn-secondary" onclick="fermerModal()"> class="btn-with-icon"><span class="emoji-icon">❌</span><i class="fas fa-times fa-fallback"></i>Annuler</button>
+                <button class="btn btn-danger" onclick="confirmerSuppression()"> class="btn-with-icon"><i class="fas fa-trash icon-fa"></i><i class="fas fa-trash fa-fallback"></i>Supprimer définitivement</button>
+                <button class="btn btn-secondary" onclick="fermerModal()"> class="btn-with-icon"><i class="fas fa-times icon-fa"></i><i class="fas fa-times fa-fallback"></i>Annuler</button>
             </div>
         </div>
     </div>
@@ -1094,11 +1152,11 @@
                         }
                         <div class="photo-overlay">
                             <div class="photo-actions">
-                                <button class="btn btn-sm btn-outline-success" onclick="afficherPhoto('${eleve.nom}', ${eleve.id})" title="Voir la photo"> class="btn-with-icon"><span class="emoji-icon">👁️</span><i class="fas fa-eye fa-fallback"></i>Voir
+                                <button class="btn btn-sm btn-outline-success" onclick="afficherPhoto('${eleve.nom}', ${eleve.id})" title="Voir la photo"> class="btn-with-icon"><i class="fas fa-eye icon-fa"></i><i class="fas fa-eye fa-fallback"></i>Voir
                                 </button>
-                                <button class="btn btn-sm btn-outline-warning" onclick="ouvrirModaleEdition('${eleve.nom}', ${eleve.id})" title="Modifier"> class="btn-with-icon"><span class="emoji-icon">✏️</span><i class="fas fa-edit fa-fallback"></i>Modifier
+                                <button class="btn btn-sm btn-outline-warning" onclick="ouvrirModaleEdition('${eleve.nom}', ${eleve.id})" title="Modifier"> class="btn-with-icon"><i class="fas fa-edit icon-fa"></i><i class="fas fa-edit fa-fallback"></i>Modifier
                                 </button>
-                                <button class="btn btn-sm btn-outline-danger" onclick="supprimerEleve('${eleve.nom}', ${eleve.id})" title="Supprimer"> class="btn-with-icon"><span class="emoji-icon">🗑️</span><i class="fas fa-trash fa-fallback"></i>Supprimer
+                                <button class="btn btn-sm btn-outline-danger" onclick="supprimerEleve('${eleve.nom}', ${eleve.id})" title="Supprimer"> class="btn-with-icon"><i class="fas fa-trash icon-fa"></i><i class="fas fa-trash fa-fallback"></i>Supprimer
                                 </button>
                             </div>
                         </div>
@@ -1577,6 +1635,64 @@
         .emoji-icon {
             font-size: 1.1em;
             vertical-align: middle;
+        }
+
+        /* Styles pour les icônes Font Awesome */
+        .icon-fa {
+            font-size: 1.1em;
+            width: 20px;
+            text-align: center;
+            margin-right: 8px;
+        }
+
+        /* Amélioration des boutons avec icônes */
+        .btn-with-icon {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 20px;
+            border-radius: 8px;
+            border: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .btn-with-icon:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        /* Styles spécifiques pour les boutons d'action */
+        .btn-with-icon.btn-success {
+            background: linear-gradient(135deg, #28a745, #1e7e34);
+            color: white;
+        }
+
+        .btn-with-icon.btn-info {
+            background: linear-gradient(135deg, #17a2b8, #117a8b);
+            color: white;
+        }
+
+        .btn-with-icon.btn-warning {
+            background: linear-gradient(135deg, #ffc107, #e0a800);
+            color: #212529;
+        }
+
+        .btn-with-icon.btn-primary {
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            color: white;
+        }
+
+        .btn-with-icon.btn-danger {
+            background: linear-gradient(135deg, #dc3545, #c82333);
+            color: white;
+        }
+
+        .btn-with-icon.btn-secondary {
+            background: linear-gradient(135deg, #6c757d, #545b62);
+            color: white;
         }
 </style>
                 </head>

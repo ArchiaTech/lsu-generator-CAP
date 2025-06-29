@@ -957,6 +957,64 @@
             font-size: 1.1em;
             vertical-align: middle;
         }
+
+        /* Styles pour les icônes Font Awesome */
+        .icon-fa {
+            font-size: 1.1em;
+            width: 20px;
+            text-align: center;
+            margin-right: 8px;
+        }
+
+        /* Amélioration des boutons avec icônes */
+        .btn-with-icon {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 20px;
+            border-radius: 8px;
+            border: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .btn-with-icon:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        /* Styles spécifiques pour les boutons d'action */
+        .btn-with-icon.btn-success {
+            background: linear-gradient(135deg, #28a745, #1e7e34);
+            color: white;
+        }
+
+        .btn-with-icon.btn-info {
+            background: linear-gradient(135deg, #17a2b8, #117a8b);
+            color: white;
+        }
+
+        .btn-with-icon.btn-warning {
+            background: linear-gradient(135deg, #ffc107, #e0a800);
+            color: #212529;
+        }
+
+        .btn-with-icon.btn-primary {
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            color: white;
+        }
+
+        .btn-with-icon.btn-danger {
+            background: linear-gradient(135deg, #dc3545, #c82333);
+            color: white;
+        }
+
+        .btn-with-icon.btn-secondary {
+            background: linear-gradient(135deg, #6c757d, #545b62);
+            color: white;
+        }
 </style>
 </head>
 <body>
@@ -965,34 +1023,34 @@
         <div class="nav-container">
             <div class="nav-logo">
                 <a href="index.html" class="logo-link">
-                    <span class="logo-icon"><span class="emoji-icon">🎓</span><i class="fas fa-graduation-cap fa-fallback"></i></span>
+                    <span class="logo-icon"><i class="fas fa-graduation-cap icon-fa"></i><i class="fas fa-graduation-cap fa-fallback"></i></span>
                     <span class="logo-text">LSU Pro</span>
                 </a>
             </div>
             
             <div class="nav-menu" id="navMenu">
                 <a href="index.html" class="nav-link">
-                    <span class="nav-icon"><span class="emoji-icon">🏠</span><i class="fas fa-home fa-fallback"></i></span>
+                    <span class="nav-icon"><i class="fas fa-home icon-fa"></i><i class="fas fa-home fa-fallback"></i></span>
                     Accueil
                 </a>
                 <a href="improved_lsu_generator.html" class="nav-link">
-                    <span class="nav-icon"><span class="emoji-icon">📝</span><i class="fas fa-file-alt fa-fallback"></i></span>
+                    <span class="nav-icon"><i class="fas fa-file-alt icon-fa"></i><i class="fas fa-file-alt fa-fallback"></i></span>
                     Générateur LSU
                 </a>
                 <a href="student_profile_page.html" class="nav-link">
-                    <span class="nav-icon"><span class="emoji-icon">👤</span><i class="fas fa-user fa-fallback"></i></span>
+                    <span class="nav-icon"><i class="fas fa-user icon-fa"></i><i class="fas fa-user fa-fallback"></i></span>
                     Profils Élèves
                 </a>
                 <a href="photos_classe_pro.html" class="nav-link">
-                    <span class="nav-icon"><span class="emoji-icon">📸</span><i class="fas fa-camera fa-fallback"></i></span>
+                    <span class="nav-icon"><i class="fas fa-camera icon-fa"></i><i class="fas fa-camera fa-fallback"></i></span>
                     Photos Classe
                 </a>
                 <a href="lsu_connection_test.html" class="nav-link">
-                    <span class="nav-icon"><span class="emoji-icon">🔧</span><i class="fas fa-cog fa-fallback"></i></span>
+                    <span class="nav-icon"><i class="fas fa-cog icon-fa"></i><i class="fas fa-cog fa-fallback"></i></span>
                     Tests Connexion
                 </a>
                 <a href="test_navigation.html" class="nav-link">
-                    <span class="nav-icon"><span class="emoji-icon">🧭</span><i class="fas fa-compass fa-fallback"></i></span>
+                    <span class="nav-icon"><i class="fas fa-compass icon-fa"></i><i class="fas fa-compass fa-fallback"></i></span>
                     Navigation
                 </a>
             </div>
@@ -1044,19 +1102,19 @@
                     <span id="studentPhotoEmoji">👧</span>
                 </div>
                 <div class="photo-actions">
-                    <button class="photo-btn" onclick="showPhotoModal()" title="Voir la photo"> class="btn-with-icon"><span class="emoji-icon">👁️</span><i class="fas fa-eye fa-fallback"></i></button>
-                    <button class="photo-btn" onclick="editPhoto()" title="Modifier la photo"> class="btn-with-icon"><span class="emoji-icon">✏️</span><i class="fas fa-edit fa-fallback"></i></button>
+                    <button class="photo-btn" onclick="showPhotoModal()" title="Voir la photo"> class="btn-with-icon"><i class="fas fa-eye icon-fa"></i><i class="fas fa-eye fa-fallback"></i></button>
+                    <button class="photo-btn" onclick="editPhoto()" title="Modifier la photo"> class="btn-with-icon"><i class="fas fa-edit icon-fa"></i><i class="fas fa-edit fa-fallback"></i></button>
                 </div>
             </div>
         </div>
 
         <div class="main-content">
             <div class="actions-bar">
-                <button class="btn btn-primary" onclick="generateComment()"> class="btn-with-icon"><span class="emoji-icon">✨</span><i class="fas fa-magic fa-fallback"></i>Générer commentaire
+                <button class="btn btn-primary" onclick="generateComment()"> class="btn-with-icon"><i class="fas fa-magic icon-fa"></i><i class="fas fa-magic fa-fallback"></i>Générer commentaire
                 </button>
-                <button class="btn btn-secondary" onclick="openEvaluationModal()"> class="btn-with-icon"><span class="emoji-icon">📝</span><i class="fas fa-file-alt fa-fallback"></i>Nouvelle évaluation
+                <button class="btn btn-secondary" onclick="openEvaluationModal()"> class="btn-with-icon"><i class="fas fa-file-alt icon-fa"></i><i class="fas fa-file-alt fa-fallback"></i>Nouvelle évaluation
                 </button>
-                <button class="btn btn-warning" onclick="editStudent()"> class="btn-with-icon"><span class="emoji-icon">✏️</span><i class="fas fa-edit fa-fallback"></i>Modifier profil
+                <button class="btn btn-warning" onclick="editStudent()"> class="btn-with-icon"><i class="fas fa-edit icon-fa"></i><i class="fas fa-edit fa-fallback"></i>Modifier profil
                 </button>
                 <a href="#" class="btn btn-secondary" onclick="goBack()">
                     ← Retour à la liste
@@ -1065,27 +1123,27 @@
 
             <!-- Nouveaux boutons de gestion des élèves -->
             <div class="d-flex gap-2 mb-3" style="display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap;">
-                <button class="btn btn-success" onclick="window.location.href='create_student.html'" style="background: #28a745; color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; font-weight: 500; transition: all 0.3s;"> class="btn-with-icon"><span class="emoji-icon">➕</span><i class="fas fa-plus fa-fallback"></i>Créer un élève
+                <button class="btn btn-success" onclick="window.location.href='create_student.html'" style="background: #28a745; color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; font-weight: 500; transition: all 0.3s;"> class="btn-with-icon"><i class="fas fa-plus icon-fa"></i><i class="fas fa-plus fa-fallback"></i>Créer un élève
                 </button>
-                <button class="btn btn-primary" onclick="window.location.href='student_list.html'" style="background: #007bff; color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; font-weight: 500; transition: all 0.3s;"> class="btn-with-icon"><span class="emoji-icon">📋</span><i class="fas fa-list fa-fallback"></i>Liste des élèves
+                <button class="btn btn-primary" onclick="window.location.href='student_list.html'" style="background: #007bff; color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; font-weight: 500; transition: all 0.3s;"> class="btn-with-icon"><i class="fas fa-list icon-fa"></i><i class="fas fa-list fa-fallback"></i>Liste des élèves
                 </button>
                 <input type="file" id="importFile" accept=".csv, .xlsx" style="display:none" onchange="handleImport(event)">
-                <button class="btn btn-warning" onclick="document.getElementById('importFile').click()" style="background: #ffc107; color: #212529; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; font-weight: 500; transition: all 0.3s;"> class="btn-with-icon"><span class="emoji-icon">📥</span><i class="fas fa-download fa-fallback"></i>Importer une liste
+                <button class="btn btn-warning" onclick="document.getElementById('importFile').click()" style="background: #ffc107; color: #212529; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; font-weight: 500; transition: all 0.3s;"> class="btn-with-icon"><i class="fas fa-download icon-fa"></i><i class="fas fa-download fa-fallback"></i>Importer une liste
                 </button>
-                <button class="btn btn-info" onclick="handleExport()" style="background: #17a2b8; color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; font-weight: 500; transition: all 0.3s;"> class="btn-with-icon"><span class="emoji-icon">📤</span><i class="fas fa-upload fa-fallback"></i>Exporter la liste
+                <button class="btn btn-info" onclick="handleExport()" style="background: #17a2b8; color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; font-weight: 500; transition: all 0.3s;"> class="btn-with-icon"><i class="fas fa-upload icon-fa"></i><i class="fas fa-upload fa-fallback"></i>Exporter la liste
                 </button>
             </div>
 
             <div class="tabs">
-                <button class="tab active" onclick="showTab('overview')"> class="btn-with-icon"><span class="emoji-icon">🏠</span><i class="fas fa-home fa-fallback"></i>Vue d'ensemble
+                <button class="tab active" onclick="showTab('overview')"> class="btn-with-icon"><i class="fas fa-home icon-fa"></i><i class="fas fa-home fa-fallback"></i>Vue d'ensemble
                 </button>
-                <button class="tab" onclick="showTab('competences')"> class="btn-with-icon"><span class="emoji-icon">🎯</span><i class="fas fa-bullseye fa-fallback"></i>Compétences
+                <button class="tab" onclick="showTab('competences')"> class="btn-with-icon"><i class="fas fa-bullseye icon-fa"></i><i class="fas fa-bullseye fa-fallback"></i>Compétences
                 </button>
-                <button class="tab" onclick="showTab('evaluations')"> class="btn-with-icon"><span class="emoji-icon">📊</span><i class="fas fa-chart-bar fa-fallback"></i>Évaluations
+                <button class="tab" onclick="showTab('evaluations')"> class="btn-with-icon"><i class="fas fa-chart-bar icon-fa"></i><i class="fas fa-chart-bar fa-fallback"></i>Évaluations
                 </button>
-                <button class="tab" onclick="showTab('comments')"> class="btn-with-icon"><span class="emoji-icon">💬</span><i class="fas fa-comments fa-fallback"></i>Commentaires
+                <button class="tab" onclick="showTab('comments')"> class="btn-with-icon"><i class="fas fa-comments icon-fa"></i><i class="fas fa-comments fa-fallback"></i>Commentaires
                 </button>
-                <button class="tab" onclick="showTab('family')"> class="btn-with-icon"><span class="emoji-icon">👨‍👩‍👧‍👦</span><i class="fas fa-users fa-fallback"></i>Famille
+                <button class="tab" onclick="showTab('family')"> class="btn-with-icon"><i class="fas fa-users icon-fa"></i><i class="fas fa-users fa-fallback"></i>Famille
                 </button>
             </div>
 
@@ -1222,7 +1280,7 @@
                 </div>
                 
                 <div style="text-align: center; margin-top: 20px;">
-                    <button class="btn btn-primary" onclick="openEvaluationModal()"> class="btn-with-icon"><span class="emoji-icon">📝</span><i class="fas fa-file-alt fa-fallback"></i>Ajouter une évaluation
+                    <button class="btn btn-primary" onclick="openEvaluationModal()"> class="btn-with-icon"><i class="fas fa-file-alt icon-fa"></i><i class="fas fa-file-alt fa-fallback"></i>Ajouter une évaluation
                     </button>
                 </div>
             </div>
@@ -1253,7 +1311,7 @@
                 </div>
                 
                 <div style="text-align: center; margin-top: 20px;">
-                    <button class="btn btn-primary" onclick="addComment()"> class="btn-with-icon"><span class="emoji-icon">💬</span><i class="fas fa-comments fa-fallback"></i>Ajouter un commentaire
+                    <button class="btn btn-primary" onclick="addComment()"> class="btn-with-icon"><i class="fas fa-comments icon-fa"></i><i class="fas fa-comments fa-fallback"></i>Ajouter un commentaire
                     </button>
                 </div>
             </div>
@@ -1402,8 +1460,8 @@
             </div>
 
             <div style="display: flex; gap: 10px; margin-top: 20px;">
-                <button class="btn btn-primary" onclick="saveEvaluation()"> class="btn-with-icon"><span class="emoji-icon">💾</span><i class="fas fa-save fa-fallback"></i>Enregistrer</button>
-                <button class="btn btn-secondary" onclick="closeEvaluationModal()"> class="btn-with-icon"><span class="emoji-icon">❌</span><i class="fas fa-times fa-fallback"></i>Annuler</button>
+                <button class="btn btn-primary" onclick="saveEvaluation()"> class="btn-with-icon"><i class="fas fa-save icon-fa"></i><i class="fas fa-save fa-fallback"></i>Enregistrer</button>
+                <button class="btn btn-secondary" onclick="closeEvaluationModal()"> class="btn-with-icon"><i class="fas fa-times icon-fa"></i><i class="fas fa-times fa-fallback"></i>Annuler</button>
             </div>
         </div>
     </div>
@@ -1451,8 +1509,8 @@
             </div>
 
             <div style="display: flex; gap: 10px; margin-top: 20px;">
-                <button class="btn btn-primary" onclick="saveStudentProfile()"> class="btn-with-icon"><span class="emoji-icon">💾</span><i class="fas fa-save fa-fallback"></i>Sauvegarder</button>
-                <button class="btn btn-secondary" onclick="closeEditModal()"> class="btn-with-icon"><span class="emoji-icon">❌</span><i class="fas fa-times fa-fallback"></i>Annuler</button>
+                <button class="btn btn-primary" onclick="saveStudentProfile()"> class="btn-with-icon"><i class="fas fa-save icon-fa"></i><i class="fas fa-save fa-fallback"></i>Sauvegarder</button>
+                <button class="btn btn-secondary" onclick="closeEditModal()"> class="btn-with-icon"><i class="fas fa-times icon-fa"></i><i class="fas fa-times fa-fallback"></i>Annuler</button>
             </div>
         </div>
     </div>
@@ -1491,14 +1549,14 @@
                 </div>
                 
                 <div class="form-group">
-                    <button class="btn btn-danger" onclick="removePhoto()" style="background: #dc3545; color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer;"> class="btn-with-icon"><span class="emoji-icon">🗑️</span><i class="fas fa-trash fa-fallback"></i>Supprimer la photo
+                    <button class="btn btn-danger" onclick="removePhoto()" style="background: #dc3545; color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer;"> class="btn-with-icon"><i class="fas fa-trash icon-fa"></i><i class="fas fa-trash fa-fallback"></i>Supprimer la photo
                     </button>
                 </div>
             </div>
             
             <div style="display: flex; gap: 10px; margin-top: 20px;">
-                <button class="btn btn-primary" onclick="savePhoto()"> class="btn-with-icon"><span class="emoji-icon">💾</span><i class="fas fa-save fa-fallback"></i>Sauvegarder</button>
-                <button class="btn btn-secondary" onclick="closePhotoModal()"> class="btn-with-icon"><span class="emoji-icon">❌</span><i class="fas fa-times fa-fallback"></i>Annuler</button>
+                <button class="btn btn-primary" onclick="savePhoto()"> class="btn-with-icon"><i class="fas fa-save icon-fa"></i><i class="fas fa-save fa-fallback"></i>Sauvegarder</button>
+                <button class="btn btn-secondary" onclick="closePhotoModal()"> class="btn-with-icon"><i class="fas fa-times icon-fa"></i><i class="fas fa-times fa-fallback"></i>Annuler</button>
             </div>
         </div>
     </div>
@@ -1971,13 +2029,13 @@
             exportMenu.innerHTML = `
                 <h3 style="margin-bottom: 20px; color: #333;">📤 Exporter la liste des élèves</h3>
                 <div style="display: flex; flex-direction: column; gap: 10px;">
-                    <button onclick="exportStudentList()" style="background: #28a745; color: white; border: none; padding: 12px; border-radius: 6px; cursor: pointer; font-weight: 500;"> class="btn-with-icon"><span class="emoji-icon">📄</span><i class="fas fa-file fa-fallback"></i>Exporter en CSV
+                    <button onclick="exportStudentList()" style="background: #28a745; color: white; border: none; padding: 12px; border-radius: 6px; cursor: pointer; font-weight: 500;"> class="btn-with-icon"><i class="fas fa-file icon-fa"></i><i class="fas fa-file fa-fallback"></i>Exporter en CSV
                     </button>
-                    <button onclick="exportToExcel()" style="background: #007bff; color: white; border: none; padding: 12px; border-radius: 6px; cursor: pointer; font-weight: 500;"> class="btn-with-icon"><span class="emoji-icon">📊</span><i class="fas fa-chart-bar fa-fallback"></i>Exporter en Excel
+                    <button onclick="exportToExcel()" style="background: #007bff; color: white; border: none; padding: 12px; border-radius: 6px; cursor: pointer; font-weight: 500;"> class="btn-with-icon"><i class="fas fa-chart-bar icon-fa"></i><i class="fas fa-chart-bar fa-fallback"></i>Exporter en Excel
                     </button>
-                    <button onclick="exportToPDF()" style="background: #dc3545; color: white; border: none; padding: 12px; border-radius: 6px; cursor: pointer; font-weight: 500;"> class="btn-with-icon"><span class="emoji-icon">📋</span><i class="fas fa-list fa-fallback"></i>Exporter en PDF
+                    <button onclick="exportToPDF()" style="background: #dc3545; color: white; border: none; padding: 12px; border-radius: 6px; cursor: pointer; font-weight: 500;"> class="btn-with-icon"><i class="fas fa-list icon-fa"></i><i class="fas fa-list fa-fallback"></i>Exporter en PDF
                     </button>
-                    <button onclick="closeExportMenu()" style="background: #6c757d; color: white; border: none; padding: 12px; border-radius: 6px; cursor: pointer; font-weight: 500;"> class="btn-with-icon"><span class="emoji-icon">❌</span><i class="fas fa-times fa-fallback"></i>Annuler
+                    <button onclick="closeExportMenu()" style="background: #6c757d; color: white; border: none; padding: 12px; border-radius: 6px; cursor: pointer; font-weight: 500;"> class="btn-with-icon"><i class="fas fa-times icon-fa"></i><i class="fas fa-times fa-fallback"></i>Annuler
                     </button>
                 </div>
             `;
@@ -2087,6 +2145,64 @@
         .emoji-icon {
             font-size: 1.1em;
             vertical-align: middle;
+        }
+
+        /* Styles pour les icônes Font Awesome */
+        .icon-fa {
+            font-size: 1.1em;
+            width: 20px;
+            text-align: center;
+            margin-right: 8px;
+        }
+
+        /* Amélioration des boutons avec icônes */
+        .btn-with-icon {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 20px;
+            border-radius: 8px;
+            border: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .btn-with-icon:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        /* Styles spécifiques pour les boutons d'action */
+        .btn-with-icon.btn-success {
+            background: linear-gradient(135deg, #28a745, #1e7e34);
+            color: white;
+        }
+
+        .btn-with-icon.btn-info {
+            background: linear-gradient(135deg, #17a2b8, #117a8b);
+            color: white;
+        }
+
+        .btn-with-icon.btn-warning {
+            background: linear-gradient(135deg, #ffc107, #e0a800);
+            color: #212529;
+        }
+
+        .btn-with-icon.btn-primary {
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            color: white;
+        }
+
+        .btn-with-icon.btn-danger {
+            background: linear-gradient(135deg, #dc3545, #c82333);
+            color: white;
+        }
+
+        .btn-with-icon.btn-secondary {
+            background: linear-gradient(135deg, #6c757d, #545b62);
+            color: white;
         }
 </style>
                 </head>

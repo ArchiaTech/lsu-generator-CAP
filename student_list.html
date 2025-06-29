@@ -536,6 +536,64 @@
             font-size: 1.1em;
             vertical-align: middle;
         }
+
+        /* Styles pour les icônes Font Awesome */
+        .icon-fa {
+            font-size: 1.1em;
+            width: 20px;
+            text-align: center;
+            margin-right: 8px;
+        }
+
+        /* Amélioration des boutons avec icônes */
+        .btn-with-icon {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 20px;
+            border-radius: 8px;
+            border: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .btn-with-icon:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        /* Styles spécifiques pour les boutons d'action */
+        .btn-with-icon.btn-success {
+            background: linear-gradient(135deg, #28a745, #1e7e34);
+            color: white;
+        }
+
+        .btn-with-icon.btn-info {
+            background: linear-gradient(135deg, #17a2b8, #117a8b);
+            color: white;
+        }
+
+        .btn-with-icon.btn-warning {
+            background: linear-gradient(135deg, #ffc107, #e0a800);
+            color: #212529;
+        }
+
+        .btn-with-icon.btn-primary {
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            color: white;
+        }
+
+        .btn-with-icon.btn-danger {
+            background: linear-gradient(135deg, #dc3545, #c82333);
+            color: white;
+        }
+
+        .btn-with-icon.btn-secondary {
+            background: linear-gradient(135deg, #6c757d, #545b62);
+            color: white;
+        }
 </style>
 </head>
 <body>
@@ -775,9 +833,9 @@
                         <a href="student_profile_page.html?id=${student.id}" class="action-btn view">
                             👁️ Voir
                         </a>
-                        <button class="action-btn edit" onclick="editStudent('${student.id}')"> class="btn-with-icon"><span class="emoji-icon">✏️</span><i class="fas fa-edit fa-fallback"></i>Modifier
+                        <button class="action-btn edit" onclick="editStudent('${student.id}')"> class="btn-with-icon"><i class="fas fa-edit icon-fa"></i><i class="fas fa-edit fa-fallback"></i>Modifier
                         </button>
-                        <button class="action-btn delete" onclick="deleteStudent('${student.id}')"> class="btn-with-icon"><span class="emoji-icon">🗑️</span><i class="fas fa-trash fa-fallback"></i>Supprimer
+                        <button class="action-btn delete" onclick="deleteStudent('${student.id}')"> class="btn-with-icon"><i class="fas fa-trash icon-fa"></i><i class="fas fa-trash fa-fallback"></i>Supprimer
                         </button>
                     </td>
                 </tr>
