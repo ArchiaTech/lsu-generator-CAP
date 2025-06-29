@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+    <script src="https://cdn.tailwindcss.com"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tableau de bord - ECOLE DU CAP</title>
@@ -349,8 +350,141 @@
             color: white;
         }
 </style>
+    <!-- Styles CSS pour la sidebar -->
+<style>
+    /* Animation d'entrée pour la sidebar */
+    @keyframes slideIn {
+        from { transform: translateX(-100%); }
+        to { transform: translateX(0); }
+    }
+
+    /* Highlight pour la page active */
+    .nav-link.active {
+        background: rgba(255, 255, 255, 0.15);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        border-left: 4px solid #fbbf24;
+    }
+
+    /* Animation de survol améliorée */
+    .nav-link:hover {
+        transform: translateX(4px);
+    }
+
+    /* Responsive design */
+    @media (max-width: 640px) {
+        #sidebar {
+            transform: translateX(-100%);
+        }
+        
+        #sidebar.open {
+            transform: translateX(0);
+        }
+    }
+
+    /* Ajustement du contenu principal pour la sidebar */
+    .main-content {
+        margin-left: 0;
+        transition: margin-left 0.3s ease;
+    }
+
+    @media (min-width: 640px) {
+        .main-content {
+            margin-left: 256px; /* w-64 = 16rem = 256px */
+        }
+    }
+</style>
 </head>
-<body>
+<body class="main-content">
+    <!-- Barre de navigation latérale - ÉCOLE DU CAP -->
+<div id="sidebar" class="fixed left-0 top-0 h-full w-64 bg-gradient-to-b from-indigo-500 to-blue-500 text-white shadow-xl z-50 transition-all duration-300 transform -translate-x-full sm:translate-x-0">
+    
+    <!-- Logo et nom de l'école -->
+    <div class="p-6 border-b border-indigo-400/30">
+        <div class="flex items-center space-x-3">
+            <div class="text-3xl">🏫</div>
+            <div>
+                <h1 class="text-xl font-bold">ÉCOLE DU CAP</h1>
+                <p class="text-xs text-indigo-100">Navigation principale</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="mt-6 px-4">
+        <ul class="space-y-2">
+            <!-- Accueil -->
+            <li>
+                <a href="index.html" id="nav-accueil" class="nav-link flex items-center space-x-3 px-4 py-3 rounded-lg transition-all duration-200 hover:bg-white/10 hover:shadow-md group">
+                    <span class="text-xl">🏠</span>
+                    <span class="font-medium">Accueil</span>
+                    <div class="ml-auto opacity-0 group-hover:opacity-100 transition-opacity">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </div>
+                </a>
+            </li>
+
+            <!-- Générateur LSU -->
+            <li>
+                <a href="lsu_generator.html" id="nav-lsu" class="nav-link flex items-center space-x-3 px-4 py-3 rounded-lg transition-all duration-200 hover:bg-white/10 hover:shadow-md group">
+                    <span class="text-xl">🎓</span>
+                    <span class="font-medium">Générateur LSU</span>
+                    <div class="ml-auto opacity-0 group-hover:opacity-100 transition-opacity">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </div>
+                </a>
+            </li>
+
+            <!-- Profils élèves -->
+            <li>
+                <a href="profils_eleves.html" id="nav-profils" class="nav-link flex items-center space-x-3 px-4 py-3 rounded-lg transition-all duration-200 hover:bg-white/10 hover:shadow-md group">
+                    <span class="text-xl">👨‍🎓</span>
+                    <span class="font-medium">Profils élèves</span>
+                    <div class="ml-auto opacity-0 group-hover:opacity-100 transition-opacity">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </div>
+                </a>
+            </li>
+
+            <!-- Tableau de bord -->
+            <li>
+                <a href="dashboard.html" id="nav-dashboard" class="nav-link flex items-center space-x-3 px-4 py-3 rounded-lg transition-all duration-200 hover:bg-white/10 hover:shadow-md group">
+                    <span class="text-xl">📊</span>
+                    <span class="font-medium">Tableau de bord</span>
+                    <div class="ml-auto opacity-0 group-hover:opacity-100 transition-opacity">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Footer de la sidebar -->
+    <div class="absolute bottom-0 left-0 right-0 p-4 border-t border-indigo-400/30">
+        <div class="text-center text-xs text-indigo-100">
+            <p>© 2025 ÉCOLE DU CAP</p>
+            <p class="mt-1">Système de gestion éducative</p>
+        </div>
+    </div>
+</div>
+
+<!-- Bouton burger pour mobile -->
+<div id="sidebar-toggle" class="fixed top-4 left-4 z-50 sm:hidden bg-indigo-500 text-white p-2 rounded-lg shadow-lg">
+    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+    </svg>
+</div>
+
+<!-- Overlay pour mobile -->
+<div id="sidebar-overlay" class="fixed inset-0 bg-black/50 z-40 sm:hidden hidden"></div>
+    
     <!-- Barre de menu -->
     <nav class="navbar">
         <div class="navbar-logo">🏫 LSU Génies</div>
@@ -577,5 +711,62 @@
         window.addEventListener('load', fixMissingIcons);
     });
     </script>
+    <!-- Script JavaScript pour la sidebar -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const sidebar = document.getElementById('sidebar');
+    const sidebarToggle = document.getElementById('sidebar-toggle');
+    const sidebarOverlay = document.getElementById('sidebar-overlay');
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    // Fonction pour marquer la page active
+    function setActivePage() {
+        const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+        
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            const href = link.getAttribute('href');
+            if (href === currentPage) {
+                link.classList.add('active');
+            }
+        });
+    }
+
+    // Fonction pour basculer la sidebar sur mobile
+    function toggleSidebar() {
+        sidebar.classList.toggle('open');
+        sidebarOverlay.classList.toggle('hidden');
+    }
+
+    // Événements pour mobile
+    if (sidebarToggle) {
+        sidebarToggle.addEventListener('click', toggleSidebar);
+    }
+    
+    if (sidebarOverlay) {
+        sidebarOverlay.addEventListener('click', toggleSidebar);
+    }
+
+    // Fermer la sidebar en cliquant sur un lien (mobile)
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            if (window.innerWidth < 640) {
+                toggleSidebar();
+            }
+        });
+    });
+
+    // Marquer la page active au chargement
+    setActivePage();
+
+    // Gestion du redimensionnement de fenêtre
+    window.addEventListener('resize', () => {
+        if (window.innerWidth >= 640) {
+            sidebar.classList.remove('open');
+            sidebarOverlay.classList.add('hidden');
+        }
+    });
+});
+</script>
 </body>
 </html> 

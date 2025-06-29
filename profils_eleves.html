@@ -1,13 +1,31 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+    <script src="https://cdn.tailwindcss.com"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>📋 Fiche Élève - LSU École Primaire</title>
-        <!-- Font Awesome CSS (fallback pour les icônes) -->
+    <title>📋 Profils Élèves - ÉCOLE DU CAP</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     
-<style>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
         /* Barre de Navigation LSU */
         .nav-bar {
             background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
@@ -16,6 +34,7 @@
             top: 0;
             z-index: 1000;
             border-bottom: 3px solid #3498db;
+            margin: -20px -20px 20px -20px;
         }
 
         .nav-container {
@@ -76,192 +95,20 @@
             border-radius: 8px;
             transition: all 0.3s;
             font-weight: 500;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .nav-link::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: left 0.5s;
-        }
-
-        .nav-link:hover::before {
-            left: 100%;
         }
 
         .nav-link:hover {
             background: rgba(52, 152, 219, 0.2);
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
         }
 
         .nav-link.active {
             background: rgba(52, 152, 219, 0.3);
-            box-shadow: 0 0 15px rgba(52, 152, 219, 0.5);
         }
 
-        .nav-icon {
-            font-size: 1.2em;
-        }
-
-        .nav-toggle {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            gap: 4px;
-        }
-
-        .nav-toggle span {
-            width: 25px;
-            height: 3px;
-            background: white;
-            border-radius: 2px;
-            transition: all 0.3s;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .nav-menu {
-                position: fixed;
-                top: 70px;
-                left: -100%;
-                width: 100%;
-                height: calc(100vh - 70px);
-                background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
-                flex-direction: column;
-                padding: 20px;
-                transition: left 0.3s;
-                gap: 10px;
-            }
-
-            .nav-menu.active {
-                left: 0;
-            }
-
-            .nav-link {
-                width: 100%;
-                justify-content: center;
-                padding: 15px;
-                font-size: 1.1em;
-            }
-
-            .nav-toggle {
-                display: flex;
-            }
-
-            .nav-toggle.active span:nth-child(1) {
-                transform: rotate(45deg) translate(5px, 5px);
-            }
-
-            .nav-toggle.active span:nth-child(2) {
-                opacity: 0;
-            }
-
-            .nav-toggle.active span:nth-child(3) {
-                transform: rotate(-45deg) translate(7px, -6px);
-            }
-        }
-
-        /* Animation d'entrée */
-        @keyframes slideInDown {
-            from {
-                transform: translateY(-100%);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-
-        .nav-bar {
-            animation: slideInDown 0.5s ease-out;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 20px;
-        }
-
-        /* Barre de navigation */
-        .navbar {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            margin: -20px -20px 20px -20px;
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 20px;
-        }
-
-        .nav-logo {
-            font-size: 1.5em;
-            font-weight: bold;
-            color: #4CAF50;
-            text-decoration: none;
-        }
-
-        .nav-menu {
-            display: flex;
-            list-style: none;
-            gap: 30px;
-        }
-
-        .nav-item {
-            position: relative;
-        }
-
-        .nav-link {
-            text-decoration: none;
-            color: #2c3e50;
-            font-weight: 500;
-            padding: 8px 15px;
-            border-radius: 6px;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .nav-link:hover, .nav-link.active {
-            background: #4CAF50;
-            color: white;
-            transform: translateY(-2px);
-        }
-
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 1.5em;
-            cursor: pointer;
-        }
-
+        /* Container principal */
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             background: white;
             border-radius: 20px;
@@ -270,80 +117,101 @@
         }
 
         .header {
-            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
             color: white;
             padding: 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            text-align: center;
         }
 
-        .header-info h1 {
-            font-size: 2.2em;
-            margin-bottom: 5px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-        }
-
-        .header-info p {
-            opacity: 0.9;
-            font-size: 1.1em;
-        }
-
-        .student-photo {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .header h1 {
             font-size: 2.5em;
-            border: 3px solid rgba(255,255,255,0.3);
+            margin-bottom: 10px;
         }
 
         .main-content {
             padding: 30px;
         }
 
+        /* Barre d'outils */
+        .toolbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .toolbar-left {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .toolbar-right {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .search-box {
+            padding: 10px 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+            min-width: 200px;
+        }
+
+        .filter-select {
+            padding: 10px 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        /* Onglets */
         .tabs {
             display: flex;
+            border-bottom: 2px solid #eee;
             margin-bottom: 30px;
-            border-bottom: 2px solid #e9ecef;
-            overflow-x: auto;
+            flex-wrap: wrap;
         }
 
         .tab {
             padding: 15px 25px;
-            cursor: pointer;
-            border: none;
             background: none;
-            font-size: 1em;
-            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
             color: #666;
+            border-bottom: 3px solid transparent;
             transition: all 0.3s;
-            white-space: nowrap;
-            display: flex;
-            align-items: center;
-            gap: 8px;
         }
 
         .tab.active {
-            color: #4CAF50;
-            border-bottom: 3px solid #4CAF50;
+            color: #3498db;
+            border-bottom-color: #3498db;
+            background: rgba(52, 152, 219, 0.1);
         }
 
         .tab:hover {
-            color: #4CAF50;
-            background: rgba(76, 175, 80, 0.05);
+            color: #3498db;
+            background: rgba(52, 152, 219, 0.05);
         }
 
+        /* Contenu des onglets */
         .tab-content {
             display: none;
+            animation: fadeIn 0.3s ease-in;
         }
 
         .tab-content.active {
             display: block;
-            animation: fadeIn 0.3s ease-in;
         }
 
         @keyframes fadeIn {
@@ -351,321 +219,221 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .info-grid {
+        /* Grille des profils */
+        .profiles-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
             gap: 25px;
             margin-bottom: 30px;
         }
 
-        .info-card {
-            background: #f8f9fa;
-            border: 2px solid #e9ecef;
+        .profile-card {
+            background: white;
             border-radius: 15px;
-            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
             transition: all 0.3s;
+            border: 2px solid transparent;
         }
 
-        .info-card:hover {
-            border-color: #4CAF50;
-            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.1);
+        .profile-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            border-color: #3498db;
         }
 
-        .card-title {
-            font-size: 1.2em;
-            font-weight: 600;
-            color: #2c3e50;
-            margin-bottom: 15px;
+        .profile-header {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+            padding: 20px;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 15px;
         }
 
-        .info-item {
+        .profile-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2em;
+        }
+
+        .profile-info h3 {
+            margin: 0;
+            font-size: 1.3em;
+        }
+
+        .profile-info p {
+            margin: 5px 0 0 0;
+            opacity: 0.9;
+        }
+
+        .profile-body {
+            padding: 20px;
+        }
+
+        .profile-section {
+            margin-bottom: 20px;
+        }
+
+        .profile-section h4 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+        }
+
+        .profile-data {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .data-item {
             display: flex;
             justify-content: space-between;
             padding: 8px 0;
-            border-bottom: 1px solid #e9ecef;
+            border-bottom: 1px solid #f0f0f0;
         }
 
-        .info-item:last-child {
-            border-bottom: none;
-        }
-
-        .info-label {
-            font-weight: 600;
-            color: #555;
-        }
-
-        .info-value {
-            color: #2c3e50;
-            text-align: right;
-        }
-
-        .competences-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
-
-        .competence-card {
-            background: white;
-            border: 2px solid #e9ecef;
-            border-radius: 10px;
-            padding: 15px;
-            transition: all 0.3s;
-        }
-
-        .competence-title {
-            font-weight: 600;
-            color: #2c3e50;
-            margin-bottom: 10px;
-            font-size: 0.95em;
-        }
-
-        .competence-level {
-            display: flex;
-            gap: 5px;
-            margin-bottom: 10px;
-        }
-
-        .level-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: #ddd;
-            transition: all 0.3s;
-        }
-
-        .level-dot.active {
-            background: #4CAF50;
-            transform: scale(1.2);
-        }
-
-        .level-dot.insufficient { background: #f44336; }
-        .level-dot.fragile { background: #ff9800; }
-        .level-dot.satisfactory { background: #4CAF50; }
-        .level-dot.excellent { background: #2196F3; }
-
-        .competence-comment {
-            font-size: 0.85em;
+        .data-label {
+            font-weight: 500;
             color: #666;
-            font-style: italic;
-            margin-top: 8px;
         }
 
-        .evaluation-history {
-            background: white;
-            border-radius: 10px;
-            padding: 20px;
-            margin-bottom: 20px;
+        .data-value {
+            color: #333;
         }
 
-        .timeline {
-            position: relative;
-            padding-left: 30px;
+        .profile-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
         }
 
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 10px;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: #e9ecef;
-        }
-
-        .timeline-item {
-            position: relative;
-            margin-bottom: 25px;
-            padding: 15px;
-            background: #f8f9fa;
-            border-radius: 10px;
-            border-left: 4px solid #4CAF50;
-        }
-
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -37px;
-            top: 20px;
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: #4CAF50;
-            border: 3px solid white;
-            box-shadow: 0 0 0 2px #e9ecef;
-        }
-
-        .timeline-date {
-            font-weight: 600;
-            color: #4CAF50;
-            font-size: 0.9em;
-            margin-bottom: 5px;
-        }
-
-        .timeline-content {
-            color: #2c3e50;
-            line-height: 1.5;
-        }
-
-        .btn {
-            padding: 12px 20px;
+        .btn-action {
+            padding: 8px 15px;
             border: none;
-            border-radius: 8px;
+            border-radius: 6px;
             cursor: pointer;
-            font-size: 1em;
-            font-weight: 600;
+            font-size: 14px;
             transition: all 0.3s;
+            text-decoration: none;
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            text-decoration: none;
+            gap: 5px;
         }
 
-        .btn-primary {
-            background: #4CAF50;
+        .btn-view {
+            background: #3498db;
             color: white;
         }
 
-        .btn-secondary {
-            background: #6c757d;
+        .btn-edit {
+            background: #f39c12;
             color: white;
         }
 
-        .btn-warning {
-            background: #ffc107;
-            color: #212529;
+        .btn-delete {
+            background: #e74c3c;
+            color: white;
         }
 
-        .btn:hover {
+        .btn-action:hover {
             transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
         }
 
-        /* Styles pour les nouveaux boutons d'import/export */
-        .btn-success {
-            background: #28a745;
-            color: white;
-        }
-
-        .btn-info {
-            background: #17a2b8;
-            color: white;
-        }
-
-        /* Container pour les nouveaux boutons */
-        .d-flex.gap-2.mb-3 {
-            display: flex;
-            gap: 8px;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-            padding: 15px;
-            background: #f8f9fa;
-            border-radius: 10px;
-            border: 1px solid #e9ecef;
-        }
-
-        .d-flex.gap-2.mb-3 button {
-            transition: all 0.3s ease;
-            font-weight: 500;
-            min-width: 140px;
-        }
-
-        .d-flex.gap-2.mb-3 button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        }
-
-        /* Responsive pour les nouveaux boutons */
-        @media (max-width: 768px) {
-            .d-flex.gap-2.mb-3 {
-                flex-direction: column;
-                gap: 10px;
-            }
-            
-            .d-flex.gap-2.mb-3 button {
-                width: 100%;
-                min-width: auto;
-            }
-        }
-
-        .actions-bar {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-        }
-
-        .quick-stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 15px;
-            margin-bottom: 25px;
-        }
-
-        .stat-card {
-            background: white;
-            border: 2px solid #e9ecef;
-            border-radius: 10px;
-            padding: 20px;
-            text-align: center;
-            transition: all 0.3s;
-        }
-
-        .stat-card:hover {
-            border-color: #4CAF50;
-        }
-
-        .stat-number {
-            font-size: 2em;
-            font-weight: bold;
-            color: #4CAF50;
-            margin-bottom: 5px;
-        }
-
-        .stat-label {
-            color: #666;
-            font-size: 0.9em;
-        }
-
+        /* Modal styles */
         .modal {
             display: none;
             position: fixed;
-            top: 0;
+            z-index: 2000;
             left: 0;
+            top: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.5);
-            z-index: 1000;
+            background-color: rgba(0,0,0,0.5);
+            backdrop-filter: blur(5px);
         }
 
         .modal-content {
-            background: white;
-            margin: 50px auto;
-            padding: 30px;
+            background-color: white;
+            margin: 5% auto;
+            padding: 0;
             border-radius: 15px;
-            max-width: 600px;
             width: 90%;
+            max-width: 700px;
             max-height: 80vh;
             overflow-y: auto;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            animation: modalSlideIn 0.3s ease-out;
         }
 
+        @keyframes modalSlideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 15px 15px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-body {
+            padding: 30px;
+        }
+
+        .modal-footer {
+            padding: 20px;
+            border-top: 1px solid #eee;
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+
+        .close {
+            color: white;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .close:hover {
+            transform: scale(1.2);
+        }
+
+        /* Form styles */
         .form-group {
             margin-bottom: 20px;
         }
 
-        .form-group label {
+        .form-label {
             display: block;
             margin-bottom: 8px;
-            font-weight: 600;
-            color: #2c3e50;
+            font-weight: bold;
+            color: #333;
         }
 
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
+        .form-control {
             width: 100%;
             padding: 12px;
             border: 2px solid #ddd;
@@ -674,1213 +442,1104 @@
             transition: border-color 0.3s;
         }
 
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
+        .form-control:focus {
             outline: none;
-            border-color: #4CAF50;
-            box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+            border-color: #3498db;
         }
 
-        .close {
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-            cursor: pointer;
-            color: #999;
+        /* Responsive */
+        @media (max-width: 768px) {
+            .profiles-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .toolbar {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .toolbar-left, .toolbar-right {
+                justify-content: center;
+            }
+            
+            .tabs {
+                flex-direction: column;
+            }
+            
+            .tab {
+                text-align: center;
+            }
+            
+            .modal-content {
+                width: 95%;
+                margin: 10% auto;
+            }
+            
+            .profile-data {
+                grid-template-columns: 1fr;
+            }
         }
 
-        .close:hover {
-            color: #333;
-        }
-
+        /* Notification styles */
         .notification {
             position: fixed;
             top: 20px;
             right: 20px;
-            background: #4CAF50;
-            color: white;
             padding: 15px 20px;
             border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-            transform: translateX(100%);
-            opacity: 0;
-            transition: all 0.3s;
-            z-index: 1001;
+            color: white;
+            font-weight: bold;
+            z-index: 3000;
+            transform: translateX(400px);
+            transition: transform 0.3s ease;
         }
 
         .notification.show {
             transform: translateX(0);
-            opacity: 1;
+        }
+
+        .notification.success {
+            background: #4CAF50;
         }
 
         .notification.error {
-            background: #f44336;
+            background: #e74c3c;
         }
 
-        .notification.warning {
-            background: #ff9800;
+        .notification.info {
+            background: #3498db;
         }
+    </style>
+    <!-- Styles CSS pour la sidebar -->
+<style>
+    /* Animation d'entrée pour la sidebar */
+    @keyframes slideIn {
+        from { transform: translateX(-100%); }
+        to { transform: translateX(0); }
+    }
 
-        @media (max-width: 768px) {
-            .header {
-                flex-direction: column;
-                text-align: center;
-                gap: 15px;
-            }
+    /* Highlight pour la page active */
+    .nav-link.active {
+        background: rgba(255, 255, 255, 0.15);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        border-left: 4px solid #fbbf24;
+    }
 
-            .tabs {
-                flex-direction: column;
-            }
+    /* Animation de survol améliorée */
+    .nav-link:hover {
+        transform: translateX(4px);
+    }
 
-            .info-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .actions-bar {
-                flex-direction: column;
-            }
+    /* Responsive design */
+    @media (max-width: 640px) {
+        #sidebar {
+            transform: translateX(-100%);
         }
-    
-        /* Amélioration de la compatibilité des icônes */
-        .icon-fallback {
-            display: inline-block;
-            width: 1em;
-            height: 1em;
-            text-align: center;
-            line-height: 1;
+        
+        #sidebar.open {
+            transform: translateX(0);
         }
+    }
 
-        /* Fallback pour les emojis qui ne s'affichent pas */
-        .btn .emoji-icon {
-            display: inline-block;
-            margin-right: 5px;
-        }
+    /* Ajustement du contenu principal pour la sidebar */
+    .main-content {
+        margin-left: 0;
+        transition: margin-left 0.3s ease;
+    }
 
-        /* Styles pour les icônes Font Awesome en fallback */
-        .fa-fallback {
-            display: none;
+    @media (min-width: 640px) {
+        .main-content {
+            margin-left: 256px; /* w-64 = 16rem = 256px */
         }
-
-        /* Amélioration de l'affichage des boutons avec icônes */
-        .btn-with-icon {
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        /* Amélioration de l'affichage des emojis */
-        .emoji-icon {
-            font-size: 1.1em;
-            vertical-align: middle;
-        }
-
-        /* Styles pour les icônes Font Awesome */
-        .icon-fa {
-            font-size: 1.1em;
-            width: 20px;
-            text-align: center;
-            margin-right: 8px;
-        }
-
-        /* Amélioration des boutons avec icônes */
-        .btn-with-icon {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 12px 20px;
-            border-radius: 8px;
-            border: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            text-decoration: none;
-        }
-
-        .btn-with-icon:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
-
-        /* Styles spécifiques pour les boutons d'action */
-        .btn-with-icon.btn-success {
-            background: linear-gradient(135deg, #28a745, #1e7e34);
-            color: white;
-        }
-
-        .btn-with-icon.btn-info {
-            background: linear-gradient(135deg, #17a2b8, #117a8b);
-            color: white;
-        }
-
-        .btn-with-icon.btn-warning {
-            background: linear-gradient(135deg, #ffc107, #e0a800);
-            color: #212529;
-        }
-
-        .btn-with-icon.btn-primary {
-            background: linear-gradient(135deg, #007bff, #0056b3);
-            color: white;
-        }
-
-        .btn-with-icon.btn-danger {
-            background: linear-gradient(135deg, #dc3545, #c82333);
-            color: white;
-        }
-
-        .btn-with-icon.btn-secondary {
-            background: linear-gradient(135deg, #6c757d, #545b62);
-            color: white;
-        }
+    }
 </style>
 </head>
-<body>
-    <!-- Barre de Navigation LSU -->
+<body class="main-content">
+    <!-- Barre de navigation latérale - ÉCOLE DU CAP -->
+<div id="sidebar" class="fixed left-0 top-0 h-full w-64 bg-gradient-to-b from-indigo-500 to-blue-500 text-white shadow-xl z-50 transition-all duration-300 transform -translate-x-full sm:translate-x-0">
+    
+    <!-- Logo et nom de l'école -->
+    <div class="p-6 border-b border-indigo-400/30">
+        <div class="flex items-center space-x-3">
+            <div class="text-3xl">🏫</div>
+            <div>
+                <h1 class="text-xl font-bold">ÉCOLE DU CAP</h1>
+                <p class="text-xs text-indigo-100">Navigation principale</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="mt-6 px-4">
+        <ul class="space-y-2">
+            <!-- Accueil -->
+            <li>
+                <a href="index.html" id="nav-accueil" class="nav-link flex items-center space-x-3 px-4 py-3 rounded-lg transition-all duration-200 hover:bg-white/10 hover:shadow-md group">
+                    <span class="text-xl">🏠</span>
+                    <span class="font-medium">Accueil</span>
+                    <div class="ml-auto opacity-0 group-hover:opacity-100 transition-opacity">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </div>
+                </a>
+            </li>
+
+            <!-- Générateur LSU -->
+            <li>
+                <a href="lsu_generator.html" id="nav-lsu" class="nav-link flex items-center space-x-3 px-4 py-3 rounded-lg transition-all duration-200 hover:bg-white/10 hover:shadow-md group">
+                    <span class="text-xl">🎓</span>
+                    <span class="font-medium">Générateur LSU</span>
+                    <div class="ml-auto opacity-0 group-hover:opacity-100 transition-opacity">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </div>
+                </a>
+            </li>
+
+            <!-- Profils élèves -->
+            <li>
+                <a href="profils_eleves.html" id="nav-profils" class="nav-link flex items-center space-x-3 px-4 py-3 rounded-lg transition-all duration-200 hover:bg-white/10 hover:shadow-md group">
+                    <span class="text-xl">👨‍🎓</span>
+                    <span class="font-medium">Profils élèves</span>
+                    <div class="ml-auto opacity-0 group-hover:opacity-100 transition-opacity">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </div>
+                </a>
+            </li>
+
+            <!-- Tableau de bord -->
+            <li>
+                <a href="dashboard.html" id="nav-dashboard" class="nav-link flex items-center space-x-3 px-4 py-3 rounded-lg transition-all duration-200 hover:bg-white/10 hover:shadow-md group">
+                    <span class="text-xl">📊</span>
+                    <span class="font-medium">Tableau de bord</span>
+                    <div class="ml-auto opacity-0 group-hover:opacity-100 transition-opacity">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Footer de la sidebar -->
+    <div class="absolute bottom-0 left-0 right-0 p-4 border-t border-indigo-400/30">
+        <div class="text-center text-xs text-indigo-100">
+            <p>© 2025 ÉCOLE DU CAP</p>
+            <p class="mt-1">Système de gestion éducative</p>
+        </div>
+    </div>
+</div>
+
+<!-- Bouton burger pour mobile -->
+<div id="sidebar-toggle" class="fixed top-4 left-4 z-50 sm:hidden bg-indigo-500 text-white p-2 rounded-lg shadow-lg">
+    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+    </svg>
+</div>
+
+<!-- Overlay pour mobile -->
+<div id="sidebar-overlay" class="fixed inset-0 bg-black/50 z-40 sm:hidden hidden"></div>
+    
+    <!-- Barre de Navigation -->
     <nav class="nav-bar">
         <div class="nav-container">
             <div class="nav-logo">
                 <a href="index.html" class="logo-link">
-                    <span class="logo-icon"><i class="fas fa-graduation-cap icon-fa"></i><i class="fas fa-graduation-cap fa-fallback"></i></span>
-                    <span class="logo-text">LSU Pro</span>
+                    <i class="fas fa-graduation-cap logo-icon"></i>
+                    <span class="logo-text">ÉCOLE DU CAP</span>
                 </a>
             </div>
-            
-            <div class="nav-menu" id="navMenu">
+            <div class="nav-menu">
                 <a href="index.html" class="nav-link">
-                    <span class="nav-icon"><i class="fas fa-home icon-fa"></i><i class="fas fa-home fa-fallback"></i></span>
+                    <i class="fas fa-home"></i>
                     Accueil
                 </a>
-                <a href="improved_lsu_generator.html" class="nav-link">
-                    <span class="nav-icon"><i class="fas fa-file-alt icon-fa"></i><i class="fas fa-file-alt fa-fallback"></i></span>
-                    Générateur LSU
-                </a>
-                <a href="student_profile_page.html" class="nav-link">
-                    <span class="nav-icon"><i class="fas fa-user icon-fa"></i><i class="fas fa-user fa-fallback"></i></span>
-                    Profils Élèves
+                <a href="lsu_generator.html" class="nav-link">
+                    <i class="fas fa-file-alt"></i>
+                    LSU
                 </a>
                 <a href="photos_classe_pro.html" class="nav-link">
-                    <span class="nav-icon"><i class="fas fa-camera icon-fa"></i><i class="fas fa-camera fa-fallback"></i></span>
-                    Photos Classe
+                    <i class="fas fa-camera"></i>
+                    Photos
                 </a>
-                <a href="lsu_connection_test.html" class="nav-link">
-                    <span class="nav-icon"><i class="fas fa-cog icon-fa"></i><i class="fas fa-cog fa-fallback"></i></span>
-                    Tests Connexion
+                <a href="profils_eleves.html" class="nav-link active">
+                    <i class="fas fa-user-graduate"></i>
+                    Profils
                 </a>
-                <a href="test_navigation.html" class="nav-link">
-                    <span class="nav-icon"><i class="fas fa-compass icon-fa"></i><i class="fas fa-compass fa-fallback"></i></span>
-                    Navigation
+                <a href="dashboard.html" class="nav-link">
+                    <i class="fas fa-chart-bar"></i>
+                    Tableau
                 </a>
-            </div>
-            
-            <div class="nav-toggle" id="navToggle">
-                <span></span>
-                <span></span>
-                <span></span>
             </div>
         </div>
     </nav>
 
-    <!-- Barre de navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <a href="lsu_index.html" class="nav-logo">🎓 LSU École Primaire</a>
-            
-            <ul class="nav-menu" id="navMenu">
-                <li class="nav-item">
-                    <a href="lsu_index.html" class="nav-link">
-                        🏠 Accueil
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="improved_lsu_generator.html" class="nav-link">
-                        ✨ Générateur
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link active">
-                        👤 Profil Élève
-                    </a>
-                </li>
-            </ul>
-
-            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
-        </div>
-    </nav>
-
+    <!-- Container principal -->
     <div class="container">
         <div class="header">
-            <div class="header-info">
-                <h1 id="studentFullName">Léa Martin</h1>
-                <p id="studentDetails">CM1 - 9 ans - Née le 15/03/2015</p>
-            </div>
-            <div class="student-photo" id="studentPhoto">
-                👧
-            </div>
+            <h1><i class="fas fa-user-graduate"></i> Profils Élèves</h1>
+            <p>Gestion complète des profils des élèves de l'ÉCOLE DU CAP</p>
         </div>
 
         <div class="main-content">
-            <div class="actions-bar">
-                <button class="btn btn-primary" onclick="generateComment()"> class="btn-with-icon"><i class="fas fa-magic icon-fa"></i><i class="fas fa-magic fa-fallback"></i>Générer commentaire
-                </button>
-                <button class="btn btn-secondary" onclick="openEvaluationModal()"> class="btn-with-icon"><i class="fas fa-file-alt icon-fa"></i><i class="fas fa-file-alt fa-fallback"></i>Nouvelle évaluation
-                </button>
-                <button class="btn btn-warning" onclick="editStudent()"> class="btn-with-icon"><i class="fas fa-edit icon-fa"></i><i class="fas fa-edit fa-fallback"></i>Modifier profil
-                </button>
-                <a href="#" class="btn btn-secondary" onclick="goBack()">
-                    ← Retour à la liste
-                </a>
+            <!-- Barre d'outils -->
+            <div class="toolbar">
+                <div class="toolbar-left">
+                    <input type="text" class="search-box" placeholder="Rechercher un élève..." id="searchInput">
+                    <select class="filter-select" id="filterSelect">
+                        <option value="">Tous les niveaux</option>
+                        <option value="CP">CP</option>
+                        <option value="CE1">CE1</option>
+                        <option value="CE2">CE2</option>
+                        <option value="CM1">CM1</option>
+                        <option value="CM2">CM2</option>
+                    </select>
+                </div>
+                <div class="toolbar-right">
+                    <button class="btn btn-success" onclick="openAddModal()">
+                        <i class="fas fa-user-plus"></i> Ajouter
+                    </button>
+                    <button class="btn btn-info" onclick="openImportModal()">
+                        <i class="fas fa-file-import"></i> Importer
+                    </button>
+                    <button class="btn btn-warning" onclick="openExportModal()">
+                        <i class="fas fa-file-export"></i> Exporter
+                    </button>
+                </div>
             </div>
 
-            <!-- Nouveaux boutons de gestion des élèves -->
-            <div class="d-flex gap-2 mb-3" style="display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap;">
-                <button class="btn btn-success" onclick="window.location.href='create_student.html'" style="background: #28a745; color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; font-weight: 500; transition: all 0.3s;"> class="btn-with-icon"><i class="fas fa-plus icon-fa"></i><i class="fas fa-plus fa-fallback"></i>Créer un élève
-                </button>
-                <button class="btn btn-primary" onclick="window.location.href='student_list.html'" style="background: #007bff; color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; font-weight: 500; transition: all 0.3s;"> class="btn-with-icon"><i class="fas fa-list icon-fa"></i><i class="fas fa-list fa-fallback"></i>Liste des élèves
-                </button>
-                <input type="file" id="importFile" accept=".csv, .xlsx" style="display:none" onchange="handleImport(event)">
-                <button class="btn btn-warning" onclick="document.getElementById('importFile').click()" style="background: #ffc107; color: #212529; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; font-weight: 500; transition: all 0.3s;"> class="btn-with-icon"><i class="fas fa-download icon-fa"></i><i class="fas fa-download fa-fallback"></i>Importer une liste
-                </button>
-                <button class="btn btn-info" onclick="handleExport()" style="background: #17a2b8; color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; font-weight: 500; transition: all 0.3s;"> class="btn-with-icon"><i class="fas fa-upload icon-fa"></i><i class="fas fa-upload fa-fallback"></i>Exporter la liste
-                </button>
-            </div>
-
+            <!-- Onglets -->
             <div class="tabs">
-                <button class="tab active" onclick="showTab('overview')"> class="btn-with-icon"><i class="fas fa-home icon-fa"></i><i class="fas fa-home fa-fallback"></i>Vue d'ensemble
+                <button class="tab active" onclick="showTab('profiles')">
+                    <i class="fas fa-users"></i> Profils
                 </button>
-                <button class="tab" onclick="showTab('competences')"> class="btn-with-icon"><i class="fas fa-bullseye icon-fa"></i><i class="fas fa-bullseye fa-fallback"></i>Compétences
+                <button class="tab" onclick="showTab('evaluations')">
+                    <i class="fas fa-star"></i> Évaluations
                 </button>
-                <button class="tab" onclick="showTab('evaluations')"> class="btn-with-icon"><i class="fas fa-chart-bar icon-fa"></i><i class="fas fa-chart-bar fa-fallback"></i>Évaluations
+                <button class="tab" onclick="showTab('comments')">
+                    <i class="fas fa-comments"></i> Commentaires
                 </button>
-                <button class="tab" onclick="showTab('comments')"> class="btn-with-icon"><i class="fas fa-comments icon-fa"></i><i class="fas fa-comments fa-fallback"></i>Commentaires
-                </button>
-                <button class="tab" onclick="showTab('family')"> class="btn-with-icon"><i class="fas fa-users icon-fa"></i><i class="fas fa-users fa-fallback"></i>Famille
+                <button class="tab" onclick="showTab('family')">
+                    <i class="fas fa-home"></i> Famille
                 </button>
             </div>
 
-            <!-- Onglet Vue d'ensemble -->
-            <div id="overview" class="tab-content active">
-                <div class="quick-stats">
-                    <div class="stat-card">
-                        <div class="stat-number" id="averageLevel">2.8</div>
-                        <div class="stat-label">Moyenne générale</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number" id="evaluationsCount">12</div>
-                        <div class="stat-label">Évaluations</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number" id="progressTrend">+15%</div>
-                        <div class="stat-label">Progression</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number" id="absenceCount">3</div>
-                        <div class="stat-label">Absences</div>
-                    </div>
+            <!-- Contenu des onglets -->
+            <div id="profiles" class="tab-content active">
+                <div class="profiles-grid" id="profilesGrid">
+                    <!-- Les cartes de profils seront générées dynamiquement -->
                 </div>
+            </div>
 
-                <div class="info-grid">
-                    <div class="info-card">
-                        <div class="card-title">
-                            ℹ️ Informations personnelles
-                        </div>
-                        <div class="info-item">
-                            <span class="info-label">Fratrie :</span>
-                            <span class="info-value">1 frère (Tom, 6 ans)</span>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-label">Personne à contacter :</span>
-                            <span class="info-value">Mère (priorité)</span>
+            <div id="evaluations" class="tab-content">
+                <div class="alert alert-info">
+                    <i class="fas fa-info-circle"></i>
+                    <strong>Évaluations :</strong> Système d'évaluation des compétences des élèves
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5><i class="fas fa-chart-line"></i> Statistiques</h5>
+                            </div>
+                            <div class="card-body">
+                                <p>Graphiques et statistiques des évaluations</p>
+                            </div>
                         </div>
                     </div>
-
-                    <div class="info-card">
-                        <div class="card-title">
-                            📞 Contacts d'urgence
-                        </div>
-                        <div class="info-item">
-                            <span class="info-label">Grand-mère :</span>
-                            <span class="info-value">Marie Dupont<br>01 23 45 67 89</span>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-label">Autorisation de sortie :</span>
-                            <span class="info-value">Parents + Grand-mère</span>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-label">Allergies :</span>
-                            <span class="info-value">Aucune connue</span>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-label">Traitement médical :</span>
-                            <span class="info-value">Aucun</span>
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5><i class="fas fa-list"></i> Compétences</h5>
+                            </div>
+                            <div class="card-body">
+                                <p>Liste des compétences évaluées</p>
+                            </div>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <div class="info-card" style="margin-top: 20px;">
-                    <div class="card-title">
-                        📝 Notes sur l'environnement familial
+            <div id="comments" class="tab-content">
+                <div class="alert alert-info">
+                    <i class="fas fa-info-circle"></i>
+                    <strong>Commentaires :</strong> Observations et remarques sur les élèves
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h5><i class="fas fa-comment-dots"></i> Commentaires récents</h5>
                     </div>
-                    <p style="color: #666; line-height: 1.6; margin: 15px 0;">
-                        Famille très impliquée dans la scolarité. Les parents suivent régulièrement les devoirs et participent aux réunions. 
-                        Environnement propice aux apprentissages à la maison. Léa bénéficie d'un soutien familial solide qui se reflète 
-                        dans sa motivation et son comportement en classe.
-                    </p>
-                    <p style="color: #666; line-height: 1.6;">
-                        <strong>Remarques particulières :</strong> La mère étant enseignante, elle comprend bien les enjeux pédagogiques 
-                        et collabore efficacement avec l'équipe éducative.
-                    </p>
+                    <div class="card-body">
+                        <p>Aucun commentaire pour le moment</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="family" class="tab-content">
+                <div class="alert alert-info">
+                    <i class="fas fa-info-circle"></i>
+                    <strong>Famille :</strong> Informations sur les familles des élèves
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h5><i class="fas fa-address-book"></i> Contacts familiaux</h5>
+                    </div>
+                    <div class="card-body">
+                        <p>Gestion des contacts familiaux</p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Modal Nouvelle Évaluation -->
-    <div id="evaluationModal" class="modal">
+    <!-- Modal Ajouter/Modifier Profil -->
+    <div id="profileModal" class="modal">
         <div class="modal-content">
-            <span class="close" onclick="closeEvaluationModal()">&times;</span>
-            <h2>📝 Nouvelle évaluation</h2>
-            
-            <div class="form-group">
-                <label for="evaluationDate">Date d'évaluation :</label>
-                <input type="date" id="evaluationDate">
+            <div class="modal-header">
+                <h3 id="modalTitle">Ajouter un profil</h3>
+                <span class="close" onclick="closeModal('profileModal')">&times;</span>
             </div>
-
-            <div class="form-group">
-                <label for="evaluationSubject">Matière :</label>
-                <select id="evaluationSubject">
-                    <option value="francais">Français</option>
-                    <option value="mathematiques">Mathématiques</option>
-                    <option value="sciences">Questionner le monde</option>
-                    <option value="arts">Arts plastiques</option>
-                    <option value="eps">Éducation physique</option>
-                    <option value="langue">Langue vivante</option>
-                </select>
+            <div class="modal-body">
+                <form id="profileForm">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label">Prénom</label>
+                                <input type="text" class="form-control" id="profileName" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label">Niveau</label>
+                                <select class="form-control" id="profileLevel" required>
+                                    <option value="">Sélectionner un niveau</option>
+                                    <option value="CP">CP</option>
+                                    <option value="CE1">CE1</option>
+                                    <option value="CE2">CE2</option>
+                                    <option value="CM1">CM1</option>
+                                    <option value="CM2">CM2</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label">Date de naissance</label>
+                                <input type="date" class="form-control" id="profileBirth">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label">Niveau général</label>
+                                <select class="form-control" id="profileGeneralLevel">
+                                    <option value="">Sélectionner</option>
+                                    <option value="Excellent">Excellent</option>
+                                    <option value="Très bien">Très bien</option>
+                                    <option value="Bien">Bien</option>
+                                    <option value="Moyen">Moyen</option>
+                                    <option value="En difficulté">En difficulté</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Points forts</label>
+                        <textarea class="form-control" id="profileStrengths" rows="3"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Points d'amélioration</label>
+                        <textarea class="form-control" id="profileImprovements" rows="3"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Notes</label>
+                        <textarea class="form-control" id="profileNotes" rows="3"></textarea>
+                    </div>
+                </form>
             </div>
-
-            <div class="form-group">
-                <label for="evaluationDomain">Domaine spécifique :</label>
-                <input type="text" id="evaluationDomain" placeholder="Ex: Lecture, Calcul mental, Géométrie...">
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('profileModal')">Annuler</button>
+                <button class="btn btn-success" onclick="saveProfile()">Enregistrer</button>
             </div>
+        </div>
+    </div>
 
-            <div class="form-group">
-                <label>Niveau de maîtrise :</label>
-                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 10px;">
-                    <button type="button" class="btn btn-secondary eval-level-btn" data-level="insufficient" onclick="selectEvalLevel('insufficient')">
-                        Maîtrise insuffisante
-                    </button>
-                    <button type="button" class="btn btn-secondary eval-level-btn" data-level="fragile" onclick="selectEvalLevel('fragile')">
-                        Maîtrise fragile
-                    </button>
-                    <button type="button" class="btn btn-secondary eval-level-btn" data-level="satisfactory" onclick="selectEvalLevel('satisfactory')">
-                        Maîtrise satisfaisante
-                    </button>
-                    <button type="button" class="btn btn-secondary eval-level-btn" data-level="excellent" onclick="selectEvalLevel('excellent')">
-                        Très bonne maîtrise
-                    </button>
+    <!-- Modal Voir Profil -->
+    <div id="viewModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="viewModalTitle">Profil de l'élève</h3>
+                <span class="close" onclick="closeModal('viewModal')">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div id="viewModalContent">
+                    <!-- Contenu dynamique -->
                 </div>
             </div>
-
-            <div class="form-group">
-                <label for="evaluationComment">Commentaire :</label>
-                <textarea id="evaluationComment" rows="4" placeholder="Observations, points positifs, axes d'amélioration..."></textarea>
-            </div>
-
-            <div style="display: flex; gap: 10px; margin-top: 20px;">
-                <button class="btn btn-primary" onclick="saveEvaluation()"> class="btn-with-icon"><i class="fas fa-save icon-fa"></i><i class="fas fa-save fa-fallback"></i>Enregistrer</button>
-                <button class="btn btn-secondary" onclick="closeEvaluationModal()"> class="btn-with-icon"><i class="fas fa-times icon-fa"></i><i class="fas fa-times fa-fallback"></i>Annuler</button>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('viewModal')">Fermer</button>
             </div>
         </div>
     </div>
 
-    <!-- Modal Édition Profil -->
-    <div id="editModal" class="modal">
+    <!-- Modal Import -->
+    <div id="importModal" class="modal">
         <div class="modal-content">
-            <span class="close" onclick="closeEditModal()">&times;</span>
-            <h2>✏️ Modifier le profil de l'élève</h2>
-            
-            <div class="form-group">
-                <label for="editFirstName">Prénom :</label>
-                <input type="text" id="editFirstName">
+            <div class="modal-header">
+                <h3>Importer des profils</h3>
+                <span class="close" onclick="closeModal('importModal')">&times;</span>
             </div>
-
-            <div class="form-group">
-                <label for="editLastName">Nom :</label>
-                <input type="text" id="editLastName">
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="form-label">Fichier CSV/Excel</label>
+                    <input type="file" class="form-control" id="importFile" accept=".csv,.xlsx,.xls">
+                </div>
+                <div class="alert alert-info">
+                    <i class="fas fa-info-circle"></i>
+                    Format attendu : Prénom, Niveau, Date de naissance, Niveau général, Points forts, Points d'amélioration, Notes
+                </div>
             </div>
-
-            <div class="form-group">
-                <label for="editBirthDate">Date de naissance :</label>
-                <input type="date" id="editBirthDate">
-            </div>
-
-            <div class="form-group">
-                <label for="editLevel">Niveau scolaire :</label>
-                <select id="editLevel">
-                    <option value="CP">CP - Cours Préparatoire</option>
-                    <option value="CE1">CE1 - Cours Élémentaire 1ère année</option>
-                    <option value="CE2">CE2 - Cours Élémentaire 2ème année</option>
-                    <option value="CM1">CM1 - Cours Moyen 1ère année</option>
-                    <option value="CM2">CM2 - Cours Moyen 2ème année</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label for="editTeacher">Enseignant(e) :</label>
-                <input type="text" id="editTeacher" placeholder="Nom de l'enseignant">
-            </div>
-
-            <div class="form-group">
-                <label for="editClass">Classe :</label>
-                <input type="text" id="editClass" placeholder="Ex: CM1-A, CE2-B...">
-            </div>
-
-            <div style="display: flex; gap: 10px; margin-top: 20px;">
-                <button class="btn btn-primary" onclick="saveStudentProfile()"> class="btn-with-icon"><i class="fas fa-save icon-fa"></i><i class="fas fa-save fa-fallback"></i>Sauvegarder</button>
-                <button class="btn btn-secondary" onclick="closeEditModal()"> class="btn-with-icon"><i class="fas fa-times icon-fa"></i><i class="fas fa-times fa-fallback"></i>Annuler</button>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('importModal')">Annuler</button>
+                <button class="btn btn-success" onclick="importProfiles()">Importer</button>
             </div>
         </div>
     </div>
 
-    <div class="notification" id="notification"></div>
+    <!-- Modal Export -->
+    <div id="exportModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Exporter les profils</h3>
+                <span class="close" onclick="closeModal('exportModal')">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="form-label">Format d'export</label>
+                    <select class="form-control" id="exportFormat">
+                        <option value="csv">CSV</option>
+                        <option value="json">JSON</option>
+                        <option value="excel">Excel</option>
+                        <option value="pdf">PDF</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Filtres</label>
+                    <select class="form-control" id="exportFilter">
+                        <option value="all">Tous les profils</option>
+                        <option value="CP">CP seulement</option>
+                        <option value="CE1">CE1 seulement</option>
+                        <option value="CE2">CE2 seulement</option>
+                        <option value="CM1">CM1 seulement</option>
+                        <option value="CM2">CM2 seulement</option>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('exportModal')">Annuler</button>
+                <button class="btn btn-success" onclick="exportProfiles()">Exporter</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
-        // Script pour la navigation
+        // Données des profils (simulation)
+        let profiles = [
+            {
+                id: 1,
+                name: "Emma Martin",
+                level: "CP",
+                birthDate: "2018-03-15",
+                generalLevel: "Excellent",
+                strengths: "Lecture fluide, créativité, participation active",
+                improvements: "Organisation du travail",
+                notes: "Élève brillante et motivée"
+            },
+            {
+                id: 2,
+                name: "Lucas Dubois",
+                level: "CE1",
+                birthDate: "2017-08-22",
+                generalLevel: "Très bien",
+                strengths: "Mathématiques, logique, persévérance",
+                improvements: "Expression écrite",
+                notes: "Très bon en mathématiques"
+            },
+            {
+                id: 3,
+                name: "Chloé Bernard",
+                level: "CE2",
+                birthDate: "2016-11-10",
+                generalLevel: "Bien",
+                strengths: "Lecture, compréhension, travail en équipe",
+                improvements: "Calcul mental",
+                notes: "Excellente en lecture"
+            }
+        ];
+
+        let currentEditId = null;
+
+        // Initialisation
         document.addEventListener('DOMContentLoaded', function() {
-            const navToggle = document.getElementById('navToggle');
-            const navMenu = document.getElementById('navMenu');
-            const navLinks = document.querySelectorAll('.nav-link');
-            
-            // Toggle menu mobile
-            navToggle.addEventListener('click', function() {
-                navMenu.classList.toggle('active');
-                navToggle.classList.toggle('active');
-            });
-            
-            // Fermer le menu en cliquant sur un lien
-            navLinks.forEach(link => {
-                link.addEventListener('click', function() {
-                    navMenu.classList.remove('active');
-                    navToggle.classList.remove('active');
-                });
-            });
-            
-            // Marquer le lien actif
-            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-            navLinks.forEach(link => {
-                if (link.getAttribute('href') === currentPage) {
-                    link.classList.add('active');
-                }
-            });
-            
-            // Fermer le menu en cliquant à l'extérieur
-            document.addEventListener('click', function(event) {
-                if (!event.target.closest('.nav-bar')) {
-                    navMenu.classList.remove('active');
-                    navToggle.classList.remove('active');
-                }
-            });
+            renderProfiles();
+            setupEventListeners();
         });
 
-        // Données de l'élève (exemple)
-        let studentData = {
-            id: 1,
-            firstName: 'Léa',
-            lastName: 'Martin',
-            birthDate: '2015-03-15',
-            level: 'CM1',
-            teacher: 'Mme Dubois',
-            class: 'CM1-A',
-            evaluations: [],
-            comments: [],
-            family: {
-                father: {
-                    name: 'Pierre Martin',
-                    phone: '06 12 34 56 78',
-                    email: 'pierre.martin@email.com',
-                    profession: 'Ingénieur'
-                },
-                mother: {
-                    name: 'Sophie Martin',
-                    phone: '06 98 76 54 32',
-                    email: 'sophie.martin@email.com',
-                    profession: 'Professeure'
-                },
-                address: '12 rue de la Paix\n75001 Paris',
-                siblings: '1 frère (Tom, 6 ans)'
-            }
-        };
-
-        let selectedEvalLevel = '';
-
-        // Navigation entre onglets
-        function showTab(tabName) {
-            // Masquer tous les contenus
-            document.querySelectorAll('.tab-content').forEach(content => {
-                content.classList.remove('active');
+        // Configuration des événements
+        function setupEventListeners() {
+            document.getElementById('searchInput').addEventListener('input', filterProfiles);
+            document.getElementById('filterSelect').addEventListener('change', filterProfiles);
+            
+            // Fermer les modals en cliquant à l'extérieur
+            window.addEventListener('click', function(event) {
+                if (event.target.classList.contains('modal')) {
+                    event.target.style.display = 'none';
+                }
             });
+        }
+
+        // Gestion des onglets
+        function showTab(tabName) {
+            // Masquer tous les contenus d'onglets
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(content => content.classList.remove('active'));
             
             // Désactiver tous les onglets
-            document.querySelectorAll('.tab').forEach(tab => {
-                tab.classList.remove('active');
-            });
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(tab => tab.classList.remove('active'));
             
-            // Afficher le contenu sélectionné
+            // Activer l'onglet sélectionné
             document.getElementById(tabName).classList.add('active');
-            
-            // Activer l'onglet correspondant
             event.target.classList.add('active');
         }
 
-        // Calcul de l'âge
-        function calculateAge(birthDate) {
-            const today = new Date();
-            const birth = new Date(birthDate);
-            let age = today.getFullYear() - birth.getFullYear();
-            const monthDiff = today.getMonth() - birth.getMonth();
-            
-            if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birth.getDate())) {
-                age--;
-            }
-            
-            return age;
-        }
+        // Rendu des profils
+        function renderProfiles(profilesToRender = profiles) {
+            const grid = document.getElementById('profilesGrid');
+            grid.innerHTML = '';
 
-        // Formatage de la date
-        function formatDate(dateString) {
-            const date = new Date(dateString);
-            return date.toLocaleDateString('fr-FR');
-        }
-
-        // Chargement des données de l'élève
-        function loadStudentData() {
-            // Mise à jour de l'en-tête
-            document.getElementById('studentFullName').textContent = `${studentData.firstName} ${studentData.lastName}`;
-            
-            const age = calculateAge(studentData.birthDate);
-            document.getElementById('studentDetails').textContent = 
-                `${studentData.level} - ${age} ans - Né(e) le ${formatDate(studentData.birthDate)}`;
-
-            // Mise à jour des informations personnelles
-            document.getElementById('firstName').textContent = studentData.firstName;
-            document.getElementById('lastName').textContent = studentData.lastName;
-            document.getElementById('birthDate').textContent = formatDate(studentData.birthDate);
-            document.getElementById('age').textContent = `${age} ans`;
-            document.getElementById('level').textContent = studentData.level;
-
-            // Emoji en fonction du genre (simplification)
-            const emoji = studentData.firstName.endsWith('a') || studentData.firstName.endsWith('e') ? '👧' : '👦';
-            document.getElementById('studentPhoto').textContent = emoji;
-        }
-
-        // Génération de commentaire depuis le profil
-        function generateComment() {
-            // Créer les paramètres pour le générateur
-            const params = new URLSearchParams({
-                name: studentData.firstName,
-                level: studentData.level,
-                fromProfile: true
-            });
-            
-            // Redirection vers le générateur avec les paramètres
-            window.location.href = `improved_lsu_generator.html?${params.toString()}`;
-        }
-
-        // Gestion des évaluations
-        function openEvaluationModal() {
-            document.getElementById('evaluationModal').style.display = 'block';
-            document.getElementById('evaluationDate').value = new Date().toISOString().split('T')[0];
-        }
-
-        function closeEvaluationModal() {
-            document.getElementById('evaluationModal').style.display = 'none';
-            resetEvaluationForm();
-        }
-
-        function resetEvaluationForm() {
-            document.getElementById('evaluationDate').value = '';
-            document.getElementById('evaluationSubject').value = 'francais';
-            document.getElementById('evaluationDomain').value = '';
-            document.getElementById('evaluationComment').value = '';
-            selectedEvalLevel = '';
-            
-            // Reset des boutons de niveau
-            document.querySelectorAll('.eval-level-btn').forEach(btn => {
-                btn.classList.remove('btn-primary');
-                btn.classList.add('btn-secondary');
+            profilesToRender.forEach(profile => {
+                const card = createProfileCard(profile);
+                grid.appendChild(card);
             });
         }
 
-        function selectEvalLevel(level) {
-            selectedEvalLevel = level;
-            
-            // Reset tous les boutons
-            document.querySelectorAll('.eval-level-btn').forEach(btn => {
-                btn.classList.remove('btn-primary');
-                btn.classList.add('btn-secondary');
-            });
-            
-            // Activer le bouton sélectionné
-            const selectedBtn = document.querySelector(`[data-level="${level}"]`);
-            selectedBtn.classList.remove('btn-secondary');
-            selectedBtn.classList.add('btn-primary');
+        // Création d'une carte profil
+        function createProfileCard(profile) {
+            const card = document.createElement('div');
+            card.className = 'profile-card';
+            card.innerHTML = `
+                <div class="profile-header">
+                    <div class="profile-avatar">
+                        👤
+                    </div>
+                    <div class="profile-info">
+                        <h3>${profile.name}</h3>
+                        <p>Niveau ${profile.level} • ${profile.generalLevel}</p>
+                    </div>
+                </div>
+                <div class="profile-body">
+                    <div class="profile-section">
+                        <h4><i class="fas fa-info-circle"></i> Informations</h4>
+                        <div class="profile-data">
+                            <div class="data-item">
+                                <span class="data-label">Niveau:</span>
+                                <span class="data-value">${profile.level}</span>
+                            </div>
+                            <div class="data-item">
+                                <span class="data-label">Niveau général:</span>
+                                <span class="data-value">${profile.generalLevel}</span>
+                            </div>
+                            <div class="data-item">
+                                <span class="data-label">Date de naissance:</span>
+                                <span class="data-value">${profile.birthDate || 'Non renseignée'}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="profile-section">
+                        <h4><i class="fas fa-star"></i> Points forts</h4>
+                        <p>${profile.strengths || 'Aucun point fort renseigné'}</p>
+                    </div>
+                    <div class="profile-section">
+                        <h4><i class="fas fa-arrow-up"></i> Points d'amélioration</h4>
+                        <p>${profile.improvements || 'Aucun point d\'amélioration renseigné'}</p>
+                    </div>
+                    <div class="profile-actions">
+                        <button class="btn-action btn-view" onclick="viewProfile(${profile.id})">
+                            <i class="fas fa-eye"></i> Voir
+                        </button>
+                        <button class="btn-action btn-edit" onclick="editProfile(${profile.id})">
+                            <i class="fas fa-edit"></i> Modifier
+                        </button>
+                        <button class="btn-action btn-delete" onclick="deleteProfile(${profile.id})">
+                            <i class="fas fa-trash"></i> Supprimer
+                        </button>
+                    </div>
+                </div>
+            `;
+            return card;
         }
 
-        function saveEvaluation() {
-            const date = document.getElementById('evaluationDate').value;
-            const subject = document.getElementById('evaluationSubject').value;
-            const domain = document.getElementById('evaluationDomain').value;
-            const comment = document.getElementById('evaluationComment').value;
+        // Filtrage des profils
+        function filterProfiles() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const filterLevel = document.getElementById('filterSelect').value;
 
-            if (!date || !selectedEvalLevel) {
+            const filtered = profiles.filter(profile => {
+                const matchesSearch = profile.name.toLowerCase().includes(searchTerm);
+                const matchesFilter = !filterLevel || profile.level === filterLevel;
+                return matchesSearch && matchesFilter;
+            });
+
+            renderProfiles(filtered);
+        }
+
+        // Modal functions
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'block';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
+        function openAddModal() {
+            currentEditId = null;
+            document.getElementById('modalTitle').textContent = 'Ajouter un profil';
+            document.getElementById('profileForm').reset();
+            openModal('profileModal');
+        }
+
+        function openImportModal() {
+            openModal('importModal');
+        }
+
+        function openExportModal() {
+            openModal('exportModal');
+        }
+
+        // Voir un profil
+        function viewProfile(id) {
+            const profile = profiles.find(p => p.id === id);
+            if (!profile) return;
+
+            document.getElementById('viewModalTitle').textContent = `Profil de ${profile.name}`;
+            document.getElementById('viewModalContent').innerHTML = `
+                <div class="profile-header" style="margin: -30px -30px 30px -30px; border-radius: 0;">
+                    <div class="profile-avatar">
+                        👤
+                    </div>
+                    <div class="profile-info">
+                        <h3>${profile.name}</h3>
+                        <p>Niveau ${profile.level} • ${profile.generalLevel}</p>
+                    </div>
+                </div>
+                <div class="profile-section">
+                    <h4><i class="fas fa-info-circle"></i> Informations</h4>
+                    <div class="profile-data">
+                        <div class="data-item">
+                            <span class="data-label">Niveau:</span>
+                            <span class="data-value">${profile.level}</span>
+                        </div>
+                        <div class="data-item">
+                            <span class="data-label">Niveau général:</span>
+                            <span class="data-value">${profile.generalLevel}</span>
+                        </div>
+                        <div class="data-item">
+                            <span class="data-label">Date de naissance:</span>
+                            <span class="data-value">${profile.birthDate || 'Non renseignée'}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="profile-section">
+                    <h4><i class="fas fa-star"></i> Points forts</h4>
+                    <p>${profile.strengths || 'Aucun point fort renseigné'}</p>
+                </div>
+                <div class="profile-section">
+                    <h4><i class="fas fa-arrow-up"></i> Points d'amélioration</h4>
+                    <p>${profile.improvements || 'Aucun point d\'amélioration renseigné'}</p>
+                </div>
+                <div class="profile-section">
+                    <h4><i class="fas fa-sticky-note"></i> Notes</h4>
+                    <p>${profile.notes || 'Aucune note'}</p>
+                </div>
+            `;
+            openModal('viewModal');
+        }
+
+        // Modifier un profil
+        function editProfile(id) {
+            const profile = profiles.find(p => p.id === id);
+            if (!profile) return;
+
+            currentEditId = id;
+            document.getElementById('modalTitle').textContent = 'Modifier un profil';
+            document.getElementById('profileName').value = profile.name;
+            document.getElementById('profileLevel').value = profile.level;
+            document.getElementById('profileBirth').value = profile.birthDate || '';
+            document.getElementById('profileGeneralLevel').value = profile.generalLevel;
+            document.getElementById('profileStrengths').value = profile.strengths || '';
+            document.getElementById('profileImprovements').value = profile.improvements || '';
+            document.getElementById('profileNotes').value = profile.notes || '';
+            openModal('profileModal');
+        }
+
+        // Sauvegarder un profil
+        function saveProfile() {
+            const name = document.getElementById('profileName').value;
+            const level = document.getElementById('profileLevel').value;
+            const birthDate = document.getElementById('profileBirth').value;
+            const generalLevel = document.getElementById('profileGeneralLevel').value;
+            const strengths = document.getElementById('profileStrengths').value;
+            const improvements = document.getElementById('profileImprovements').value;
+            const notes = document.getElementById('profileNotes').value;
+
+            if (!name || !level) {
                 showNotification('Veuillez remplir tous les champs obligatoires', 'error');
                 return;
             }
 
-            const newEvaluation = {
-                id: Date.now(),
-                date: date,
-                subject: subject,
-                domain: domain || subject,
-                level: selectedEvalLevel,
-                comment: comment,
-                createdAt: new Date().toISOString()
-            };
-
-            // Ajouter l'évaluation aux données
-            studentData.evaluations.push(newEvaluation);
-            
-            // Sauvegarder dans le localStorage
-            saveStudentData();
-            
-            // Fermer le modal
-            closeEvaluationModal();
-            
-            // Rafraîchir l'affichage
-            loadEvaluationsHistory();
-            
-            showNotification('Évaluation enregistrée avec succès !', 'success');
-        }
-
-        // Gestion de l'édition du profil
-        function editStudent() {
-            document.getElementById('editModal').style.display = 'block';
-            
-            // Pré-remplir le formulaire
-            document.getElementById('editFirstName').value = studentData.firstName;
-            document.getElementById('editLastName').value = studentData.lastName;
-            document.getElementById('editBirthDate').value = studentData.birthDate;
-            document.getElementById('editLevel').value = studentData.level;
-            document.getElementById('editTeacher').value = studentData.teacher || '';
-            document.getElementById('editClass').value = studentData.class || '';
-        }
-
-        function closeEditModal() {
-            document.getElementById('editModal').style.display = 'none';
-        }
-
-        function saveStudentProfile() {
-            studentData.firstName = document.getElementById('editFirstName').value;
-            studentData.lastName = document.getElementById('editLastName').value;
-            studentData.birthDate = document.getElementById('editBirthDate').value;
-            studentData.level = document.getElementById('editLevel').value;
-            studentData.teacher = document.getElementById('editTeacher').value;
-            studentData.class = document.getElementById('editClass').value;
-
-            // Sauvegarder les données
-            saveStudentData();
-            
-            // Recharger l'affichage
-            loadStudentData();
-            
-            closeEditModal();
-            showNotification('Profil mis à jour avec succès !', 'success');
-        }
-
-        // Chargement de l'historique des évaluations
-        function loadEvaluationsHistory() {
-            // Cette fonction mettrait à jour la timeline des évaluations
-            // avec les données réelles stockées
-        }
-
-        // Sauvegarde des données de l'élève
-        function saveStudentData() {
-            localStorage.setItem(`student_${studentData.id}`, JSON.stringify(studentData));
-        }
-
-        // Chargement des données de l'élève depuis le localStorage
-        function loadStudentDataFromStorage() {
-            const saved = localStorage.getItem(`student_${studentData.id}`);
-            if (saved) {
-                studentData = { ...studentData, ...JSON.parse(saved) };
-            }
-        }
-
-        // Retour à la liste
-        function goBack() {
-            // Redirection vers la page d'accueil
-            window.location.href = 'lsu_index.html';
-        }
-
-        // Système de notifications
-        function showNotification(message, type = 'success') {
-            const notification = document.getElementById('notification');
-            notification.textContent = message;
-            notification.className = `notification ${type}`;
-            notification.classList.add('show');
-            
-            setTimeout(() => {
-                notification.classList.remove('show');
-            }, 4000);
-        }
-
-        // Navigation mobile
-        function toggleMobileMenu() {
-            const menu = document.getElementById('navMenu');
-            menu.classList.toggle('active');
-        }
-
-        // Initialisation
-        document.addEventListener('DOMContentLoaded', function() {
-            // Charger les données depuis l'URL ou le localStorage
-            const urlParams = new URLSearchParams(window.location.search);
-            const studentId = urlParams.get('id');
-            
-            if (studentId) {
-                studentData.id = studentId;
-                loadStudentDataFromStorage();
-            }
-            
-            loadStudentData();
-            
-            // Définir la date d'aujourd'hui par défaut
-            document.getElementById('evaluationDate').value = new Date().toISOString().split('T')[0];
-        });
-
-        // Fermer les modals en cliquant à l'extérieur
-        window.onclick = function(event) {
-            const evaluationModal = document.getElementById('evaluationModal');
-            const editModal = document.getElementById('editModal');
-            
-            if (event.target === evaluationModal) {
-                closeEvaluationModal();
-            } else if (event.target === editModal) {
-                closeEditModal();
-            }
-        }
-
-        // Gestion du clavier pour les modals
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 'Escape') {
-                closeEvaluationModal();
-                closeEditModal();
-            }
-        });
-
-        // ===== NOUVELLES FONCTIONS POUR IMPORT/EXPORT =====
-
-        // Gestion de l'import de fichiers
-        function handleImport(event) {
-            const file = event.target.files[0];
-            if (!file) return;
-
-            const fileExtension = file.name.split('.').pop().toLowerCase();
-            
-            if (fileExtension === 'csv') {
-                handleCSVImport(file);
-            } else if (fileExtension === 'xlsx') {
-                handleXLSXImport(file);
+            if (currentEditId) {
+                // Modification
+                const index = profiles.findIndex(p => p.id === currentEditId);
+                if (index !== -1) {
+                    profiles[index] = { ...profiles[index], name, level, birthDate, generalLevel, strengths, improvements, notes };
+                }
+                showNotification('Profil modifié avec succès', 'success');
             } else {
-                showNotification('Format de fichier non supporté. Utilisez CSV ou XLSX.', 'error');
+                // Ajout
+                const newId = Math.max(...profiles.map(p => p.id), 0) + 1;
+                profiles.push({ id: newId, name, level, birthDate, generalLevel, strengths, improvements, notes });
+                showNotification('Profil ajouté avec succès', 'success');
+            }
+
+            closeModal('profileModal');
+            renderProfiles();
+        }
+
+        // Supprimer un profil
+        function deleteProfile(id) {
+            if (confirm('Êtes-vous sûr de vouloir supprimer ce profil ?')) {
+                profiles = profiles.filter(p => p.id !== id);
+                renderProfiles();
+                showNotification('Profil supprimé avec succès', 'success');
             }
         }
 
-        // Import CSV
-        function handleCSVImport(file) {
+        // Importer des profils
+        function importProfiles() {
+            const file = document.getElementById('importFile').files[0];
+            if (!file) {
+                showNotification('Veuillez sélectionner un fichier', 'error');
+                return;
+            }
+
             const reader = new FileReader();
             reader.onload = function(e) {
                 try {
-                    const csv = e.target.result;
-                    const lines = csv.split('\n');
-                    const headers = lines[0].split(',').map(h => h.trim());
-                    
-                    const students = [];
-                    for (let i = 1; i < lines.length; i++) {
-                        if (lines[i].trim()) {
-                            const values = lines[i].split(',').map(v => v.trim());
-                            const student = {};
-                            headers.forEach((header, index) => {
-                                student[header] = values[index] || '';
-                            });
-                            students.push(student);
+                    const content = e.target.result;
+                    const lines = content.split('\n');
+                    let imported = 0;
+
+                    lines.forEach((line, index) => {
+                        if (index === 0 || !line.trim()) return; // Skip header and empty lines
+                        
+                        const parts = line.split(',');
+                        if (parts.length >= 2) {
+                            const name = parts[0].trim();
+                            const level = parts[1].trim();
+                            const birthDate = parts[2] ? parts[2].trim() : '';
+                            const generalLevel = parts[3] ? parts[3].trim() : '';
+                            const strengths = parts[4] ? parts[4].trim() : '';
+                            const improvements = parts[5] ? parts[5].trim() : '';
+                            const notes = parts[6] ? parts[6].trim() : '';
+                            
+                            const newId = Math.max(...profiles.map(p => p.id), 0) + 1;
+                            profiles.push({ id: newId, name, level, birthDate, generalLevel, strengths, improvements, notes });
+                            imported++;
                         }
-                    }
-                    
-                    // Sauvegarder les élèves importés
-                    saveImportedStudents(students);
-                    showNotification(`${students.length} élèves importés avec succès !`, 'success');
-                    
+                    });
+
+                    closeModal('importModal');
+                    renderProfiles();
+                    showNotification(`${imported} profils importés avec succès`, 'success');
                 } catch (error) {
-                    showNotification('Erreur lors de la lecture du fichier CSV', 'error');
-                    console.error('Erreur CSV:', error);
+                    showNotification('Erreur lors de l\'import', 'error');
                 }
             };
             reader.readAsText(file);
         }
 
-        // Import XLSX (simulation - nécessiterait une librairie comme SheetJS)
-        function handleXLSXImport(file) {
-            showNotification('Import XLSX en cours de développement. Utilisez le format CSV pour l\'instant.', 'warning');
-            // Ici on pourrait intégrer SheetJS pour lire les fichiers Excel
-            // https://github.com/SheetJS/sheetjs
-        }
-
-        // Sauvegarde des élèves importés
-        function saveImportedStudents(students) {
-            const existingStudents = JSON.parse(localStorage.getItem('students_list') || '[]');
-            const updatedStudents = [...existingStudents, ...students];
-            localStorage.setItem('students_list', JSON.stringify(updatedStudents));
-        }
-
-        // Gestion de l'export
-        function handleExport() {
-            // Créer un menu d'export
-            const exportMenu = document.createElement('div');
-            exportMenu.style.cssText = `
-                position: fixed;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                background: white;
-                padding: 20px;
-                border-radius: 10px;
-                box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-                z-index: 10000;
-                min-width: 300px;
-            `;
+        // Exporter des profils
+        function exportProfiles() {
+            const format = document.getElementById('exportFormat').value;
+            const filter = document.getElementById('exportFilter').value;
             
-            exportMenu.innerHTML = `
-                <h3 style="margin-bottom: 20px; color: #333;">📤 Exporter la liste des élèves</h3>
-                <div style="display: flex; flex-direction: column; gap: 10px;">
-                    <button onclick="exportToCSV()" style="background: #28a745; color: white; border: none; padding: 12px; border-radius: 6px; cursor: pointer; font-weight: 500;"> class="btn-with-icon"><i class="fas fa-file icon-fa"></i><i class="fas fa-file fa-fallback"></i>Exporter en CSV
-                    </button>
-                    <button onclick="exportToExcel()" style="background: #007bff; color: white; border: none; padding: 12px; border-radius: 6px; cursor: pointer; font-weight: 500;"> class="btn-with-icon"><i class="fas fa-chart-bar icon-fa"></i><i class="fas fa-chart-bar fa-fallback"></i>Exporter en Excel
-                    </button>
-                    <button onclick="exportToPDF()" style="background: #dc3545; color: white; border: none; padding: 12px; border-radius: 6px; cursor: pointer; font-weight: 500;"> class="btn-with-icon"><i class="fas fa-list icon-fa"></i><i class="fas fa-list fa-fallback"></i>Exporter en PDF
-                    </button>
-                    <button onclick="closeExportMenu()" style="background: #6c757d; color: white; border: none; padding: 12px; border-radius: 6px; cursor: pointer; font-weight: 500;"> class="btn-with-icon"><i class="fas fa-times icon-fa"></i><i class="fas fa-times fa-fallback"></i>Annuler
-                    </button>
-                </div>
-            `;
-            
-            exportMenu.id = 'exportMenu';
-            document.body.appendChild(exportMenu);
-        }
-
-        // Fermer le menu d'export
-        function closeExportMenu() {
-            const menu = document.getElementById('exportMenu');
-            if (menu) {
-                document.body.removeChild(menu);
+            let dataToExport = profiles;
+            if (filter !== 'all') {
+                dataToExport = profiles.filter(p => p.level === filter);
             }
+
+            switch (format) {
+                case 'csv':
+                    exportToCSV(dataToExport);
+                    break;
+                case 'json':
+                    exportToJSON(dataToExport);
+                    break;
+                case 'excel':
+                    exportToExcel(dataToExport);
+                    break;
+                case 'pdf':
+                    exportToPDF(dataToExport);
+                    break;
+            }
+
+            closeModal('exportModal');
         }
 
-        // Export en CSV
-        function exportToCSV() {
-            const students = JSON.parse(localStorage.getItem('students_list') || '[]');
-            
-            if (students.length === 0) {
-                showNotification('Aucun élève à exporter', 'warning');
-                closeExportMenu();
-                return;
-            }
-            
-            const headers = ['Prénom', 'Nom', 'Date de naissance', 'Niveau', 'Classe', 'Enseignant'];
+        function exportToCSV(data) {
+            const headers = ['Prénom', 'Niveau', 'Date de naissance', 'Niveau général', 'Points forts', 'Points d\'amélioration', 'Notes'];
             const csvContent = [
                 headers.join(','),
-                ...students.map(student => [
-                    student.firstName || student.prénom || '',
-                    student.lastName || student.nom || '',
-                    student.birthDate || student.dateNaissance || '',
-                    student.level || student.niveau || '',
-                    student.class || student.classe || '',
-                    student.teacher || student.enseignant || ''
+                ...data.map(profile => [
+                    profile.name,
+                    profile.level,
+                    profile.birthDate || '',
+                    profile.generalLevel || '',
+                    profile.strengths || '',
+                    profile.improvements || '',
+                    profile.notes || ''
                 ].join(','))
             ].join('\n');
-            
-            downloadFile(csvContent, 'eleves_export.csv', 'text/csv');
-            closeExportMenu();
-            showNotification('Export CSV réussi !', 'success');
+
+            downloadFile(csvContent, 'profils.csv', 'text/csv');
+            showNotification('Export CSV réussi', 'success');
         }
 
-        // Export en Excel (simulation - génère un CSV avec extension .xlsx)
-        function exportToExcel() {
-            showNotification('Export Excel en cours de développement. Le fichier sera téléchargé au format CSV.', 'warning');
-            exportToCSV(); // Pour l'instant, on utilise CSV
-            closeExportMenu();
+        function exportToJSON(data) {
+            const jsonContent = JSON.stringify(data, null, 2);
+            downloadFile(jsonContent, 'profils.json', 'application/json');
+            showNotification('Export JSON réussi', 'success');
         }
 
-        // Export en PDF
-        function exportToPDF() {
-            const students = JSON.parse(localStorage.getItem('students_list') || '[]');
+        function exportToExcel(data) {
+            // Simulation d'export Excel (en réalité, on génère un CSV)
+            exportToCSV(data);
+        }
+
+        function exportToPDF(data) {
+            // Simulation d'export PDF
+            const content = data.map(profile => 
+                `${profile.name} - ${profile.level} - ${profile.generalLevel} - ${profile.notes || 'Aucune note'}`
+            ).join('\n');
             
-            if (students.length === 0) {
-                showNotification('Aucun élève à exporter', 'warning');
-                closeExportMenu();
-                return;
-            }
-            
-            // Créer le contenu HTML pour le PDF
-            let htmlContent = `
+            const printWindow = window.open('', '_blank');
+            printWindow.document.write(`
                 <html>
-                <head>
-                        <!-- Font Awesome CSS (fallback pour les icônes) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    
+                    <head>
+    <script src="https://cdn.tailwindcss.com"></script><title>Liste des profils</title>    <!-- Styles CSS pour la sidebar -->
 <style>
-                        body { font-family: Arial, sans-serif; margin: 20px; }
-                        h1 { color: #333; text-align: center; }
-                        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-                        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
-                        th { background-color: #f2f2f2; font-weight: bold; }
-                        .header { text-align: center; margin-bottom: 30px; }
-                    
-        /* Amélioration de la compatibilité des icônes */
-        .icon-fallback {
-            display: inline-block;
-            width: 1em;
-            height: 1em;
-            text-align: center;
-            line-height: 1;
-        }
+    /* Animation d'entrée pour la sidebar */
+    @keyframes slideIn {
+        from { transform: translateX(-100%); }
+        to { transform: translateX(0); }
+    }
 
-        /* Fallback pour les emojis qui ne s'affichent pas */
-        .btn .emoji-icon {
-            display: inline-block;
-            margin-right: 5px;
-        }
+    /* Highlight pour la page active */
+    .nav-link.active {
+        background: rgba(255, 255, 255, 0.15);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        border-left: 4px solid #fbbf24;
+    }
 
-        /* Styles pour les icônes Font Awesome en fallback */
-        .fa-fallback {
-            display: none;
-        }
+    /* Animation de survol améliorée */
+    .nav-link:hover {
+        transform: translateX(4px);
+    }
 
-        /* Amélioration de l'affichage des boutons avec icônes */
-        .btn-with-icon {
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
+    /* Responsive design */
+    @media (max-width: 640px) {
+        #sidebar {
+            transform: translateX(-100%);
         }
+        
+        #sidebar.open {
+            transform: translateX(0);
+        }
+    }
 
-        /* Amélioration de l'affichage des emojis */
-        .emoji-icon {
-            font-size: 1.1em;
-            vertical-align: middle;
-        }
+    /* Ajustement du contenu principal pour la sidebar */
+    .main-content {
+        margin-left: 0;
+        transition: margin-left 0.3s ease;
+    }
 
-        /* Styles pour les icônes Font Awesome */
-        .icon-fa {
-            font-size: 1.1em;
-            width: 20px;
-            text-align: center;
-            margin-right: 8px;
+    @media (min-width: 640px) {
+        .main-content {
+            margin-left: 256px; /* w-64 = 16rem = 256px */
         }
-
-        /* Amélioration des boutons avec icônes */
-        .btn-with-icon {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 12px 20px;
-            border-radius: 8px;
-            border: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            text-decoration: none;
-        }
-
-        .btn-with-icon:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
-
-        /* Styles spécifiques pour les boutons d'action */
-        .btn-with-icon.btn-success {
-            background: linear-gradient(135deg, #28a745, #1e7e34);
-            color: white;
-        }
-
-        .btn-with-icon.btn-info {
-            background: linear-gradient(135deg, #17a2b8, #117a8b);
-            color: white;
-        }
-
-        .btn-with-icon.btn-warning {
-            background: linear-gradient(135deg, #ffc107, #e0a800);
-            color: #212529;
-        }
-
-        .btn-with-icon.btn-primary {
-            background: linear-gradient(135deg, #007bff, #0056b3);
-            color: white;
-        }
-
-        .btn-with-icon.btn-danger {
-            background: linear-gradient(135deg, #dc3545, #c82333);
-            color: white;
-        }
-
-        .btn-with-icon.btn-secondary {
-            background: linear-gradient(135deg, #6c757d, #545b62);
-            color: white;
-        }
+    }
 </style>
-                </head>
-                <body>
-                    <div class="header">
-                        <h1>📋 Liste des élèves - École ECOLE DU CAP</h1>
-                        <p>Export généré le ${new Date().toLocaleDateString('fr-FR')}</p>
-                    </div>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Prénom</th>
-                                <th>Nom</th>
-                                <th>Date de naissance</th>
-                                <th>Niveau</th>
-                                <th>Classe</th>
-                                <th>Enseignant</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-            `;
-            
-            students.forEach(student => {
-                htmlContent += `
-                    <tr>
-                        <td>${student.firstName || student.prénom || ''}</td>
-                        <td>${student.lastName || student.nom || ''}</td>
-                        <td>${student.birthDate || student.dateNaissance || ''}</td>
-                        <td>${student.level || student.niveau || ''}</td>
-                        <td>${student.class || student.classe || ''}</td>
-                        <td>${student.teacher || student.enseignant || ''}</td>
-                    </tr>
-                `;
-            });
-            
-            htmlContent += `
-                        </tbody>
-                    </table>
-                
-    <script>
-    // Script de détection et correction des icônes manquantes
-    document.addEventListener('DOMContentLoaded', function() {
-        // Fonction pour détecter si un emoji s'affiche correctement
-        function isEmojiSupported(emoji) {
-            const canvas = document.createElement('canvas');
-            const ctx = canvas.getContext('2d');
-            ctx.font = '16px Arial';
-            ctx.fillText(emoji, 0, 16);
-            const data = ctx.getImageData(0, 0, 16, 16).data;
-            return data.some(pixel => pixel !== 0);
-        }
+</head>
+                    <body class="main-content">
+                        <h1>Liste des profils - ÉCOLE DU CAP</h1>
+                        <pre>${content}</pre>
+                        <!-- Script JavaScript pour la sidebar -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const sidebar = document.getElementById('sidebar');
+    const sidebarToggle = document.getElementById('sidebar-toggle');
+    const sidebarOverlay = document.getElementById('sidebar-overlay');
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    // Fonction pour marquer la page active
+    function setActivePage() {
+        const currentPage = window.location.pathname.split('/').pop() || 'index.html';
         
-        // Vérifier et corriger les icônes
-        function fixMissingIcons() {
-            const emojiElements = document.querySelectorAll('.emoji-icon');
-            
-            emojiElements.forEach(element => {
-                const emoji = element.textContent;
-                if (!isEmojiSupported(emoji)) {
-                    // Masquer l'emoji et afficher l'icône Font Awesome
-                    element.style.display = 'none';
-                    const fallbackIcon = element.nextElementSibling;
-                    if (fallbackIcon && fallbackIcon.classList.contains('fa-fallback')) {
-                        fallbackIcon.style.display = 'inline-block';
-                    }
-                }
-            });
-        }
-        
-        // Exécuter après un délai pour laisser le temps au rendu
-        setTimeout(fixMissingIcons, 100);
-        
-        // Réexécuter si nécessaire
-        window.addEventListener('load', fixMissingIcons);
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            const href = link.getAttribute('href');
+            if (href === currentPage) {
+                link.classList.add('active');
+            }
+        });
+    }
+
+    // Fonction pour basculer la sidebar sur mobile
+    function toggleSidebar() {
+        sidebar.classList.toggle('open');
+        sidebarOverlay.classList.toggle('hidden');
+    }
+
+    // Événements pour mobile
+    if (sidebarToggle) {
+        sidebarToggle.addEventListener('click', toggleSidebar);
+    }
+    
+    if (sidebarOverlay) {
+        sidebarOverlay.addEventListener('click', toggleSidebar);
+    }
+
+    // Fermer la sidebar en cliquant sur un lien (mobile)
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            if (window.innerWidth < 640) {
+                toggleSidebar();
+            }
+        });
     });
-    </script>
+
+    // Marquer la page active au chargement
+    setActivePage();
+
+    // Gestion du redimensionnement de fenêtre
+    window.addEventListener('resize', () => {
+        if (window.innerWidth >= 640) {
+            sidebar.classList.remove('open');
+            sidebarOverlay.classList.add('hidden');
+        }
+    });
+});
+</script>
 </body>
                 </html>
-            `;
-            
-            // Ouvrir dans une nouvelle fenêtre pour impression
-            const printWindow = window.open('', '_blank');
-            printWindow.document.write(htmlContent);
+            `);
             printWindow.document.close();
             printWindow.print();
-            
-            closeExportMenu();
-            showNotification('Export PDF prêt pour impression !', 'success');
+            showNotification('Export PDF réussi', 'success');
         }
 
-        // Fonction utilitaire pour télécharger un fichier
-        function downloadFile(content, filename, mimeType) {
-            const blob = new Blob([content], { type: mimeType });
+        function downloadFile(content, filename, type) {
+            const blob = new Blob([content], { type });
             const url = URL.createObjectURL(blob);
-            const link = document.createElement('a');
-            link.href = url;
-            link.download = filename;
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
             URL.revokeObjectURL(url);
         }
 
-        // Fermer le menu d'export en cliquant à l'extérieur
-        document.addEventListener('click', function(event) {
-            const exportMenu = document.getElementById('exportMenu');
-            if (exportMenu && !exportMenu.contains(event.target)) {
-                closeExportMenu();
+        // Notifications
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+
+            setTimeout(() => notification.classList.add('show'), 100);
+            setTimeout(() => {
+                notification.classList.remove('show');
+                setTimeout(() => document.body.removeChild(notification), 300);
+            }, 3000);
+        }
+    </script>
+    <!-- Script JavaScript pour la sidebar -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const sidebar = document.getElementById('sidebar');
+    const sidebarToggle = document.getElementById('sidebar-toggle');
+    const sidebarOverlay = document.getElementById('sidebar-overlay');
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    // Fonction pour marquer la page active
+    function setActivePage() {
+        const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+        
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            const href = link.getAttribute('href');
+            if (href === currentPage) {
+                link.classList.add('active');
             }
         });
-    </script>
+    }
 
-    <script>
-    // Script de détection et correction des icônes manquantes
-    document.addEventListener('DOMContentLoaded', function() {
-        // Fonction pour détecter si un emoji s'affiche correctement
-        function isEmojiSupported(emoji) {
-            const canvas = document.createElement('canvas');
-            const ctx = canvas.getContext('2d');
-            ctx.font = '16px Arial';
-            ctx.fillText(emoji, 0, 16);
-            const data = ctx.getImageData(0, 0, 16, 16).data;
-            return data.some(pixel => pixel !== 0);
-        }
-        
-        // Vérifier et corriger les icônes
-        function fixMissingIcons() {
-            const emojiElements = document.querySelectorAll('.emoji-icon');
-            
-            emojiElements.forEach(element => {
-                const emoji = element.textContent;
-                if (!isEmojiSupported(emoji)) {
-                    // Masquer l'emoji et afficher l'icône Font Awesome
-                    element.style.display = 'none';
-                    const fallbackIcon = element.nextElementSibling;
-                    if (fallbackIcon && fallbackIcon.classList.contains('fa-fallback')) {
-                        fallbackIcon.style.display = 'inline-block';
-                    }
-                }
-            });
-        }
-        
-        // Exécuter après un délai pour laisser le temps au rendu
-        setTimeout(fixMissingIcons, 100);
-        
-        // Réexécuter si nécessaire
-        window.addEventListener('load', fixMissingIcons);
+    // Fonction pour basculer la sidebar sur mobile
+    function toggleSidebar() {
+        sidebar.classList.toggle('open');
+        sidebarOverlay.classList.toggle('hidden');
+    }
+
+    // Événements pour mobile
+    if (sidebarToggle) {
+        sidebarToggle.addEventListener('click', toggleSidebar);
+    }
+    
+    if (sidebarOverlay) {
+        sidebarOverlay.addEventListener('click', toggleSidebar);
+    }
+
+    // Fermer la sidebar en cliquant sur un lien (mobile)
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            if (window.innerWidth < 640) {
+                toggleSidebar();
+            }
+        });
     });
-    </script>
+
+    // Marquer la page active au chargement
+    setActivePage();
+
+    // Gestion du redimensionnement de fenêtre
+    window.addEventListener('resize', () => {
+        if (window.innerWidth >= 640) {
+            sidebar.classList.remove('open');
+            sidebarOverlay.classList.add('hidden');
+        }
+    });
+});
+</script>
 </body>
-</html>
+</html> 
