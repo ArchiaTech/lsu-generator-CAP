@@ -89,43 +89,49 @@
             letter-spacing: 1px;
             text-shadow: 0 2px 8px rgba(0,0,0,0.25);
         }
-        /* Navigation cartes */
-        .main-nav {
+        /* Cartes de navigation */
+        .modules-cards {
             display: flex;
             justify-content: center;
             gap: 32px;
             margin: -40px 0 40px 0;
             flex-wrap: wrap;
-            z-index: 2;
-            position: relative;
         }
-        .nav-card {
-            background: var(--card-bg);
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
+        .card {
+            background: #fff;
+            border-radius: 18px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
             padding: 32px 28px 24px 28px;
-            min-width: 220px;
+            min-width: 200px;
             text-align: center;
             font-size: 1.15em;
             font-weight: 500;
             color: #222;
-            text-decoration: none;
-            transition: transform 0.15s, box-shadow 0.15s, background 0.15s;
             cursor: pointer;
+            transition: transform 0.15s, box-shadow 0.15s, background 0.15s;
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 12px;
+            text-decoration: none;
+            outline: none;
         }
-        .nav-card .icon {
-            font-size: 2.2em;
-            margin-bottom: 6px;
-        }
-        .nav-card:hover {
+        .card:hover, .card:focus {
             transform: translateY(-6px) scale(1.03);
             box-shadow: 0 8px 32px rgba(79,140,255,0.13);
             background: #f0f6ff;
             color: #1a237e;
+        }
+        .emoji {
+            font-size: 2.2em;
+            margin-bottom: 6px;
+        }
+        .label {
+            margin-top: 4px;
+        }
+        @media (max-width: 700px) {
+            .modules-cards { flex-direction: column; gap: 18px; margin: 28px 0 24px 0; }
+            .card { min-width: 0; width: 100%; }
         }
         /* Section Photos */
         .class-photos {
@@ -184,7 +190,7 @@
             background: #f7fafc;
             border-top: 1px solid #f0f0f0;
         }
-        .edit-btn {
+        .edit-photo-btn {
             margin: 10px auto 14px auto;
             display: block;
             background: #e3f2fd;
@@ -197,33 +203,16 @@
             cursor: pointer;
             transition: background 0.2s, color 0.2s;
         }
-        .edit-btn:hover {
+        .edit-photo-btn:hover {
             background: #1976d2;
             color: #fff;
         }
-        .file-input {
-            display: none;
-        }
         @media (max-width: 700px) {
-            .main-nav {
-                flex-direction: column;
-                gap: 18px;
-                margin: -30px 0 24px 0;
-            }
-            .banner-title {
-                font-size: 1.3em;
-                padding: 18px 8px;
-            }
-            .photos-grid {
-                grid-template-columns: 1fr 1fr;
-                gap: 16px;
-            }
+            .photos-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
             .photo-img { height: 110px; }
         }
         @media (max-width: 480px) {
-            .photos-grid {
-                grid-template-columns: 1fr;
-            }
+            .photos-grid { grid-template-columns: 1fr; }
             .banner { min-height: 120px; }
             .photo-img { height: 90px; }
         }
@@ -248,21 +237,21 @@
         </div>
     </div>
 
-    <!-- Navigation principale -->
-    <nav class="main-nav">
-        <a class="nav-card" href="lsu_generator.html">
-            <span class="icon">🎓</span>
-            Générateur LSU
+    <!-- Cartes de navigation -->
+    <div class="modules-cards">
+        <a class="card" href="lsu_generator.html">
+            <span class="emoji">🎓</span>
+            <span class="label">Générateur LSU</span>
         </a>
-        <a class="nav-card" href="students.html">
-            <span class="icon">👩‍🏫</span>
-            Profils élèves
+        <a class="card" href="students.html">
+            <span class="emoji">👩‍🏫</span>
+            <span class="label">Profils élèves</span>
         </a>
-        <a class="nav-card" href="dashboard.html">
-            <span class="icon">📊</span>
-            Tableau de bord
+        <a class="card" href="dashboard.html">
+            <span class="emoji">📊</span>
+            <span class="label">Tableau de bord</span>
         </a>
-    </nav>
+    </div>
 
     <!-- Section Photos des classes -->
     <section class="class-photos">
@@ -270,62 +259,42 @@
             <span class="icon">📷</span>
             Photos des classes
         </div>
-        <div class="photos-grid" id="photosGrid">
-            <!-- Les cartes seront générées par JS -->
+        <div class="photos-grid">
+            <div class="photo-card">
+                <img src="images/cp.jpg" alt="Classe de CP" class="photo-img">
+                <div class="photo-label">Classe de CP</div>
+                <button class="edit-photo-btn" data-classe="CP">Modifier la photo</button>
+            </div>
+            <div class="photo-card">
+                <img src="images/ce1.jpg" alt="Classe de CE1" class="photo-img">
+                <div class="photo-label">Classe de CE1</div>
+                <button class="edit-photo-btn" data-classe="CE1">Modifier la photo</button>
+            </div>
+            <div class="photo-card">
+                <img src="images/ce2.jpg" alt="Classe de CE2" class="photo-img">
+                <div class="photo-label">Classe de CE2</div>
+                <button class="edit-photo-btn" data-classe="CE2">Modifier la photo</button>
+            </div>
+            <div class="photo-card">
+                <img src="images/cm1.jpg" alt="Classe de CM1" class="photo-img">
+                <div class="photo-label">Classe de CM1</div>
+                <button class="edit-photo-btn" data-classe="CM1">Modifier la photo</button>
+            </div>
+            <div class="photo-card">
+                <img src="images/cm2.jpg" alt="Classe de CM2" class="photo-img">
+                <div class="photo-label">Classe de CM2</div>
+                <button class="edit-photo-btn" data-classe="CM2">Modifier la photo</button>
+            </div>
         </div>
     </section>
 
     <script>
-        // Liste des classes et images par défaut
-        const classes = [
-            { key: 'cp', label: 'Classe de CP', img: 'images/cp.jpg' },
-            { key: 'ce1', label: 'Classe de CE1', img: 'images/ce1.jpg' },
-            { key: 'ce2', label: 'Classe de CE2', img: 'images/ce2.jpg' },
-            { key: 'cm1', label: 'Classe de CM1', img: 'images/cm1.jpg' },
-            { key: 'cm2', label: 'Classe de CM2', img: 'images/cm2.jpg' }
-        ];
-
-        // Rendu dynamique des cartes
-        function renderPhotos() {
-            const grid = document.getElementById('photosGrid');
-            grid.innerHTML = '';
-            classes.forEach(classe => {
-                // Vérifie si une image custom existe en localStorage
-                const saved = localStorage.getItem('photo_' + classe.key);
-                const imgSrc = saved ? saved : classe.img;
-                const card = document.createElement('div');
-                card.className = 'photo-card';
-                card.innerHTML = `
-                    <img src="${imgSrc}" alt="${classe.label}" class="photo-img" id="img_${classe.key}">
-                    <div class="photo-label">${classe.label}</div>
-                    <button class="edit-btn" onclick="editPhoto('${classe.key}')">📸 Modifier la photo</button>
-                    <input type="file" accept="image/*" class="file-input" id="file_${classe.key}" onchange="changePhoto(event, '${classe.key}')">
-                `;
-                grid.appendChild(card);
+        document.querySelectorAll('.edit-photo-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const classe = btn.getAttribute('data-classe');
+                alert(`Modification de la photo de la classe de ${classe}`);
             });
-        }
-
-        // Ouvre le sélecteur de fichier
-        function editPhoto(key) {
-            document.getElementById('file_' + key).click();
-        }
-
-        // Gère le changement de photo
-        function changePhoto(event, key) {
-            const file = event.target.files[0];
-            if (!file) return;
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                // Affiche l'image en direct
-                document.getElementById('img_' + key).src = e.target.result;
-                // Sauvegarde dans localStorage
-                localStorage.setItem('photo_' + key, e.target.result);
-            };
-            reader.readAsDataURL(file);
-        }
-
-        // Initialisation
-        window.onload = renderPhotos;
+        });
     </script>
 </body>
 </html>
