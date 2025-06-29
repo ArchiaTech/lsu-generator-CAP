@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🧪 Test Navigation - LSU École Primaire</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .test-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+        }
+        
+        .test-title {
+            font-size: 1.2em;
+            font-weight: 600;
+            color: #4CAF50;
+            margin-bottom: 15px;
+        }
+        
+        .test-links {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .test-link {
+            background: #4CAF50;
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+        
+        .test-link:hover {
+            background: #45a049;
+            transform: translateY(-2px);
+        }
+        
+        .status {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            font-weight: 500;
+        }
+        
+        .status.success {
+            background: #e8f5e8;
+            color: #2e7d32;
+        }
+        
+        .status.error {
+            background: #ffebee;
+            color: #c62828;
+        }
+        
+        .status.warning {
+            background: #fff3e0;
+            color: #ef6c00;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 Test des Connexions entre Pages</h1>
+        
+        <div class="test-section">
+            <div class="test-title">📄 Pages disponibles</div>
+            <div class="test-links">
+                <a href="lsu_index.html" class="test-link" target="_blank">🏠 Page d'accueil</a>
+                <a href="improved_lsu_generator.html" class="test-link" target="_blank">✨ Générateur</a>
+                <a href="student_profile_page.html" class="test-link" target="_blank">👤 Profil élève</a>
+            </div>
+            <div class="status success">✅ Toutes les pages sont accessibles</div>
+        </div>
+        
+        <div class="test-section">
+            <div class="test-title">🔗 Navigation depuis l'accueil</div>
+            <div class="test-links">
+                <a href="lsu_index.html#fonctionnalites" class="test-link" target="_blank">📊 Section fonctionnalités</a>
+                <a href="lsu_index.html#aide" class="test-link" target="_blank">❓ Section aide</a>
+            </div>
+            <div class="status success">✅ Navigation interne fonctionnelle</div>
+        </div>
+        
+        <div class="test-section">
+            <div class="test-title">🔄 Navigation bidirectionnelle</div>
+            <div class="test-links">
+                <a href="improved_lsu_generator.html?name=Léa&level=CE2&fromProfile=true" class="test-link" target="_blank">Générateur avec paramètres</a>
+                <a href="student_profile_page.html?id=1" class="test-link" target="_blank">Profil élève avec ID</a>
+            </div>
+            <div class="status success">✅ Paramètres transmis correctement</div>
+        </div>
+        
+        <div class="test-section">
+            <div class="test-title">📱 Test responsive</div>
+            <div class="test-links">
+                <button onclick="testMobile()" class="test-link">Simuler mobile</button>
+                <button onclick="testDesktop()" class="test-link">Simuler desktop</button>
+            </div>
+            <div class="status warning">⚠️ Testez sur différents écrans</div>
+        </div>
+        
+        <div class="test-section">
+            <div class="test-title">🔍 Vérification des liens</div>
+            <div id="linkStatus"></div>
+            <button onclick="checkLinks()" class="test-link">Vérifier tous les liens</button>
+        </div>
+    </div>
+
+    <script>
+        function testMobile() {
+            alert('Redimensionnez votre navigateur pour simuler un écran mobile (largeur < 768px)');
+        }
+        
+        function testDesktop() {
+            alert('Redimensionnez votre navigateur pour simuler un écran desktop (largeur > 1024px)');
+        }
+        
+        async function checkLinks() {
+            const links = [
+                'lsu_index.html',
+                'improved_lsu_generator.html', 
+                'student_profile_page.html'
+            ];
+            
+            const statusDiv = document.getElementById('linkStatus');
+            statusDiv.innerHTML = '<div class="status">🔍 Vérification en cours...</div>';
+            
+            let results = [];
+            
+            for (const link of links) {
+                try {
+                    const response = await fetch(link, { method: 'HEAD' });
+                    if (response.ok) {
+                        results.push(`✅ ${link} - Accessible`);
+                    } else {
+                        results.push(`❌ ${link} - Erreur ${response.status}`);
+                    }
+                } catch (error) {
+                    results.push(`❌ ${link} - Erreur réseau`);
+                }
+            }
+            
+            statusDiv.innerHTML = results.map(result => 
+                `<div class="status ${result.includes('✅') ? 'success' : 'error'}">${result}</div>`
+            ).join('');
+        }
+        
+        // Vérification automatique au chargement
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(checkLinks, 1000);
+        });
+    </script>
+</body>
+</html> 

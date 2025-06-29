@@ -1,0 +1,1469 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎓 Générateur de Commentaires LSU - École Primaire</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        /* Barre de menu */
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+
+        .nav-logo {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #4CAF50;
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: #2c3e50;
+            font-weight: 500;
+            padding: 8px 15px;
+            border-radius: 6px;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            background: #4CAF50;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5em;
+            cursor: pointer;
+        }
+
+        /* Indicateur de connexion */
+        .connection-status {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 500;
+        }
+
+        .status-connected {
+            background: #e8f5e8;
+            color: #2e7d32;
+        }
+
+        .status-disconnected {
+            background: #ffebee;
+            color: #c62828;
+        }
+
+        .status-indicator {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        .indicator-green {
+            background: #4CAF50;
+        }
+
+        .indicator-red {
+            background: #f44336;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            padding: 30px;
+        }
+
+        .form-section {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 15px;
+            border: 2px solid #e9ecef;
+        }
+
+        .section-title {
+            font-size: 1.4em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #4CAF50;
+            box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+        }
+
+        .checkbox-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px;
+            background: white;
+            border-radius: 6px;
+            border: 1px solid #ddd;
+            transition: background-color 0.2s;
+        }
+
+        .checkbox-item:hover {
+            background-color: #f0f8ff;
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            width: auto;
+            margin: 0;
+        }
+
+        .level-buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .level-btn {
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            text-align: center;
+            font-size: 0.9em;
+        }
+
+        .level-btn.insufficient {
+            background: #ffebee;
+            color: #c62828;
+            border: 2px solid #ffcdd2;
+        }
+
+        .level-btn.fragile {
+            background: #fff3e0;
+            color: #ef6c00;
+            border: 2px solid #ffcc02;
+        }
+
+        .level-btn.satisfactory {
+            background: #e8f5e8;
+            color: #2e7d32;
+            border: 2px solid #a5d6a7;
+        }
+
+        .level-btn.excellent {
+            background: #e3f2fd;
+            color: #1565c0;
+            border: 2px solid #90caf9;
+        }
+
+        .level-btn.active {
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .generate-btn {
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1em;
+            font-weight: 600;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .generate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+        }
+
+        .generate-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .result-section {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 15px;
+            border: 2px solid #e9ecef;
+        }
+
+        .comment-output {
+            background: white;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            min-height: 200px;
+            font-size: 16px;
+            line-height: 1.6;
+            color: #2c3e50;
+        }
+
+        .comment-placeholder {
+            color: #999;
+            font-style: italic;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .stat-item {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            border: 2px solid #e9ecef;
+        }
+
+        .stat-number {
+            font-size: 2em;
+            font-weight: bold;
+            color: #4CAF50;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+
+        .copy-btn {
+            background: #2196F3;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: background-color 0.3s;
+        }
+
+        .copy-btn:hover {
+            background: #1976D2;
+        }
+
+        .examples-section {
+            grid-column: 1 / -1;
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 15px;
+            border: 2px solid #e9ecef;
+            margin-top: 20px;
+        }
+
+        .examples-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .example-card {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 4px solid #4CAF50;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .example-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .example-title {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 8px;
+        }
+
+        .example-text {
+            color: #666;
+            font-size: 0.9em;
+            line-height: 1.4;
+        }
+
+        /* Page cachée */
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        /* Style pour la liste des élèves */
+        .student-list {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px;
+        }
+
+        .student-card {
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s;
+        }
+
+        .student-card:hover {
+            border-color: #4CAF50;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .student-info h3 {
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+
+        .student-info p {
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .student-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-small {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9em;
+            transition: all 0.3s;
+        }
+
+        .btn-edit {
+            background: #2196F3;
+            color: white;
+        }
+
+        .btn-delete {
+            background: #f44336;
+            color: white;
+        }
+
+        .btn-view {
+            background: #4CAF50;
+            color: white;
+        }
+
+        .add-student-btn {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1.1em;
+            margin-bottom: 20px;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 2000;
+        }
+
+        .modal-content {
+            background: white;
+            margin: 50px auto;
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 500px;
+            width: 90%;
+        }
+
+        .close {
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: white;
+                flex-direction: column;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+                padding: 20px;
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .main-content {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                padding: 20px;
+            }
+            
+            .stats {
+                grid-template-columns: 1fr;
+            }
+            
+            .level-buttons {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .connection-status {
+                display: none;
+            }
+        }
+
+        .notification {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            background: #4CAF50;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            transform: translateX(100%);
+            opacity: 0;
+            transition: all 0.3s;
+            z-index: 1000;
+        }
+
+        .notification.show {
+            transform: translateX(0);
+            opacity: 1;
+        }
+
+        .notification.error {
+            background: #f44336;
+        }
+    </style>
+</head>
+<body>
+    <!-- Barre de navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="lsu_index.html" class="nav-logo">🎓 LSU École Primaire</a>
+            
+            <ul class="nav-menu" id="navMenu">
+                <li class="nav-item">
+                    <a href="lsu_index.html" class="nav-link">
+                        🏠 Accueil
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link active" onclick="showPage('generator')">
+                        ✨ Générateur
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="student_profile_page.html" class="nav-link">
+                        👤 Profil Élève
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" onclick="showPage('students')">
+                        👥 Élèves
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" onclick="showPage('settings')">
+                        ⚙️ Paramètres
+                    </a>
+                </li>
+            </ul>
+
+            <div class="connection-status" id="connectionStatus">
+                <div class="status-indicator indicator-red" id="statusIndicator"></div>
+                <span id="statusText">Connexion en cours...</span>
+            </div>
+
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+        </div>
+    </nav>
+
+    <!-- Page Générateur -->
+    <div id="generatorPage" class="page active">
+        <div class="container">
+            <div class="header">
+                <h1>🎓 Générateur de Commentaires LSU</h1>
+                <p>Créez des appréciations personnalisées pour l'école primaire</p>
+            </div>
+
+            <div class="main-content">
+                <div class="form-section">
+                    <h2 class="section-title">📝 Informations sur l'élève</h2>
+                    
+                    <div class="form-group">
+                        <label for="studentName">Prénom de l'élève :</label>
+                        <input type="text" id="studentName" placeholder="Ex: Léa, Thomas, Sarah...">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="studentLevel">Niveau scolaire :</label>
+                        <select id="studentLevel">
+                            <option value="">Sélectionner un niveau</option>
+                            <option value="CP">CP - Cours Préparatoire</option>
+                            <option value="CE1">CE1 - Cours Élémentaire 1ère année</option>
+                            <option value="CE2">CE2 - Cours Élémentaire 2ème année</option>
+                            <option value="CM1">CM1 - Cours Moyen 1ère année</option>
+                            <option value="CM2">CM2 - Cours Moyen 2ème année</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="period">Période d'évaluation :</label>
+                        <select id="period">
+                            <option value="">Sélectionner une période</option>
+                            <option value="1er trimestre">1er trimestre</option>
+                            <option value="2ème trimestre">2ème trimestre</option>
+                            <option value="3ème trimestre">3ème trimestre</option>
+                            <option value="1er semestre">1er semestre</option>
+                            <option value="2ème semestre">2ème semestre</option>
+                            <option value="bilan annuel">Bilan annuel</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Niveau général de l'élève :</label>
+                        <div class="level-buttons">
+                            <button type="button" class="level-btn insufficient" data-level="insufficient">
+                                Maîtrise insuffisante
+                            </button>
+                            <button type="button" class="level-btn fragile" data-level="fragile">
+                                Maîtrise fragile
+                            </button>
+                            <button type="button" class="level-btn satisfactory" data-level="satisfactory">
+                                Maîtrise satisfaisante
+                            </button>
+                            <button type="button" class="level-btn excellent" data-level="excellent">
+                                Très bonne maîtrise
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Points forts observés :</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="participation" value="participation">
+                                <label for="participation">Participation active</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="autonomie" value="autonomie">
+                                <label for="autonomie">Autonomie</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="progres" value="progres">
+                                <label for="progres">Progrès constants</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="creativite" value="creativite">
+                                <label for="creativite">Créativité</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="ecoute" value="ecoute">
+                                <label for="ecoute">Bonne écoute</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="entraide" value="entraide">
+                                <label for="entraide">Esprit d'entraide</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="specificPoints">Points spécifiques à mentionner :</label>
+                        <textarea id="specificPoints" rows="3" placeholder="Mentionnez des éléments particuliers à cet élève..."></textarea>
+                    </div>
+
+                    <button type="button" class="generate-btn" onclick="generateComment()">
+                        ✨ Générer le commentaire
+                    </button>
+                </div>
+
+                <div class="result-section">
+                    <h2 class="section-title">📋 Commentaire généré</h2>
+                    
+                    <div class="stats">
+                        <div class="stat-item">
+                            <div class="stat-number" id="generatedCount">0</div>
+                            <div class="stat-label">Générés</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number" id="wordCount">0</div>
+                            <div class="stat-label">Mots</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number" id="charCount">0</div>
+                            <div class="stat-label">Caractères</div>
+                        </div>
+                    </div>
+
+                    <div class="comment-output" id="commentOutput">
+                        <div class="comment-placeholder">
+                            Remplissez le formulaire et cliquez sur "Générer le commentaire" pour obtenir une appréciation personnalisée...
+                        </div>
+                    </div>
+
+                    <button type="button" class="copy-btn" onclick="copyComment()" style="display: none;" id="copyBtn">
+                        📋 Copier le commentaire
+                    </button>
+                </div>
+            </div>
+
+            <div class="examples-section">
+                <h2 class="section-title">💡 Exemples rapides</h2>
+                <div class="examples-grid">
+                    <div class="example-card" onclick="loadExample('excellent')">
+                        <div class="example-title">Élève excellent</div>
+                        <div class="example-text">Très bonne maîtrise, participation active, autonomie remarquable...</div>
+                    </div>
+                    <div class="example-card" onclick="loadExample('progres')">
+                        <div class="example-title">Élève en progrès</div>
+                        <div class="example-text">Progrès constants, efforts soutenus, motivation grandissante...</div>
+                    </div>
+                    <div class="example-card" onclick="loadExample('encourage')">
+                        <div class="example-title">Élève à encourager</div>
+                        <div class="example-text">Potentiel à développer, besoins d'accompagnement, points positifs...</div>
+                    </div>
+                    <div class="example-card" onclick="loadExample('comportement')">
+                        <div class="example-title">Focus comportement</div>
+                        <div class="example-text">Attitude positive, respect des règles, esprit d'équipe...</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page Élèves -->
+    <div id="studentsPage" class="page">
+        <div class="student-list">
+            <h1>👥 Gestion des Élèves</h1>
+            <button class="add-student-btn" onclick="openAddStudentModal()">➕ Ajouter un élève</button>
+            
+            <div id="studentsList">
+                <!-- Liste dynamique des élèves -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Page Paramètres -->
+    <div id="settingsPage" class="page">
+        <div class="student-list">
+            <h1>⚙️ Paramètres de Connexion</h1>
+            
+            <div class="form-section">
+                <h2 class="section-title">🔗 Configuration N8N</h2>
+                
+                <div class="form-group">
+                    <label for="n8nUrl">URL du webhook N8N :</label>
+                    <input type="url" id="n8nUrl" placeholder="https://your-n8n-instance.com/webhook/lsu">
+                </div>
+
+                <div class="form-group">
+                    <label for="apiKey">Clé API (optionnelle) :</label>
+                    <input type="password" id="apiKey" placeholder="Votre clé API si nécessaire">
+                </div>
+
+                <h2 class="section-title">🤖 IA Locale</h2>
+                
+                <div class="form-group">
+                    <label for="aiUrl">URL de l'IA locale :</label>
+                    <input type="url" id="aiUrl" placeholder="http://localhost:11434/api/generate">
+                </div>
+
+                <div class="form-group">
+                    <label for="aiModel">Modèle IA :</label>
+                    <select id="aiModel">
+                        <option value="llama2">Llama 2</option>
+                        <option value="mistral">Mistral</option>
+                        <option value="codellama">Code Llama</option>
+                        <option value="custom">Personnalisé</option>
+                    </select>
+                </div>
+
+                <button class="generate-btn" onclick="testConnections()">🔍 Tester les connexions</button>
+                <button class="generate-btn" onclick="saveSettings()" style="margin-top: 10px;">💾 Sauvegarder</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Ajout Élève -->
+    <div id="addStudentModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeAddStudentModal()">&times;</span>
+            <h2>➕ Ajouter un nouvel élève</h2>
+            
+            <div class="form-group">
+                <label for="newStudentName">Prénom :</label>
+                <input type="text" id="newStudentName" placeholder="Prénom de l'élève">
+            </div>
+
+            <div class="form-group">
+                <label for="newStudentLastName">Nom :</label>
+                <input type="text" id="newStudentLastName" placeholder="Nom de famille">
+            </div>
+
+            <div class="form-group">
+                <label for="newStudentLevel">Niveau :</label>
+                <select id="newStudentLevel">
+                    <option value="CP">CP - Cours Préparatoire</option>
+                    <option value="CE1">CE1 - Cours Élémentaire 1ère année</option>
+                    <option value="CE2">CE2 - Cours Élémentaire 2ème année</option>
+                    <option value="CM1">CM1 - Cours Moyen 1ère année</option>
+                    <option value="CM2">CM2 - Cours Moyen 2ème année</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="newStudentBirthDate">Date de naissance :</label>
+                <input type="date" id="newStudentBirthDate">
+            </div>
+
+            <button class="generate-btn" onclick="addStudent()">➕ Ajouter l'élève</button>
+        </div>
+    </div>
+
+    <div class="notification" id="notification"></div>
+
+    <script>
+        let generatedCount = 0;
+        let selectedLevel = '';
+        let students = JSON.parse(localStorage.getItem('students')) || [];
+
+        // Configuration par défaut
+        let config = {
+            n8nUrl: '',
+            apiKey: '',
+            aiUrl: 'http://localhost:11434/api/generate',
+            aiModel: 'llama2'
+        };
+
+        // Navigation
+        function showPage(pageName) {
+            // Masquer toutes les pages
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Masquer les liens actifs
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            // Afficher la page sélectionnée
+            document.getElementById(pageName + 'Page').classList.add('active');
+            
+            // Activer le lien correspondant
+            event.target.classList.add('active');
+
+            // Charger les données si nécessaire
+            if (pageName === 'students') {
+                loadStudentsList();
+            } else if (pageName === 'settings') {
+                loadSettings();
+            }
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('navMenu');
+            menu.classList.toggle('active');
+        }
+
+        // Gestion de la sélection du niveau
+        document.querySelectorAll('.level-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.level-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                selectedLevel = this.dataset.level;
+            });
+        });
+
+        // Modèles de commentaires pour école primaire
+        const commentTemplates = {
+            insufficient: {
+                starters: [
+                    "{name} rencontre encore des difficultés ce {period}.",
+                    "{name} a besoin d'un accompagnement renforcé ce {period}.",
+                    "{name} progresse lentement mais sûrement ce {period}.",
+                    "{name} nécessite un soutien particulier ce {period}."
+                ],
+                strengths: {
+                    participation: "malgré une participation timide mais sincère",
+                    autonomie: "avec un besoin d'aide dans l'organisation",
+                    progres: "en montrant quelques signes d'amélioration",
+                    creativite: "avec des idées intéressantes à développer",
+                    ecoute: "en étant attentif/ve aux consignes",
+                    entraide: "en acceptant l'aide de ses camarades"
+                },
+                encouragements: [
+                    "Il/elle doit persévérer dans ses efforts pour progresser.",
+                    "Un travail régulier à la maison l'aiderait à consolider ses acquis.",
+                    "Je l'encourage à poser plus de questions en cas de difficulté.",
+                    "Avec patience et encouragements, les progrès viendront."
+                ]
+            },
+            fragile: {
+                starters: [
+                    "{name} montre des progrès fragiles ce {period}.",
+                    "{name} est sur la bonne voie ce {period}, mais doit consolider ses acquis.",
+                    "{name} fait des efforts ce {period} qui commencent à porter leurs fruits.",
+                    "{name} évolue positivement ce {period} avec quelques hésitations."
+                ],
+                strengths: {
+                    participation: "en participant de plus en plus aux échanges",
+                    autonomie: "en gagnant progressivement en autonomie",
+                    progres: "en montrant une belle progression",
+                    creativite: "en apportant des idées originales",
+                    ecoute: "en étant à l'écoute des consignes",
+                    entraide: "en aidant parfois ses camarades"
+                },
+                encouragements: [
+                    "Il/elle doit maintenir ses efforts pour stabiliser ses acquis.",
+                    "Une pratique régulière l'aiderait à prendre confiance.",
+                    "Je l'encourage à continuer sur cette lancée positive.",
+                    "La persévérance sera la clé de sa réussite."
+                ]
+            },
+            satisfactory: {
+                starters: [
+                    "{name} réalise un {period} satisfaisant.",
+                    "{name} montre de bons résultats ce {period}.",
+                    "{name} a fourni un travail de qualité ce {period}.",
+                    "{name} atteint les objectifs fixés ce {period}."
+                ],
+                strengths: {
+                    participation: "en participant activement aux activités",
+                    autonomie: "en faisant preuve d'une bonne autonomie",
+                    progres: "en progressant de manière constante",
+                    creativite: "en apportant créativité et originalité",
+                    ecoute: "en étant très attentif/ve en classe",
+                    entraide: "en aidant volontiers ses camarades"
+                },
+                encouragements: [
+                    "Il/elle peut viser encore plus haut avec un peu plus d'ambition.",
+                    "Je l'encourage à approfondir certains sujets qui l'intéressent.",
+                    "Il/elle a les capacités pour atteindre l'excellence.",
+                    "Continuez ainsi, les résultats sont encourageants !"
+                ]
+            },
+            excellent: {
+                starters: [
+                    "{name} réalise un {period} remarquable.",
+                    "{name} atteint un excellent niveau ce {period}.",
+                    "{name} fait preuve d'une très belle maîtrise ce {period}.",
+                    "{name} se distingue par ses excellents résultats ce {period}."
+                ],
+                strengths: {
+                    participation: "en s'investissant pleinement dans toutes les activités",
+                    autonomie: "en faisant preuve d'une autonomie exemplaire",
+                    progres: "en progressant de façon spectaculaire",
+                    creativite: "en développant des approches créatives remarquables",
+                    ecoute: "en étant d'une attention soutenue",
+                    entraide: "en étant un pilier d'entraide pour la classe"
+                },
+                encouragements: [
+                    "Il/elle peut servir d'exemple à ses camarades.",
+                    "Je l'encourage à continuer à explorer ses passions.",
+                    "Il/elle a toutes les capacités pour réussir brillamment.",
+                    "Félicitations pour ce parcours exemplaire !"
+                ]
+            }
+        };
+
+        // Génération de commentaires avec IA locale
+        async function generateComment() {
+            const name = document.getElementById('studentName').value || 'L\'élève';
+            const level = document.getElementById('studentLevel').value;
+            const period = document.getElementById('period').value || 'cette période';
+            const specificPoints = document.getElementById('specificPoints').value;
+
+            if (!selectedLevel) {
+                showNotification('Veuillez sélectionner un niveau de maîtrise', 'error');
+                return;
+            }
+
+            // Tentative de génération avec IA locale
+            const aiComment = await generateWithAI(name, level, period, selectedLevel, specificPoints);
+            
+            if (aiComment) {
+                displayComment(aiComment);
+                showNotification('Commentaire généré avec l\'IA locale !', 'success');
+            } else {
+                // Fallback sur génération locale
+                generateLocalComment();
+                showNotification('Commentaire généré localement (IA non disponible)', 'warning');
+            }
+        }
+
+        // Chargement des paramètres depuis l'URL
+        function loadUrlParams() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const name = urlParams.get('name');
+            const level = urlParams.get('level');
+            const fromProfile = urlParams.get('fromProfile');
+
+            if (name) {
+                document.getElementById('studentName').value = name;
+            }
+            if (level) {
+                document.getElementById('studentLevel').value = level;
+            }
+            if (fromProfile) {
+                showNotification('Données chargées depuis le profil élève', 'success');
+            }
+        }
+
+        async function generateWithAI(name, level, period, selectedLevel, specificPoints) {
+            try {
+                const settings = loadSettings();
+                if (!settings.aiUrl) return null;
+
+                const selectedStrengths = [];
+                document.querySelectorAll('.checkbox-item input[type="checkbox"]:checked').forEach(checkbox => {
+                    selectedStrengths.push(checkbox.value);
+                });
+
+                const prompt = `Génère un commentaire LSU personnalisé pour un élève de ${level} nommé ${name}.
+                Période: ${period}
+                Niveau de maîtrise: ${selectedLevel}
+                Points forts: ${selectedStrengths.join(', ')}
+                Notes spécifiques: ${specificPoints}
+                
+                Le commentaire doit être bienveillant, constructif et adapté à l'école primaire.
+                Limite: 150 mots maximum.`;
+
+                const response = await fetch(settings.aiUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        model: settings.aiModel,
+                        prompt: prompt,
+                        stream: false
+                    })
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    return data.response || null;
+                }
+            } catch (error) {
+                console.error('Erreur IA:', error);
+            }
+            return null;
+        }
+
+        function generateLocalComment() {
+            const name = document.getElementById('studentName').value || 'L\'élève';
+            const level = document.getElementById('studentLevel').value;
+            const period = document.getElementById('period').value || 'cette période';
+            const specificPoints = document.getElementById('specificPoints').value;
+
+            const template = commentTemplates[selectedLevel];
+            
+            let comment = '';
+            
+            // Phrase d'introduction
+            const starter = template.starters[Math.floor(Math.random() * template.starters.length)];
+            comment += starter.replace('{name}', name).replace('{period}', period);
+
+            // Points forts
+            const selectedStrengths = [];
+            document.querySelectorAll('.checkbox-item input[type="checkbox"]:checked').forEach(checkbox => {
+                if (template.strengths[checkbox.value]) {
+                    selectedStrengths.push(template.strengths[checkbox.value]);
+                }
+            });
+
+            if (selectedStrengths.length > 0) {
+                comment += ' ' + selectedStrengths.join(', ') + '.';
+            }
+
+            // Points spécifiques
+            if (specificPoints.trim()) {
+                comment += ' ' + specificPoints.trim();
+                if (!specificPoints.endsWith('.')) comment += '.';
+            }
+
+            // Encouragement
+            const encouragement = template.encouragements[Math.floor(Math.random() * template.encouragements.length)];
+            comment += ' ' + encouragement;
+
+            displayComment(comment);
+        }
+
+        function displayComment(comment) {
+            const output = document.getElementById('commentOutput');
+            output.innerHTML = comment;
+            
+            // Mise à jour des statistiques
+            generatedCount++;
+            updateStats(comment);
+            
+            // Affichage du bouton copier
+            document.getElementById('copyBtn').style.display = 'block';
+        }
+
+        function updateStats(comment) {
+            document.getElementById('generatedCount').textContent = generatedCount;
+            document.getElementById('wordCount').textContent = comment.split(' ').length;
+            document.getElementById('charCount').textContent = comment.length;
+        }
+
+        function copyComment() {
+            const comment = document.getElementById('commentOutput').textContent;
+            navigator.clipboard.writeText(comment).then(() => {
+                showNotification('Commentaire copié dans le presse-papiers !', 'success');
+            }).catch(() => {
+                showNotification('Erreur lors de la copie', 'error');
+            });
+        }
+
+        // Gestion des élèves
+        function loadStudentsList() {
+            const container = document.getElementById('studentsList');
+            
+            if (students.length === 0) {
+                container.innerHTML = '<p style="text-align: center; color: #666; padding: 40px;">Aucun élève enregistré. Cliquez sur "Ajouter un élève" pour commencer.</p>';
+                return;
+            }
+
+            container.innerHTML = students.map((student, index) => `
+                <div class="student-card">
+                    <div class="student-info">
+                        <h3>${student.firstName} ${student.lastName}</h3>
+                        <p>Niveau: ${student.level} | Né(e) le: ${new Date(student.birthDate).toLocaleDateString('fr-FR')}</p>
+                    </div>
+                    <div class="student-actions">
+                        <button class="btn-small btn-view" onclick="selectStudent(${index})">Sélectionner</button>
+                        <button class="btn-small btn-edit" onclick="editStudent(${index})">Modifier</button>
+                        <button class="btn-small btn-delete" onclick="deleteStudent(${index})">Supprimer</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function openAddStudentModal() {
+            document.getElementById('addStudentModal').style.display = 'block';
+        }
+
+        function closeAddStudentModal() {
+            document.getElementById('addStudentModal').style.display = 'none';
+            // Reset du formulaire
+            document.getElementById('newStudentName').value = '';
+            document.getElementById('newStudentLastName').value = '';
+            document.getElementById('newStudentLevel').value = 'CP';
+            document.getElementById('newStudentBirthDate').value = '';
+        }
+
+        function addStudent() {
+            const firstName = document.getElementById('newStudentName').value.trim();
+            const lastName = document.getElementById('newStudentLastName').value.trim();
+            const level = document.getElementById('newStudentLevel').value;
+            const birthDate = document.getElementById('newStudentBirthDate').value;
+
+            if (!firstName || !lastName || !birthDate) {
+                showNotification('Veuillez remplir tous les champs obligatoires', 'error');
+                return;
+            }
+
+            const newStudent = {
+                firstName,
+                lastName,
+                level,
+                birthDate,
+                createdAt: new Date().toISOString()
+            };
+
+            students.push(newStudent);
+            localStorage.setItem('students', JSON.stringify(students));
+            
+            closeAddStudentModal();
+            loadStudentsList();
+            showNotification(`${firstName} ${lastName} a été ajouté(e) avec succès !`, 'success');
+        }
+
+        function selectStudent(index) {
+            const student = students[index];
+            
+            // Basculer vers la page générateur
+            showPage('generator');
+            
+            // Pré-remplir le formulaire
+            document.getElementById('studentName').value = student.firstName;
+            document.getElementById('studentLevel').value = student.level;
+            
+            showNotification(`Élève ${student.firstName} ${student.lastName} sélectionné(e)`, 'success');
+        }
+
+        function deleteStudent(index) {
+            const student = students[index];
+            if (confirm(`Êtes-vous sûr de vouloir supprimer ${student.firstName} ${student.lastName} ?`)) {
+                students.splice(index, 1);
+                localStorage.setItem('students', JSON.stringify(students));
+                loadStudentsList();
+                showNotification('Élève supprimé(e) avec succès', 'success');
+            }
+        }
+
+        // Paramètres et connexions
+        function loadSettings() {
+            const saved = localStorage.getItem('lsuConfig');
+            if (saved) {
+                config = { ...config, ...JSON.parse(saved) };
+                document.getElementById('n8nUrl').value = config.n8nUrl;
+                document.getElementById('apiKey').value = config.apiKey;
+                document.getElementById('aiUrl').value = config.aiUrl;
+                document.getElementById('aiModel').value = config.aiModel;
+            }
+            return config;
+        }
+
+        function saveSettings() {
+            config.n8nUrl = document.getElementById('n8nUrl').value;
+            config.apiKey = document.getElementById('apiKey').value;
+            config.aiUrl = document.getElementById('aiUrl').value;
+            config.aiModel = document.getElementById('aiModel').value;
+            
+            localStorage.setItem('lsuConfig', JSON.stringify(config));
+            showNotification('Paramètres sauvegardés avec succès !', 'success');
+            
+            // Tester la connexion après sauvegarde
+            testConnections();
+        }
+
+        async function testConnections() {
+            let n8nStatus = false;
+            let aiStatus = false;
+
+            // Test N8N
+            if (config.n8nUrl) {
+                try {
+                    const response = await fetch(config.n8nUrl, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            ...(config.apiKey && { 'Authorization': `Bearer ${config.apiKey}` })
+                        },
+                        body: JSON.stringify({ test: true })
+                    });
+                    n8nStatus = response.ok;
+                } catch (error) {
+                    console.error('Erreur N8N:', error);
+                }
+            }
+
+            // Test IA locale
+            if (config.aiUrl) {
+                try {
+                    const response = await fetch(config.aiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            model: config.aiModel,
+                            prompt: 'Test de connexion',
+                            stream: false
+                        })
+                    });
+                    aiStatus = response.ok;
+                } catch (error) {
+                    console.error('Erreur IA:', error);
+                }
+            }
+
+            updateConnectionStatus(n8nStatus, aiStatus);
+            
+            if (n8nStatus && aiStatus) {
+                showNotification('✅ Toutes les connexions sont opérationnelles !', 'success');
+            } else if (n8nStatus || aiStatus) {
+                showNotification('⚠️ Certaines connexions sont indisponibles', 'warning');
+            } else {
+                showNotification('❌ Aucune connexion externe disponible', 'error');
+            }
+        }
+
+        function updateConnectionStatus(n8nStatus, aiStatus) {
+            const statusElement = document.getElementById('connectionStatus');
+            const indicator = document.getElementById('statusIndicator');
+            const statusText = document.getElementById('statusText');
+
+            if (n8nStatus && aiStatus) {
+                statusElement.className = 'connection-status status-connected';
+                indicator.className = 'status-indicator indicator-green';
+                statusText.textContent = 'Connecté (N8N + IA)';
+            } else if (aiStatus) {
+                statusElement.className = 'connection-status status-connected';
+                indicator.className = 'status-indicator indicator-green';
+                statusText.textContent = 'IA locale connectée';
+            } else if (n8nStatus) {
+                statusElement.className = 'connection-status status-connected';
+                indicator.className = 'status-indicator indicator-green';
+                statusText.textContent = 'N8N connecté';
+            } else {
+                statusElement.className = 'connection-status status-disconnected';
+                indicator.className = 'status-indicator indicator-red';
+                statusText.textContent = 'Mode hors ligne';
+            }
+        }
+
+        function loadExample(type) {
+            // Reset du formulaire
+            document.getElementById('studentName').value = '';
+            document.getElementById('studentLevel').value = 'CM1';
+            document.getElementById('period').value = '2ème trimestre';
+            document.getElementById('specificPoints').value = '';
+            
+            // Reset des checkboxes
+            document.querySelectorAll('.checkbox-item input[type="checkbox"]').forEach(cb => cb.checked = false);
+            document.querySelectorAll('.level-btn').forEach(btn => btn.classList.remove('active'));
+
+            switch(type) {
+                case 'excellent':
+                    selectedLevel = 'excellent';
+                    document.querySelector('[data-level="excellent"]').classList.add('active');
+                    document.getElementById('participation').checked = true;
+                    document.getElementById('autonomie').checked = true;
+                    document.getElementById('progres').checked = true;
+                    break;
+                case 'progres':
+                    selectedLevel = 'satisfactory';
+                    document.querySelector('[data-level="satisfactory"]').classList.add('active');
+                    document.getElementById('progres').checked = true;
+                    document.getElementById('ecoute').checked = true;
+                    break;
+                case 'encourage':
+                    selectedLevel = 'fragile';
+                    document.querySelector('[data-level="fragile"]').classList.add('active');
+                    document.getElementById('participation').checked = true;
+                    document.getElementById('specificPoints').value = 'Il/elle montre de la bonne volonté et souhaite progresser.';
+                    break;
+                case 'comportement':
+                    selectedLevel = 'satisfactory';
+                    document.querySelector('[data-level="satisfactory"]').classList.add('active');
+                    document.getElementById('ecoute').checked = true;
+                    document.getElementById('entraide').checked = true;
+                    break;
+            }
+            
+            showNotification('Exemple chargé !', 'success');
+        }
+
+        function showNotification(message, type = 'success') {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.className = `notification ${type}`;
+            notification.classList.add('show');
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 4000);
+        }
+
+        // Sauvegarde automatique
+        function saveFormData() {
+            const formData = {
+                studentName: document.getElementById('studentName').value,
+                studentLevel: document.getElementById('studentLevel').value,
+                period: document.getElementById('period').value,
+                selectedLevel: selectedLevel,
+                specificPoints: document.getElementById('specificPoints').value,
+                checkedItems: Array.from(document.querySelectorAll('.checkbox-item input[type="checkbox"]:checked')).map(cb => cb.value)
+            };
+            localStorage.setItem('lsuFormData', JSON.stringify(formData));
+        }
+
+        function loadFormData() {
+            const saved = localStorage.getItem('lsuFormData');
+            if (saved) {
+                const formData = JSON.parse(saved);
+                document.getElementById('studentName').value = formData.studentName || '';
+                document.getElementById('studentLevel').value = formData.studentLevel || '';
+                document.getElementById('period').value = formData.period || '';
+                document.getElementById('specificPoints').value = formData.specificPoints || '';
+                
+                if (formData.selectedLevel) {
+                    selectedLevel = formData.selectedLevel;
+                    document.querySelector(`[data-level="${formData.selectedLevel}"]`)?.classList.add('active');
+                }
+                
+                formData.checkedItems?.forEach(value => {
+                    const checkbox = document.querySelector(`input[value="${value}"]`);
+                    if (checkbox) checkbox.checked = true;
+                });
+            }
+        }
+
+        // Événements de sauvegarde
+        document.querySelectorAll('input, select, textarea').forEach(element => {
+            element.addEventListener('change', saveFormData);
+            element.addEventListener('input', saveFormData);
+        });
+
+        // Initialisation
+        document.addEventListener('DOMContentLoaded', function() {
+            showPage('generator');
+            loadUrlParams();
+            updateConnectionStatus();
+        });
+
+        // Fermer le modal en cliquant à l'extérieur
+        window.onclick = function(event) {
+            const modal = document.getElementById('addStudentModal');
+            if (event.target === modal) {
+                closeAddStudentModal();
+            }
+        }
+    </script>
+</body>
+</html>

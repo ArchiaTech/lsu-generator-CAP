@@ -1,0 +1,119 @@
+version: '3.8'
+
+services:
+  # Base de données PostgreSQL (Production)
+  postgres:
+    image: postgres:15-alpine
+    container_name: lsu-postgres-prod
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-lsu_db}
+      POSTGRES_USER: ${POSTGRES_USER:-lsu_user}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-lsu_password}
+    volumes:
+      - postgres_data_prod:/var/lib/postgresql/data
+      - ./database/init:/docker-entrypoint-initdb.d
+    networks:
+      - lsu-network-prod
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-lsu_user} -d ${POSTGRES_DB:-lsu_db}"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    restart: unless-stopped
+
+  # API Backend FastAPI (Production)
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.prod
+    container_name: lsu-backend-prod
+    environment:
+      - DATABASE_URL=postgresql://${POSTGRES_USER:-lsu_user}:${POSTGRES_PASSWORD:-lsu_password}@postgres:5432/${POSTGRES_DB:-lsu_db}
+      - SECRET_KEY=${SECRET_KEY}
+      - JWT_ALGORITHM=${JWT_ALGORITHM:-HS256}
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-}
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY:-}
+      - REDIS_URL=redis://redis:6379
+      - ENVIRONMENT=production
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks:
+      - lsu-network-prod
+    restart: unless-stopped
+    deploy:
+      replicas: 2
+
+  # Frontend React (Production)
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.prod
+    container_name: lsu-frontend-prod
+    environment:
+      - REACT_APP_API_URL=${REACT_APP_API_URL:-http://localhost:8000}
+      - REACT_APP_ENV=production
+    depends_on:
+      - backend
+    networks:
+      - lsu-network-prod
+    restart: unless-stopped
+
+  # Redis pour cache et sessions (Production)
+  redis:
+    image: redis:7-alpine
+    container_name: lsu-redis-prod
+    volumes:
+      - redis_data_prod:/data
+    networks:
+      - lsu-network-prod
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    restart: unless-stopped
+
+  # Nginx pour reverse proxy (Production)
+  nginx:
+    image: nginx:alpine
+    container_name: lsu-nginx-prod
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./docker/nginx/nginx.prod.conf:/etc/nginx/nginx.conf
+      - ./docker/nginx/conf.d:/etc/nginx/conf.d
+      - ./docker/nginx/ssl:/etc/nginx/ssl
+      - ./docker/nginx/logs:/var/log/nginx
+    depends_on:
+      - frontend
+      - backend
+    networks:
+      - lsu-network-prod
+    restart: unless-stopped
+
+  # Certbot pour SSL (optionnel)
+  certbot:
+    image: certbot/certbot
+    container_name: lsu-certbot
+    volumes:
+      - ./docker/nginx/ssl:/etc/letsencrypt
+      - ./docker/nginx/webroot:/var/www/html
+    command: certonly --webroot --webroot-path=/var/www/html --email ${CERTBOT_EMAIL} --agree-tos --no-eff-email -d ${DOMAIN_NAME}
+    networks:
+      - lsu-network-prod
+    profiles:
+      - ssl
+
+volumes:
+  postgres_data_prod:
+    driver: local
+  redis_data_prod:
+    driver: local
+
+networks:
+  lsu-network-prod:
+    driver: bridge 
