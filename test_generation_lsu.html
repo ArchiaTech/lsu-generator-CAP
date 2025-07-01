@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Génération Commentaire LSU</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .test-section {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .form-group {
+            margin: 15px 0;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .level-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .level-btn {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            background: #e9ecef;
+        }
+        .level-btn.active {
+            background: #007bff;
+            color: white;
+        }
+        .checkbox-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+        }
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .generate-btn {
+            background: #28a745;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 20px 0;
+        }
+        .generate-btn:hover {
+            background: #218838;
+        }
+        .result {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #28a745;
+            margin: 20px 0;
+            white-space: pre-wrap;
+            line-height: 1.6;
+        }
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>🧪 Test Génération Commentaire LSU</h1>
+    
+    <div class="test-section">
+        <h2>📝 Formulaire de Test</h2>
+        
+        <div class="form-group">
+            <label for="prenom">Prénom de l'élève :</label>
+            <input type="text" id="prenom" value="Léa" placeholder="Ex: Léa, Thomas, Sarah...">
+        </div>
+
+        <div class="form-group">
+            <label for="niveau">Niveau scolaire :</label>
+            <select id="niveau">
+                <option value="CP">CP - Cours Préparatoire</option>
+                <option value="CE1">CE1 - Cours Élémentaire 1ère année</option>
+                <option value="CE2" selected>CE2 - Cours Élémentaire 2ème année</option>
+                <option value="CM1">CM1 - Cours Moyen 1ère année</option>
+                <option value="CM2">CM2 - Cours Moyen 2ème année</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="periode">Période d'évaluation :</label>
+            <select id="periode">
+                <option value="1er trimestre">1er trimestre</option>
+                <option value="2ème trimestre" selected>2ème trimestre</option>
+                <option value="3ème trimestre">3ème trimestre</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Niveau de maîtrise générale :</label>
+            <div class="level-buttons">
+                <button type="button" class="level-btn" data-level="insufficient" name="maitrise" value="insufficient">
+                    Maîtrise insuffisante
+                </button>
+                <button type="button" class="level-btn" data-level="fragile" name="maitrise" value="fragile">
+                    Maîtrise fragile
+                </button>
+                <button type="button" class="level-btn active" data-level="satisfactory" name="maitrise" value="satisfactory">
+                    Maîtrise satisfaisante
+                </button>
+                <button type="button" class="level-btn" data-level="excellent" name="maitrise" value="excellent">
+                    Très bonne maîtrise
+                </button>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Points forts de l'élève :</label>
+            <div class="checkbox-group">
+                <div class="checkbox-item">
+                    <input type="checkbox" id="participation" name="points" value="participation" checked>
+                    <label for="participation">Participation active</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="autonomie" name="points" value="autonomie" checked>
+                    <label for="autonomie">Autonomie</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="progres" name="points" value="progres">
+                    <label for="progres">Progrès constants</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="creativite" name="points" value="creativite">
+                    <label for="creativite">Créativité</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="ecoute" name="points" value="ecoute">
+                    <label for="ecoute">Bonne écoute</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="entraide" name="points" value="entraide">
+                    <label for="entraide">Esprit d'entraide</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="specifiques">Points spécifiques à mentionner :</label>
+            <textarea id="specifiques" rows="3" placeholder="Mentionnez des éléments particuliers à cet élève...">Très motivée cette période.</textarea>
+        </div>
+
+        <button type="button" class="generate-btn" id="genererCommentaire" onclick="testGenererCommentaireLSU()">
+            🎯 Tester la Génération
+        </button>
+    </div>
+
+    <div class="test-section">
+        <h2>📋 Résultat du Test</h2>
+        <div id="resultatTest" class="result" style="display: none;">
+            <!-- Le résultat sera affiché ici -->
+        </div>
+    </div>
+
+    <script>
+        // Variables globales pour le test
+        let selectedLevel = 'satisfactory';
+
+        // Gestion des boutons de niveau
+        document.querySelectorAll('.level-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.level-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                selectedLevel = this.getAttribute('data-level');
+            });
+        });
+
+        // Fonction de test de génération de commentaire LSU
+        function testGenererCommentaireLSU() {
+            try {
+                // Récupération des valeurs du formulaire
+                const studentName = document.getElementById('prenom').value || 'L\'élève';
+                const studentLevel = document.getElementById('niveau').value;
+                const period = document.getElementById('periode').value || 'cette période';
+                const specificPoints = document.getElementById('specifiques').value;
+
+                // Vérification du niveau de maîtrise sélectionné
+                if (!selectedLevel) {
+                    afficherResultat('❌ Erreur : Veuillez sélectionner un niveau de maîtrise', 'error');
+                    return;
+                }
+
+                // Récupération des points forts cochés
+                const pointsForts = [];
+                document.querySelectorAll('.checkbox-item input[type="checkbox"]:checked').forEach(checkbox => {
+                    pointsForts.push(checkbox.value);
+                });
+
+                // Génération du commentaire structuré
+                const commentaire = genererCommentaireStructure(studentName, studentLevel, period, selectedLevel, specificPoints, pointsForts);
+                
+                // Affichage du résultat
+                afficherResultat(commentaire, 'success');
+                
+            } catch (error) {
+                afficherResultat(`❌ Erreur : ${error.message}`, 'error');
+            }
+        }
+
+        // Fonction de génération de commentaire structuré selon les nouvelles spécifications
+        function genererCommentaireStructure(studentName, studentLevel, period, selectedLevel, specificPoints, pointsForts) {
+            // Détection du genre basée sur la fin du prénom
+            const genre = studentName.toLowerCase().endsWith('e') ? 'elle' : 'il';
+            const genreMaj = genre.charAt(0).toUpperCase() + genre.slice(1);
+            
+            // Traduction des niveaux de maîtrise
+            const niveauGeneral = {
+                'insufficient': 'insuffisante',
+                'fragile': 'fragile',
+                'satisfactory': 'satisfaisante',
+                'excellent': 'excellente'
+            }[selectedLevel] || 'satisfaisante';
+
+            // Traduction des points forts
+            const pointsFortsTraduits = {
+                'participation': 'participation active',
+                'autonomie': 'autonomie',
+                'progres': 'progrès constants',
+                'creativite': 'créativité',
+                'ecoute': 'bonne écoute',
+                'entraide': 'esprit d\'entraide'
+            };
+
+            // Construction du commentaire selon la logique demandée
+            let commentaire = `${studentName} est en classe de ${studentLevel}, évalué(e) pour la période ${period}. `;
+            commentaire += `${genreMaj} montre une maîtrise ${niveauGeneral}. `;
+            
+            // Ajout des points forts
+            if (pointsForts.length > 0) {
+                const pointsFortsTextes = pointsForts.map(point => pointsFortsTraduits[point] || point);
+                commentaire += `Points forts : ${pointsFortsTextes.join(', ')}. `;
+            }
+            
+            // Ajout des remarques spécifiques
+            if (specificPoints && specificPoints.trim()) {
+                commentaire += `${specificPoints.trim()} `;
+                if (!specificPoints.endsWith('.')) commentaire += '. ';
+            }
+            
+            // Phrase de conclusion adaptée au niveau
+            const conclusions = {
+                'insufficient': `${genreMaj} progresse et reste impliqué(e) malgré les difficultés.`,
+                'fragile': `${genreMaj} progresse bien et reste impliqué(e).`,
+                'satisfactory': `${genreMaj} progresse bien et reste impliqué(e).`,
+                'excellent': `${genreMaj} progresse très bien et reste impliqué(e).`
+            };
+            
+            commentaire += conclusions[selectedLevel] || `${genreMaj} progresse bien et reste impliqué(e).`;
+
+            return commentaire;
+        }
+
+        // Fonction d'affichage du résultat
+        function afficherResultat(texte, type) {
+            const resultatDiv = document.getElementById('resultatTest');
+            resultatDiv.style.display = 'block';
+            resultatDiv.className = `result ${type === 'error' ? 'error' : ''}`;
+            resultatDiv.textContent = texte;
+        }
+
+        // Test automatique au chargement
+        window.addEventListener('load', function() {
+            console.log('🧪 Test de génération LSU chargé');
+            console.log('✅ Prêt pour les tests');
+        });
+    </script>
+</body>
+</html> 

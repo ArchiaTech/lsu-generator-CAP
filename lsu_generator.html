@@ -201,68 +201,6 @@
             min-height: 100vh;
         }
 
-        /* Barre de menu */
-        .navbar {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 20px;
-        }
-
-        .nav-logo {
-            font-size: 1.5em;
-            font-weight: bold;
-            color: #4CAF50;
-            text-decoration: none;
-        }
-
-        .nav-menu {
-            display: flex;
-            list-style: none;
-            gap: 30px;
-        }
-
-        .nav-item {
-            position: relative;
-        }
-
-        .nav-link {
-            text-decoration: none;
-            color: #2c3e50;
-            font-weight: 500;
-            padding: 8px 15px;
-            border-radius: 6px;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .nav-link:hover, .nav-link.active {
-            background: #4CAF50;
-            color: white;
-            transform: translateY(-2px);
-        }
-
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 1.5em;
-            cursor: pointer;
-        }
-
         /* Indicateur de connexion */
         .connection-status {
             display: flex;
@@ -307,7 +245,7 @@
 
         .container {
             max-width: 1200px;
-            margin: 20px auto;
+            margin: 0 auto;
             background: white;
             border-radius: 20px;
             box-shadow: 0 20px 40px rgba(0,0,0,0.1);
@@ -333,10 +271,12 @@
         }
 
         .main-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
+            display: flex;
+            flex-direction: column;
             gap: 30px;
             padding: 30px;
+            max-width: 800px;
+            margin: 0 auto;
         }
 
         .form-section {
@@ -485,791 +425,93 @@
             box-shadow: none;
         }
 
-        .result-section {
-            background: #f8f9fa;
-            padding: 25px;
-            border-radius: 15px;
-            border: 2px solid #e9ecef;
-        }
-
-        .comment-output {
-            background: white;
-            border: 2px solid #ddd;
-            border-radius: 10px;
-            padding: 20px;
-            min-height: 200px;
-            font-size: 16px;
-            line-height: 1.6;
-            color: #2c3e50;
-        }
-
-        .comment-placeholder {
-            color: #999;
-            font-style: italic;
-            text-align: center;
-            padding: 40px 20px;
-        }
-
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-
-        .stat-item {
-            background: white;
-            padding: 15px;
-            border-radius: 10px;
-            text-align: center;
-            border: 2px solid #e9ecef;
-        }
-
-        .stat-number {
-            font-size: 2em;
-            font-weight: bold;
-            color: #4CAF50;
-        }
-
-        .stat-label {
-            color: #666;
-            font-size: 0.9em;
-            margin-top: 5px;
-        }
-
-        .copy-btn {
-            background: #2196F3;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 6px;
-            cursor: pointer;
-            margin-top: 15px;
-            transition: background-color 0.3s;
-        }
-
-        .copy-btn:hover {
-            background: #1976D2;
-        }
-
-        .examples-section {
-            grid-column: 1 / -1;
-            background: #f8f9fa;
-            padding: 25px;
-            border-radius: 15px;
-            border: 2px solid #e9ecef;
-            margin-top: 20px;
-        }
-
-        .examples-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 15px;
-            margin-top: 15px;
-        }
-
-        .example-card {
-            background: white;
-            padding: 15px;
-            border-radius: 10px;
-            border-left: 4px solid #4CAF50;
-            cursor: pointer;
-            transition: transform 0.2s;
-        }
-
-        .example-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-
-        .example-title {
-            font-weight: 600;
-            color: #2c3e50;
-            margin-bottom: 8px;
-        }
-
-        .example-text {
-            color: #666;
-            font-size: 0.9em;
-            line-height: 1.4;
-        }
-
-        /* Page cachée */
-        .page {
-            display: none;
-        }
-
-        .page.active {
-            display: block;
-        }
-
-        /* Style pour la liste des élèves */
-        .student-list {
-            background: white;
-            border-radius: 15px;
-            padding: 25px;
-            margin: 20px;
-        }
-
-        .student-card {
-            background: #f8f9fa;
-            border: 2px solid #e9ecef;
-            border-radius: 10px;
-            padding: 20px;
-            margin-bottom: 15px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: all 0.3s;
-        }
-
-        .student-card:hover {
-            border-color: #4CAF50;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-
-        .student-info h3 {
-            color: #2c3e50;
-            margin-bottom: 5px;
-        }
-
-        .student-info p {
-            color: #666;
-            font-size: 0.9em;
-        }
-
-        .student-actions {
-            display: flex;
-            gap: 10px;
-        }
-
-        .btn-small {
-            padding: 8px 15px;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 0.9em;
-            transition: all 0.3s;
-        }
-
-        .btn-edit {
-            background: #2196F3;
-            color: white;
-        }
-
-        .btn-delete {
-            background: #f44336;
-            color: white;
-        }
-
-        .btn-view {
-            background: #4CAF50;
-            color: white;
-        }
-
-        .add-student-btn {
-            background: #4CAF50;
-            color: white;
-            border: none;
-            padding: 15px 30px;
-            border-radius: 10px;
-            cursor: pointer;
-            font-size: 1.1em;
-            margin-bottom: 20px;
-        }
-
-        /* Modal */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.5);
-            z-index: 2000;
-        }
-
-        .modal-content {
-            background: white;
-            margin: 50px auto;
-            padding: 30px;
-            border-radius: 15px;
-            max-width: 500px;
-            width: 90%;
-        }
-
-        .close {
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
+        /* Responsive */
         @media (max-width: 768px) {
-            .nav-menu {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background: white;
-                flex-direction: column;
-                box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-                padding: 20px;
-            }
-
-            .nav-menu.active {
-                display: flex;
-            }
-
-            .mobile-menu-btn {
-                display: block;
-            }
-
             .main-content {
-                grid-template-columns: 1fr;
-                gap: 20px;
+                padding: 20px;
+                max-width: 100%;
+            }
+            
+            .form-section {
                 padding: 20px;
             }
             
-            .stats {
+            .header h1 {
+                font-size: 2em;
+            }
+
+            .level-buttons {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .checkbox-group {
                 grid-template-columns: 1fr;
             }
+        }
+
+        @media (max-width: 480px) {
+            .main-content {
+                padding: 15px;
+            }
             
-            .level-buttons {
-                grid-template-columns: 1fr 1fr;
+            .form-section {
+                padding: 15px;
             }
-
-            .connection-status {
-                display: none;
+            
+            .header {
+                padding: 20px;
+            }
+            
+            .header h1 {
+                font-size: 1.8em;
             }
         }
 
-        .notification {
-            position: fixed;
-            top: 80px;
-            right: 20px;
-            background: #4CAF50;
-            color: white;
-            padding: 15px 20px;
+        /* Alerte pour les erreurs de chargement */
+        .load-error {
+            background: #ffebee;
+            color: #c62828;
+            padding: 15px;
+            margin: 10px;
             border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-            transform: translateX(100%);
-            opacity: 0;
-            transition: all 0.3s;
-            z-index: 1000;
-        }
-
-        .notification.show {
-            transform: translateX(0);
-            opacity: 1;
-        }
-
-        .notification.error {
-            background: #f44336;
-        }
-
-        /* Styles pour la recherche d'élève */
-        .search-container {
-            position: relative;
-        }
-
-        .search-results {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            right: 0;
-            background: white;
-            border: 2px solid #ddd;
-            border-top: none;
-            border-radius: 0 0 8px 8px;
-            max-height: 200px;
-            overflow-y: auto;
-            z-index: 1000;
-            display: none;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-
-        .search-results.show {
-            display: block;
-        }
-
-        .search-result-item {
-            padding: 12px 15px;
-            cursor: pointer;
-            border-bottom: 1px solid #eee;
-            transition: background-color 0.2s;
-        }
-
-        .search-result-item:hover {
-            background: #f8f9fa;
-        }
-
-        .search-result-item.selected {
-            background: #e3f2fd;
-        }
-
-        .student-avatar {
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #4CAF50, #45a049);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
+            border: 2px solid #f44336;
+            text-align: center;
             font-weight: bold;
-            font-size: 14px;
         }
-
-        .student-info {
-            flex: 1;
-        }
-
-        .student-name {
-            font-weight: 600;
-            color: #2c3e50;
-            margin-bottom: 2px;
-        }
-
-        .student-details {
-            font-size: 0.85em;
-            color: #666;
-        }
-
-        .form-help {
-            color: #666;
-            font-size: 0.85em;
-            margin-top: 5px;
-            font-style: italic;
-        }
-    
-        /* Amélioration de la compatibilité des icônes */
-        .icon-fallback {
-            display: inline-block;
-            width: 1em;
-            height: 1em;
-            text-align: center;
-            line-height: 1;
-        }
-
-        /* Fallback pour les emojis qui ne s'affichent pas */
-        .btn .emoji-icon {
-            display: inline-block;
-            margin-right: 5px;
-        }
-
-        /* Styles pour les icônes Font Awesome en fallback */
-        .fa-fallback {
-            display: none;
-        }
-
-        /* Amélioration de l'affichage des boutons avec icônes */
-        .btn-with-icon {
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        /* Amélioration de l'affichage des emojis */
-        .emoji-icon {
-            font-size: 1.1em;
-            vertical-align: middle;
-        }
-
-        /* Styles pour les icônes Font Awesome */
-        .icon-fa {
-            font-size: 1.1em;
-            width: 20px;
-            text-align: center;
-            margin-right: 8px;
-        }
-
-        /* Amélioration des boutons avec icônes */
-        .btn-with-icon {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 12px 20px;
-            border-radius: 8px;
-            border: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            text-decoration: none;
-        }
-
-        .btn-with-icon:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
-
-        /* Styles spécifiques pour les boutons d'action */
-        .btn-with-icon.btn-success {
-            background: linear-gradient(135deg, #28a745, #1e7e34);
-            color: white;
-        }
-
-        .btn-with-icon.btn-info {
-            background: linear-gradient(135deg, #17a2b8, #117a8b);
-            color: white;
-        }
-
-        .btn-with-icon.btn-warning {
-            background: linear-gradient(135deg, #ffc107, #e0a800);
-            color: #212529;
-        }
-
-        .btn-with-icon.btn-primary {
-            background: linear-gradient(135deg, #007bff, #0056b3);
-            color: white;
-        }
-
-        .btn-with-icon.btn-danger {
-            background: linear-gradient(135deg, #dc3545, #c82333);
-            color: white;
-        }
-
-        .btn-with-icon.btn-secondary {
-            background: linear-gradient(135deg, #6c757d, #545b62);
-            color: white;
-        }
-
-        /* Styles pour le bloc commentaire amélioré */
-        .comment-content {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            color: #333;
-            padding: 1rem;
-            background: #f8f9fa;
-            border-radius: 8px;
-            border-left: 4px solid #667eea;
-        }
-
-        .comment-content p {
-            margin-bottom: 0;
-        }
-
-        .card.shadow-lg {
-            transition: all 0.3s ease;
-        }
-
-        .card.shadow-lg:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.15) !important;
-        }
-
-        .btn {
-            transition: all 0.3s ease;
-        }
-
-        .btn:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-        }
-
-        /* Couleurs dynamiques selon le niveau */
-        .level-excellent {
-            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%) !important;
-            color: white !important;
-        }
-
-        .level-satisfactory {
-            background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%) !important;
-            color: white !important;
-        }
-
-        .level-fragile {
-            background: linear-gradient(135deg, #FF9800 0%, #F57C00 100%) !important;
-            color: white !important;
-        }
-
-        .level-insufficient {
-            background: linear-gradient(135deg, #f44336 0%, #d32f2f 100%) !important;
-            color: white !important;
-        }
-
-        /* Badge de niveau */
-        .badge-excellent {
-            background: #4CAF50 !important;
-            color: white !important;
-        }
-
-        .badge-satisfactory {
-            background: #2196F3 !important;
-            color: white !important;
-        }
-
-        .badge-fragile {
-            background: #FF9800 !important;
-            color: white !important;
-        }
-
-        .badge-insufficient {
-            background: #f44336 !important;
-            color: white !important;
-        }
-
-        /* Responsive pour les statistiques */
-        @media (max-width: 768px) {
-            .row .col-md-4 {
-                margin-bottom: 1rem;
-            }
-            
-            .card-footer .btn {
-                width: 100%;
-                margin-bottom: 0.5rem;
-            }
-        }
-
-        /* Animation pour l'apparition du commentaire */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .comment-card-visible {
-            animation: fadeInUp 0.5s ease-out;
-        }
-
-        /* Toast notification */
-        .toast-notification {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: #4CAF50;
-            color: white;
-            padding: 15px 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-            z-index: 10000;
-            transform: translateX(400px);
-            transition: transform 0.3s ease;
-        }
-
-        .toast-notification.show {
-            transform: translateX(0);
-        }
-
-        .toast-notification.success {
-            background: #4CAF50;
-        }
-
-        .toast-notification.error {
-            background: #f44336;
-        }
-</style>
-    <!-- Styles CSS pour la sidebar -->
-<style>
-    /* Animation d'entrée pour la sidebar */
-    @keyframes slideIn {
-        from { transform: translateX(-100%); }
-        to { transform: translateX(0); }
-    }
-
-    /* Highlight pour la page active */
-    .nav-link.active {
-        background: rgba(255, 255, 255, 0.15);
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        border-left: 4px solid #fbbf24;
-    }
-
-    /* Animation de survol améliorée */
-    .nav-link:hover {
-        transform: translateX(4px);
-    }
-
-    /* Responsive design */
-    @media (max-width: 640px) {
-        #sidebar {
-            transform: translateX(-100%);
-        }
-        
-        #sidebar.open {
-            transform: translateX(0);
-        }
-    }
-
-    /* Ajustement du contenu principal pour la sidebar */
-    .main-content {
-        margin-left: 0;
-        transition: margin-left 0.3s ease;
-    }
-
-    @media (min-width: 640px) {
-        .main-content {
-            margin-left: 256px; /* w-64 = 16rem = 256px */
-        }
-    }
-</style>
-    <style>
-    /* Styles pour les icônes Font Awesome */
-    .btn-with-icon i {
-        margin-right: 8px;
-        font-size: 14px;
-    }
-    
-    .btn-with-icon:hover i {
-        transform: scale(1.1);
-        transition: transform 0.2s ease;
-    }
-    
-    /* Masquer les icônes de fallback */
-    .fa-fallback {
-        display: none;
-    }
-    
-    /* Icônes spécifiques */
-    .btn-with-icon .fa-edit { color: #007bff; }
-    .btn-with-icon .fa-trash { color: #dc3545; }
-    .btn-with-icon .fa-plus { color: #28a745; }
-    .btn-with-icon .fa-save { color: #17a2b8; }
-    .btn-with-icon .fa-magic { color: #6f42c1; }
-    .btn-with-icon .fa-comments { color: #fd7e14; }
-    .btn-with-icon .fa-chart-bar { color: #20c997; }
-    .btn-with-icon .fa-image { color: #e83e8c; }
-    .btn-with-icon .fa-eye { color: #6c757d; }
-    .btn-with-icon .fa-download { color: #28a745; }
-    .btn-with-icon .fa-upload { color: #ffc107; }
-    .btn-with-icon .fa-times { color: #6c757d; }
-    .btn-with-icon .fa-home { color: #007bff; }
-    .btn-with-icon .fa-bullseye { color: #dc3545; }
-    .btn-with-icon .fa-users { color: #28a745; }
-    .btn-with-icon .fa-tachometer-alt { color: #17a2b8; }
     </style>
 </head>
-<body class="main-content">
-    <!-- Barre de navigation latérale - ÉCOLE DU CAP -->
-<div id="sidebar" class="fixed left-0 top-0 h-full w-64 bg-gradient-to-b from-indigo-500 to-blue-500 text-white shadow-xl z-50 transition-all duration-300 transform -translate-x-full sm:translate-x-0">
-    
-    <!-- Logo et nom de l'école -->
-    <div class="p-6 border-b border-indigo-400/30">
-        <div class="flex items-center space-x-3">
-            <div class="text-3xl">🏫</div>
-            <div>
-                <h1 class="text-xl font-bold">ÉCOLE DU CAP</h1>
-                <p class="text-xs text-indigo-100">Navigation principale</p>
-            </div>
-        </div>
+<body>
+    <!-- Alerte pour les erreurs de chargement -->
+    <div id="loadError" class="load-error" style="display: none;">
+        ⚠️ Erreur de chargement détectée. Vérifiez votre connexion internet.
     </div>
 
-    <!-- Navigation -->
-    <nav class="mt-6 px-4">
-        <ul class="space-y-2">
-            <!-- Accueil -->
-            <li>
-                <a href="index.html" id="nav-accueil" class="nav-link flex items-center space-x-3 px-4 py-3 rounded-lg transition-all duration-200 hover:bg-white/10 hover:shadow-md group">
-                    <span class="text-xl">🏠</span>
-                    <span class="font-medium">Accueil</span>
-                    <div class="ml-auto opacity-0 group-hover:opacity-100 transition-opacity">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                        </svg>
-                    </div>
-                </a>
-            </li>
-
-            <!-- Générateur LSU -->
-            <li>
-                <a href="lsu_generator.html" id="nav-lsu" class="nav-link flex items-center space-x-3 px-4 py-3 rounded-lg transition-all duration-200 hover:bg-white/10 hover:shadow-md group">
-                    <span class="text-xl">🎓</span>
-                    <span class="font-medium">Générateur LSU</span>
-                    <div class="ml-auto opacity-0 group-hover:opacity-100 transition-opacity">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                        </svg>
-                    </div>
-                </a>
-            </li>
-
-            <!-- Profils élèves -->
-            <li>
-                <a href="profils_eleves.html" id="nav-profils" class="nav-link flex items-center space-x-3 px-4 py-3 rounded-lg transition-all duration-200 hover:bg-white/10 hover:shadow-md group">
-                    <span class="text-xl">👨‍🎓</span>
-                    <span class="font-medium">Profils élèves</span>
-                    <div class="ml-auto opacity-0 group-hover:opacity-100 transition-opacity">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                        </svg>
-                    </div>
-                </a>
-            </li>
-
-            <!-- Tableau de bord -->
-            <li>
-                <a href="dashboard.html" id="nav-dashboard" class="nav-link flex items-center space-x-3 px-4 py-3 rounded-lg transition-all duration-200 hover:bg-white/10 hover:shadow-md group">
-                    <span class="text-xl">📊</span>
-                    <span class="font-medium">Tableau de bord</span>
-                    <div class="ml-auto opacity-0 group-hover:opacity-100 transition-opacity">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                        </svg>
-                    </div>
-                </a>
-            </li>
-        </ul>
-    </nav>
-
-    <!-- Footer de la sidebar -->
-    <div class="absolute bottom-0 left-0 right-0 p-4 border-t border-indigo-400/30">
-        <div class="text-center text-xs text-indigo-100">
-            <p>© 2025 ÉCOLE DU CAP</p>
-            <p class="mt-1">Système de gestion éducative</p>
-        </div>
-    </div>
-</div>
-
-<!-- Bouton burger pour mobile -->
-<div id="sidebar-toggle" class="fixed top-4 left-4 z-50 sm:hidden bg-indigo-500 text-white p-2 rounded-lg shadow-lg">
-    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-    </svg>
-</div>
-
-<!-- Overlay pour mobile -->
-<div id="sidebar-overlay" class="fixed inset-0 bg-black/50 z-40 sm:hidden hidden"></div>
-    
-    <!-- Barre de Navigation LSU -->
-    <nav class="nav-bar">
+    <!-- Nouvelle Barre de Navigation Moderne et Fixe -->
+    <nav class="modern-navbar">
         <div class="nav-container">
             <div class="nav-logo">
                 <a href="index.html" class="logo-link">
-                    <span class="logo-icon"><i class="fas fa-graduation-cap icon-fa"></i><i class="fas fa-graduation-cap fa-fallback"></i></span>
-                    <span class="logo-text">LSU Pro</span>
+                    <span class="logo-icon">🏫</span>
+                    <span class="logo-text">ÉCOLE DU CAP</span>
                 </a>
             </div>
             
-            <div class="nav-menu" id="navMenu">
+            <div class="nav-menu">
                 <a href="index.html" class="nav-link">
-                    <span class="nav-icon"><i class="fas fa-home icon-fa"></i><i class="fas fa-home fa-fallback"></i></span>
-                    Accueil
+                    <span class="nav-icon">🏠</span>
+                    <span class="nav-text">Accueil</span>
                 </a>
-                <a href="improved_lsu_generator.html" class="nav-link">
-                    <span class="nav-icon"><i class="fas fa-file-alt icon-fa"></i><i class="fas fa-file-alt fa-fallback"></i></span>
-                    Générateur LSU
+                <a href="lsu_generator.html" class="nav-link active">
+                    <span class="nav-icon">🧠</span>
+                    <span class="nav-text">Générateur LSU</span>
                 </a>
                 <a href="student_profile_page.html" class="nav-link">
-                    <span class="nav-icon"><i class="fas fa-user icon-fa"></i><i class="fas fa-user fa-fallback"></i></span>
-                    Profils Élèves
+                    <span class="nav-icon">👤</span>
+                    <span class="nav-text">Profils élèves</span>
                 </a>
-                <a href="photos_classe_pro.html" class="nav-link">
-                    <span class="nav-icon"><i class="fas fa-camera icon-fa"></i><i class="fas fa-camera fa-fallback"></i></span>
-                    Photos Classe
-                </a>
-                <a href="lsu_connection_test.html" class="nav-link">
-                    <span class="nav-icon"><i class="fas fa-cog icon-fa"></i><i class="fas fa-cog fa-fallback"></i></span>
-                    Tests Connexion
-                </a>
-                <a href="test_navigation.html" class="nav-link">
-                    <span class="nav-icon"><i class="fas fa-compass icon-fa"></i><i class="fas fa-compass fa-fallback"></i></span>
-                    Navigation
+                <a href="dashboard.html" class="nav-link">
+                    <span class="nav-icon">📊</span>
+                    <span class="nav-text">Tableau de bord</span>
                 </a>
             </div>
             
@@ -1281,16 +523,266 @@
         </div>
     </nav>
 
-    <!-- Barre de menu -->
-    <nav class="navbar">
-        <div class="navbar-logo">🏫 LSU Génies</div>
-        <div class="navbar-menu">
-            <a class="navbar-link" href="index.html"><span>🏠</span>Accueil</a>
-            <a class="navbar-link active" href="lsu_generator.html"><span>🎓</span>Générateur LSU</a>
-            <a class="navbar-link" href="students.html"><span>👩‍🏫</span>Profils élèves</a>
-            <a class="navbar-link" href="dashboard.html"><span>📊</span>Tableau de bord</a>
-        </div>
-    </nav>
+    <!-- Styles pour la nouvelle barre de navigation -->
+    <style>
+        /* Nouvelle Barre de Navigation Moderne */
+        .modern-navbar {
+            background: rgba(255, 255, 255, 0.95);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #e0e0e0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .modern-navbar .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            height: 70px;
+        }
+
+        .modern-navbar .nav-logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .modern-navbar .logo-link {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: #2c3e50;
+            font-weight: bold;
+            font-size: 1.3em;
+            transition: all 0.3s ease;
+        }
+
+        .modern-navbar .logo-link:hover {
+            transform: scale(1.05);
+            color: #3498db;
+        }
+
+        .modern-navbar .logo-icon {
+            font-size: 1.8em;
+            margin-right: 10px;
+        }
+
+        .modern-navbar .logo-text {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+        }
+
+        .modern-navbar .nav-menu {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .modern-navbar .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 20px;
+            color: #2c3e50;
+            text-decoration: none;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid transparent;
+        }
+
+        .modern-navbar .nav-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .modern-navbar .nav-link:hover::before {
+            left: 100%;
+        }
+
+        .modern-navbar .nav-link:hover {
+            background: rgba(102, 126, 234, 0.1);
+            border-color: rgba(102, 126, 234, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.2);
+            color: #667eea;
+        }
+
+        .modern-navbar .nav-link.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-color: #667eea;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .modern-navbar .nav-link.active:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .modern-navbar .nav-icon {
+            font-size: 1.3em;
+            transition: transform 0.3s ease;
+        }
+
+        .modern-navbar .nav-link:hover .nav-icon {
+            transform: scale(1.1);
+        }
+
+        .modern-navbar .nav-text {
+            font-size: 0.95em;
+            font-weight: 600;
+        }
+
+        .modern-navbar .nav-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 4px;
+            padding: 8px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .modern-navbar .nav-toggle:hover {
+            background: rgba(102, 126, 234, 0.1);
+        }
+
+        .modern-navbar .nav-toggle span {
+            width: 25px;
+            height: 3px;
+            background: #2c3e50;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .modern-navbar .nav-menu {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background: rgba(255, 255, 255, 0.98);
+                -webkit-backdrop-filter: blur(15px);
+                backdrop-filter: blur(15px);
+                flex-direction: column;
+                padding: 30px 20px;
+                transition: left 0.3s ease;
+                gap: 15px;
+                border-top: 1px solid #e0e0e0;
+            }
+
+            .modern-navbar .nav-menu.active {
+                left: 0;
+            }
+
+            .modern-navbar .nav-link {
+                width: 100%;
+                justify-content: center;
+                padding: 18px 20px;
+                font-size: 1.1em;
+                border-radius: 15px;
+            }
+
+            .modern-navbar .nav-toggle {
+                display: flex;
+            }
+
+            .modern-navbar .nav-toggle.active span:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+
+            .modern-navbar .nav-toggle.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .modern-navbar .nav-toggle.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(7px, -6px);
+            }
+
+            .modern-navbar .logo-text {
+                display: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .modern-navbar .nav-container {
+                padding: 0 15px;
+            }
+            
+            .modern-navbar .nav-link {
+                padding: 15px 20px;
+                font-size: 1em;
+            }
+        }
+
+        /* Animation d'entrée */
+        @keyframes slideInDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .modern-navbar {
+            animation: slideInDown 0.5s ease-out;
+        }
+
+        /* Ajustement du contenu principal pour la nouvelle navbar */
+        .main-content {
+            margin-top: 0;
+            padding-top: 20px;
+        }
+    </style>
+
+    <!-- Script pour la navigation mobile -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const navToggle = document.getElementById('navToggle');
+            const navMenu = document.querySelector('.modern-navbar .nav-menu');
+            
+            if (navToggle && navMenu) {
+                navToggle.addEventListener('click', function() {
+                    navMenu.classList.toggle('active');
+                    navToggle.classList.toggle('active');
+                });
+                
+                // Fermer le menu en cliquant sur un lien (mobile)
+                const navLinks = document.querySelectorAll('.modern-navbar .nav-link');
+                navLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        if (window.innerWidth <= 768) {
+                            navMenu.classList.remove('active');
+                            navToggle.classList.remove('active');
+                        }
+                    });
+                });
+            }
+        });
+    </script>
 
     <!-- Page Générateur -->
     <div id="generatorPage" class="page active">
@@ -1315,13 +807,13 @@
                     </div>
                     
                     <div class="form-group">
-                        <label for="studentName">Prénom de l'élève :</label>
-                        <input type="text" id="studentName" placeholder="Ex: Léa, Thomas, Sarah...">
+                        <label for="prenom">Prénom de l'élève :</label>
+                        <input type="text" id="prenom" placeholder="Ex: Léa, Thomas, Sarah...">
                     </div>
 
                     <div class="form-group">
-                        <label for="studentLevel">Niveau scolaire :</label>
-                        <select id="studentLevel">
+                        <label for="niveau">Niveau scolaire :</label>
+                        <select id="niveau">
                             <option value="">Sélectionner un niveau</option>
                             <option value="CP">CP - Cours Préparatoire</option>
                             <option value="CE1">CE1 - Cours Élémentaire 1ère année</option>
@@ -1332,80 +824,104 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="period">Période d'évaluation :</label>
-                        <select id="period">
+                        <label for="periode">Période d'évaluation :</label>
+                        <select id="periode">
                             <option value="">Sélectionner une période</option>
                             <option value="1er trimestre">1er trimestre</option>
                             <option value="2ème trimestre">2ème trimestre</option>
                             <option value="3ème trimestre">3ème trimestre</option>
                             <option value="1er semestre">1er semestre</option>
                             <option value="2ème semestre">2ème semestre</option>
-                            <option value="bilan annuel">Bilan annuel</option>
+                            <option value="Année scolaire">Année scolaire</option>
                         </select>
                     </div>
 
                     <div class="form-group">
-                        <label>Niveau général de l'élève :</label>
+                        <label>Niveau de maîtrise générale :</label>
                         <div class="level-buttons">
-                            <button type="button" class="level-btn insufficient" data-level="insufficient">
+                            <button type="button" class="level-btn insufficient" data-level="insufficient" name="maitrise" value="insufficient">
                                 Maîtrise insuffisante
                             </button>
-                            <button type="button" class="level-btn fragile" data-level="fragile">
+                            <button type="button" class="level-btn fragile" data-level="fragile" name="maitrise" value="fragile">
                                 Maîtrise fragile
                             </button>
-                            <button type="button" class="level-btn satisfactory" data-level="satisfactory">
+                            <button type="button" class="level-btn satisfactory" data-level="satisfactory" name="maitrise" value="satisfactory">
                                 Maîtrise satisfaisante
                             </button>
-                            <button type="button" class="level-btn excellent" data-level="excellent">
+                            <button type="button" class="level-btn excellent" data-level="excellent" name="maitrise" value="excellent">
                                 Très bonne maîtrise
                             </button>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label>Points forts observés :</label>
+                        <label>Points forts de l'élève :</label>
                         <div class="checkbox-group">
                             <div class="checkbox-item">
-                                <input type="checkbox" id="participation" value="participation">
+                                <input type="checkbox" id="participation" name="points" value="participation">
                                 <label for="participation">Participation active</label>
                             </div>
                             <div class="checkbox-item">
-                                <input type="checkbox" id="autonomie" value="autonomie">
+                                <input type="checkbox" id="autonomie" name="points" value="autonomie">
                                 <label for="autonomie">Autonomie</label>
                             </div>
                             <div class="checkbox-item">
-                                <input type="checkbox" id="progres" value="progres">
+                                <input type="checkbox" id="progres" name="points" value="progres">
                                 <label for="progres">Progrès constants</label>
                             </div>
                             <div class="checkbox-item">
-                                <input type="checkbox" id="creativite" value="creativite">
+                                <input type="checkbox" id="creativite" name="points" value="creativite">
                                 <label for="creativite">Créativité</label>
                             </div>
                             <div class="checkbox-item">
-                                <input type="checkbox" id="ecoute" value="ecoute">
+                                <input type="checkbox" id="ecoute" name="points" value="ecoute">
                                 <label for="ecoute">Bonne écoute</label>
                             </div>
                             <div class="checkbox-item">
-                                <input type="checkbox" id="entraide" value="entraide">
+                                <input type="checkbox" id="entraide" name="points" value="entraide">
                                 <label for="entraide">Esprit d'entraide</label>
                             </div>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="specificPoints">Points spécifiques à mentionner :</label>
-                        <textarea id="specificPoints" rows="3" placeholder="Mentionnez des éléments particuliers à cet élève..."></textarea>
+                        <label for="specifiques">Points spécifiques à mentionner :</label>
+                        <textarea id="specifiques" rows="3" placeholder="Mentionnez des éléments particuliers à cet élève..."></textarea>
                     </div>
 
-                    <button type="button" class="generate-btn" onclick="generateComment()"" class="btn-with-icon"><i class="fas fa-magic"></i>Générer le commentaire
+                    <button type="button" class="generate-btn btn-with-icon" id="genererCommentaire" onclick="generateCommentFromAI()">
+                        <i class="fas fa-magic"></i>Générer le commentaire LSU avec IA
                     </button>
-                </div>
 
-                <div class="result-section">
-                    <h2 class="section-title">📋 Commentaire généré</h2>
-                    
+                    <!-- Indicateur de statut IA -->
+                    <div id="aiStatusIndicator" style="margin-top: 10px; padding: 10px; border-radius: 5px; text-align: center; font-weight: bold;">
+                        <span id="aiStatusText">🔍 Vérification de la connexion IA...</span>
+                    </div>
+
+                    <!-- Textarea pour le commentaire généré par IA -->
+                    <div class="form-group" style="margin-top: 20px;">
+                        <label for="generatedComment">Commentaire généré par IA :</label>
+                        <textarea id="generatedComment" rows="6" placeholder="Le commentaire généré par l'IA apparaîtra ici..." style="width: 100%; padding: 15px; border: 2px solid #e9ecef; border-radius: 8px; font-family: Arial, sans-serif; line-height: 1.6; resize: vertical;"></textarea>
+                    </div>
+
+                    <!-- Zone d'affichage du commentaire généré -->
+                    <div id="commentaireGenere" class="comment-display" style="display: none; margin-top: 20px; padding: 20px; background: #f8f9fa; border-radius: 10px; border: 2px solid #e9ecef;">
+                        <h3>📝 Commentaire LSU généré</h3>
+                        <div class="comment-content" id="commentaireContent" style="margin: 15px 0; padding: 15px; background: white; border-radius: 8px; border-left: 4px solid #4CAF50;">
+                            <!-- Le commentaire sera affiché ici -->
+                        </div>
+                        <div class="comment-actions" style="display: flex; gap: 10px; justify-content: center;">
+                            <button class="btn btn-success" onclick="copierCommentaire()">
+                                <i class="fas fa-copy"></i> Copier
+                            </button>
+                            <button class="btn btn-primary" onclick="exporterCommentaire()">
+                                <i class="fas fa-download"></i> Exporter
+                            </button>
+                        </div>
+                    </div>
+
                     <!-- Statistiques -->
-                    <div class="row mb-3">
+                    <div class="row mb-3" style="margin-top: 30px;">
                         <div class="col-md-4">
                             <div class="card text-center bg-primary text-white">
                                 <div class="card-body py-2">
@@ -1433,7 +949,7 @@
                     </div>
 
                     <!-- Encadré du commentaire -->
-                    <div class="card shadow-lg border-0" id="commentCard" style="display: none;">
+                    <div class="card shadow-lg border-0" id="commentCard" style="display: none; margin-top: 20px;">
                         <div class="card-header" id="commentHeader">
                             <div class="d-flex justify-content-between align-items-center">
                                 <h5 class="mb-0">
@@ -1462,1385 +978,92 @@
                             </div>
                         </div>
                     </div>
-
-                    <!-- Placeholder initial -->
-                    <div class="card shadow border-0" id="commentPlaceholder">
-                        <div class="card-body text-center py-5">
-                            <i class="fas fa-magic fa-3x text-muted mb-3"></i>
-                            <h5 class="text-muted">Aucun commentaire généré</h5>
-                            <p class="text-muted">Remplissez le formulaire et cliquez sur "Générer le commentaire" pour commencer.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="examples-section">
-                <h2 class="section-title">💡 Exemples rapides</h2>
-                <div class="examples-grid">
-                    <div class="example-card" onclick="loadExample('excellent')">
-                        <div class="example-title">Élève excellent</div>
-                        <div class="example-text">Très bonne maîtrise, participation active, autonomie remarquable...</div>
-                    </div>
-                    <div class="example-card" onclick="loadExample('progres')">
-                        <div class="example-title">Élève en progrès</div>
-                        <div class="example-text">Progrès constants, efforts soutenus, motivation grandissante...</div>
-                    </div>
-                    <div class="example-card" onclick="loadExample('encourage')">
-                        <div class="example-title">Élève à encourager</div>
-                        <div class="example-text">Potentiel à développer, besoins d'accompagnement, points positifs...</div>
-                    </div>
-                    <div class="example-card" onclick="loadExample('comportement')">
-                        <div class="example-title">Focus comportement</div>
-                        <div class="example-text">Attitude positive, respect des règles, esprit d'équipe...</div>
-                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Page Élèves -->
-    <div id="studentsPage" class="page">
-        <div class="student-list">
-            <h1>👥 Gestion des Élèves</h1>
-            <button class="add-student-btn" onclick="openAddStudentModal()"" class="btn-with-icon"><i class="fas fa-plus"></i>Ajouter un élève</button>
-            
-            <div id="studentsList">
-                <!-- Liste dynamique des élèves -->
-            </div>
-        </div>
-    </div>
-
-    <!-- Page Paramètres -->
-    <div id="settingsPage" class="page">
-        <div class="student-list">
-            <h1>⚙️ Paramètres de Connexion</h1>
-            
-            <div class="form-section">
-                <h2 class="section-title">🔗 Configuration N8N</h2>
-                
-                <div class="form-group">
-                    <label for="n8nUrl">URL du webhook N8N :</label>
-                    <input type="url" id="n8nUrl" placeholder="https://your-n8n-instance.com/webhook/lsu">
-                </div>
-
-                <div class="form-group">
-                    <label for="apiKey">Clé API (optionnelle) :</label>
-                    <input type="password" id="apiKey" placeholder="Votre clé API si nécessaire">
-                </div>
-
-                <h2 class="section-title">🤖 IA Locale</h2>
-                
-                <div class="form-group">
-                    <label for="aiUrl">URL de l'IA locale :</label>
-                    <input type="url" id="aiUrl" placeholder="http://localhost:11434/api/generate">
-                </div>
-
-                <div class="form-group">
-                    <label for="aiModel">Modèle IA :</label>
-                    <select id="aiModel">
-                        <option value="llama2">Llama 2</option>
-                        <option value="mistral">Mistral</option>
-                        <option value="codellama">Code Llama</option>
-                        <option value="custom">Personnalisé</option>
-                    </select>
-                </div>
-
-                <button class="generate-btn" onclick="testConnections()"" class="btn-with-icon"><i class="fas fa-search"></i>Tester les connexions</button>
-                <button class="generate-btn" onclick="saveSettings()" style="margin-top: 10px;"" class="btn-with-icon"><i class="fas fa-save"></i>Sauvegarder</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal Ajout Élève -->
-    <div id="addStudentModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeAddStudentModal()">&times;</span>
-            <h2>➕ Ajouter un nouvel élève</h2>
-            
-            <div class="form-group">
-                <label for="newStudentName">Prénom :</label>
-                <input type="text" id="newStudentName" placeholder="Prénom de l'élève">
-            </div>
-
-            <div class="form-group">
-                <label for="newStudentLastName">Nom :</label>
-                <input type="text" id="newStudentLastName" placeholder="Nom de famille">
-            </div>
-
-            <div class="form-group">
-                <label for="newStudentLevel">Niveau :</label>
-                <select id="newStudentLevel">
-                    <option value="CP">CP - Cours Préparatoire</option>
-                    <option value="CE1">CE1 - Cours Élémentaire 1ère année</option>
-                    <option value="CE2">CE2 - Cours Élémentaire 2ème année</option>
-                    <option value="CM1">CM1 - Cours Moyen 1ère année</option>
-                    <option value="CM2">CM2 - Cours Moyen 2ème année</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label for="newStudentBirthDate">Date de naissance :</label>
-                <input type="date" id="newStudentBirthDate">
-            </div>
-
-            <button class="generate-btn" onclick="addStudent()"" class="btn-with-icon"><i class="fas fa-plus"></i>Ajouter l'élève</button>
-        </div>
-    </div>
-
-    <div class="notification" id="notification"></div>
-
+    <!-- Scripts JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
     <script>
-        // Script pour la navigation
-        document.addEventListener('DOMContentLoaded', function() {
-            const navToggle = document.getElementById('navToggle');
-            const navMenu = document.getElementById('navMenu');
-            const navLinks = document.querySelectorAll('.nav-link');
+        // Vérification du chargement des ressources
+        window.addEventListener('load', function() {
+            console.log('✅ Page chargée avec succès');
             
-            // Toggle menu mobile
-            navToggle.addEventListener('click', function() {
-                navMenu.classList.toggle('active');
-                navToggle.classList.toggle('active');
-            });
+            // Vérifier si les ressources externes sont chargées
+            if (typeof bootstrap === 'undefined') {
+                showLoadError('Bootstrap CSS/JS non chargé');
+            }
             
-            // Fermer le menu en cliquant sur un lien
-            navLinks.forEach(link => {
-                link.addEventListener('click', function() {
-                    navMenu.classList.remove('active');
-                    navToggle.classList.remove('active');
-                });
-            });
-            
-            // Marquer le lien actif
-            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-            navLinks.forEach(link => {
-                if (link.getAttribute('href') === currentPage) {
-                    link.classList.add('active');
-                }
-            });
-            
-            // Fermer le menu en cliquant à l'extérieur
-            document.addEventListener('click', function(event) {
-                if (!event.target.closest('.nav-bar')) {
-                    navMenu.classList.remove('active');
-                    navToggle.classList.remove('active');
-                }
-            });
+            if (typeof FontAwesome === 'undefined') {
+                showLoadError('Font Awesome non chargé');
+            }
         });
 
-        let generatedCount = 0;
-        let selectedLevel = '';
-        let students = JSON.parse(localStorage.getItem('students')) || [];
-
-        // Données d'élèves pour la recherche (exemple)
-        const eleves = [
-            {
-                prenom: "Léa",
-                niveau: "CE2",
-                periode: "Trimestre 2",
-                niveauGeneral: "Très bonne maîtrise",
-                pointsForts: ["Participation active", "Créativité", "Autonomie"]
-            },
-            {
-                prenom: "Thomas",
-                niveau: "CM1",
-                periode: "Trimestre 1",
-                niveauGeneral: "Maîtrise satisfaisante",
-                pointsForts: ["Bonne écoute", "Esprit d'entraide"]
-            },
-            {
-                prenom: "Emma",
-                niveau: "CP",
-                periode: "Trimestre 3",
-                niveauGeneral: "Maîtrise fragile",
-                pointsForts: ["Progrès constants", "Participation active"]
-            },
-            {
-                prenom: "Lucas",
-                niveau: "CE1",
-                periode: "Trimestre 2",
-                niveauGeneral: "Très bonne maîtrise",
-                pointsForts: ["Autonomie", "Créativité", "Esprit d'entraide"]
-            },
-            {
-                prenom: "Sarah",
-                niveau: "CM2",
-                periode: "Trimestre 1",
-                niveauGeneral: "Maîtrise satisfaisante",
-                pointsForts: ["Bonne écoute", "Progrès constants"]
-            },
-            {
-                prenom: "Hugo",
-                niveau: "CP",
-                periode: "Trimestre 2",
-                niveauGeneral: "Maîtrise insuffisante",
-                pointsForts: ["Participation active"]
-            }
-        ];
-
-        // Configuration par défaut
-        let config = {
-            n8nUrl: '',
-            apiKey: '',
-            aiUrl: 'http://localhost:11434/api/generate',
-            aiModel: 'llama2'
-        };
-
-        // Navigation
-        function showPage(pageName) {
-            // Masquer toutes les pages
-            document.querySelectorAll('.page').forEach(page => {
-                page.classList.remove('active');
-            });
-            
-            // Masquer les liens actifs
-            document.querySelectorAll('.nav-link').forEach(link => {
-                link.classList.remove('active');
-            });
-            
-            // Afficher la page sélectionnée
-            document.getElementById(pageName + 'Page').classList.add('active');
-            
-            // Activer le lien correspondant
-            event.target.classList.add('active');
-
-            // Charger les données si nécessaire
-            if (pageName === 'students') {
-                loadStudentsList();
-            } else if (pageName === 'settings') {
-                loadSettings();
-            }
+        function showLoadError(message) {
+            const errorDiv = document.getElementById('loadError');
+            errorDiv.textContent = '⚠️ ' + message;
+            errorDiv.style.display = 'block';
         }
 
-        function toggleMobileMenu() {
-            const menu = document.getElementById('navMenu');
-            menu.classList.toggle('active');
-        }
-
-        // Gestion de la sélection du niveau
-        document.querySelectorAll('.level-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                document.querySelectorAll('.level-btn').forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-                selectedLevel = this.dataset.level;
-            });
-        });
-
-        // Modèles de commentaires pour école primaire
-        const commentTemplates = {
-            insufficient: {
-                starters: [
-                    "{name} rencontre encore des difficultés ce {period}.",
-                    "{name} a besoin d'un accompagnement renforcé ce {period}.",
-                    "{name} progresse lentement mais sûrement ce {period}.",
-                    "{name} nécessite un soutien particulier ce {period}."
-                ],
-                strengths: {
-                    participation: "malgré une participation timide mais sincère",
-                    autonomie: "avec un besoin d'aide dans l'organisation",
-                    progres: "en montrant quelques signes d'amélioration",
-                    creativite: "avec des idées intéressantes à développer",
-                    ecoute: "en étant attentif/ve aux consignes",
-                    entraide: "en acceptant l'aide de ses camarades"
-                },
-                encouragements: [
-                    "Il/elle doit persévérer dans ses efforts pour progresser.",
-                    "Un travail régulier à la maison l'aiderait à consolider ses acquis.",
-                    "Je l'encourage à poser plus de questions en cas de difficulté.",
-                    "Avec patience et encouragements, les progrès viendront."
-                ]
-            },
-            fragile: {
-                starters: [
-                    "{name} montre des progrès fragiles ce {period}.",
-                    "{name} est sur la bonne voie ce {period}, mais doit consolider ses acquis.",
-                    "{name} fait des efforts ce {period} qui commencent à porter leurs fruits.",
-                    "{name} évolue positivement ce {period} avec quelques hésitations."
-                ],
-                strengths: {
-                    participation: "en participant de plus en plus aux échanges",
-                    autonomie: "en gagnant progressivement en autonomie",
-                    progres: "en montrant une belle progression",
-                    creativite: "en apportant des idées originales",
-                    ecoute: "en étant à l'écoute des consignes",
-                    entraide: "en aidant parfois ses camarades"
-                },
-                encouragements: [
-                    "Il/elle doit maintenir ses efforts pour stabiliser ses acquis.",
-                    "Une pratique régulière l'aiderait à prendre confiance.",
-                    "Je l'encourage à continuer sur cette lancée positive.",
-                    "La persévérance sera la clé de sa réussite."
-                ]
-            },
-            satisfactory: {
-                starters: [
-                    "{name} réalise un {period} satisfaisant.",
-                    "{name} montre de bons résultats ce {period}.",
-                    "{name} a fourni un travail de qualité ce {period}.",
-                    "{name} atteint les objectifs fixés ce {period}."
-                ],
-                strengths: {
-                    participation: "en participant activement aux activités",
-                    autonomie: "en faisant preuve d'une bonne autonomie",
-                    progres: "en progressant de manière constante",
-                    creativite: "en apportant créativité et originalité",
-                    ecoute: "en étant très attentif/ve en classe",
-                    entraide: "en aidant volontiers ses camarades"
-                },
-                encouragements: [
-                    "Il/elle peut viser encore plus haut avec un peu plus d'ambition.",
-                    "Je l'encourage à approfondir certains sujets qui l'intéressent.",
-                    "Il/elle a les capacités pour atteindre l'excellence.",
-                    "Continuez ainsi, les résultats sont encourageants !"
-                ]
-            },
-            excellent: {
-                starters: [
-                    "{name} réalise un {period} remarquable.",
-                    "{name} atteint un excellent niveau ce {period}.",
-                    "{name} fait preuve d'une très belle maîtrise ce {period}.",
-                    "{name} se distingue par ses excellents résultats ce {period}."
-                ],
-                strengths: {
-                    participation: "en s'investissant pleinement dans toutes les activités",
-                    autonomie: "en faisant preuve d'une autonomie exemplaire",
-                    progres: "en progressant de façon spectaculaire",
-                    creativite: "en développant des approches créatives remarquables",
-                    ecoute: "en étant d'une attention soutenue",
-                    entraide: "en étant un pilier d'entraide pour la classe"
-                },
-                encouragements: [
-                    "Il/elle peut servir d'exemple à ses camarades.",
-                    "Je l'encourage à continuer à explorer ses passions.",
-                    "Il/elle a toutes les capacités pour réussir brillamment.",
-                    "Félicitations pour ce parcours exemplaire !"
-                ]
-            }
-        };
-
-        // Génération de commentaires avec IA locale
-        async function generateComment() {
-            const name = document.getElementById('studentName').value || 'L\'élève';
-            const level = document.getElementById('studentLevel').value;
-            const period = document.getElementById('period').value || 'cette période';
-            const specificPoints = document.getElementById('specificPoints').value;
-
-            if (!selectedLevel) {
-                showNotification('Veuillez sélectionner un niveau de maîtrise', 'error');
+        // Fonction de génération de commentaire (version simplifiée pour test)
+        function generateCommentFromAI() {
+            const prenom = document.getElementById('prenom').value;
+            const niveau = document.getElementById('niveau').value;
+            const periode = document.getElementById('periode').value;
+            
+            if (!prenom || !niveau || !periode) {
+                alert('⚠️ Veuillez remplir au moins le prénom, le niveau et la période.');
                 return;
             }
-
-            // Tentative de génération avec IA locale
-            const aiComment = await generateWithAI(name, level, period, selectedLevel, specificPoints);
             
-            if (aiComment) {
-                displayComment(aiComment);
-                showNotification('Commentaire généré avec l\'IA locale !', 'success');
-            } else {
-                // Fallback sur génération locale
-                generateLocalComment();
-                showNotification('Commentaire généré localement (IA non disponible)', 'warning');
-            }
+            // Commentaire de test
+            const commentaire = `${prenom} a fait preuve d'une bonne participation en ${niveau} durant le ${periode}. L'élève montre de l'intérêt pour les apprentissages et progresse à son rythme.`;
+            
+            document.getElementById('generatedComment').value = commentaire;
+            document.getElementById('aiStatusText').textContent = '✅ Commentaire généré avec succès';
+            document.getElementById('aiStatusText').style.color = '#4CAF50';
+            
+            // Afficher les statistiques
+            document.getElementById('generatedCount').textContent = '1';
+            document.getElementById('wordCount').textContent = commentaire.split(' ').length;
+            document.getElementById('charCount').textContent = commentaire.length;
+            
+            console.log('✅ Commentaire généré:', commentaire);
         }
 
-        // Chargement des paramètres depuis l'URL
-        function loadUrlParams() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const name = urlParams.get('name');
-            const level = urlParams.get('level');
-            const fromProfile = urlParams.get('fromProfile');
-
-            if (name) {
-                document.getElementById('studentName').value = name;
-            }
-            if (level) {
-                document.getElementById('studentLevel').value = level;
-            }
-            if (fromProfile) {
-                showNotification('Données chargées depuis le profil élève', 'success');
-            }
-        }
-
-        async function generateWithAI(name, level, period, selectedLevel, specificPoints) {
-            try {
-                const settings = loadSettings();
-                if (!settings.aiUrl) return null;
-
-                const selectedStrengths = [];
-                document.querySelectorAll('.checkbox-item input[type="checkbox"]:checked').forEach(checkbox => {
-                    selectedStrengths.push(checkbox.value);
+        // Gestion des boutons de niveau
+        document.addEventListener('DOMContentLoaded', function() {
+            const levelButtons = document.querySelectorAll('.level-btn');
+            levelButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    levelButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
                 });
-
-                const prompt = `Génère un commentaire LSU personnalisé pour un élève de ${level} nommé ${name}.
-                Période: ${period}
-                Niveau de maîtrise: ${selectedLevel}
-                Points forts: ${selectedStrengths.join(', ')}
-                Notes spécifiques: ${specificPoints}
-                
-                Le commentaire doit être bienveillant, constructif et adapté à l'école primaire.
-                Limite: 150 mots maximum.`;
-
-                const response = await fetch(settings.aiUrl, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        model: settings.aiModel,
-                        prompt: prompt,
-                        stream: false
-                    })
-                });
-
-                if (response.ok) {
-                    const data = await response.json();
-                    return data.response || null;
-                }
-            } catch (error) {
-                console.error('Erreur IA:', error);
-            }
-            return null;
-        }
-
-        function generateLocalComment() {
-            const name = document.getElementById('studentName').value || 'L\'élève';
-            const level = document.getElementById('studentLevel').value;
-            const period = document.getElementById('period').value || 'cette période';
-            const specificPoints = document.getElementById('specificPoints').value;
-
-            const template = commentTemplates[selectedLevel];
-            
-            let comment = '';
-            
-            // Phrase d'introduction
-            const starter = template.starters[Math.floor(Math.random() * template.starters.length)];
-            comment += starter.replace('{name}', name).replace('{period}', period);
-
-            // Points forts
-            const selectedStrengths = [];
-            document.querySelectorAll('.checkbox-item input[type="checkbox"]:checked').forEach(checkbox => {
-                if (template.strengths[checkbox.value]) {
-                    selectedStrengths.push(template.strengths[checkbox.value]);
-                }
             });
+        });
 
-            if (selectedStrengths.length > 0) {
-                comment += ' ' + selectedStrengths.join(', ') + '.';
-            }
-
-            // Points spécifiques
-            if (specificPoints.trim()) {
-                comment += ' ' + specificPoints.trim();
-                if (!specificPoints.endsWith('.')) comment += '.';
-            }
-
-            // Encouragement
-            const encouragement = template.encouragements[Math.floor(Math.random() * template.encouragements.length)];
-            comment += ' ' + encouragement;
-
-            displayComment(comment);
+        // Fonctions utilitaires
+        function copierCommentaire() {
+            const textarea = document.getElementById('generatedComment');
+            textarea.select();
+            document.execCommand('copy');
+            alert('📋 Commentaire copié dans le presse-papiers !');
         }
 
-        function displayComment(comment) {
-            // Masquer le placeholder et afficher la carte
-            document.getElementById('commentPlaceholder').style.display = 'none';
-            const commentCard = document.getElementById('commentCard');
-            commentCard.style.display = 'block';
-            commentCard.classList.add('comment-card-visible');
-            
-            // Mettre à jour le contenu du commentaire
-            const output = document.getElementById('commentOutput');
-            output.innerHTML = `<p>${comment}</p>`;
-            
-            // Mettre à jour l'en-tête avec les informations de l'élève
-            const name = document.getElementById('studentName').value || 'l\'élève';
-            const level = document.getElementById('studentLevel').value || '';
-            const period = document.getElementById('period').value || 'cette période';
-            
-            document.getElementById('studentDisplayName').textContent = name;
-            
-            // Mettre à jour le badge de niveau avec couleur dynamique
-            const levelBadge = document.getElementById('levelBadge');
-            const levelLabels = {
-                'excellent': 'TBM',
-                'satisfactory': 'MS',
-                'fragile': 'MF',
-                'insufficient': 'MI'
-            };
-            
-            levelBadge.textContent = levelLabels[selectedLevel] || selectedLevel;
-            levelBadge.className = `badge badge-${selectedLevel}`;
-            
-            // Appliquer la couleur dynamique à l'en-tête
-            const commentHeader = document.getElementById('commentHeader');
-            commentHeader.className = `card-header level-${selectedLevel}`;
-            
-            // Mise à jour des statistiques
-            generatedCount++;
-            updateStats(comment);
-            
-            // Afficher les boutons
-            document.getElementById('copyBtn').style.display = 'inline-block';
-            document.getElementById('exportBtn').style.display = 'inline-block';
-        }
-
-        function updateStats(comment) {
-            document.getElementById('generatedCount').textContent = generatedCount;
-            document.getElementById('wordCount').textContent = comment.split(' ').length;
-            document.getElementById('charCount').textContent = comment.length;
+        function exporterCommentaire() {
+            alert('📄 Fonction d\'export en cours de développement...');
         }
 
         function copyComment() {
-            const comment = document.getElementById('commentOutput').textContent;
-            navigator.clipboard.writeText(comment).then(() => {
-                showToastNotification('Commentaire copié dans le presse-papiers !', 'success');
-            }).catch(() => {
-                showToastNotification('Erreur lors de la copie', 'error');
-            });
+            copierCommentaire();
         }
 
         function exportToPDF() {
-            const name = document.getElementById('studentName').value || 'l\'élève';
-            const level = document.getElementById('studentLevel').value || '';
-            const period = document.getElementById('period').value || 'cette période';
-            const comment = document.getElementById('commentOutput').textContent;
-            
-            // Créer une nouvelle fenêtre pour l'impression
-            const printWindow = window.open('', '_blank');
-            printWindow.document.write(`
-                <!DOCTYPE html>
-                <html>
-                <head>
-    <script src="https://cdn.tailwindcss.com"></script>
-                    <title>Commentaire LSU - ${name}</title>
-                    <style>
-                        body { font-family: Arial, sans-serif; margin: 40px; }
-                        .header { text-align: center; margin-bottom: 30px; }
-                        .comment { 
-                            background: #f8f9fa; 
-                            padding: 20px; 
-                            border-radius: 8px; 
-                            border-left: 4px solid #667eea;
-                            line-height: 1.6;
-                        }
-                        .info { 
-                            background: #e3f2fd; 
-                            padding: 15px; 
-                            border-radius: 8px; 
-                            margin-bottom: 20px;
-                        }
-                        @media print {
-                            body { margin: 20px; }
-                        }
-                    </style>
-                    <!-- Styles CSS pour la sidebar -->
-<style>
-    /* Animation d'entrée pour la sidebar */
-    @keyframes slideIn {
-        from { transform: translateX(-100%); }
-        to { transform: translateX(0); }
-    }
-
-    /* Highlight pour la page active */
-    .nav-link.active {
-        background: rgba(255, 255, 255, 0.15);
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        border-left: 4px solid #fbbf24;
-    }
-
-    /* Animation de survol améliorée */
-    .nav-link:hover {
-        transform: translateX(4px);
-    }
-
-    /* Responsive design */
-    @media (max-width: 640px) {
-        #sidebar {
-            transform: translateX(-100%);
-        }
-        
-        #sidebar.open {
-            transform: translateX(0);
-        }
-    }
-
-    /* Ajustement du contenu principal pour la sidebar */
-    .main-content {
-        margin-left: 0;
-        transition: margin-left 0.3s ease;
-    }
-
-    @media (min-width: 640px) {
-        .main-content {
-            margin-left: 256px; /* w-64 = 16rem = 256px */
-        }
-    }
-</style>
-    <style>
-    /* Styles pour les icônes Font Awesome */
-    .btn-with-icon i {
-        margin-right: 8px;
-        font-size: 14px;
-    }
-    
-    .btn-with-icon:hover i {
-        transform: scale(1.1);
-        transition: transform 0.2s ease;
-    }
-    
-    /* Masquer les icônes de fallback */
-    .fa-fallback {
-        display: none;
-    }
-    
-    /* Icônes spécifiques */
-    .btn-with-icon .fa-edit { color: #007bff; }
-    .btn-with-icon .fa-trash { color: #dc3545; }
-    .btn-with-icon .fa-plus { color: #28a745; }
-    .btn-with-icon .fa-save { color: #17a2b8; }
-    .btn-with-icon .fa-magic { color: #6f42c1; }
-    .btn-with-icon .fa-comments { color: #fd7e14; }
-    .btn-with-icon .fa-chart-bar { color: #20c997; }
-    .btn-with-icon .fa-image { color: #e83e8c; }
-    .btn-with-icon .fa-eye { color: #6c757d; }
-    .btn-with-icon .fa-download { color: #28a745; }
-    .btn-with-icon .fa-upload { color: #ffc107; }
-    .btn-with-icon .fa-times { color: #6c757d; }
-    .btn-with-icon .fa-home { color: #007bff; }
-    .btn-with-icon .fa-bullseye { color: #dc3545; }
-    .btn-with-icon .fa-users { color: #28a745; }
-    .btn-with-icon .fa-tachometer-alt { color: #17a2b8; }
-    </style>
-</head>
-                <body class="main-content">
-                    <div class="header">
-                        <h1>Commentaire LSU</h1>
-                        <h2>ÉCOLE DU CAP</h2>
-                    </div>
-                    <div class="info">
-                        <strong>Élève :</strong> ${name}<br>
-                        <strong>Niveau :</strong> ${level}<br>
-                        <strong>Période :</strong> ${period}
-                    </div>
-                    <div class="comment">
-                        ${comment}
-                    </div>
-                    <!-- Script JavaScript pour la sidebar -->
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    const sidebar = document.getElementById('sidebar');
-    const sidebarToggle = document.getElementById('sidebar-toggle');
-    const sidebarOverlay = document.getElementById('sidebar-overlay');
-    const navLinks = document.querySelectorAll('.nav-link');
-
-    // Fonction pour marquer la page active
-    function setActivePage() {
-        const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-        
-        navLinks.forEach(link => {
-            link.classList.remove('active');
-            const href = link.getAttribute('href');
-            if (href === currentPage) {
-                link.classList.add('active');
-            }
-        });
-    }
-
-    // Fonction pour basculer la sidebar sur mobile
-    function toggleSidebar() {
-        sidebar.classList.toggle('open');
-        sidebarOverlay.classList.toggle('hidden');
-    }
-
-    // Événements pour mobile
-    if (sidebarToggle) {
-        sidebarToggle.addEventListener('click', toggleSidebar);
-    }
-    
-    if (sidebarOverlay) {
-        sidebarOverlay.addEventListener('click', toggleSidebar);
-    }
-
-    // Fermer la sidebar en cliquant sur un lien (mobile)
-    navLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            if (window.innerWidth < 640) {
-                toggleSidebar();
-            }
-        });
-    });
-
-    // Marquer la page active au chargement
-    setActivePage();
-
-    // Gestion du redimensionnement de fenêtre
-    window.addEventListener('resize', () => {
-        if (window.innerWidth >= 640) {
-            sidebar.classList.remove('open');
-            sidebarOverlay.classList.add('hidden');
-        }
-    });
-});
-</script>
-</body>
-                </html>
-            `);
-            printWindow.document.close();
-            printWindow.print();
-            
-            showToastNotification('Export PDF lancé !', 'success');
-        }
-
-        function showToastNotification(message, type = 'success') {
-            // Supprimer les notifications existantes
-            const existingToasts = document.querySelectorAll('.toast-notification');
-            existingToasts.forEach(toast => toast.remove());
-            
-            // Créer la nouvelle notification
-            const toast = document.createElement('div');
-            toast.className = `toast-notification ${type}`;
-            toast.textContent = message;
-            document.body.appendChild(toast);
-            
-            // Afficher la notification
-            setTimeout(() => toast.classList.add('show'), 100);
-            
-            // Masquer après 3 secondes
-            setTimeout(() => {
-                toast.classList.remove('show');
-                setTimeout(() => toast.remove(), 300);
-            }, 3000);
-        }
-
-        // Gestion des élèves
-        function loadStudentsList() {
-            const container = document.getElementById('studentsList');
-            
-            if (students.length === 0) {
-                container.innerHTML = '<p style="text-align: center; color: #666; padding: 40px;">Aucun élève enregistré. Cliquez sur "Ajouter un élève" pour commencer.</p>';
-                return;
-            }
-
-            container.innerHTML = students.map((student, index) => `
-                <div class="student-card">
-                    <div class="student-info">
-                        <h3>${student.firstName} ${student.lastName}</h3>
-                        <p>Niveau: ${student.level} | Né(e) le: ${new Date(student.birthDate).toLocaleDateString('fr-FR')}</p>
-                    </div>
-                    <div class="student-actions">
-                        <button class="btn-small btn-view" onclick="selectStudent(${index})">Sélectionner</button>
-                        <button class="btn-small btn-edit" onclick="editStudent(${index})">Modifier</button>
-                        <button class="btn-small btn-delete" onclick="deleteStudent(${index})">Supprimer</button>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        function openAddStudentModal() {
-            document.getElementById('addStudentModal').style.display = 'block';
-        }
-
-        function closeAddStudentModal() {
-            document.getElementById('addStudentModal').style.display = 'none';
-            // Reset du formulaire
-            document.getElementById('newStudentName').value = '';
-            document.getElementById('newStudentLastName').value = '';
-            document.getElementById('newStudentLevel').value = 'CP';
-            document.getElementById('newStudentBirthDate').value = '';
-        }
-
-        function addStudent() {
-            const firstName = document.getElementById('newStudentName').value.trim();
-            const lastName = document.getElementById('newStudentLastName').value.trim();
-            const level = document.getElementById('newStudentLevel').value;
-            const birthDate = document.getElementById('newStudentBirthDate').value;
-
-            if (!firstName || !lastName || !birthDate) {
-                showNotification('Veuillez remplir tous les champs obligatoires', 'error');
-                return;
-            }
-
-            const newStudent = {
-                firstName,
-                lastName,
-                level,
-                birthDate,
-                createdAt: new Date().toISOString()
-            };
-
-            students.push(newStudent);
-            localStorage.setItem('students', JSON.stringify(students));
-            
-            closeAddStudentModal();
-            loadStudentsList();
-            showNotification(`${firstName} ${lastName} a été ajouté(e) avec succès !`, 'success');
-        }
-
-        function selectStudent(index) {
-            const student = students[index];
-            
-            // Basculer vers la page générateur
-            showPage('generator');
-            
-            // Pré-remplir le formulaire
-            document.getElementById('studentName').value = student.firstName;
-            document.getElementById('studentLevel').value = student.level;
-            
-            showNotification(`Élève ${student.firstName} ${student.lastName} sélectionné(e)`, 'success');
-        }
-
-        function deleteStudent(index) {
-            const student = students[index];
-            if (confirm(`Êtes-vous sûr de vouloir supprimer ${student.firstName} ${student.lastName} ?`)) {
-                students.splice(index, 1);
-                localStorage.setItem('students', JSON.stringify(students));
-                loadStudentsList();
-                showNotification('Élève supprimé(e) avec succès', 'success');
-            }
-        }
-
-        // Paramètres et connexions
-        function loadSettings() {
-            const saved = localStorage.getItem('lsuConfig');
-            if (saved) {
-                config = { ...config, ...JSON.parse(saved) };
-                document.getElementById('n8nUrl').value = config.n8nUrl;
-                document.getElementById('apiKey').value = config.apiKey;
-                document.getElementById('aiUrl').value = config.aiUrl;
-                document.getElementById('aiModel').value = config.aiModel;
-            }
-            return config;
-        }
-
-        function saveSettings() {
-            config.n8nUrl = document.getElementById('n8nUrl').value;
-            config.apiKey = document.getElementById('apiKey').value;
-            config.aiUrl = document.getElementById('aiUrl').value;
-            config.aiModel = document.getElementById('aiModel').value;
-            
-            localStorage.setItem('lsuConfig', JSON.stringify(config));
-            showNotification('Paramètres sauvegardés avec succès !', 'success');
-            
-            // Tester la connexion après sauvegarde
-            testConnections();
-        }
-
-        async function testConnections() {
-            let n8nStatus = false;
-            let aiStatus = false;
-
-            // Test N8N
-            if (config.n8nUrl) {
-                try {
-                    const response = await fetch(config.n8nUrl, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            ...(config.apiKey && { 'Authorization': `Bearer ${config.apiKey}` })
-                        },
-                        body: JSON.stringify({ test: true })
-                    });
-                    n8nStatus = response.ok;
-                } catch (error) {
-                    console.error('Erreur N8N:', error);
-                }
-            }
-
-            // Test IA locale
-            if (config.aiUrl) {
-                try {
-                    const response = await fetch(config.aiUrl, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({
-                            model: config.aiModel,
-                            prompt: 'Test de connexion',
-                            stream: false
-                        })
-                    });
-                    aiStatus = response.ok;
-                } catch (error) {
-                    console.error('Erreur IA:', error);
-                }
-            }
-
-            updateConnectionStatus(n8nStatus, aiStatus);
-            
-            if (n8nStatus && aiStatus) {
-                showNotification('✅ Toutes les connexions sont opérationnelles !', 'success');
-            } else if (n8nStatus || aiStatus) {
-                showNotification('⚠️ Certaines connexions sont indisponibles', 'warning');
-            } else {
-                showNotification('❌ Aucune connexion externe disponible', 'error');
-            }
-        }
-
-        function updateConnectionStatus(n8nStatus, aiStatus) {
-            const statusElement = document.getElementById('connectionStatus');
-            const indicator = document.getElementById('statusIndicator');
-            const statusText = document.getElementById('statusText');
-
-            if (n8nStatus && aiStatus) {
-                statusElement.className = 'connection-status status-connected';
-                indicator.className = 'status-indicator indicator-green';
-                statusText.textContent = 'Connecté (N8N + IA)';
-            } else if (aiStatus) {
-                statusElement.className = 'connection-status status-connected';
-                indicator.className = 'status-indicator indicator-green';
-                statusText.textContent = 'IA locale connectée';
-            } else if (n8nStatus) {
-                statusElement.className = 'connection-status status-connected';
-                indicator.className = 'status-indicator indicator-green';
-                statusText.textContent = 'N8N connecté';
-            } else {
-                statusElement.className = 'connection-status status-disconnected';
-                indicator.className = 'status-indicator indicator-red';
-                statusText.textContent = 'Mode hors ligne';
-            }
-        }
-
-        function loadExample(type) {
-            // Reset du formulaire
-            document.getElementById('studentName').value = '';
-            document.getElementById('studentLevel').value = 'CM1';
-            document.getElementById('period').value = '2ème trimestre';
-            document.getElementById('specificPoints').value = '';
-            
-            // Reset des checkboxes
-            document.querySelectorAll('.checkbox-item input[type="checkbox"]').forEach(cb => cb.checked = false);
-            document.querySelectorAll('.level-btn').forEach(btn => btn.classList.remove('active'));
-
-            switch(type) {
-                case 'excellent':
-                    selectedLevel = 'excellent';
-                    document.querySelector('[data-level="excellent"]').classList.add('active');
-                    document.getElementById('participation').checked = true;
-                    document.getElementById('autonomie').checked = true;
-                    document.getElementById('progres').checked = true;
-                    break;
-                case 'progres':
-                    selectedLevel = 'satisfactory';
-                    document.querySelector('[data-level="satisfactory"]').classList.add('active');
-                    document.getElementById('progres').checked = true;
-                    document.getElementById('ecoute').checked = true;
-                    break;
-                case 'encourage':
-                    selectedLevel = 'fragile';
-                    document.querySelector('[data-level="fragile"]').classList.add('active');
-                    document.getElementById('participation').checked = true;
-                    document.getElementById('specificPoints').value = 'Il/elle montre de la bonne volonté et souhaite progresser.';
-                    break;
-                case 'comportement':
-                    selectedLevel = 'satisfactory';
-                    document.querySelector('[data-level="satisfactory"]').classList.add('active');
-                    document.getElementById('ecoute').checked = true;
-                    document.getElementById('entraide').checked = true;
-                    break;
-            }
-            
-            showNotification('Exemple chargé !', 'success');
-        }
-
-        function showNotification(message, type = 'success') {
-            const notification = document.getElementById('notification');
-            notification.textContent = message;
-            notification.className = `notification ${type}`;
-            notification.classList.add('show');
-            
-            setTimeout(() => {
-                notification.classList.remove('show');
-            }, 4000);
-        }
-
-        // Sauvegarde automatique
-        function saveFormData() {
-            const formData = {
-                studentName: document.getElementById('studentName').value,
-                studentLevel: document.getElementById('studentLevel').value,
-                period: document.getElementById('period').value,
-                selectedLevel: selectedLevel,
-                specificPoints: document.getElementById('specificPoints').value,
-                checkedItems: Array.from(document.querySelectorAll('.checkbox-item input[type="checkbox"]:checked')).map(cb => cb.value)
-            };
-            localStorage.setItem('lsuFormData', JSON.stringify(formData));
-        }
-
-        function loadFormData() {
-            const saved = localStorage.getItem('lsuFormData');
-            if (saved) {
-                const formData = JSON.parse(saved);
-                document.getElementById('studentName').value = formData.studentName || '';
-                document.getElementById('studentLevel').value = formData.studentLevel || '';
-                document.getElementById('period').value = formData.period || '';
-                document.getElementById('specificPoints').value = formData.specificPoints || '';
-                
-                if (formData.selectedLevel) {
-                    selectedLevel = formData.selectedLevel;
-                    document.querySelector(`[data-level="${formData.selectedLevel}"]`)?.classList.add('active');
-                }
-                
-                formData.checkedItems?.forEach(value => {
-                    const checkbox = document.querySelector(`input[value="${value}"]`);
-                    if (checkbox) checkbox.checked = true;
-                });
-            }
-        }
-
-        // Événements de sauvegarde
-        document.querySelectorAll('input, select, textarea').forEach(element => {
-            element.addEventListener('change', saveFormData);
-            element.addEventListener('input', saveFormData);
-        });
-
-        // Initialisation
-        document.addEventListener('DOMContentLoaded', function() {
-            showPage('generator');
-            loadUrlParams();
-            updateConnectionStatus();
-            initStudentSearch(); // Initialiser la recherche d'élève
-        });
-
-        // Fermer le modal en cliquant à l'extérieur
-        window.onclick = function(event) {
-            const modal = document.getElementById('addStudentModal');
-            if (event.target === modal) {
-                closeAddStudentModal();
-            }
-        }
-
-        // ===== FONCTIONS DE RECHERCHE D'ÉLÈVE =====
-
-        /**
-         * Initialise la recherche d'élève
-         */
-        function initStudentSearch() {
-            const searchInput = document.getElementById('studentSearch');
-            const searchResults = document.getElementById('searchResults');
-            
-            if (!searchInput) return;
-            
-            // Événement de saisie pour la recherche
-            searchInput.addEventListener('input', function() {
-                const query = this.value.trim().toLowerCase();
-                
-                if (query.length < 2) {
-                    hideSearchResults();
-                    return;
-                }
-                
-                const results = searchStudents(query);
-                displaySearchResults(results);
-            });
-            
-            // Événement de focus pour afficher les résultats
-            searchInput.addEventListener('focus', function() {
-                const query = this.value.trim().toLowerCase();
-                if (query.length >= 2) {
-                    const results = searchStudents(query);
-                    displaySearchResults(results);
-                }
-            });
-            
-            // Fermer les résultats en cliquant à l'extérieur
-            document.addEventListener('click', function(event) {
-                if (!searchInput.contains(event.target) && !searchResults.contains(event.target)) {
-                    hideSearchResults();
-                }
-            });
-            
-            // Navigation au clavier
-            searchInput.addEventListener('keydown', function(event) {
-                const results = document.querySelectorAll('.search-result-item');
-                const selected = document.querySelector('.search-result-item.selected');
-                
-                switch(event.key) {
-                    case 'ArrowDown':
-                        event.preventDefault();
-                        navigateSearchResults(results, selected, 1);
-                        break;
-                    case 'ArrowUp':
-                        event.preventDefault();
-                        navigateSearchResults(results, selected, -1);
-                        break;
-                    case 'Enter':
-                        event.preventDefault();
-                        if (selected) {
-                            selectStudentFromSearch(selected.dataset.index);
-                        }
-                        break;
-                    case 'Escape':
-                        hideSearchResults();
-                        break;
-                }
-            });
-        }
-
-        /**
-         * Recherche les élèves selon la requête
-         * @param {string} query - Requête de recherche
-         * @returns {Array} - Résultats filtrés
-         */
-        function searchStudents(query) {
-            return eleves.filter(eleve => 
-                eleve.prenom.toLowerCase().includes(query) ||
-                eleve.niveau.toLowerCase().includes(query) ||
-                eleve.periode.toLowerCase().includes(query)
-            ).slice(0, 5); // Limiter à 5 résultats
-        }
-
-        /**
-         * Affiche les résultats de recherche
-         * @param {Array} results - Résultats à afficher
-         */
-        function displaySearchResults(results) {
-            const searchResults = document.getElementById('searchResults');
-            
-            if (results.length === 0) {
-                searchResults.innerHTML = '<div class="search-result-item">Aucun élève trouvé</div>';
-                searchResults.classList.add('show');
-                return;
-            }
-            
-            searchResults.innerHTML = results.map((eleve, index) => `
-                <div class="search-result-item" data-index="${index}" onclick="selectStudentFromSearch(${index})">
-                    <div class="student-avatar">${eleve.prenom.charAt(0)}</div>
-                    <div class="student-info">
-                        <div class="student-name">${eleve.prenom}</div>
-                        <div class="student-details">${eleve.niveau} • ${eleve.periode}</div>
-                    </div>
-                </div>
-            `).join('');
-            
-            searchResults.classList.add('show');
-        }
-
-        /**
-         * Cache les résultats de recherche
-         */
-        function hideSearchResults() {
-            const searchResults = document.getElementById('searchResults');
-            searchResults.classList.remove('show');
-        }
-
-        /**
-         * Navigation dans les résultats avec les flèches
-         * @param {NodeList} results - Éléments de résultats
-         * @param {Element} selected - Élément actuellement sélectionné
-         * @param {number} direction - Direction (1 = bas, -1 = haut)
-         */
-        function navigateSearchResults(results, selected, direction) {
-            if (results.length === 0) return;
-            
-            let nextIndex = 0;
-            
-            if (selected) {
-                const currentIndex = Array.from(results).indexOf(selected);
-                nextIndex = (currentIndex + direction + results.length) % results.length;
-                selected.classList.remove('selected');
-            }
-            
-            results[nextIndex].classList.add('selected');
-            results[nextIndex].scrollIntoView({ block: 'nearest' });
-        }
-
-        /**
-         * Sélectionne un élève depuis la recherche
-         * @param {number} index - Index de l'élève dans les résultats
-         */
-        function selectStudentFromSearch(index) {
-            const results = searchStudents(document.getElementById('studentSearch').value);
-            const eleve = results[index];
-            
-            if (!eleve) return;
-            
-            // Remplir automatiquement les champs
-            fillStudentData(eleve);
-            
-            // Masquer les résultats
-            hideSearchResults();
-            
-            // Vider le champ de recherche
-            document.getElementById('studentSearch').value = '';
-            
-            // Notification de succès
-            showNotification(`Élève ${eleve.prenom} sélectionné !`, 'success');
-        }
-
-        /**
-         * Remplit automatiquement les champs avec les données de l'élève
-         * @param {Object} eleve - Données de l'élève
-         */
-        function fillStudentData(eleve) {
-            // Remplir les champs de base
-            document.getElementById('studentName').value = eleve.prenom;
-            document.getElementById('studentLevel').value = eleve.niveau;
-            document.getElementById('period').value = eleve.periode;
-            
-            // Définir le niveau général selon les données
-            setLevelFromData(eleve.niveauGeneral);
-            
-            // Cocher les points forts correspondants
-            checkStrengthsFromData(eleve.pointsForts);
-            
-            // Sauvegarder les données
-            saveFormData();
-        }
-
-        /**
-         * Définit le niveau selon les données de l'élève
-         * @param {string} niveauGeneral - Niveau général de l'élève
-         */
-        function setLevelFromData(niveauGeneral) {
-            // Réinitialiser tous les boutons
-            document.querySelectorAll('.level-btn').forEach(btn => btn.classList.remove('active'));
-            
-            // Mapper le niveau général vers les boutons
-            let levelButton = null;
-            
-            if (niveauGeneral.includes('insuffisante')) {
-                levelButton = document.querySelector('[data-level="insufficient"]');
-                selectedLevel = 'insufficient';
-            } else if (niveauGeneral.includes('fragile')) {
-                levelButton = document.querySelector('[data-level="fragile"]');
-                selectedLevel = 'fragile';
-            } else if (niveauGeneral.includes('satisfaisante')) {
-                levelButton = document.querySelector('[data-level="satisfactory"]');
-                selectedLevel = 'satisfactory';
-            } else if (niveauGeneral.includes('Très bonne') || niveauGeneral.includes('excellente')) {
-                levelButton = document.querySelector('[data-level="excellent"]');
-                selectedLevel = 'excellent';
-            }
-            
-            if (levelButton) {
-                levelButton.classList.add('active');
-            }
-        }
-
-        /**
-         * Coche les points forts selon les données de l'élève
-         * @param {Array} pointsForts - Points forts de l'élève
-         */
-        function checkStrengthsFromData(pointsForts) {
-            // Réinitialiser toutes les checkboxes
-            document.querySelectorAll('.checkbox-item input[type="checkbox"]').forEach(cb => cb.checked = false);
-            
-            // Mapper les points forts vers les checkboxes
-            const strengthMapping = {
-                'Participation active': 'participation',
-                'Autonomie': 'autonomie',
-                'Progrès constants': 'progres',
-                'Créativité': 'creativite',
-                'Bonne écoute': 'ecoute',
-                'Esprit d\'entraide': 'entraide'
-            };
-            
-            pointsForts.forEach(pointFort => {
-                const checkboxId = strengthMapping[pointFort];
-                if (checkboxId) {
-                    const checkbox = document.getElementById(checkboxId);
-                    if (checkbox) {
-                        checkbox.checked = true;
-                    }
-                }
-            });
+            exporterCommentaire();
         }
     </script>
-
-    <script>
-    // Script de détection et correction des icônes manquantes
-    document.addEventListener('DOMContentLoaded', function() {
-        // Fonction pour détecter si un emoji s'affiche correctement
-        function isEmojiSupported(emoji) {
-            const canvas = document.createElement('canvas');
-            const ctx = canvas.getContext('2d');
-            ctx.font = '16px Arial';
-            ctx.fillText(emoji, 0, 16);
-            const data = ctx.getImageData(0, 0, 16, 16).data;
-            return data.some(pixel => pixel !== 0);
-        }
-        
-        // Vérifier et corriger les icônes
-        function fixMissingIcons() {
-            const emojiElements = document.querySelectorAll('.emoji-icon');
-            
-            emojiElements.forEach(element => {
-                const emoji = element.textContent;
-                if (!isEmojiSupported(emoji)) {
-                    // Masquer l'emoji et afficher l'icône Font Awesome
-                    element.style.display = 'none';
-                    const fallbackIcon = element.nextElementSibling;
-                    if (fallbackIcon && fallbackIcon.classList.contains('fa-fallback')) {
-                        fallbackIcon.style.display = 'inline-block';
-                    }
-                }
-            });
-        }
-        
-        // Exécuter après un délai pour laisser le temps au rendu
-        setTimeout(fixMissingIcons, 100);
-        
-        // Réexécuter si nécessaire
-        window.addEventListener('load', fixMissingIcons);
-    });
-    </script>
-
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Script JavaScript pour la sidebar -->
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    const sidebar = document.getElementById('sidebar');
-    const sidebarToggle = document.getElementById('sidebar-toggle');
-    const sidebarOverlay = document.getElementById('sidebar-overlay');
-    const navLinks = document.querySelectorAll('.nav-link');
-
-    // Fonction pour marquer la page active
-    function setActivePage() {
-        const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-        
-        navLinks.forEach(link => {
-            link.classList.remove('active');
-            const href = link.getAttribute('href');
-            if (href === currentPage) {
-                link.classList.add('active');
-            }
-        });
-    }
-
-    // Fonction pour basculer la sidebar sur mobile
-    function toggleSidebar() {
-        sidebar.classList.toggle('open');
-        sidebarOverlay.classList.toggle('hidden');
-    }
-
-    // Événements pour mobile
-    if (sidebarToggle) {
-        sidebarToggle.addEventListener('click', toggleSidebar);
-    }
-    
-    if (sidebarOverlay) {
-        sidebarOverlay.addEventListener('click', toggleSidebar);
-    }
-
-    // Fermer la sidebar en cliquant sur un lien (mobile)
-    navLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            if (window.innerWidth < 640) {
-                toggleSidebar();
-            }
-        });
-    });
-
-    // Marquer la page active au chargement
-    setActivePage();
-
-    // Gestion du redimensionnement de fenêtre
-    window.addEventListener('resize', () => {
-        if (window.innerWidth >= 640) {
-            sidebar.classList.remove('open');
-            sidebarOverlay.classList.add('hidden');
-        }
-    });
-});
-</script>
 </body>
 </html>
+
